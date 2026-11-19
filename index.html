@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#050608">
+<meta name="theme-color" content="#06090e">
 
-<title>911 — The Art of Motion | Cinematic Concept</title>
+<meta
+  name="description"
+  content="Een onofficiële cinematografische 911 GT3 RS Carbon 3D-experience."
+>
+
+<title>911 GT3 RS — CARBON / CINEMATIC EXPERIENCE</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+>
 
 <style>
 
@@ -20,942 +28,673 @@
 ========================================== */
 
 :root {
-    --bg: #08090b;
-    --ink: #f8f8f7;
-    --red: #e3352c;
-    --paint: #b8bcbf;
-    --ease: cubic-bezier(.22, 1, .36, 1);
+  --paper: #ecf0f4;
+  --muted: #aab5bf;
+  --line: #ffffff30;
+  --red: #ed382f;
+  --ink: #080b11;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    overflow-x: hidden;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  background: #05070a;
+  color: var(--paper);
+  font-family: Manrope, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+button,
+a {
+  font: inherit;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 button {
-    font: inherit;
-    cursor: pointer;
+  cursor: pointer;
 }
 
-a:focus-visible,
-button:focus-visible {
-    outline: 2px solid white;
-    outline-offset: 4px;
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 5px;
 }
 
 /* ==========================================
-   PROGRESS BAR
+   PROGRESS
 ========================================== */
 
 .progress {
-    position: fixed;
-    inset: 0 0 auto;
-    height: 2px;
-    z-index: 100;
-    background: #ffffff18;
-}
-
-.progress span {
-    display: block;
-    height: 100%;
-    width: 0;
-    background: var(--red);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: #e53f38;
+  z-index: 120;
+  pointer-events: none;
 }
 
 /* ==========================================
    HEADER
 ========================================== */
 
-.header {
-    position: fixed;
-    z-index: 90;
-    inset: 0 0 auto;
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    padding: 23px 6%;
+  padding: 24px clamp(20px, 5vw, 85px);
+  gap: 18px;
 
-    transition: background .35s;
+  transition:
+    background .3s,
+    padding .3s;
 }
 
-.header.scrolled {
-    background: #08090be8;
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid #ffffff20;
+header.scrolled {
+  background: #05090ddc;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid #ffffff19;
+
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
-.brand {
-    font: 800 29px Manrope, sans-serif;
-    letter-spacing: -.09em;
+.logo {
+  font-weight: 800;
+  letter-spacing: -.095em;
+  font-size: 30px;
+  line-height: 1;
 }
 
-.brand small {
-    display: block;
-
-    font: 700 8px Manrope, sans-serif;
-    letter-spacing: .21em;
-
-    margin-top: 4px;
+.logo small {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: .16em;
+  font-size: 8px;
+  font-weight: 400;
+  margin-top: 8px;
 }
 
-.nav {
-    display: flex;
-    gap: 30px;
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
 
-    font: 700 10px Manrope, sans-serif;
-    letter-spacing: .15em;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .15em;
 }
 
-.nav a:hover {
-    color: #ffffff99;
+nav a:hover {
+  color: white;
+  text-decoration: underline;
+  text-underline-offset: 6px;
 }
 
-.menu {
-    display: none;
-    background: transparent;
-    color: white;
-    border: 1px solid #ffffff70;
-    padding: 10px 14px;
+.outline {
+  border: 1px solid #ffffff88;
+  padding: 13px 17px;
+}
+
+.mobile-menu {
+  display: none;
+
+  color: white;
+  background: #101721;
+  border: 1px solid #ffffff70;
+
+  min-width: 44px;
+  height: 44px;
+  font-size: 23px;
 }
 
 /* ==========================================
-   00 — DARK ROOM
+   ONE CONTINUOUS CINEMATIC SCENE
 ========================================== */
 
-.cinema {
-    height: 360svh;
-    background: #000;
-    position: relative;
+.film {
+  height: 730vh;
+  position: relative;
+  background: #020407;
 }
 
-.room {
-    position: sticky;
-    top: 0;
+.film-sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
 
-    height: 100svh;
-    min-height: 480px;
+#filmCanvas {
+  position: absolute;
+  inset: 0;
 
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
 
-    background: radial-gradient(
-        ellipse at 50% 58%,
-        #111721 0%,
-        #030406 47%,
-        #000 82%
+  touch-action: pan-y;
+}
+
+/* ==========================================
+   CINEMATIC VIGNETTE
+========================================== */
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 47%,
+      transparent 28%,
+      #0203079c 99%
+    ),
+    linear-gradient(
+      0deg,
+      #02040990,
+      transparent 35%
     );
 }
 
-.room::after {
-    content: '';
+/* ==========================================
+   FILM GRAIN
+========================================== */
 
-    position: absolute;
-    inset: 0;
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
 
-    pointer-events: none;
-    z-index: 5;
+  pointer-events: none;
+  opacity: .13;
 
-    box-shadow: inset 0 0 16vw 8vw #000c;
+  background-image: url(
+    "data:image/svg+xml,%3Csvg viewBox='0 0 150 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath filter='url(%23noise)' opacity='.22' d='M0 0h150v150H0z'/%3E%3C/svg%3E"
+  );
 }
 
 /* ==========================================
-   CAR IN DARK ROOM
+   SCENE TYPOGRAPHY
 ========================================== */
 
-.room-car {
-    position: absolute;
+.scene-copy {
+  position: absolute;
+  z-index: 5;
 
-    left: 50%;
-    top: 48%;
+  left: 6%;
+  bottom: 11%;
 
-    width: min(1180px, 105vw);
+  max-width: min(650px, 85%);
 
-    transform:
-        translate(-50%, -50%)
-        scale(.9);
+  pointer-events: none;
 
-    filter: brightness(.04);
-    opacity: .94;
-
-    will-change: transform, filter;
+  transition: opacity .35s;
 }
 
-.room-car svg {
-    display: block;
-    width: 100%;
+.scene-number,
+.micro {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .25em;
+  color: #c6d4e0;
+}
+
+.scene-number::before {
+  content: '';
+
+  display: inline-block;
+  width: 26px;
+  height: 1px;
+
+  background: var(--red);
+
+  vertical-align: middle;
+  margin-right: 13px;
+}
+
+.scene-copy h1 {
+  font-size: clamp(52px, 9vw, 136px);
+  font-weight: 600;
+  letter-spacing: -.09em;
+  line-height: .92;
+
+  margin: 18px 0 12px;
+
+  text-shadow: 0 10px 60px #000a;
+}
+
+.scene-copy p {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .12em;
+  line-height: 1.8;
+  color: #bccbd7;
+}
+
+.scene-copy.is-hidden {
+  opacity: 0;
+}
+
+.scroll-cue {
+  position: absolute;
+  z-index: 5;
+
+  right: 6%;
+  bottom: 7%;
+
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: .2em;
+  color: #d5e1eb;
+}
+
+.top-tag {
+  position: absolute;
+  z-index: 5;
+
+  right: 6%;
+  top: 21%;
+
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: .21em;
+
+  color: #d2dfed;
+}
+
+.frame-indicator {
+  position: absolute;
+  z-index: 5;
+
+  bottom: 4%;
+  left: 6%;
+
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: .2em;
+
+  color: #8397a8;
 }
 
 /* ==========================================
-   AUTOMATIC HEADLIGHTS
+   LIGHT FLICKER OVERLAY
 ========================================== */
 
-.lights {
-    position: absolute;
-    inset: 0;
+.ambient-flash {
+  position: absolute;
+  inset: 0;
 
-    z-index: 3;
+  background: #d8efff;
+  z-index: 4;
 
-    opacity: 0;
+  opacity: 0;
 
-    pointer-events: none;
-
-    transition: opacity .8s;
-}
-
-.lights.on {
-    opacity: 1;
-}
-
-.lamp {
-    position: absolute;
-
-    top: 49%;
-
-    width: clamp(90px, 12vw, 195px);
-    height: clamp(90px, 12vw, 195px);
-
-    border-radius: 50%;
-
-    transform: translate(-50%, -50%);
-
-    background: radial-gradient(
-        circle,
-        #ffffff 0%,
-        #e5f6ff 5%,
-        #bedfff 14%,
-        #a9dcff8f 30%,
-        #93cdff26 58%,
-        transparent 74%
-    );
-
-    filter: blur(7px);
-    mix-blend-mode: screen;
-}
-
-.lamp.l {
-    left: 27%;
-}
-
-.lamp.r {
-    left: 73%;
+  pointer-events: none;
+  mix-blend-mode: screen;
 }
 
 /* ==========================================
-   FLICKERING STUDIO LIGHT
+   STORY
 ========================================== */
 
-.ceiling {
-    position: absolute;
-    inset: -10% 0 0;
-
-    z-index: 2;
-
-    pointer-events: none;
-
-    background: radial-gradient(
-        ellipse 38% 49% at 50% 20%,
-        #f6f8ff94,
-        transparent 80%
-    );
-
-    opacity: 0;
-}
-
-/* ==========================================
-   SHOWROOM FLOOR
-========================================== */
-
-.floor {
-    position: absolute;
-
-    bottom: -12%;
-    left: 7%;
-    right: 7%;
-
-    height: 34%;
-
-    background: radial-gradient(
-        ellipse at center,
-        #8aa8c345,
-        transparent 68%
-    );
-
-    transform:
-        perspective(450px)
-        rotateX(63deg);
-
-    opacity: 0;
-}
-
-/* ==========================================
-   DARK ROOM TYPOGRAPHY
-========================================== */
-
-.room-tag {
-    position: absolute;
-
-    top: 23%;
-    right: 6%;
-
-    z-index: 6;
-
-    font: 700 11px Manrope, sans-serif;
-    letter-spacing: .23em;
-
-    color: #b7c1c9;
-}
-
-.room-title {
-    position: absolute;
-
-    bottom: 12%;
-    left: 6%;
-
-    z-index: 6;
-}
-
-.room-title small,
-.eyebrow {
-    font: 700 10px Manrope, sans-serif;
-    letter-spacing: .28em;
-
-    color: #c0c4c9;
-}
-
-.room-title h1 {
-    margin: 12px 0 0;
-
-    font: 600 clamp(50px, 9vw, 140px)/.9
-          Manrope, sans-serif;
-
-    letter-spacing: -.09em;
-
-    opacity: 0;
-
-    transform: translateY(20px);
-
-    transition:
-        opacity 1s,
-        transform 1s;
-}
-
-.room-title h1.on {
-    opacity: 1;
-    transform: none;
-}
-
-.scroll-word {
-    position: absolute;
-
-    bottom: 6%;
-    right: 6%;
-
-    z-index: 6;
-
-    font: 700 10px Manrope, sans-serif;
-    letter-spacing: .22em;
-}
-
-/* ==========================================
-   01 — CINEMATIC CLOSE-UPS
-========================================== */
-
-.closeups {
-    padding: 95px 0 125px;
-    background: #030406;
-}
-
-.closeups-intro {
-    display: flex;
-    justify-content: space-between;
-
-    gap: 15px;
-
-    margin: 0 6% 40px;
-
-    font: 700 10px Manrope, sans-serif;
-    letter-spacing: .23em;
-
-    color: #bac0c5;
-}
-
-/* ==========================================
-   CLOSE-UP FRAMES
-========================================== */
-
-.shot {
-    height: 83svh;
-    min-height: 470px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    margin: 0 4% 18px;
-
-    background: #15171b;
-}
-
-.shot-img {
-    position: absolute;
-    inset: -6%;
-
-    background-image:
-        linear-gradient(
-            0deg,
-            #000000aa,
-            transparent 55%
-        ),
-        url(
-            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2400&q=90'
-        );
-
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    filter:
-        contrast(1.17)
-        saturate(.7)
-        brightness(.83);
-
-    will-change: transform;
-}
-
-/* WHEEL CLOSE-UP */
-
-.shot.wheel .shot-img {
-    background-position: 20% 78%;
-}
-
-/* BODYWORK CLOSE-UP */
-
-.shot.lines .shot-img {
-    background-position: 55% 42%;
-}
-
-/* SILHOUETTE CLOSE-UP */
-
-.shot.rear .shot-img {
-    background-position: 90% 65%;
-}
-
-/* ==========================================
-   CLOSE-UP VIGNETTE
-========================================== */
-
-.shot::after {
-    content: '';
-
-    position: absolute;
-    inset: 0;
-
-    background: radial-gradient(
-        ellipse at center,
-        transparent 28%,
-        #0304069c
-    );
-
-    pointer-events: none;
-}
-
-/* ==========================================
-   CLOSE-UP TITLES
-========================================== */
-
-.shot h2 {
-    position: absolute;
-
-    z-index: 2;
-
-    bottom: 7%;
-    left: 5%;
-
-    margin: 0;
-
-    font: 600 clamp(50px, 9vw, 135px)/.92
-          Manrope, sans-serif;
-
-    letter-spacing: -.09em;
-
-    text-shadow: 0 8px 35px #0009;
-}
-
-.shot h2 small {
-    display: block;
-
-    font: 700 10px Manrope, sans-serif;
-    letter-spacing: .26em;
-
-    margin-bottom: 17px;
-}
-
-.shot .number {
-    position: absolute;
-
-    z-index: 2;
-
-    right: 5%;
-    top: 6%;
-
-    font: 700 11px Manrope, sans-serif;
-    letter-spacing: .2em;
-}
-
-/* ==========================================
-   ORIGINAL CINEMATIC HERO
-========================================== */
-
-.hero {
-    height: 100svh;
-    min-height: 640px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    background: #111;
-}
-
-.hero-photo {
-    position: absolute;
-    inset: -5%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #030405e5,
-            transparent 75%
-        ),
-        linear-gradient(
-            0deg,
-            #050608dd,
-            transparent 65%
-        ),
-        url(
-            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2400&q=90'
-        ) center 55% / cover;
-
-    filter:
-        contrast(1.18)
-        saturate(.8);
-}
-
-.hero-content {
-    position: relative;
-
-    width: 88%;
-    max-width: 1400px;
-
-    margin: auto;
-
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.hero-content h2 {
-    font: 700 clamp(115px, 23vw, 320px)/.8
-          Manrope, sans-serif;
-
-    letter-spacing: -.14em;
-
-    margin: 22px 0;
-}
-
-.hero-content p {
-    font-size: clamp(16px, 1.55vw, 22px);
-
-    line-height: 1.65;
-
-    max-width: 420px;
-
-    margin: 10px 0 30px;
-}
-
-.button {
-    display: inline-flex;
-
-    gap: 55px;
-
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 18px 24px;
-
-    background: white;
-    color: #111;
-
-    font: 800 11px Manrope, sans-serif;
-    letter-spacing: .16em;
-
-    border: 1px solid white;
-
-    transition: transform .25s var(--ease);
-}
-
-.button:hover {
-    transform: translateY(-4px);
-}
-
-/* ==========================================
-   STORY SECTION
-========================================== */
-
-.section {
-    padding: 145px 6%;
+.interlude {
+  background: #090c11;
+  padding: 140px 6% 110px;
+  border-top: 1px solid #24313c;
 }
 
 .wrap {
-    max-width: 1400px;
-    margin: auto;
+  max-width: 1420px;
+  margin: auto;
 }
 
-.split {
-    display: grid;
-
-    grid-template-columns: 1.3fr .7fr;
-
-    gap: 8%;
-
-    align-items: end;
+.eyebrow {
+  font: 11px 'DM Mono', monospace;
+  letter-spacing: .23em;
+  color: #b0c3d4;
 }
 
-.heading {
-    font: 600 clamp(51px, 8vw, 125px)/.98
-          Manrope, sans-serif;
+.eyebrow::before {
+  content: '';
 
-    letter-spacing: -.085em;
+  display: inline-block;
+  width: 26px;
+  height: 1px;
 
-    margin: 20px 0;
+  background: var(--red);
+
+  vertical-align: middle;
+  margin-right: 14px;
 }
 
-.heading em {
-    font-style: normal;
-    color: #777b81;
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1.3fr .7fr;
+
+  align-items: end;
+  gap: 8%;
 }
 
-.lead {
-    color: #bdc0c4;
+.mega {
+  font-size: clamp(55px, 10vw, 165px);
+  line-height: .91;
+  letter-spacing: -.095em;
 
-    max-width: 540px;
+  margin: 20px 0;
+  font-weight: 600;
+}
 
-    line-height: 1.85;
+.mega em {
+  font-style: normal;
+  color: #798592;
+}
 
-    font-size: clamp(15px, 1.5vw, 20px);
+.lede {
+  font-size: clamp(15px, 1.4vw, 19px);
+  line-height: 1.8;
+
+  color: #bac4ce;
+  max-width: 500px;
 }
 
 /* ==========================================
-   STATISTICS
+   FEATURES
 ========================================== */
 
-.stats {
-    border-top: 1px solid #ffffff33;
-    border-bottom: 1px solid #ffffff33;
+.feature-stripe {
+  border-top: 1px solid #ffffff30;
+  border-bottom: 1px solid #ffffff30;
 
-    margin-top: 95px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
+  margin-top: 95px;
 }
 
-.stat {
-    padding: 25px;
-
-    border-right: 1px solid #ffffff33;
+.feature-stripe > div {
+  padding: 28px 35px;
+  border-right: 1px solid #ffffff30;
 }
 
-.stat:first-child {
-    padding-left: 0;
+.feature-stripe > div:first-child {
+  padding-left: 0;
 }
 
-.stat:last-child {
-    border: 0;
+.feature-stripe > div:last-child {
+  border: 0;
 }
 
-.stat b {
-    display: block;
+.feature-stripe strong {
+  display: block;
 
-    font: 600 clamp(37px, 5vw, 70px)
-          Manrope, sans-serif;
-
-    letter-spacing: -.08em;
+  font-size: clamp(26px, 4vw, 55px);
+  letter-spacing: -.06em;
 }
 
-.stat small {
-    font: 700 10px Manrope, sans-serif;
-    letter-spacing: .18em;
+.feature-stripe span {
+  display: block;
 
-    color: #91979f;
-}
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: .15em;
 
-/* ==========================================
-   EDITORIAL PHOTOGRAPHY
-========================================== */
-
-.editorial {
-    height: 86svh;
-    min-height: 650px;
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-.editorial-photo {
-    position: absolute;
-    inset: -5%;
-
-    background:
-        linear-gradient(
-            0deg,
-            #000000ee,
-            transparent 85%
-        ),
-        url(
-            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2200&q=90'
-        ) center 42% / cover;
-
-    filter:
-        brightness(.65)
-        contrast(1.2);
-}
-
-.editorial-text {
-    position: absolute;
-
-    bottom: 10%;
-    left: 6%;
-}
-
-.editorial-text h2 {
-    font: 600 clamp(62px, 12vw, 176px)/.87
-          Manrope, sans-serif;
-
-    letter-spacing: -.095em;
-
-    margin: 20px 0;
+  color: #9aa6b2;
+  margin-top: 6px;
 }
 
 /* ==========================================
-   INTERACTIVE DESIGN STUDIO
+   DESIGN STUDIO
 ========================================== */
 
 .studio {
-    background: #111214;
+  background: #d9e0e7;
+  color: #101721;
+
+  padding: 105px 6% 115px;
 }
 
-.studio-top {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: end;
-
-    gap: 32px;
+.studio .eyebrow {
+  color: #344251;
 }
 
-.studio-top p {
-    max-width: 365px;
+.studio-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
 
-    color: #b8bdc3;
-
-    line-height: 1.8;
+  gap: 30px;
+  margin-bottom: 38px;
 }
 
-/* ==========================================
-   CONFIGURATOR
-========================================== */
+.studio-head h2 {
+  font-size: clamp(52px, 7vw, 106px);
+  font-weight: 600;
 
-.config {
-    margin-top: 65px;
+  letter-spacing: -.085em;
+  line-height: .94;
 
-    border: 1px solid #ffffff35;
-
-    background: radial-gradient(
-        ellipse at center,
-        #282d34,
-        #0c0e12 74%
-    );
-
-    transition: background .5s;
+  margin: 20px 0 0;
 }
 
-.config.day {
-    background: radial-gradient(
-        ellipse at center,
-        #a4abb4,
-        #484e59 74%
-    );
+.studio-head p {
+  max-width: 340px;
+  line-height: 1.75;
+  font-size: 14px;
+  color: #344455;
 }
 
-.config-head {
-    display: flex;
+.studio-layout {
+  display: grid;
 
-    align-items: center;
-    justify-content: space-between;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(245px, 310px);
 
-    gap: 10px;
-
-    padding: 24px 26px;
-
-    font: 700 10px Manrope, sans-serif;
-    letter-spacing: .2em;
-}
-
-.config-head button {
-    border: 1px solid #ffffff77;
-
-    color: white;
-    background: #0009;
-
-    padding: 10px 15px;
-}
-
-.config-head button.active {
-    background: white;
-    color: #111;
+  gap: 18px;
 }
 
 /* ==========================================
-   CONFIGURATOR CAR
+   DESIGN STUDIO 3D VIEW
 ========================================== */
 
-.config-car {
-    max-width: 1060px;
+.preview {
+  background:
+    linear-gradient(
+      160deg,
+      #899eaf,
+      #2f414f
+    );
 
-    margin: 0 auto;
+  position: relative;
 
-    min-height: 360px;
+  min-height: 550px;
+  border: 1px solid #243c4e99;
+  overflow: hidden;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
+  box-shadow: 12px 12px 0 #8fa3b3;
 }
 
-.car-svg {
-    width: 100%;
-
-    filter: drop-shadow(
-        0 30px 30px #0009
+.preview.night {
+  background:
+    linear-gradient(
+      160deg,
+      #1c2a38,
+      #080e16
     );
 }
 
-.paint {
-    fill: var(--paint);
-    transition: fill .45s;
+#studioCanvas {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  inset: 0;
+
+  display: block;
+  touch-action: pan-y;
 }
 
-.paint-shade {
-    fill: color-mix(
-        in srgb,
-        var(--paint),
-        black 44%
-    );
+.preview-note {
+  position: absolute;
+  z-index: 1;
 
-    transition: fill .45s;
+  top: 19px;
+  left: 19px;
+
+  background: #08111dc4;
+  color: white;
+
+  padding: 10px 12px;
+
+  font: 9px 'DM Mono', monospace;
+  letter-spacing: .16em;
+
+  pointer-events: none;
 }
 
-.lamp-glow {
-    opacity: .14;
+.studio-help {
+  position: absolute;
 
-    transition: opacity .35s;
-}
+  bottom: 16px;
+  left: 17px;
 
-.config.lights-on .lamp-glow {
-    opacity: 1;
+  font: 10px 'DM Mono', monospace;
+  color: #f4faff;
+
+  background: #06101b88;
+  padding: 8px 10px;
+
+  pointer-events: none;
 }
 
 /* ==========================================
    CONFIGURATOR CONTROLS
 ========================================== */
 
-.config-controls {
-    display: flex;
+.controls {
+  border: 1px solid #324556;
+  background: #edf2f6;
 
-    align-items: center;
-    justify-content: space-between;
+  padding: 24px;
 
-    gap: 16px;
-
-    flex-wrap: wrap;
-
-    padding: 23px 26px;
-
-    border-top: 1px solid #ffffff30;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
 }
 
-.config-controls strong,
-.paint-name {
-    font: 700 11px Manrope, sans-serif;
-    letter-spacing: .14em;
+.controls h3 {
+  font-size: 28px;
+  letter-spacing: -.06em;
+  margin: 0;
+}
+
+.control-label {
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: .18em;
+
+  color: #3d5062;
 }
 
 .swatches {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+
+  margin-top: 13px;
 }
 
 .swatch {
-    width: 37px;
-    height: 37px;
+  width: 39px;
+  height: 39px;
 
-    border-radius: 50%;
+  border-radius: 50%;
+  background: var(--c);
 
-    background: var(--swatch);
+  border: 2px solid #121a21;
 
-    border: 2px solid #ffffff99;
+  box-shadow:
+    inset -7px -5px 0 #0003;
 }
 
 .swatch.active {
-    outline: 2px solid white;
-    outline-offset: 3px;
+  outline: 2px solid #14222e;
+  outline-offset: 4px;
 }
 
-.light-button {
-    padding: 11px 16px;
+.selected-name {
+  font: 12px 'DM Mono', monospace;
+  font-weight: 500;
 
-    border: 1px solid #ffffff66;
-
-    background: transparent;
-    color: white;
-
-    font: 700 11px Manrope, sans-serif;
+  margin: 12px 0 0;
 }
 
-.light-button[aria-pressed="true"] {
-    background: white;
-    color: #111;
+.toggle-row {
+  display: flex;
+  gap: 8px;
+
+  margin-top: 12px;
 }
 
-.note {
-    color: #9da1a6;
+.toggle-row button {
+  min-height: 43px;
+  flex: 1;
 
-    font: 11px/1.6 Manrope, sans-serif;
+  background: transparent;
+  border: 1px solid #283c4b;
 
-    margin-top: 20px;
+  color: #23394c;
+  font: 11px 'DM Mono', monospace;
+}
+
+.toggle-row button.active {
+  background: #172839;
+  color: white;
+}
+
+.action {
+  border: 0;
+
+  background: #182c3e;
+  color: white;
+
+  padding: 15px;
+
+  font: 11px 'DM Mono', monospace;
+  letter-spacing: .1em;
+
+  text-align: center;
+  margin-top: auto;
+}
+
+.disclaimer {
+  font: 11px/1.7 'DM Mono', monospace;
+
+  color: #4e6576;
+  margin-top: 24px;
+  max-width: 1100px;
 }
 
 /* ==========================================
@@ -963,56 +702,124 @@ button:focus-visible {
 ========================================== */
 
 .final {
-    min-height: 70svh;
+  background: #080d13;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  text-align: center;
 
-    text-align: center;
+  min-height: 560px;
 
-    background: radial-gradient(
-        ellipse at center,
-        #23252b,
-        #08090b 70%
-    );
+  display: grid;
+  place-items: center;
 
-    padding: 100px 6%;
+  padding: 90px 6%;
 }
 
 .final h2 {
-    font: 600 clamp(57px, 10vw, 150px)/.93
-          Manrope, sans-serif;
+  font-size: clamp(66px, 12vw, 180px);
+  font-weight: 600;
 
-    letter-spacing: -.09em;
+  letter-spacing: -.1em;
+  line-height: .92;
 
-    margin: 22px 0 38px;
+  margin: 20px 0 35px;
 }
 
 .final h2 em {
-    font-style: normal;
-    color: #868b92;
+  font-style: normal;
+  color: #728295;
+}
+
+.back-top {
+  display: inline-block;
+
+  border: 1px solid #f2f6f9;
+  padding: 16px 22px;
+
+  font: 11px 'DM Mono', monospace;
+  letter-spacing: .15em;
 }
 
 /* ==========================================
    FOOTER
 ========================================== */
 
-.footer {
-    border-top: 1px solid #ffffff30;
+footer {
+  display: flex;
+  justify-content: space-between;
 
-    padding: 28px 6%;
+  gap: 18px;
+  flex-wrap: wrap;
 
-    display: flex;
-    justify-content: space-between;
+  padding: 28px 6%;
 
-    flex-wrap: wrap;
-    gap: 15px;
+  border-top: 1px solid #ffffff27;
 
-    font: 700 10px/1.6 Manrope, sans-serif;
-    letter-spacing: .12em;
+  background: #05080c;
+  color: #aab7c2;
 
-    color: #959aa0;
+  font: 10px/1.7 'DM Mono', monospace;
+  letter-spacing: .1em;
+}
+
+/* ==========================================
+   LOADER
+========================================== */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+
+  background: #03070b;
+
+  display: grid;
+  place-items: center;
+
+  transition:
+    opacity .6s,
+    visibility .6s;
+}
+
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-inner {
+  text-align: center;
+}
+
+.loader-inner b {
+  font-size: clamp(70px, 18vw, 210px);
+  letter-spacing: -.11em;
+  line-height: 1;
+}
+
+.loader-inner p {
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: .24em;
+
+  color: #9cabb9;
+}
+
+.load-bar {
+  height: 2px;
+  width: 170px;
+
+  background: #273746;
+
+  margin: 22px auto;
+}
+
+.load-bar span {
+  display: block;
+
+  background: #dcecff;
+  height: 100%;
+  width: 0;
+
+  transition: width .6s;
 }
 
 /* ==========================================
@@ -1020,57 +827,62 @@ button:focus-visible {
 ========================================== */
 
 .reveal {
-    opacity: 0;
+  opacity: 0;
+  transform: translateY(24px);
 
-    transform: translateY(35px);
-
-    transition:
-        opacity 1s var(--ease),
-        transform 1s var(--ease);
+  transition:
+    opacity .9s,
+    transform .9s;
 }
 
 .reveal.visible {
-    opacity: 1;
-    transform: none;
+  opacity: 1;
+  transform: none;
 }
 
 /* ==========================================
    TABLET
 ========================================== */
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
 
-    .nav {
-        gap: 16px;
-    }
+  .studio-layout {
+    grid-template-columns: 1fr;
+  }
 
-    .split {
-        grid-template-columns: 1fr;
-    }
+  .preview {
+    min-height: 490px;
+  }
 
-    .studio-top {
-        display: block;
-    }
+  .intro-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .stat {
-        padding: 20px;
-    }
+  .studio-head {
+    display: block;
+  }
 
-    .config-car {
-        min-height: 270px;
-    }
+  .studio-head p {
+    max-width: 600px;
+  }
 
-    .room-car {
-        width: 130vw;
-    }
+  .controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
 
-    .lamp.l {
-        left: 20%;
-    }
+  .controls h3 {
+    grid-column: 1 / -1;
+  }
 
-    .lamp.r {
-        left: 80%;
-    }
+  .action {
+    align-self: end;
+  }
+
+  .feature-stripe {
+    margin-top: 60px;
+  }
 
 }
 
@@ -1080,142 +892,111 @@ button:focus-visible {
 
 @media (max-width: 600px) {
 
-    .header {
-        padding: 18px 6%;
-    }
+  header {
+    padding: 16px 6%;
+  }
 
-    .nav {
-        display: none;
+  .logo {
+    font-size: 25px;
+  }
 
-        position: absolute;
+  nav {
+    display: none;
 
-        top: 69px;
-        right: 6%;
+    position: absolute;
+    top: 68px;
+    right: 6%;
 
-        background: #101216;
+    background: #0b1420;
+    border: 1px solid #ffffff36;
 
-        padding: 16px;
+    flex-direction: column;
+    align-items: stretch;
 
-        flex-direction: column;
-    }
+    padding: 15px;
+    gap: 0;
+  }
 
-    .nav.open {
-        display: flex;
-    }
+  nav.open {
+    display: flex;
+  }
 
-    .menu {
-        display: block;
-    }
+  nav a {
+    padding: 13px;
+  }
 
-    .cinema {
-        height: 300svh;
-    }
+  .mobile-menu {
+    display: block;
+  }
 
-    .room-car {
-        width: 190vw;
-        top: 47%;
-    }
+  .film {
+    height: 630vh;
+  }
 
-    .lamp {
-        top: 47%;
+  .scene-copy {
+    bottom: 15%;
+    left: 6%;
+    max-width: 84%;
+  }
 
-        width: 20vw;
-        height: 20vw;
-    }
+  .scene-copy h1 {
+    font-size: clamp(50px, 13vw, 75px);
+  }
 
-    .lamp.l {
-        left: 13%;
-    }
+  .scene-copy p {
+    font-size: 9px;
+  }
 
-    .lamp.r {
-        left: 87%;
-    }
+  .scroll-cue {
+    bottom: 5%;
+    font-size: 9px;
+  }
 
-    .room-title {
-        bottom: 16%;
-    }
+  .top-tag {
+    top: 16%;
+    font-size: 8px;
+  }
 
-    .room-title h1 {
-        font-size: clamp(43px, 12vw, 75px);
-    }
+  .interlude {
+    padding: 95px 6%;
+  }
 
-    .shot {
-        height: 68svh;
-        min-height: 470px;
+  .feature-stripe {
+    display: block;
+  }
 
-        margin: 0 12px 12px;
-    }
+  .feature-stripe > div,
+  .feature-stripe > div:first-child {
+    padding: 18px 0;
 
-    .shot h2 {
-        font-size: clamp(46px, 11vw, 78px);
-    }
+    border-right: 0;
+    border-bottom: 1px solid #ffffff30;
+  }
 
-    .closeups {
-        padding-top: 65px;
-    }
+  .studio {
+    padding: 80px 5%;
+  }
 
-    .closeups-intro {
-        font-size: 8px;
-    }
+  .studio-head h2 {
+    font-size: 13vw;
+  }
 
-    .hero-content h2 {
-        font-size: 32vw;
-    }
+  .preview {
+    min-height: 370px;
+    box-shadow: 5px 5px 0 #8fa3b3;
+  }
 
-    .hero-photo {
-        background-position: 61% center;
-    }
+  .controls {
+    display: flex;
+  }
 
-    .section {
-        padding: 90px 6%;
-    }
+  .final {
+    min-height: 440px;
+  }
 
-    .stats {
-        grid-template-columns: 1fr;
-        margin-top: 45px;
-    }
-
-    .stat {
-        border-right: 0;
-        border-bottom: 1px solid #ffffff33;
-
-        padding: 18px 0;
-    }
-
-    .stat:last-child {
-        border: 0;
-    }
-
-    .editorial {
-        height: 68svh;
-        min-height: 500px;
-    }
-
-    .editorial-text h2 {
-        font-size: 13vw;
-    }
-
-    .config-head {
-        padding: 15px;
-        font-size: 9px;
-    }
-
-    .config-car {
-        min-height: 215px;
-        padding: 8px;
-    }
-
-    .config-controls {
-        padding: 20px 15px;
-    }
-
-    .config-controls strong {
-        width: 100%;
-    }
-
-    .final {
-        min-height: 560px;
-    }
+  .disclaimer {
+    font-size: 10px;
+  }
 
 }
 
@@ -1225,41 +1006,27 @@ button:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
 
-    html {
-        scroll-behavior: auto;
-    }
+  html {
+    scroll-behavior: auto;
+  }
 
-    .cinema {
-        height: 100svh;
-    }
+  .film {
+    height: 100vh;
+  }
 
-    .room-car {
-        filter: brightness(.8) !important;
-    }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 
-    .lights {
-        opacity: 1 !important;
-    }
+  .loader {
+    display: none;
+  }
 
-    .ceiling,
-    .floor {
-        opacity: .7 !important;
-    }
-
-    .room-title h1,
-    .reveal {
-        opacity: 1;
-        transform: none;
-    }
-
-    .reveal {
-        transition: none;
-    }
-
-    * {
-        animation: none !important;
-        transition-duration: .01ms !important;
-    }
+  * {
+    animation: none !important;
+    transition-duration: .01ms !important;
+  }
 
 }
 
@@ -1270,384 +1037,272 @@ button:focus-visible {
 <body>
 
 <!-- ==========================================
-     SCROLL PROGRESS
+     PROGRESS BAR
 ========================================== -->
 
-<div class="progress" aria-hidden="true">
-    <span id="progress"></span>
+<div
+  class="progress"
+  id="progress"
+></div>
+
+<!-- ==========================================
+     LOADING SCREEN
+========================================== -->
+
+<div
+  class="loader"
+  id="loader"
+>
+
+  <div class="loader-inner">
+
+    <b>911.</b>
+
+    <p>
+      BUILDING THE CARBON SHOWROOM
+    </p>
+
+    <div class="load-bar">
+
+      <span id="loadBar"></span>
+
+    </div>
+
+    <p id="loadStatus">
+      PREPARING LIGHTS...
+    </p>
+
+  </div>
+
 </div>
 
 <!-- ==========================================
      HEADER
 ========================================== -->
 
-<header class="header" id="header">
+<header id="header">
 
-    <a class="brand" href="#top">
+  <a
+    class="logo"
+    href="#top"
+  >
 
-        911
+    911
 
-        <small>
-            THE ART OF MOTION
-        </small>
+    <small>
+      CARBON / CINEMATIC EXPERIENCE
+    </small>
 
+  </a>
+
+  <nav id="nav">
+
+    <a href="#top">
+      THE FILM
     </a>
 
-    <nav
-        class="nav"
-        id="nav"
-        aria-label="Navigatie"
+    <a href="#story">
+      THE LEGEND
+    </a>
+
+    <a href="#studio">
+      DESIGN STUDIO
+    </a>
+
+    <a
+      class="outline"
+      href="#studio"
     >
+      CONFIGURE ↗
+    </a>
 
-        <a href="#closeups">
-            CLOSE-UPS
-        </a>
+  </nav>
 
-        <a href="#story">
-            THE STORY
-        </a>
-
-        <a href="#studio">
-            DESIGN STUDIO
-        </a>
-
-    </nav>
-
-    <button
-        class="menu"
-        id="menu"
-        aria-label="Open menu"
-        aria-expanded="false"
-    >
-        ☰
-    </button>
+  <button
+    class="mobile-menu"
+    type="button"
+    id="mobileMenu"
+    aria-label="Menu openen"
+    aria-expanded="false"
+  >
+    ☰
+  </button>
 
 </header>
 
 <main>
 
 <!-- ==========================================
-     CHAPTER 00 — DARK ROOM
+     CINEMATIC INTRO
 ========================================== -->
 
 <section
-    class="cinema"
-    id="top"
-    aria-label="Donkere showroomintroductie"
+  class="film"
+  id="top"
+  aria-label="Doorlopende 3D-camerafilm in een LED-showroom"
 >
 
-    <div class="room" id="room">
+  <div class="film-sticky">
 
-        <!-- FLOOR LIGHT -->
+    <!-- REAL 3D SCENE -->
 
-        <div class="floor" id="floor"></div>
+    <canvas
+      id="filmCanvas"
+      aria-label="3D-Porsche in donkere showroom met lichtanimatie en camerabeweging"
+    ></canvas>
 
-        <!-- CEILING LIGHT -->
+    <!-- CINEMATIC EFFECTS -->
 
-        <div class="ceiling" id="ceiling"></div>
+    <div class="vignette"></div>
 
-        <!-- CAR -->
-
-        <div
-            class="room-car"
-            id="roomCar"
-            aria-hidden="true"
-        ></div>
-
-        <!-- AUTOMATIC HEADLIGHTS -->
-
-        <div
-            class="lights"
-            id="lights"
-            aria-hidden="true"
-        >
-
-            <div class="lamp l"></div>
-
-            <div class="lamp r"></div>
-
-        </div>
-
-        <!-- SMALL LABEL -->
-
-        <span class="room-tag">
-            00 / THE REVEAL
-        </span>
-
-        <!-- INTRO TITLE -->
-
-        <div class="room-title">
-
-            <small>
-                911 — THE ART OF MOTION
-            </small>
-
-            <h1 id="roomTitle">
-
-                BORN IN<br>
-
-                THE DARK.
-
-            </h1>
-
-        </div>
-
-        <!-- SCROLL INDICATOR -->
-
-        <span class="scroll-word">
-            SCROLL TO REVEAL ↓
-        </span>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-     CHAPTER 01 — CLOSE-UPS
-========================================== -->
-
-<section
-    class="closeups"
-    id="closeups"
-    aria-label="Filmische close-ups"
->
-
-    <div class="closeups-intro">
-
-        <span>
-            THE DETAILS / NO WORDS NEEDED
-        </span>
-
-        <span>
-            01 — 03
-        </span>
-
-    </div>
-
-    <!-- CLOSE-UP ONE -->
-
-    <div class="shot wheel">
-
-        <div class="shot-img"></div>
-
-        <span class="number">
-            01 / 03
-        </span>
-
-        <h2>
-
-            <small>
-                THE CLOSE-UP
-            </small>
-
-            THE WHEELS.
-
-        </h2>
-
-    </div>
-
-    <!-- CLOSE-UP TWO -->
-
-    <div class="shot lines">
-
-        <div class="shot-img"></div>
-
-        <span class="number">
-            02 / 03
-        </span>
-
-        <h2>
-
-            <small>
-                THE CLOSE-UP
-            </small>
-
-            THE LINES.
-
-        </h2>
-
-    </div>
-
-    <!-- CLOSE-UP THREE -->
-
-    <div class="shot rear">
-
-        <div class="shot-img"></div>
-
-        <span class="number">
-            03 / 03
-        </span>
-
-        <h2>
-
-            <small>
-                THE CLOSE-UP
-            </small>
-
-            THE SILHOUETTE.
-
-        </h2>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-     ORIGINAL HERO
-========================================== -->
-
-<section
-    class="hero"
-    aria-label="911 — The Art of Motion"
->
+    <div class="grain"></div>
 
     <div
-        class="hero-photo"
-        id="heroPhoto"
+      class="ambient-flash"
+      id="flash"
     ></div>
 
-    <div class="hero-content">
+    <!-- TOP LABEL -->
 
-        <span class="eyebrow">
-            AN ICON. REIMAGINED.
-        </span>
+    <div class="top-tag">
 
-        <h2>
-
-            THE<br>
-
-            911.
-
-        </h2>
-
-        <p>
-
-            Sommige auto's zijn gemaakt om
-            je van A naar B te brengen.
-
-            Andere laten je de rit nooit vergeten.
-
-        </p>
-
-        <a
-            class="button"
-            href="#story"
-        >
-
-            DISCOVER THE EXPERIENCE ↗
-
-        </a>
+      911 GT3 RS / EXPOSED CARBON / CONCEPT
 
     </div>
+
+    <!-- ANIMATED SCENE TEXT -->
+
+    <div
+      class="scene-copy"
+      id="sceneCopy"
+    >
+
+      <span
+        class="scene-number"
+        id="sceneNumber"
+      >
+        00 / LIGHTS ON
+      </span>
+
+      <h1 id="sceneTitle">
+
+        BORN IN<br>
+        THE DARK.
+
+      </h1>
+
+      <p id="sceneSub">
+
+        BOTH HEADLIGHTS. ONE MOMENT.
+
+      </p>
+
+    </div>
+
+    <!-- SCROLL LABEL -->
+
+    <span
+      class="scroll-cue"
+      id="scrollCue"
+    >
+
+      SCROLL TO ENTER THE SHOWROOM ↓
+
+    </span>
+
+    <!-- FRAME COUNTER -->
+
+    <span
+      class="frame-indicator"
+      id="frameIndicator"
+    >
+
+      00:00 / 00:05 — DIRECTOR'S CUT
+
+    </span>
+
+  </div>
 
 </section>
 
 <!-- ==========================================
-     THE STORY
+     THE LEGEND
 ========================================== -->
 
-<section class="section" id="story">
+<section
+  class="interlude"
+  id="story"
+>
 
-    <div class="wrap">
+  <div class="wrap">
 
-        <div class="split">
+    <div class="intro-grid">
 
-            <div class="reveal">
-
-                <span class="eyebrow">
-                    CHAPTER 01 / THE LEGEND
-                </span>
-
-                <h2 class="heading">
-
-                    NOT JUST<br>
-
-                    A CAR.<br>
-
-                    <em>AN ICON.</em>
-
-                </h2>
-
-            </div>
-
-            <p class="lead reveal">
-
-                Een tijdloos silhouet.
-
-                Een karakter dat je meteen herkent.
-
-                De Porsche 911 is al generaties lang
-                een symbool van passie voor autorijden.
-
-            </p>
-
-        </div>
-
-        <!-- STATISTICS -->
-
-        <div class="stats reveal">
-
-            <div class="stat">
-
-                <b>911</b>
-
-                <small>
-                    THE ICONIC NAME
-                </small>
-
-            </div>
-
-            <div class="stat">
-
-                <b>1963</b>
-
-                <small>
-                    THE STORY BEGAN
-                </small>
-
-            </div>
-
-            <div class="stat">
-
-                <b>∞</b>
-
-                <small>
-                    TIMELESS DESIGN
-                </small>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-     EDITORIAL
-========================================== -->
-
-<section class="editorial">
-
-    <div class="editorial-photo"></div>
-
-    <div class="editorial-text reveal">
+      <div class="reveal">
 
         <span class="eyebrow">
 
-            CHAPTER 02 / PURE EMOTION
+          THE LEGEND / 911 GT3 RS
 
         </span>
 
-        <h2>
+        <h2 class="mega">
 
-            BUILT TO<br>
-
-            BE FELT.
+          NOT JUST<br>
+          A CAR.<br>
+          <em>AN ICON.</em>
 
         </h2>
 
+      </div>
+
+      <p class="lede reveal">
+
+        Een laag silhouet.
+
+        Een enorme achtervleugel.
+
+        Carbon dat het licht vangt terwijl
+        je erlangs beweegt.
+
+        Ontworpen om gezien te worden —
+        en om gereden te worden.
+
+      </p>
+
     </div>
+
+    <!-- FEATURES -->
+
+    <div class="feature-stripe reveal">
+
+      <div>
+
+        <strong>911</strong>
+
+        <span>THE ICON</span>
+
+      </div>
+
+      <div>
+
+        <strong>GT3 RS</strong>
+
+        <span>TRACK-FOCUSED CHARACTER</span>
+
+      </div>
+
+      <div>
+
+        <strong>CARBON</strong>
+
+        <span>THE MATERIAL STUDY</span>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -1656,228 +1311,294 @@ button:focus-visible {
 ========================================== -->
 
 <section
-    class="section studio"
-    id="studio"
+  class="studio"
+  id="studio"
 >
 
-    <div class="wrap">
+  <div class="wrap">
 
-        <div class="studio-top">
+    <div class="studio-head reveal">
 
-            <div class="reveal">
-
-                <span class="eyebrow">
-
-                    CHAPTER 03 / MAKE IT YOURS
-
-                </span>
-
-                <h2 class="heading">
-
-                    YOUR 911.<br>
-
-                    <em>YOUR RULES.</em>
-
-                </h2>
-
-            </div>
-
-            <p class="lead reveal">
-
-                Kies een lakkleur, verander de
-                belichting en zet de iconische
-                koplampen aan.
-
-                Een digitale designstudio
-                in jouw stijl.
-
-            </p>
-
-        </div>
-
-        <!-- ==================================
-             CONFIGURATOR
-        ================================== -->
-
-        <div
-            class="config reveal"
-            id="config"
-        >
-
-            <div class="config-head">
-
-                <span>
-                    911 / DESIGN STUDY
-                </span>
-
-                <div>
-
-                    <button
-                        type="button"
-                        data-scene="night"
-                        class="active"
-                        aria-pressed="true"
-                    >
-
-                        NIGHT
-
-                    </button>
-
-                    <button
-                        type="button"
-                        data-scene="day"
-                        aria-pressed="false"
-                    >
-
-                        DAYLIGHT
-
-                    </button>
-
-                </div>
-
-            </div>
-
-            <!-- CAR -->
-
-            <div
-                class="config-car"
-                id="configCar"
-            ></div>
-
-            <!-- CONTROLS -->
-
-            <div class="config-controls">
-
-                <strong>
-                    EXTERIOR COLOUR
-                </strong>
-
-                <div
-                    class="swatches"
-                    id="swatches"
-                    aria-label="Kies lakkleur"
-                >
-
-                    <!-- SILVER -->
-
-                    <button
-                        class="swatch active"
-                        style="--swatch:#b8bcbf"
-                        data-paint="#b8bcbf"
-                        data-name="GT SILVER"
-                        aria-label="GT Silver"
-                        aria-pressed="true"
-                    ></button>
-
-                    <!-- BLACK -->
-
-                    <button
-                        class="swatch"
-                        style="--swatch:#17191b"
-                        data-paint="#17191b"
-                        data-name="JET BLACK"
-                        aria-label="Jet Black"
-                        aria-pressed="false"
-                    ></button>
-
-                    <!-- RED -->
-
-                    <button
-                        class="swatch"
-                        style="--swatch:#bb2624"
-                        data-paint="#bb2624"
-                        data-name="CARMINE RED"
-                        aria-label="Carmine Red"
-                        aria-pressed="false"
-                    ></button>
-
-                    <!-- BLUE -->
-
-                    <button
-                        class="swatch"
-                        style="--swatch:#234259"
-                        data-paint="#234259"
-                        data-name="NIGHT BLUE"
-                        aria-label="Night Blue"
-                        aria-pressed="false"
-                    ></button>
-
-                    <!-- CHALK -->
-
-                    <button
-                        class="swatch"
-                        style="--swatch:#eee6d4"
-                        data-paint="#eee6d4"
-                        data-name="CHALK"
-                        aria-label="Chalk"
-                        aria-pressed="false"
-                    ></button>
-
-                </div>
-
-                <span
-                    class="paint-name"
-                    id="paintName"
-                >
-
-                    GT SILVER
-
-                </span>
-
-                <button
-                    class="light-button"
-                    id="lightButton"
-                    aria-pressed="false"
-                >
-
-                    ✳ LIGHTS OFF
-
-                </button>
-
-            </div>
-
-        </div>
-
-        <p class="note">
-
-            ONOFFICIELE DESIGNSTUDIE.
-
-            DE INTERACTIEVE AUTO IS EEN SVG-ILLUSTRATIE,
-            GEEN OFFICIEEL 3D-MODEL.
-
-        </p>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-     FINAL SCENE
-========================================== -->
-
-<section class="final">
-
-    <div class="reveal">
+      <div>
 
         <span class="eyebrow">
-            THE ART OF MOTION
+
+          THE DESIGN STUDIO
+
         </span>
 
         <h2>
 
-            NEVER<br>
-
-            <em>ORDINARY.</em>
+          MAKE IT<br>
+          YOUR 911.
 
         </h2>
 
-        <a class="button" href="#top">
+      </div>
 
-            EXPERIENCE IT AGAIN ↑
+      <p>
 
-        </a>
+        Dezelfde geometrische LED-showroom,
+        maar nu met zachter, helderder licht.
+
+        Bekijk de auto van alle kanten en
+        experimenteer met de afwerking.
+
+      </p>
 
     </div>
+
+    <div class="studio-layout">
+
+      <!-- 3D PREVIEW -->
+
+      <div
+        class="preview"
+        id="preview"
+      >
+
+        <canvas
+          id="studioCanvas"
+          aria-label="Draaibare 3D-auto in een lichtere showroom"
+        ></canvas>
+
+        <div class="preview-note">
+
+          911 / INTERACTIVE VIEW
+
+        </div>
+
+        <div class="studio-help">
+
+          SLEEP OVER DE AUTO OM TE DRAAIEN ↔
+
+        </div>
+
+      </div>
+
+      <!-- CONTROLS -->
+
+      <aside class="controls">
+
+        <h3>
+
+          YOUR<br>
+          CONFIGURATION.
+
+        </h3>
+
+        <!-- EXTERIOR FINISH -->
+
+        <div>
+
+          <span class="control-label">
+
+            EXTERIOR FINISH
+
+          </span>
+
+          <div
+            class="swatches"
+            id="swatches"
+            role="group"
+            aria-label="Kies kleur"
+          >
+
+            <button
+              class="swatch active"
+              type="button"
+              data-color="carbon"
+              style="--c:#20252b"
+              aria-pressed="true"
+              aria-label="Exposed Carbon"
+            ></button>
+
+            <button
+              class="swatch"
+              type="button"
+              data-color="silver"
+              style="--c:#adb6c0"
+              aria-pressed="false"
+              aria-label="GT Silver"
+            ></button>
+
+            <button
+              class="swatch"
+              type="button"
+              data-color="black"
+              style="--c:#07090c"
+              aria-pressed="false"
+              aria-label="Jet Black"
+            ></button>
+
+            <button
+              class="swatch"
+              type="button"
+              data-color="red"
+              style="--c:#ab242a"
+              aria-pressed="false"
+              aria-label="Guards Red"
+            ></button>
+
+            <button
+              class="swatch"
+              type="button"
+              data-color="white"
+              style="--c:#dce2e8"
+              aria-pressed="false"
+              aria-label="Arctic White"
+            ></button>
+
+          </div>
+
+          <p
+            class="selected-name"
+            id="paintName"
+          >
+
+            EXPOSED CARBON
+
+          </p>
+
+        </div>
+
+        <!-- DAY NIGHT -->
+
+        <div>
+
+          <span class="control-label">
+
+            SHOWROOM LIGHTS
+
+          </span>
+
+          <div class="toggle-row">
+
+            <button
+              class="active"
+              type="button"
+              data-mode="day"
+              aria-pressed="true"
+            >
+              DAYLIGHT
+            </button>
+
+            <button
+              type="button"
+              data-mode="night"
+              aria-pressed="false"
+            >
+              NIGHT
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- HEADLIGHTS -->
+
+        <div>
+
+          <span class="control-label">
+
+            HEADLIGHTS
+
+          </span>
+
+          <div class="toggle-row">
+
+            <button
+              class="active"
+              type="button"
+              data-lights="on"
+              aria-pressed="true"
+            >
+              ON
+            </button>
+
+            <button
+              type="button"
+              data-lights="off"
+              aria-pressed="false"
+            >
+              OFF
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- RESET -->
+
+        <button
+          class="action"
+          id="resetView"
+          type="button"
+        >
+
+          ↺ RESET CAMERA
+
+        </button>
+
+      </aside>
+
+    </div>
+
+    <p class="disclaimer">
+
+      ONOFFICIEEL ONTWERPCONCEPT —
+      NIET VERBONDEN AAN PORSCHE AG.
+
+      DE INGEBOUWDE AUTO IS EEN GESTILEERDE
+      3D-BASIS; VOOR ECHT FOTOREALISME IS
+      EEN HOOGWAARDIG 911 GT3 RS-MODEL NODIG.
+
+      EEN LOKAAL BESTAND
+
+      <strong>
+        porsche-911-gt3-rs.glb
+      </strong>
+
+      KAN AUTOMATISCH IN DE PLAATS VAN
+      DE DEMOAUTO WORDEN GELADEN.
+
+    </p>
+
+  </div>
+
+</section>
+
+<!-- ==========================================
+     FINAL
+========================================== -->
+
+<section class="final">
+
+  <div class="reveal">
+
+    <span class="eyebrow">
+
+      911 GT3 RS / CARBON EXPERIENCE
+
+    </span>
+
+    <h2>
+
+      NEVER<br>
+      <em>ORDINARY.</em>
+
+    </h2>
+
+    <a
+      class="back-top"
+      href="#top"
+    >
+
+      EXPERIENCE IT AGAIN ↑
+
+    </a>
+
+  </div>
 
 </section>
 
@@ -1887,1095 +1608,3756 @@ button:focus-visible {
      FOOTER
 ========================================== -->
 
-<footer class="footer">
+<footer>
 
-    <span>
+  <span>
 
-        911 / THE ART OF MOTION — CONCEPT
+    911 CARBON / INDEPENDENT DESIGN CONCEPT
 
-    </span>
+  </span>
 
-    <span>
+  <span>
 
-        ONOFFICIEEL FANCONCEPT ·
-        NIET VERBONDEN AAN PORSCHE AG
+    THREE.JS + SCROLL-DRIVEN CINEMATOGRAPHY
 
-    </span>
+  </span>
 
-    <a href="#top">
+  <a href="#top">
 
-        BACK TO TOP ↑
+    BACK TO TOP ↑
 
-    </a>
+  </a>
 
 </footer>
 
 <!-- ==========================================
-     JAVASCRIPT
+     THREE.JS IMPORT MAP
 ========================================== -->
 
-<script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
 
-'use strict';
+<!-- ==========================================
+     MAIN JAVASCRIPT
+========================================== -->
+
+<script type="module">
+
+import * as THREE from 'three';
+
+import {
+  GLTFLoader
+} from 'three/addons/loaders/GLTFLoader.js';
+
+import {
+  Reflector
+} from 'three/addons/objects/Reflector.js';
 
 /* ==========================================
    HELPERS
 ========================================== */
 
 const $ = selector =>
-    document.querySelector(selector);
+  document.querySelector(selector);
 
 const $$ = selector =>
-    [...document.querySelectorAll(selector)];
+  [...document.querySelectorAll(selector)];
 
-const reduce = matchMedia(
-    '(prefers-reduced-motion: reduce)'
+const reduced = matchMedia(
+  '(prefers-reduced-motion: reduce)'
+).matches;
+
+const mobile = matchMedia(
+  '(max-width: 650px)'
 ).matches;
 
 const clamp = (
-    value,
-    minimum = 0,
-    maximum = 1
-) => Math.min(
-    maximum,
-    Math.max(minimum, value)
+  value,
+  minimum = 0,
+  maximum = 1
+) =>
+  Math.max(
+    minimum,
+    Math.min(maximum, value)
+  );
+
+const smooth = t => {
+
+  t = clamp(t);
+
+  return t * t * (3 - 2 * t);
+
+};
+
+const lerp = (a, b, t) =>
+  a + (b - a) * t;
+
+const V = (x, y, z) =>
+  new THREE.Vector3(x, y, z);
+
+/* ==========================================
+   MATERIAL HELPERS
+========================================== */
+
+const P = (
+  color,
+  roughness = .32,
+  metalness = .45,
+  options = {}
+) =>
+
+  new THREE.MeshPhysicalMaterial({
+
+    color,
+    roughness,
+    metalness,
+
+    clearcoat: .85,
+    clearcoatRoughness: .1,
+
+    ...options
+
+  });
+
+const basic = color =>
+  new THREE.MeshBasicMaterial({ color });
+
+function addMesh(
+  parent,
+  geometry,
+  material,
+  x = 0,
+  y = 0,
+  z = 0
+) {
+
+  const object = new THREE.Mesh(
+    geometry,
+    material
+  );
+
+  object.position.set(x, y, z);
+
+  parent.add(object);
+
+  return object;
+
+}
+
+/* ==========================================
+   CURVED GEOMETRY
+========================================== */
+
+function tube(
+  parent,
+  points,
+  radius,
+  material,
+  segments = 20
+) {
+
+  const path = new THREE.CatmullRomCurve3(
+
+    points.map(
+      point => V(...point)
+    )
+
+  );
+
+  return addMesh(
+
+    parent,
+
+    new THREE.TubeGeometry(
+
+      path,
+      segments,
+      radius,
+      7,
+      false
+
+    ),
+
+    material
+
+  );
+
+}
+
+/* ==========================================
+   PROCEDURAL CARBON TEXTURE
+========================================== */
+
+/*
+  De carbonafwerking krijgt een geweven
+  patroon dat automatisch wordt gemaakt.
+
+  Het is geen fotorealistische texture,
+  maar wel zichtbaar van dichtbij.
+*/
+
+function makeCarbonTexture() {
+
+  const canvas =
+    document.createElement('canvas');
+
+  canvas.width = 256;
+  canvas.height = 256;
+
+  const ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = '#151a1e';
+
+  ctx.fillRect(0, 0, 256, 256);
+
+  for (let row = 0; row < 16; row++) {
+
+    for (let col = 0; col < 16; col++) {
+
+      const x = col * 16;
+      const y = row * 16;
+
+      const even =
+        (col + row) % 2 === 0;
+
+      ctx.fillStyle = even
+        ? '#343b41'
+        : '#0d1217';
+
+      ctx.fillRect(
+        x,
+        y,
+        16,
+        16
+      );
+
+      ctx.fillStyle = even
+        ? '#4f565a'
+        : '#222b32';
+
+      for (let k = 0; k < 4; k++) {
+
+        ctx.fillRect(
+
+          x + (even ? k * 4 : 0),
+
+          y + (even ? 0 : k * 4),
+
+          even ? 2 : 16,
+
+          even ? 16 : 2
+
+        );
+
+      }
+
+    }
+
+  }
+
+  const texture =
+    new THREE.CanvasTexture(canvas);
+
+  texture.wrapS =
+    THREE.RepeatWrapping;
+
+  texture.wrapT =
+    THREE.RepeatWrapping;
+
+  texture.repeat.set(5, 9);
+
+  texture.colorSpace =
+    THREE.SRGBColorSpace;
+
+  texture.anisotropy = 8;
+
+  return texture;
+
+}
+
+const carbonTexture = makeCarbonTexture();
+
+/* ==========================================
+   CAR MATERIALS
+========================================== */
+
+const carPaint = P(
+
+  '#242b31',
+
+  .19,
+
+  .45,
+
+  {
+
+    map: carbonTexture,
+
+    bumpMap: carbonTexture,
+
+    bumpScale: .026,
+
+    clearcoat: 1,
+
+    clearcoatRoughness: .07
+
+  }
+
+);
+
+const carbonSecondary = P(
+
+  '#12171b',
+
+  .24,
+
+  .4,
+
+  {
+
+    map: carbonTexture,
+
+    bumpMap: carbonTexture,
+
+    bumpScale: .015,
+
+    clearcoat: 1
+
+  }
+
+);
+
+const rubber = P(
+  '#090b0e',
+  .94,
+  .05
+);
+
+const darkMetal = P(
+  '#171b20',
+  .29,
+  .8
+);
+
+const aluminum = P(
+  '#9da9b2',
+  .25,
+  .92
+);
+
+const glass = P(
+
+  '#172331',
+
+  .035,
+
+  .4,
+
+  {
+
+    transparent: true,
+
+    opacity: .91,
+
+    clearcoat: 1,
+
+    side: THREE.DoubleSide
+
+  }
+
+);
+
+const ledMat =
+  new THREE.MeshBasicMaterial({
+
+    color: '#ddecff',
+
+    toneMapped: false
+
+  });
+
+const lampMat =
+  new THREE.MeshBasicMaterial({
+
+    color: '#c5eaff',
+
+    toneMapped: false
+
+  });
+
+const lampOff =
+  new THREE.MeshBasicMaterial({
+
+    color: '#0f1720',
+
+    toneMapped: false
+
+  });
+
+const redLamp =
+  new THREE.MeshBasicMaterial({
+
+    color: '#c5242c',
+
+    toneMapped: false
+
+  });
+
+/* ==========================================
+   CUSTOM CAR BODY GEOMETRY
+========================================== */
+
+/*
+  We gebruiken een reeks dwarsdoorsneden
+  om de vorm van de demoauto te maken.
+
+  Bij het toevoegen van een echt GLB-model
+  wordt deze demoauto vervangen.
+*/
+
+function loft(
+  parent,
+  sections,
+  material
+) {
+
+  const sides = 10;
+
+  const vertices = [];
+  const indices = [];
+
+  for (const section of sections) {
+
+    const {
+      z,
+      w,
+      bottom,
+      shoulder,
+      roof
+    } = section;
+
+    const ring = [
+
+      [-w * .8, bottom],
+
+      [-w, shoulder * .6],
+
+      [-w * .96, shoulder],
+
+      [-w * .6, roof],
+
+      [0, roof + .035],
+
+      [w * .6, roof],
+
+      [w * .96, shoulder],
+
+      [w, shoulder * .6],
+
+      [w * .8, bottom],
+
+      [0, bottom - .03]
+
+    ];
+
+    ring.forEach(([x, y]) => {
+
+      vertices.push(
+        x,
+        y,
+        z
+      );
+
+    });
+
+  }
+
+  for (
+    let i = 0;
+    i < sections.length - 1;
+    i++
+  ) {
+
+    for (let k = 0; k < sides; k++) {
+
+      const a =
+        i * sides + k;
+
+      const b =
+        i * sides + (k + 1) % sides;
+
+      const c =
+        (i + 1) * sides + k;
+
+      const d =
+        (i + 1) * sides +
+        (k + 1) % sides;
+
+      indices.push(
+        a, b, d,
+        a, d, c
+      );
+
+    }
+
+  }
+
+  const geometry =
+    new THREE.BufferGeometry();
+
+  geometry.setAttribute(
+
+    'position',
+
+    new THREE.Float32BufferAttribute(
+      vertices,
+      3
+    )
+
+  );
+
+  geometry.setIndex(indices);
+
+  geometry.computeVertexNormals();
+
+  return addMesh(
+    parent,
+    geometry,
+    material
+  );
+
+}
+
+/* ==========================================
+   3D WHEELS
+========================================== */
+
+function makeWheel(
+  parent,
+  side,
+  z
+) {
+
+  const x = side * 1.08;
+
+  const y = .48;
+
+  const group = new THREE.Group();
+
+  group.position.set(x, y, z);
+
+  parent.add(group);
+
+  /* TIRE */
+
+  const tire = addMesh(
+
+    group,
+
+    new THREE.TorusGeometry(
+      .44,
+      .155,
+      16,
+      48
+    ),
+
+    rubber
+
+  );
+
+  tire.rotation.y = Math.PI / 2;
+
+  /* TIRE CENTER */
+
+  const tireCenter = addMesh(
+
+    group,
+
+    new THREE.CylinderGeometry(
+      .43,
+      .43,
+      .22,
+      48
+    ),
+
+    rubber
+
+  );
+
+  tireCenter.rotation.z =
+    Math.PI / 2;
+
+  /* BRAKE DISC */
+
+  const disc = addMesh(
+
+    group,
+
+    new THREE.CylinderGeometry(
+      .31,
+      .31,
+      .245,
+      48
+    ),
+
+    aluminum,
+
+    side * .025
+
+  );
+
+  disc.rotation.z = Math.PI / 2;
+
+  /* DARK ROTOR */
+
+  const rotor = addMesh(
+
+    group,
+
+    new THREE.CylinderGeometry(
+      .275,
+      .275,
+      .251,
+      48
+    ),
+
+    darkMetal,
+
+    side * .033
+
+  );
+
+  rotor.rotation.z = Math.PI / 2;
+
+  /* SPOKES */
+
+  for (let i = 0; i < 10; i++) {
+
+    const angle =
+      i * Math.PI / 5;
+
+    const spoke = addMesh(
+
+      group,
+
+      new THREE.BoxGeometry(
+        .03,
+        .235,
+        .065
+      ),
+
+      aluminum,
+
+      side * .16,
+
+      Math.cos(angle) * .15,
+
+      Math.sin(angle) * .15
+
+    );
+
+    spoke.rotation.x = -angle;
+
+  }
+
+  /* CENTER HUB */
+
+  const hub = addMesh(
+
+    group,
+
+    new THREE.CylinderGeometry(
+      .085,
+      .085,
+      .26,
+      24
+    ),
+
+    darkMetal,
+
+    side * .17
+
+  );
+
+  hub.rotation.z = Math.PI / 2;
+
+  /* BRAKE CALIPER */
+
+  const caliper = addMesh(
+
+    group,
+
+    new THREE.BoxGeometry(
+      .055,
+      .19,
+      .105
+    ),
+
+    P('#d8bf77', .38, .6),
+
+    side * .175,
+
+    -.08,
+
+    .24
+
+  );
+
+  group.userData = {
+    tire,
+    hub
+  };
+
+  return group;
+
+}
+
+/* ==========================================
+   BUILD DEMO CAR
+========================================== */
+
+function makeDemoCar() {
+
+  const car = new THREE.Group();
+
+  car.name =
+    '911-inspired procedural demonstration';
+
+  /* ======================================
+     LOWER BODY
+  ====================================== */
+
+  loft(
+
+    car,
+
+    [
+
+      {
+        z: -2.34,
+        w: .72,
+        bottom: .4,
+        shoulder: .68,
+        roof: .76
+      },
+
+      {
+        z: -2.05,
+        w: 1.02,
+        bottom: .32,
+        shoulder: .77,
+        roof: .9
+      },
+
+      {
+        z: -1.4,
+        w: 1.14,
+        bottom: .33,
+        shoulder: .83,
+        roof: .96
+      },
+
+      {
+        z: -.55,
+        w: 1.12,
+        bottom: .32,
+        shoulder: .86,
+        roof: 1.03
+      },
+
+      {
+        z: .8,
+        w: 1.09,
+        bottom: .32,
+        shoulder: .88,
+        roof: 1.06
+      },
+
+      {
+        z: 1.5,
+        w: 1.12,
+        bottom: .32,
+        shoulder: .83,
+        roof: 1.01
+      },
+
+      {
+        z: 2.16,
+        w: 1.0,
+        bottom: .34,
+        shoulder: .72,
+        roof: .85
+      },
+
+      {
+        z: 2.43,
+        w: .84,
+        bottom: .4,
+        shoulder: .62,
+        roof: .74
+      }
+
+    ],
+
+    carPaint
+
+  );
+
+  /* ======================================
+     ROOF AND CABIN
+  ====================================== */
+
+  loft(
+
+    car,
+
+    [
+
+      {
+        z: -1.18,
+        w: .66,
+        bottom: .93,
+        shoulder: 1.18,
+        roof: 1.24
+      },
+
+      {
+        z: -.77,
+        w: .76,
+        bottom: .95,
+        shoulder: 1.45,
+        roof: 1.56
+      },
+
+      {
+        z: -.15,
+        w: .77,
+        bottom: 1.0,
+        shoulder: 1.62,
+        roof: 1.78
+      },
+
+      {
+        z: .5,
+        w: .7,
+        bottom: 1.01,
+        shoulder: 1.49,
+        roof: 1.62
+      },
+
+      {
+        z: .95,
+        w: .58,
+        bottom: 1.03,
+        shoulder: 1.09,
+        roof: 1.15
+      }
+
+    ],
+
+    carbonSecondary
+
+  );
+
+  /* ======================================
+     WINDSHIELD
+  ====================================== */
+
+  const windshield = addMesh(
+
+    car,
+
+    new THREE.PlaneGeometry(
+      1.62,
+      .76
+    ),
+
+    glass,
+
+    0,
+    1.37,
+    .78
+
+  );
+
+  windshield.rotation.x = -.58;
+
+  /* REAR WINDOW */
+
+  const backGlass = addMesh(
+
+    car,
+
+    new THREE.PlaneGeometry(
+      1.52,
+      .65
+    ),
+
+    glass,
+
+    0,
+    1.42,
+    -.92
+
+  );
+
+  backGlass.rotation.x = .55;
+
+  /* ======================================
+     LEFT AND RIGHT DETAILS
+  ====================================== */
+
+  for (const side of [-1, 1]) {
+
+    /* SIDE WINDOWS */
+
+    const window = addMesh(
+
+      car,
+
+      new THREE.PlaneGeometry(
+        1.23,
+        .44
+      ),
+
+      glass,
+
+      side * .754,
+      1.35,
+      -.15
+
+    );
+
+    window.rotation.y =
+      side * Math.PI / 2;
+
+    window.rotation.z =
+      -side * .12;
+
+    /* SIDE MIRRORS */
+
+    const mirror = addMesh(
+
+      car,
+
+      new THREE.SphereGeometry(
+        .17,
+        14,
+        10
+      ),
+
+      carPaint,
+
+      side * 1.07,
+      1.09,
+      .75
+
+    );
+
+    mirror.scale.set(
+      1.2,
+      .54,
+      .73
+    );
+
+    /* FRONT WHEEL */
+
+    makeWheel(
+      car,
+      side,
+      1.5
+    );
+
+    /* REAR WHEEL */
+
+    makeWheel(
+      car,
+      side,
+      -1.5
+    );
+
+    /* ==================================
+       HEADLIGHT HOUSING
+    ================================== */
+
+    const housing = addMesh(
+
+      car,
+
+      new THREE.SphereGeometry(
+        .245,
+        24,
+        16
+      ),
+
+      darkMetal,
+
+      side * .77,
+      .82,
+      2.2
+
+    );
+
+    housing.scale.set(
+      1,
+      .72,
+      .3
+    );
+
+    /* HEADLIGHT RING */
+
+    const ring = addMesh(
+
+      car,
+
+      new THREE.TorusGeometry(
+        .174,
+        .028,
+        9,
+        40
+      ),
+
+      lampMat,
+
+      side * .77,
+      .83,
+      2.43
+
+    );
+
+    ring.name = 'headlightVisual';
+
+    /* HEADLIGHT CENTER */
+
+    const lens = addMesh(
+
+      car,
+
+      new THREE.CircleGeometry(
+        .11,
+        32
+      ),
+
+      lampMat,
+
+      side * .77,
+      .83,
+      2.457
+
+    );
+
+    lens.name = 'headlightVisual';
+
+    /* GLOW EFFECT */
+
+    const halo = addMesh(
+
+      car,
+
+      new THREE.SphereGeometry(
+        .25,
+        16,
+        12
+      ),
+
+      new THREE.MeshBasicMaterial({
+
+        color: '#a9ddff',
+
+        transparent: true,
+
+        opacity: .13,
+
+        depthWrite: false
+
+      }),
+
+      side * .77,
+      .84,
+      2.46
+
+    );
+
+    halo.scale.set(
+      1,
+      1,
+      .2
+    );
+
+    halo.name = 'headlightVisual';
+
+    /* FRONT AIR INTAKE */
+
+    const intake = addMesh(
+
+      car,
+
+      new THREE.BoxGeometry(
+        .31,
+        .11,
+        .035
+      ),
+
+      darkMetal,
+
+      side * .69,
+      .47,
+      2.435
+
+    );
+
+    intake.rotation.z =
+      side * .13;
+
+    /* SIDE SKIRT */
+
+    addMesh(
+
+      car,
+
+      new THREE.BoxGeometry(
+        .14,
+        .11,
+        2.35
+      ),
+
+      darkMetal,
+
+      side * 1.02,
+      .27,
+      0
+
+    );
+
+    /* REAR LIGHTS */
+
+    addMesh(
+
+      car,
+
+      new THREE.BoxGeometry(
+        .55,
+        .066,
+        .03
+      ),
+
+      redLamp,
+
+      side * .63,
+      .91,
+      -2.36
+
+    );
+
+    /* REAR WING SUPPORT */
+
+    const support = addMesh(
+
+      car,
+
+      new THREE.CylinderGeometry(
+        .045,
+        .06,
+        .65,
+        12
+      ),
+
+      darkMetal,
+
+      side * .56,
+      1.16,
+      -2.05
+
+    );
+
+    support.rotation.x = -.24;
+
+    /* EXHAUST PIPE */
+
+    const tip = addMesh(
+
+      car,
+
+      new THREE.CylinderGeometry(
+        .115,
+        .115,
+        .3,
+        24
+      ),
+
+      darkMetal,
+
+      side * .24,
+      .35,
+      -2.46
+
+    );
+
+    tip.rotation.x = Math.PI / 2;
+
+    addMesh(
+
+      car,
+
+      new THREE.TorusGeometry(
+        .113,
+        .018,
+        8,
+        24
+      ),
+
+      aluminum,
+
+      side * .24,
+      .35,
+      -2.63
+
+    );
+
+  }
+
+  /* ======================================
+     FRONT GRILLE
+  ====================================== */
+
+  addMesh(
+
+    car,
+
+    new THREE.BoxGeometry(
+      1.22,
+      .11,
+      .05
+    ),
+
+    darkMetal,
+
+    0,
+    .44,
+    2.45
+
+  );
+
+  /* FRONT SPLITTER */
+
+  addMesh(
+
+    car,
+
+    new THREE.BoxGeometry(
+      2.07,
+      .055,
+      .25
+    ),
+
+    carbonSecondary,
+
+    0,
+    .25,
+    2.35
+
+  );
+
+  /* HOOD VENT */
+
+  addMesh(
+
+    car,
+
+    new THREE.BoxGeometry(
+      1.45,
+      .04,
+      .15
+    ),
+
+    carbonSecondary,
+
+    0,
+    .78,
+    2.24
+
+  );
+
+  /* ======================================
+     REAR WING
+  ====================================== */
+
+  addMesh(
+
+    car,
+
+    new THREE.BoxGeometry(
+      2.75,
+      .085,
+      .49
+    ),
+
+    carbonSecondary,
+
+    0,
+    1.54,
+    -2.17
+
+  );
+
+  addMesh(
+
+    car,
+
+    new THREE.BoxGeometry(
+      2.78,
+      .06,
+      .16
+    ),
+
+    darkMetal,
+
+    0,
+    1.62,
+    -2.36
+
+  );
+
+  /* WING END PLATES */
+
+  for (const side of [-1, 1]) {
+
+    addMesh(
+
+      car,
+
+      new THREE.BoxGeometry(
+        .08,
+        .25,
+        .55
+      ),
+
+      carbonSecondary,
+
+      side * 1.38,
+      1.52,
+      -2.23
+
+    );
+
+  }
+
+  /* REAR LED BAR */
+
+  addMesh(
+
+    car,
+
+    new THREE.BoxGeometry(
+      1.35,
+      .026,
+      .02
+    ),
+
+    redLamp,
+
+    0,
+    .99,
+    -2.382
+
+  );
+
+  /* ======================================
+     BODY PANEL SEAMS
+  ====================================== */
+
+  const seam = P(
+    '#080a0d',
+    .55,
+    .2
+  );
+
+  for (const side of [-1, 1]) {
+
+    tube(
+
+      car,
+
+      [
+
+        [side * .46, 1.025, 1.99],
+
+        [side * .75, 1.01, 1.48],
+
+        [side * .79, 1.02, 1.03]
+
+      ],
+
+      .008,
+
+      seam
+
+    );
+
+  }
+
+  return car;
+
+}
+
+/* ==========================================
+   HEXAGON LED PANEL
+========================================== */
+
+function makeHex(
+  parent,
+  centerX,
+  centerZ,
+  radiusX,
+  radiusZ,
+  material
+) {
+
+  const points = [];
+
+  for (let i = 0; i <= 6; i++) {
+
+    const angle =
+      Math.PI / 3 * i;
+
+    points.push([
+
+      centerX +
+        Math.cos(angle) * radiusX,
+
+      4.02,
+
+      centerZ +
+        Math.sin(angle) * radiusZ
+
+    ]);
+
+  }
+
+  for (let i = 0; i < 6; i++) {
+
+    const start = points[i];
+
+    const end = points[i + 1];
+
+    const difference = V(...end).sub(
+      V(...start)
+    );
+
+    const center = V(...start)
+      .add(V(...end))
+      .multiplyScalar(.5);
+
+    const led = addMesh(
+
+      parent,
+
+      new THREE.CylinderGeometry(
+        .026,
+        .026,
+        difference.length(),
+        7
+      ),
+
+      material,
+
+      center.x,
+      center.y,
+      center.z
+
+    );
+
+    led.quaternion.setFromUnitVectors(
+
+      V(0, 1, 0),
+
+      difference.normalize()
+
+    );
+
+  }
+
+}
+
+/* ==========================================
+   BUILD SHOWROOM
+========================================== */
+
+function makeRoom(
+  scene,
+  isStudio = false
+) {
+
+  const room = new THREE.Group();
+
+  scene.add(room);
+
+  const wall = P(
+    '#121d29',
+    .63,
+    .3
+  );
+
+  const floorBase = P(
+    '#121c27',
+    .23,
+    .38
+  );
+
+  /* ======================================
+     FLOOR
+  ====================================== */
+
+  const ground = addMesh(
+
+    room,
+
+    new THREE.PlaneGeometry(
+      18,
+      24
+    ),
+
+    floorBase,
+
+    0,
+    -.035,
+    0
+
+  );
+
+  ground.rotation.x = -Math.PI / 2;
+
+  /* ======================================
+     BACK WALL
+  ====================================== */
+
+  addMesh(
+
+    room,
+
+    new THREE.PlaneGeometry(
+      18,
+      6
+    ),
+
+    P('#101722', .6, .18),
+
+    0,
+    3,
+    -9
+
+  );
+
+  /* ======================================
+     LEFT WALL
+  ====================================== */
+
+  const left = addMesh(
+
+    room,
+
+    new THREE.PlaneGeometry(
+      22,
+      6
+    ),
+
+    wall,
+
+    -8.8,
+    3,
+    0
+
+  );
+
+  left.rotation.y = Math.PI / 2;
+
+  /* ======================================
+     RIGHT WALL
+  ====================================== */
+
+  const right = addMesh(
+
+    room,
+
+    new THREE.PlaneGeometry(
+      22,
+      6
+    ),
+
+    wall,
+
+    8.8,
+    3,
+    0
+
+  );
+
+  right.rotation.y = -Math.PI / 2;
+
+  /* ======================================
+     CEILING
+  ====================================== */
+
+  const roof = addMesh(
+
+    room,
+
+    new THREE.PlaneGeometry(
+      18,
+      24
+    ),
+
+    P('#101825', .7, .2),
+
+    0,
+    4.12,
+    0
+
+  );
+
+  roof.rotation.x = Math.PI / 2;
+
+  /* ======================================
+     ALL LED ELEMENTS
+  ====================================== */
+
+  const ledGroup = new THREE.Group();
+
+  room.add(ledGroup);
+
+  /* CEILING EDGES */
+
+  for (const x of [-6.75, 6.75]) {
+
+    tube(
+
+      ledGroup,
+
+      [
+
+        [x, 4.02, -8],
+
+        [x, 4.02, 8]
+
+      ],
+
+      .035,
+
+      ledMat,
+
+      2
+
+    );
+
+  }
+
+  /* ======================================
+     HEXAGON LED CEILING
+  ====================================== */
+
+  for (let row = 0; row < 3; row++) {
+
+    for (let col = 0; col < 6; col++) {
+
+      const z =
+
+        -6.7 +
+
+        col * 2.35 +
+
+        (row % 2) * 1.16;
+
+      const x =
+
+        -3.4 +
+
+        row * 3.4;
+
+      makeHex(
+
+        ledGroup,
+
+        x,
+        z,
+
+        1.42,
+        1.12,
+
+        ledMat
+
+      );
+
+    }
+
+  }
+
+  /* ======================================
+     VERTICAL SIDE WALL LEDS
+  ====================================== */
+
+  for (
+    let z = -7.5;
+    z <= 8;
+    z += 2.25
+  ) {
+
+    for (const x of [-8.65, 8.65]) {
+
+      const strip = addMesh(
+
+        ledGroup,
+
+        new THREE.BoxGeometry(
+          .06,
+          3.05,
+          .07
+        ),
+
+        ledMat,
+
+        x,
+        2.33,
+        z
+
+      );
+
+      strip.userData.led = true;
+
+      /* SOFT LIGHT HALO */
+
+      const glow = addMesh(
+
+        ledGroup,
+
+        new THREE.BoxGeometry(
+          .15,
+          3.1,
+          .16
+        ),
+
+        new THREE.MeshBasicMaterial({
+
+          color: '#9bc9ff',
+
+          transparent: true,
+
+          opacity: .11,
+
+          depthWrite: false
+
+        }),
+
+        x,
+        2.3,
+        z
+
+      );
+
+      glow.userData.led = true;
+
+    }
+
+  }
+
+  /* ======================================
+     PHYSICAL LIGHTS
+  ====================================== */
+
+  const groupLight =
+    new THREE.Group();
+
+  scene.add(groupLight);
+
+  const spots = [];
+
+  for (const [x, z] of [
+
+    [-3, 3],
+
+    [3, 3],
+
+    [-3, -3],
+
+    [3, -3]
+
+  ]) {
+
+    const light =
+      new THREE.PointLight(
+
+        '#d6ebff',
+
+        isStudio ? 8 : 0,
+
+        10,
+
+        2
+
+      );
+
+    light.position.set(
+      x,
+      3.8,
+      z
+    );
+
+    groupLight.add(light);
+
+    spots.push(light);
+
+  }
+
+  /* ======================================
+     REFLECTIVE FLOOR
+  ====================================== */
+
+  if (!mobile && !reduced) {
+
+    const reflector = new Reflector(
+
+      new THREE.PlaneGeometry(
+        16.7,
+        21.5
+      ),
+
+      {
+
+        textureWidth: Math.min(
+          innerWidth,
+          1024
+        ),
+
+        textureHeight: Math.min(
+          innerHeight,
+          1024
+        ),
+
+        clipBias: .005,
+
+        color: 0x233240
+
+      }
+
+    );
+
+    reflector.rotation.x =
+      -Math.PI / 2;
+
+    reflector.position.y = -.018;
+
+    room.add(reflector);
+
+  }
+
+  return {
+
+    room,
+    ledGroup,
+    spots
+
+  };
+
+}
+
+/* ==========================================
+   CREATE THREE.JS SCENE
+========================================== */
+
+function setupScene(canvas) {
+
+  const renderer =
+    new THREE.WebGLRenderer({
+
+      canvas,
+
+      antialias: true,
+
+      powerPreference:
+        'high-performance',
+
+      alpha: false
+
+    });
+
+  renderer.setPixelRatio(
+
+    Math.min(
+
+      devicePixelRatio,
+
+      mobile ? 1.5 : 2
+
+    )
+
+  );
+
+  renderer.outputColorSpace =
+    THREE.SRGBColorSpace;
+
+  renderer.toneMapping =
+    THREE.ACESFilmicToneMapping;
+
+  renderer.toneMappingExposure = 1.08;
+
+  /* SCENE */
+
+  const scene = new THREE.Scene();
+
+  scene.background =
+    new THREE.Color('#02060c');
+
+  scene.fog = new THREE.FogExp2(
+    '#09131f',
+    .022
+  );
+
+  /* CAMERA */
+
+  const camera =
+    new THREE.PerspectiveCamera(
+
+      38,
+
+      1,
+
+      .06,
+
+      65
+
+    );
+
+  /* AMBIENT LIGHT */
+
+  const ambience =
+    new THREE.AmbientLight(
+
+      '#a4c0dd',
+
+      .04
+
+    );
+
+  scene.add(ambience);
+
+  /* DIRECTIONAL FILL */
+
+  const fill =
+    new THREE.DirectionalLight(
+
+      '#c8e6ff',
+
+      0
+
+    );
+
+  fill.position.set(
+    -4,
+    8,
+    6
+  );
+
+  scene.add(fill);
+
+  /* SHOWROOM */
+
+  const room = makeRoom(
+
+    scene,
+
+    canvas.id === 'studioCanvas'
+
+  );
+
+  return {
+
+    renderer,
+
+    scene,
+
+    camera,
+
+    ambience,
+
+    fill,
+
+    ...room
+
+  };
+
+}
+
+/* ==========================================
+   CREATE BOTH SHOWROOMS
+========================================== */
+
+const film = setupScene(
+  $('#filmCanvas')
+);
+
+const studio = setupScene(
+  $('#studioCanvas')
 );
 
 /* ==========================================
-   FRONT-VIEW 911 CONCEPT CAR
+   CREATE CAR
 ========================================== */
 
-/*
-   Eén SVG-illustratie wordt op twee plekken
-   gebruikt:
+const demoCar = makeDemoCar();
 
-   1. De donkere filmische intro.
-   2. De interactieve designstudio.
+demoCar.name = 'DEMO_CAR';
 
-   De autokleur wordt in de designstudio
-   gewijzigd via de CSS-variabele --paint.
-*/
+film.scene.add(demoCar);
 
-const CAR = `
+let studioCar = demoCar.clone(true);
 
-<svg
-    class="car-svg"
-    viewBox="0 0 1200 650"
-    xmlns="http://www.w3.org/2000/svg"
-    role="img"
-    aria-label="Frontale conceptillustratie van de 911"
->
-
-    <defs>
-
-        <linearGradient
-            id="bodyGradient"
-            x2="0"
-            y2="1"
-        >
-
-            <stop
-                stop-color="#fff"
-                stop-opacity=".42"
-            />
-
-            <stop
-                offset=".35"
-                stop-color="#fff"
-                stop-opacity=".04"
-            />
-
-            <stop
-                offset="1"
-                stop-color="#000"
-                stop-opacity=".7"
-            />
-
-        </linearGradient>
-
-        <linearGradient
-            id="glassGradient"
-            x2=".6"
-            y2="1"
-        >
-
-            <stop
-                stop-color="#73808a"
-            />
-
-            <stop
-                offset=".35"
-                stop-color="#111a22"
-            />
-
-            <stop
-                offset="1"
-                stop-color="#05090c"
-            />
-
-        </linearGradient>
-
-        <radialGradient id="lampGradient">
-
-            <stop
-                stop-color="white"
-            />
-
-            <stop
-                offset=".25"
-                stop-color="#c9eaff"
-            />
-
-            <stop
-                offset=".6"
-                stop-color="#8dccff"
-                stop-opacity=".5"
-            />
-
-            <stop
-                offset="1"
-                stop-color="#a4dfff"
-                stop-opacity="0"
-            />
-
-        </radialGradient>
-
-    </defs>
-
-    <!-- CAR SHADOW -->
-
-    <ellipse
-        cx="600"
-        cy="577"
-        rx="440"
-        ry="40"
-        fill="#000"
-        opacity=".55"
-    />
-
-    <!-- WHEELS -->
-
-    <path
-        d="
-            M130 461
-            Q105 500 122 566
-            L212 569
-            L245 471
-
-            M1070 461
-            Q1095 500 1078 566
-            L988 569
-            L955 471
-        "
-        fill="#080a0c"
-    />
-
-    <!-- ROOF -->
-
-    <path
-        class="paint-shade"
-        d="
-            M334 324
-            Q368 174 445 144
-            Q600 104 755 144
-            Q832 174 866 324
-            L820 373
-            H380Z
-        "
-    />
-
-    <!-- WINDSHIELD -->
-
-    <path
-        d="
-            M378 313
-            Q398 199 462 171
-            Q600 147 738 171
-            Q802 199 822 313
-            L790 338
-            H410Z
-        "
-        fill="url(#glassGradient)"
-        stroke="#92999f"
-        stroke-width="7"
-    />
-
-    <!-- WINDSHIELD REFLECTION -->
-
-    <path
-        d="
-            M416 294
-            Q457 190 492 183
-            L530 181
-            Q472 237 450 311Z
-        "
-        fill="#e9f4ff"
-        opacity=".14"
-    />
-
-    <!-- MAIN CAR BODY -->
-
-    <path
-        class="paint"
-        d="
-            M199 348
-            Q213 287 281 258
-            Q331 239 381 292
-            Q449 319 600 315
-            Q751 319 819 292
-            Q869 239 919 258
-            Q987 287 1001 348
-            L1082 435
-            Q1093 496 1041 551
-            Q867 585 600 583
-            Q333 585 159 551
-            Q107 496 118 435Z
-        "
-    />
-
-    <!-- BODY SHADOWS -->
-
-    <path
-        d="
-            M199 348
-            Q213 287 281 258
-            Q331 239 381 292
-            Q449 319 600 315
-            Q751 319 819 292
-            Q869 239 919 258
-            Q987 287 1001 348
-            L1082 435
-            Q1093 496 1041 551
-            Q867 585 600 583
-            Q333 585 159 551
-            Q107 496 118 435Z
-        "
-        fill="url(#bodyGradient)"
-    />
-
-    <!-- BONNET -->
-
-    <path
-        class="paint"
-        d="
-            M381 319
-            Q600 346 819 319
-            L917 458
-            Q600 485 283 458Z
-        "
-    />
-
-    <!-- BONNET LINES -->
-
-    <path
-        d="
-            M381 319
-            L283 458
-
-            M819 319
-            L917 458
-        "
-        fill="none"
-        stroke="#000"
-        stroke-opacity=".32"
-        stroke-width="5"
-    />
-
-    <!-- UPPER HIGHLIGHT -->
-
-    <path
-        d="
-            M398 322
-            Q600 341 802 322
-        "
-        fill="none"
-        stroke="#fff"
-        stroke-opacity=".25"
-        stroke-width="4"
-    />
-
-    <!-- LEFT HEADLIGHT -->
-
-    <g
-        transform="
-            translate(281 375)
-            rotate(-13)
-        "
-    >
-
-        <ellipse
-            rx="111"
-            ry="96"
-            fill="#111923"
-            stroke="#a2abb1"
-            stroke-width="10"
-        />
-
-        <ellipse
-            rx="99"
-            ry="85"
-            fill="#040b12"
-            stroke="#3c4d5a"
-            stroke-width="7"
-        />
-
-        <ellipse
-            rx="68"
-            ry="63"
-            fill="#111f2a"
-            stroke="#9fb4c4"
-            stroke-width="7"
-        />
-
-        <circle
-            r="43"
-            fill="#080f18"
-            stroke="#d9e9f4"
-            stroke-width="6"
-        />
-
-        <circle
-            r="23"
-            fill="#d0ecff"
-        />
-
-        <circle
-            r="126"
-            fill="url(#lampGradient)"
-            class="lamp-glow"
-        />
-
-    </g>
-
-    <!-- RIGHT HEADLIGHT -->
-
-    <g
-        transform="
-            translate(919 375)
-            rotate(13)
-        "
-    >
-
-        <ellipse
-            rx="111"
-            ry="96"
-            fill="#111923"
-            stroke="#a2abb1"
-            stroke-width="10"
-        />
-
-        <ellipse
-            rx="99"
-            ry="85"
-            fill="#040b12"
-            stroke="#3c4d5a"
-            stroke-width="7"
-        />
-
-        <ellipse
-            rx="68"
-            ry="63"
-            fill="#111f2a"
-            stroke="#9fb4c4"
-            stroke-width="7"
-        />
-
-        <circle
-            r="43"
-            fill="#080f18"
-            stroke="#d9e9f4"
-            stroke-width="6"
-        />
-
-        <circle
-            r="23"
-            fill="#d0ecff"
-        />
-
-        <circle
-            r="126"
-            fill="url(#lampGradient)"
-            class="lamp-glow"
-        />
-
-    </g>
-
-    <!-- FRONT BUMPER -->
-
-    <path
-        class="paint-shade"
-        d="
-            M160 472
-            Q600 548 1040 472
-            L1046 520
-            Q982 572 600 570
-            Q218 572 154 520Z
-        "
-    />
-
-    <!-- CENTRAL AIR INTAKE -->
-
-    <path
-        d="
-            M377 515
-            Q600 539 823 515
-            L791 555
-            Q600 580 409 555Z
-        "
-        fill="#090b0e"
-        stroke="#6b7780"
-        stroke-width="4"
-    />
-
-    <!-- SIDE AIR INTAKES -->
-
-    <path
-        d="
-            M187 485
-            L295 506
-            L307 543
-            L177 524Z
-
-            M1013 485
-            L905 506
-            L893 543
-            L1023 524Z
-        "
-        fill="#07090c"
-    />
-
-    <!-- BONNET BADGE -->
-
-    <path
-        d="
-            M586 420
-            H614
-            L609 449
-            L600 458
-            L591 449Z
-        "
-        fill="#a18b60"
-        stroke="#47391e"
-        stroke-width="2"
-    />
-
-    <!-- DAYTIME RUNNING LIGHTS -->
-
-    <path
-        d="
-            M210 492
-            L279 503
-
-            M990 492
-            L921 503
-        "
-        stroke="#e6f7ff"
-        stroke-width="6"
-        stroke-linecap="round"
-    />
-
-</svg>
-
-`;
+studio.scene.add(studioCar);
 
 /* ==========================================
-   CREATE INTRO CAR
+   REAL HEADLIGHTS
 ========================================== */
 
-/*
-   We geven de SVG-gradienten in de intro
-   unieke IDs, zodat de twee illustraties
-   elkaar niet beïnvloeden.
-*/
+const filmLamps = [];
 
-const introCar = CAR
+const studioLamps = [];
 
-    .replace(
-        'id="bodyGradient"',
-        'id="introBodyGradient"'
-    )
+/* ==========================================
+   INSTALL TWO SPOTLIGHTS
+========================================== */
 
-    .replace(
-        'id="glassGradient"',
-        'id="introGlassGradient"'
-    )
+function installHeadlightBeams(
+  setup,
+  output
+) {
 
-    .replace(
-        'id="lampGradient"',
-        'id="introLampGradient"'
-    )
+  for (const sign of [-1, 1]) {
 
-    .replaceAll(
-        'url(#bodyGradient)',
-        'url(#introBodyGradient)'
-    )
+    const light =
+      new THREE.SpotLight(
 
-    .replaceAll(
-        'url(#glassGradient)',
-        'url(#introGlassGradient)'
-    )
+        '#c7e8ff',
 
-    .replaceAll(
-        'url(#lampGradient)',
-        'url(#introLampGradient)'
+        0,
+
+        18,
+
+        .36,
+
+        .55,
+
+        1.5
+
+      );
+
+    light.position.set(
+
+      sign * .77,
+
+      .84,
+
+      2.4
+
     );
 
-$('#roomCar').innerHTML = introCar;
+    light.target.position.set(
 
-/* ==========================================
-   CREATE DESIGN STUDIO CAR
-========================================== */
+      sign * .77,
 
-$('#configCar').innerHTML = CAR;
+      .55,
 
-/* ==========================================
-   AUTOMATIC HEADLIGHTS
-========================================== */
+      9
 
-let headlights = false;
+    );
 
-function switchOn() {
+    setup.scene.add(
 
-    headlights = true;
+      light,
 
-    $('#lights').classList.add('on');
+      light.target
 
-    $('#roomTitle').classList.add('on');
+    );
 
-    updateRoom();
+    output.push(light);
+
+  }
 
 }
 
-/*
-   De koplampen gaan automatisch aan.
+installHeadlightBeams(
+  film,
+  filmLamps
+);
 
-   Bij een voorkeur voor minder beweging
-   verschijnt de onthulde auto direct.
-*/
+installHeadlightBeams(
+  studio,
+  studioLamps
+);
 
-if (reduce) {
+/* ==========================================
+   LIGHT CONTROL
+========================================== */
 
-    switchOn();
+const flash = $('#flash');
 
-} else {
+function setLights(
+  setup,
+  stage,
+  headlights = true
+) {
 
-    setTimeout(
-        switchOn,
-        1100
-    );
+  /* LED PANELS */
+
+  setup.ledGroup.visible =
+    stage > .16;
+
+  /* AMBIENT LIGHT */
+
+  setup.ambience.intensity =
+
+    stage * .95 +
+
+    (headlights ? .08 : 0);
+
+  /* FILL */
+
+  setup.fill.intensity =
+    stage * 2.4;
+
+  /* CEILING LIGHTS */
+
+  setup.spots.forEach(light => {
+
+    light.intensity =
+      stage * 11;
+
+  });
+
+  /* HEADLIGHTS */
+
+  const lights =
+    setup === film
+      ? filmLamps
+      : studioLamps;
+
+  lights.forEach(light => {
+
+    light.intensity =
+      headlights ? 16 : 0;
+
+  });
+
+  /* EXPOSURE */
+
+  setup.renderer.toneMappingExposure =
+
+    .7 + stage * .5;
 
 }
 
 /* ==========================================
-   CINEMATIC SCROLL ANIMATION
+   HEADLIGHT VISUALS
 ========================================== */
 
-function updateRoom() {
+function setHeadlightVisual(
+  root,
+  on
+) {
 
-    if (reduce) {
-        return;
-    }
-
-    const cinema = $('.cinema');
-
-    const range = Math.max(
-
-        1,
-
-        cinema.offsetHeight - innerHeight
-
-    );
-
-    const progress = clamp(
-
-        -cinema.getBoundingClientRect().top
-        / range
-
-    );
-
-    /*
-       In het begin zie je vooral de koplampen.
-
-       Vanaf ongeveer 26% scrollprogress
-       begint de studiolamp aan te gaan.
-    */
-
-    const exposure = clamp(
-
-        (progress - .26) / .5
-
-    );
-
-    /* ======================================
-       LIGHT FLICKER
-    ====================================== */
-
-    let flicker = 1;
+  root.traverse(object => {
 
     if (
-        progress > .26 &&
-        progress < .39
+      object.name === 'headlightVisual'
     ) {
 
-        const phase =
-
-            (progress - .26) / .13;
-
-        flicker =
-
-            Math.sin(phase * 94) > .16
-
-                ? 1
-
-                : .1;
+      object.visible = on;
 
     }
 
-    /* ======================================
-       REVEAL CAR
-    ====================================== */
-
-    const amount = exposure * flicker;
-
-    $('#roomCar').style.filter =
-
-        `brightness(${
-            .04 + amount * .9
-        })`;
-
-    /* SLOW CAMERA PUSH */
-
-    $('#roomCar').style.transform =
-
-        `translate(-50%, -50%)
-         scale(${
-            .9 + progress * .13
-         })`;
-
-    /* CEILING SPOTLIGHT */
-
-    $('#ceiling').style.opacity =
-
-        String(amount * .8);
-
-    /* FLOOR REFLECTION */
-
-    $('#floor').style.opacity =
-
-        String(exposure);
-
-    /* HEADLIGHTS STAY ON */
-
-    $('#lights').style.opacity =
-
-        headlights
-
-            ? String(1 - exposure * .28)
-
-            : '0';
-
-    /* TEXT FADES AWAY */
-
-    $('#roomTitle').style.opacity =
-
-        String(
-
-            clamp(
-                1 - progress * 1.7
-            )
-
-        );
+  });
 
 }
 
+setHeadlightVisual(
+  demoCar,
+  false
+);
+
+setHeadlightVisual(
+  studioCar,
+  true
+);
+
 /* ==========================================
-   GLOBAL SCROLL HANDLER
+   OPTIONAL PREMIUM GLB MODEL
 ========================================== */
 
-let ticking = false;
+/*
+  Plaats eventueel:
 
-function onScroll() {
+  porsche-911-gt3-rs.glb
 
-    if (ticking) {
-        return;
-    }
+  in dezelfde map als index.html.
 
-    ticking = true;
+  De website probeert het model automatisch
+  in te laden.
 
-    requestAnimationFrame(() => {
+  Zonder dit bestand blijft de demoauto
+  zichtbaar.
 
-        const y = scrollY || 0;
+  Voor een perfect resultaat moeten richting,
+  schaal, materialen en lichtonderdelen van
+  het gekozen GLB-model worden afgestemd.
+*/
 
-        const max = Math.max(
+let glbAvailable = false;
 
-            1,
+const loader = new GLTFLoader();
 
-            document.documentElement.scrollHeight
-            - innerHeight
+async function tryLoadModel() {
 
-        );
+  return new Promise(resolve => {
 
-        /* PROGRESS BAR */
+    loader.load(
 
-        $('#progress').style.width =
+      './porsche-911-gt3-rs.glb',
 
-            `${y / max * 100}%`;
+      gltf => {
 
-        /* HEADER */
+        try {
 
-        $('#header').classList.toggle(
+          const root = gltf.scene;
 
-            'scrolled',
+          const box =
+            new THREE.Box3().setFromObject(root);
 
-            y > 50
+          const size = box.getSize(
+            V(0, 0, 0)
+          );
 
-        );
+          const center = box.getCenter(
+            V(0, 0, 0)
+          );
 
-        /* DARK ROOM */
+          if (size.length() < .01) {
 
-        updateRoom();
+            throw new Error(
+              'Empty model'
+            );
 
-        /* ANIMATIONS */
+          }
 
-        if (!reduce) {
+          /* CENTER MODEL */
 
-            /* ==================================
-               CLOSE-UP CAMERA MOVEMENTS
-            ================================== */
+          root.position.sub(center);
 
-            for (const shot of $$('.shot')) {
+          /* SCALE MODEL */
 
-                const rect =
-                    shot.getBoundingClientRect();
+          root.scale.setScalar(
 
-                if (
-                    rect.top > innerHeight ||
-                    rect.bottom < 0
-                ) {
+            4.8 /
 
-                    continue;
+            Math.max(
+              size.z,
+              size.x
+            )
 
-                }
+          );
 
-                const position = clamp(
+          root.updateMatrixWorld(true);
 
-                    (innerHeight - rect.top) /
+          /* PLACE ON FLOOR */
 
-                    (innerHeight + rect.height)
+          const corrected =
+            new THREE.Box3().setFromObject(root);
 
-                );
+          root.position.y -=
+            corrected.min.y;
 
-                const zoom =
+          /* PREPARE MESHES */
 
-                    shot.classList.contains('wheel')
+          root.traverse(object => {
 
-                        ? 2.15
+            if (object.isMesh) {
 
-                        : shot.classList.contains('rear')
+              object.castShadow = false;
 
-                            ? 1.85
-
-                            : 1.55;
-
-                shot.querySelector(
-                    '.shot-img'
-                ).style.transform =
-
-                    `translateY(${
-                        (position - .5) * 70
-                    }px)
-                    scale(${zoom})`;
+              object.receiveShadow = true;
 
             }
 
-            /* ==================================
-               HERO IMAGE MOVEMENT
-            ================================== */
+          });
 
-            const hero =
+          /* REPLACE FILM CAR */
 
-                $('.hero').getBoundingClientRect();
+          film.scene.remove(demoCar);
 
-            if (
-                hero.top < innerHeight &&
-                hero.bottom > 0
-            ) {
+          film.scene.add(root);
 
-                const amount = clamp(
+          /* REPLACE STUDIO CAR */
 
-                    -hero.top / innerHeight
+          studio.scene.remove(studioCar);
 
-                );
+          studioCar = root.clone(true);
 
-                $('#heroPhoto').style.transform =
+          studio.scene.add(studioCar);
 
-                    `scale(${
-                        1 + amount * .09
-                    })`;
+          glbAvailable = true;
 
-            }
+          resolve(true);
+
+        } catch (error) {
+
+          console.warn(
+
+            'GLB kon niet worden ingeladen:',
+
+            error
+
+          );
+
+          resolve(false);
 
         }
 
-        ticking = false;
+      },
 
-    });
+      undefined,
+
+      () => resolve(false)
+
+    );
+
+  });
 
 }
 
-addEventListener(
-
-    'scroll',
-
-    onScroll,
-
-    { passive: true }
-
-);
-
-addEventListener(
-    'resize',
-    onScroll
-);
-
-onScroll();
-
 /* ==========================================
-   SCROLL REVEALS
+   CINEMATIC CAMERA PATH
 ========================================== */
 
-const observer = new IntersectionObserver(
+/*
+  De auto staat stil.
 
-    entries => {
+  De camera beweegt via keyframes
+  door dezelfde 3D-ruimte.
 
-        entries.forEach(entry => {
+  Elk keyframe bevat:
 
-            if (entry.isIntersecting) {
+  t    = scrollprogress (0 tot 1)
+  p    = camerapositie
+  look = punt waar camera naar kijkt
+  fov  = zoom
+  text = tekstscène
+*/
 
-                entry.target.classList.add(
-                    'visible'
-                );
+const beats = [
 
-                observer.unobserve(
-                    entry.target
-                );
+  /* FRONT — DARK INTRO */
 
-            }
+  {
 
-        });
+    t: 0,
 
-    },
+    p: [0, 1.55, 9.1],
 
-    {
-        threshold: .1
-    }
+    look: [0, .85, 0],
 
-);
+    fov: 38,
 
-$$('.reveal').forEach(element => {
+    text: 0
 
-    if (reduce) {
+  },
 
-        element.classList.add('visible');
+  /* HEADLIGHT REVEAL */
 
-    } else {
+  {
 
-        observer.observe(element);
+    t: .16,
 
-    }
+    p: [0, 1.5, 8.0],
 
-});
+    look: [0, .88, 0],
+
+    fov: 37,
+
+    text: 0
+
+  },
+
+  /* FULL SHOWROOM */
+
+  {
+
+    t: .29,
+
+    p: [0, 1.75, 7.7],
+
+    look: [0, .93, 0],
+
+    fov: 38,
+
+    text: 1
+
+  },
+
+  /* FRONT THREE-QUARTER */
+
+  {
+
+    t: .43,
+
+    p: [3.65, 1.85, 6.4],
+
+    look: [0, .92, 0],
+
+    fov: 36,
+
+    text: 2
+
+  },
+
+  /* SIDE ORBIT */
+
+  {
+
+    t: .54,
+
+    p: [6.35, 2.15, 1.45],
+
+    look: [0, .95, 0],
+
+    fov: 37,
+
+    text: 2
+
+  },
+
+  /* SLOW-MOTION FRONT WHEEL */
+
+  {
+
+    t: .62,
+
+    p: [3.0, .85, 2.6],
+
+    look: [1.08, .48, 1.5],
+
+    fov: 28,
+
+    text: 3
+
+  },
+
+  /* CAMERA RUSH ALONG BODY */
+
+  {
+
+    t: .70,
+
+    p: [6.0, 1.7, -2.3],
+
+    look: [0, .92, -.7],
+
+    fov: 36,
+
+    text: 4
+
+  },
+
+  /* REAR THREE-QUARTER */
+
+  {
+
+    t: .80,
+
+    p: [3.9, 1.6, -6.0],
+
+    look: [0, 1.1, -1.4],
+
+    fov: 36,
+
+    text: 4
+
+  },
+
+  /* REAR WING CLOSE-UP */
+
+  {
+
+    t: .88,
+
+    p: [1.75, 1.6, -4.4],
+
+    look: [0, 1.52, -2.2],
+
+    fov: 30,
+
+    text: 5
+
+  },
+
+  /* FINAL CAMERA SHOT */
+
+  {
+
+    t: 1,
+
+    p: [-3.8, 2.35, -6.55],
+
+    look: [0, 1.0, 0],
+
+    fov: 39,
+
+    text: 6
+
+  }
+
+];
 
 /* ==========================================
-   MOBILE MENU
+   CINEMATIC CHAPTER TEXT
 ========================================== */
 
-$('#menu').addEventListener('click', () => {
+const chapters = [
 
-    const open = $('#nav').classList.toggle(
-        'open'
-    );
+  [
 
-    $('#menu').setAttribute(
+    '00 / IGNITION',
 
-        'aria-expanded',
+    'BORN IN<br>THE DARK.',
 
-        String(open)
+    'BOTH HEADLIGHTS. ONE MOMENT.'
 
-    );
+  ],
 
-    $('#menu').textContent =
+  [
 
-        open ? '✕' : '☰';
+    '01 / REVEAL',
 
-});
+    'THE ROOM<br>AWAKENS.',
 
-$$('.nav a').forEach(link => {
+    'HEXAGON LIGHTS / CARBON REFLECTIONS'
 
-    link.addEventListener('click', () => {
+  ],
 
-        $('#nav').classList.remove('open');
+  [
 
-        $('#menu').setAttribute(
+    '02 / THE ORBIT',
 
-            'aria-expanded',
+    'EVERY ANGLE.<br>ONE ICON.',
 
-            'false'
+    'A CAMERA MOVING THROUGH SPACE'
 
-        );
+  ],
 
-        $('#menu').textContent = '☰';
+  [
 
-    });
+    '03 / CLOSE-UP',
 
-});
+    'THE WHEELS.',
+
+    'SLOW DOWN. LOOK CLOSER.'
+
+  ],
+
+  [
+
+    '04 / THE FLIGHT',
+
+    'THE<br>CARBON.',
+
+    'SPEED / SILENCE / REFLECTIONS'
+
+  ],
+
+  [
+
+    '05 / CLOSE-UP',
+
+    'THE WING.',
+
+    'PURE AERODYNAMICS'
+
+  ],
+
+  [
+
+    '06 / THE FINAL SHOT',
+
+    'THE 911.<br>GT3 RS.',
+
+    'EXPOSED CARBON / NEVER ORDINARY'
+
+  ]
+
+];
 
 /* ==========================================
-   DESIGN STUDIO — PAINT COLOURS
+   INTERPOLATE CAMERA
+========================================== */
+
+function cameraAt(t) {
+
+  let index = 0;
+
+  while (
+
+    index < beats.length - 2 &&
+
+    t > beats[index + 1].t
+
+  ) {
+
+    index++;
+
+  }
+
+  const a = beats[index];
+
+  const b = beats[index + 1];
+
+  const raw = clamp(
+
+    (t - a.t) /
+
+    (b.t - a.t)
+
+  );
+
+  /* SMOOTH ACCELERATION */
+
+  const ease = smooth(raw);
+
+  return {
+
+    p: V(...a.p).lerp(
+
+      V(...b.p),
+
+      ease
+
+    ),
+
+    look: V(...a.look).lerp(
+
+      V(...b.look),
+
+      ease
+
+    ),
+
+    fov: lerp(
+
+      a.fov,
+
+      b.fov,
+
+      ease
+
+    ),
+
+    text: raw > .5
+      ? b.text
+      : a.text
+
+  };
+
+}
+
+/* ==========================================
+   FILM SCROLL PROGRESS
+========================================== */
+
+function filmProgress() {
+
+  const element = $('.film');
+
+  const rect =
+    element.getBoundingClientRect();
+
+  return clamp(
+
+    -rect.top /
+
+    Math.max(
+
+      1,
+
+      element.offsetHeight - innerHeight
+
+    )
+
+  );
+
+}
+
+/* ==========================================
+   CINEMATIC STATE
+========================================== */
+
+let startedAt = 0;
+
+let ignition = false;
+
+let lastChapter = -1;
+
+let showStage = 0;
+
+let currentFlash = 0;
+
+let filmDirty = true;
+
+/* ==========================================
+   UPDATE CHAPTER
+========================================== */
+
+function updateChapter(index) {
+
+  if (index === lastChapter) {
+    return;
+  }
+
+  lastChapter = index;
+
+  const [
+    number,
+    title,
+    subtitle
+  ] = chapters[index];
+
+  $('#sceneNumber').textContent =
+    number;
+
+  $('#sceneTitle').innerHTML =
+    title;
+
+  $('#sceneSub').textContent =
+    subtitle;
+
+}
+
+/* ==========================================
+   MAIN FILM ANIMATION
+========================================== */
+
+function animateFilm(now) {
+
+  const t = reduced
+    ? .32
+    : filmProgress();
+
+  const elapsed =
+    now - startedAt;
+
+  /* ======================================
+     HEADLIGHTS SWITCH ON TOGETHER
+  ====================================== */
+
+  if (
+    !ignition &&
+    elapsed >= 1350
+  ) {
+
+    ignition = true;
+
+    setHeadlightVisual(
+      demoCar,
+      true
+    );
+
+  }
+
+  /* ======================================
+     CAMERA MOVEMENT
+  ====================================== */
+
+  const state = cameraAt(t);
+
+  film.camera.position.copy(
+    state.p
+  );
+
+  film.camera.lookAt(
+    state.look
+  );
+
+  film.camera.fov =
+    state.fov;
+
+  film.camera.updateProjectionMatrix();
+
+  /* ======================================
+     HEADLIGHT STATUS
+  ====================================== */
+
+  const headOn =
+    ignition || reduced;
+
+  /* ======================================
+     SHOWROOM LIGHTING
+  ====================================== */
+
+  const desired = smooth(
+
+    (t - .115) / .17
+
+  );
+
+  let flicker = 1;
+
+  /* ======================================
+     FLICKERING LIGHTS
+  ====================================== */
+
+  if (
+
+    t > .12 &&
+
+    t < .205 &&
+
+    !reduced
+
+  ) {
+
+    const phase =
+
+      (t - .12) / .085;
+
+    flicker =
+
+      Math.sin(phase * 88) > -.13
+
+        ? 1
+
+        : .1;
+
+    currentFlash = clamp(
+
+      (
+        Math.sin(phase * 88) -
+        .88
+      ) * 3
+
+    ) * .08;
+
+  } else {
+
+    currentFlash = 0;
+
+  }
+
+  /* ======================================
+     LIGHT INTENSITY
+  ====================================== */
+
+  showStage =
+    desired * flicker;
+
+  setLights(
+
+    film,
+
+    showStage,
+
+    headOn
+
+  );
+
+  flash.style.opacity =
+    String(currentFlash);
+
+  /* ======================================
+     UPDATE TEXT
+  ====================================== */
+
+  const activeText =
+
+    t < .18
+
+      ? 0
+
+      : t < .35
+
+        ? 1
+
+        : state.text;
+
+  updateChapter(activeText);
+
+  /* ======================================
+     FADE OUT FINAL TEXT
+  ====================================== */
+
+  $('#sceneCopy').style.opacity =
+
+    String(
+      t > .975 ? 0 : 1
+    );
+
+  /* ======================================
+     SCROLL LABEL
+  ====================================== */
+
+  $('#scrollCue').style.opacity =
+
+    String(
+      clamp(1 - t * 4)
+    );
+
+  /* ======================================
+     FRAME COUNTER
+  ====================================== */
+
+  $('#frameIndicator').textContent =
+
+    `${String(
+
+      Math.floor(t * 6)
+
+    ).padStart(2, '0')}:00 / 06:00 — DIRECTOR'S CUT`;
+
+}
+
+/* ==========================================
+   DESIGN STUDIO STATE
+========================================== */
+
+let studioAngle = .38;
+
+let studioPitch = .18;
+
+let dragging = false;
+
+let lastX = 0;
+
+let lastY = 0;
+
+let studioMode = 'day';
+
+let studioHeadlights = true;
+
+/* ==========================================
+   PAINT OPTIONS
+========================================== */
+
+const paintOptions = {
+
+  carbon: {
+
+    name: 'EXPOSED CARBON',
+
+    color: '#242b31'
+
+  },
+
+  silver: {
+
+    name: 'GT SILVER',
+
+    color: '#adb6c0'
+
+  },
+
+  black: {
+
+    name: 'JET BLACK',
+
+    color: '#0a0d12'
+
+  },
+
+  red: {
+
+    name: 'GUARDS RED',
+
+    color: '#b2212d'
+
+  },
+
+  white: {
+
+    name: 'ARCTIC WHITE',
+
+    color: '#dce2e8'
+
+  }
+
+};
+
+/* ==========================================
+   CHANGE PAINT
+========================================== */
+
+function setPaint(id) {
+
+  const option =
+    paintOptions[id];
+
+  if (!option) {
+    return;
+  }
+
+  carPaint.color.set(
+    option.color
+  );
+
+  /* CARBON TEXTURE */
+
+  carPaint.map =
+
+    id === 'carbon'
+
+      ? carbonTexture
+
+      : null;
+
+  carPaint.bumpMap =
+
+    id === 'carbon'
+
+      ? carbonTexture
+
+      : null;
+
+  carPaint.needsUpdate = true;
+
+  /* UPDATE NAME */
+
+  $('#paintName').textContent =
+    option.name;
+
+  /* ACTIVE BUTTON */
+
+  $$('[data-color]').forEach(button => {
+
+    const active =
+
+      button.dataset.color === id;
+
+    button.classList.toggle(
+
+      'active',
+
+      active
+
+    );
+
+    button.setAttribute(
+
+      'aria-pressed',
+
+      String(active)
+
+    );
+
+  });
+
+}
+
+/* ==========================================
+   PAINT BUTTONS
 ========================================== */
 
 $('#swatches').addEventListener(
 
-    'click',
+  'click',
 
-    event => {
+  event => {
 
-        const button = event.target.closest(
-            '[data-paint]'
-        );
+    const button = event.target.closest(
+      '[data-color]'
+    );
 
-        if (!button) {
-            return;
-        }
+    if (button) {
 
-        /* UPDATE PAINT */
-
-        $('#config').style.setProperty(
-
-            '--paint',
-
-            button.dataset.paint
-
-        );
-
-        /* UPDATE NAME */
-
-        $('#paintName').textContent =
-
-            button.dataset.name;
-
-        /* UPDATE ACTIVE BUTTON */
-
-        $$('[data-paint]').forEach(item => {
-
-            const active =
-                item === button;
-
-            item.classList.toggle(
-
-                'active',
-
-                active
-
-            );
-
-            item.setAttribute(
-
-                'aria-pressed',
-
-                String(active)
-
-            );
-
-        });
+      setPaint(
+        button.dataset.color
+      );
 
     }
+
+  }
 
 );
 
 /* ==========================================
-   DESIGN STUDIO — DAY / NIGHT
+   STUDIO DAY / NIGHT
 ========================================== */
 
-$$('[data-scene]').forEach(button => {
+function setStudioMode(mode) {
 
-    button.addEventListener(
-        'click',
-        () => {
+  studioMode = mode;
 
-            const day =
+  $('#preview').classList.toggle(
 
-                button.dataset.scene === 'day';
+    'night',
 
-            $('#config').classList.toggle(
+    mode === 'night'
 
-                'day',
+  );
 
-                day
+  $$('[data-mode]').forEach(button => {
 
-            );
+    const selected =
 
-            $$('[data-scene]').forEach(item => {
+      button.dataset.mode === mode;
 
-                const active =
-                    item === button;
+    button.classList.toggle(
 
-                item.classList.toggle(
+      'active',
 
-                    'active',
+      selected
 
-                    active
-
-                );
-
-                item.setAttribute(
-
-                    'aria-pressed',
-
-                    String(active)
-
-                );
-
-            });
-
-        }
     );
 
-});
+    button.setAttribute(
 
-/* ==========================================
-   DESIGN STUDIO — HEADLIGHTS
-========================================== */
+      'aria-pressed',
 
-$('#lightButton').addEventListener(
+      String(selected)
+
+    );
+
+  });
+
+}
+
+$$('[data-mode]').forEach(button => {
+
+  button.addEventListener(
 
     'click',
 
     () => {
 
-        const on = $('#config').classList.toggle(
-            'lights-on'
-        );
-
-        $('#lightButton').setAttribute(
-
-            'aria-pressed',
-
-            String(on)
-
-        );
-
-        $('#lightButton').textContent =
-
-            on
-
-                ? '✳ LIGHTS ON'
-
-                : '✳ LIGHTS OFF';
+      setStudioMode(
+        button.dataset.mode
+      );
 
     }
 
+  );
+
+});
+
+/* ==========================================
+   STUDIO HEADLIGHTS
+========================================== */
+
+function setStudioHeadlights(on) {
+
+  studioHeadlights = on;
+
+  setHeadlightVisual(
+    studioCar,
+    on
+  );
+
+  $$('[data-lights]').forEach(button => {
+
+    const selected =
+
+      (
+        button.dataset.lights === 'on'
+      ) === on;
+
+    button.classList.toggle(
+
+      'active',
+
+      selected
+
+    );
+
+    button.setAttribute(
+
+      'aria-pressed',
+
+      String(selected)
+
+    );
+
+  });
+
+}
+
+$$('[data-lights]').forEach(button => {
+
+  button.addEventListener(
+
+    'click',
+
+    () => {
+
+      setStudioHeadlights(
+
+        button.dataset.lights === 'on'
+
+      );
+
+    }
+
+  );
+
+});
+
+/* ==========================================
+   DRAG TO ROTATE CAMERA
+========================================== */
+
+const studioCanvas =
+  $('#studioCanvas');
+
+studioCanvas.addEventListener(
+
+  'pointerdown',
+
+  event => {
+
+    dragging = true;
+
+    lastX = event.clientX;
+
+    lastY = event.clientY;
+
+    studioCanvas.setPointerCapture(
+      event.pointerId
+    );
+
+  }
+
 );
+
+studioCanvas.addEventListener(
+
+  'pointermove',
+
+  event => {
+
+    if (!dragging) {
+      return;
+    }
+
+    studioAngle -=
+
+      (
+        event.clientX - lastX
+      ) * .009;
+
+    studioPitch = clamp(
+
+      studioPitch +
+
+      (
+        event.clientY - lastY
+      ) * .005,
+
+      -.1,
+
+      .7
+
+    );
+
+    lastX = event.clientX;
+
+    lastY = event.clientY;
+
+  }
+
+);
+
+/* ==========================================
+   END DRAG
+========================================== */
+
+const endDrag = event => {
+
+  dragging = false;
+
+  if (
+
+    studioCanvas.hasPointerCapture(
+      event.pointerId
+    )
+
+  ) {
+
+    studioCanvas.releasePointerCapture(
+      event.pointerId
+    );
+
+  }
+
+};
+
+studioCanvas.addEventListener(
+  'pointerup',
+  endDrag
+);
+
+studioCanvas.addEventListener(
+  'pointercancel',
+  endDrag
+);
+
+/* ==========================================
+   RESET CAMERA
+========================================== */
+
+$('#resetView').addEventListener(
+
+  'click',
+
+  () => {
+
+    studioAngle = .38;
+
+    studioPitch = .18;
+
+  }
+
+);
+
+/* ==========================================
+   STUDIO RENDERING
+========================================== */
+
+function animateStudio() {
+
+  const radius = 6.7;
+
+  studio.camera.position.set(
+
+    Math.sin(studioAngle) * radius,
+
+    2.1 + studioPitch * 3,
+
+    Math.cos(studioAngle) * radius
+
+  );
+
+  studio.camera.lookAt(
+    0,
+    .94,
+    0
+  );
+
+  studio.camera.fov = 39;
+
+  studio.camera.updateProjectionMatrix();
+
+  /* BRIGHTER SHOWROOM BY DEFAULT */
+
+  setLights(
+
+    studio,
+
+    studioMode === 'day'
+      ? 1
+      : .42,
+
+    studioHeadlights
+
+  );
+
+  studio.renderer.render(
+
+    studio.scene,
+
+    studio.camera
+
+  );
+
+}
+
+/* ==========================================
+   CANVAS RESIZE
+========================================== */
+
+function resizeScene(
+  setup,
+  canvas
+) {
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+  const width = Math.max(
+
+    2,
+
+    Math.round(rect.width)
+
+  );
+
+  const height = Math.max(
+
+    2,
+
+    Math.round(rect.height)
+
+  );
+
+  setup.renderer.setSize(
+
+    width,
+
+    height,
+
+    false
+
+  );
+
+  setup.camera.aspect =
+    width / height;
+
+  setup.camera.updateProjectionMatrix();
+
+}
+
+function resize() {
+
+  resizeScene(
+
+    film,
+
+    $('#filmCanvas')
+
+  );
+
+  resizeScene(
+
+    studio,
+
+    $('#studioCanvas')
+
+  );
+
+}
+
+window.addEventListener(
+  'resize',
+  resize
+);
+
+resize();
+
+/* ==========================================
+   SCROLL STATE
+========================================== */
+
+const pageHeader =
+  $('#header');
+
+let inStudio = false;
+
+/* ==========================================
+   STUDIO VISIBILITY
+========================================== */
+
+const visibilityObserver =
+  new IntersectionObserver(
+
+    entries => {
+
+      entries.forEach(entry => {
+
+        if (
+          entry.target.id === 'studio'
+        ) {
+
+          inStudio =
+            entry.isIntersecting;
+
+        }
+
+      });
+
+    },
+
+    {
+
+      rootMargin: '150px'
+
+    }
+
+  );
+
+visibilityObserver.observe(
+  $('#studio')
+);
+
+/* ==========================================
+   PAGE SCROLL PROGRESS
+========================================== */
+
+function updateScroll() {
+
+  const y = scrollY;
+
+  const range = Math.max(
+
+    1,
+
+    document.documentElement.scrollHeight -
+    innerHeight
+
+  );
+
+  $('#progress').style.width =
+
+    `${(y / range * 100).toFixed(2)}%`;
+
+  pageHeader.classList.toggle(
+
+    'scrolled',
+
+    y > 50
+
+  );
+
+}
+
+window.addEventListener(
+
+  'scroll',
+
+  updateScroll,
+
+  { passive: true }
+
+);
+
+updateScroll();
+
+/* ==========================================
+   MOBILE MENU
+========================================== */
+
+$('#mobileMenu').addEventListener(
+
+  'click',
+
+  () => {
+
+    const open =
+      $('#nav').classList.toggle('open');
+
+    $('#mobileMenu').setAttribute(
+
+      'aria-expanded',
+
+      String(open)
+
+    );
+
+    $('#mobileMenu').textContent =
+
+      open ? '✕' : '☰';
+
+  }
+
+);
+
+$$('nav a').forEach(link => {
+
+  link.addEventListener(
+
+    'click',
+
+    () => {
+
+      $('#nav').classList.remove(
+        'open'
+      );
+
+      $('#mobileMenu').setAttribute(
+
+        'aria-expanded',
+
+        'false'
+
+      );
+
+      $('#mobileMenu').textContent = '☰';
+
+    }
+
+  );
+
+});
+
+/* ==========================================
+   SCROLL REVEALS
+========================================== */
+
+const revealObserver =
+  new IntersectionObserver(
+
+    entries => {
+
+      entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+          entry.target.classList.add(
+            'visible'
+          );
+
+          revealObserver.unobserve(
+            entry.target
+          );
+
+        }
+
+      });
+
+    },
+
+    {
+
+      threshold: .1
+
+    }
+
+  );
+
+$$('.reveal').forEach(element => {
+
+  if (reduced) {
+
+    element.classList.add('visible');
+
+  } else {
+
+    revealObserver.observe(element);
+
+  }
+
+});
+
+/* ==========================================
+   MAIN RENDER LOOP
+========================================== */
+
+let running = true;
+
+function frame(now) {
+
+  if (!running) {
+    return;
+  }
+
+  requestAnimationFrame(frame);
+
+  /* ======================================
+     FILM VISIBLE?
+  ====================================== */
+
+  const filmRect =
+    $('.film').getBoundingClientRect();
+
+  if (
+
+    filmRect.bottom > 0 &&
+
+    filmRect.top < innerHeight
+
+  ) {
+
+    animateFilm(now);
+
+    film.renderer.render(
+
+      film.scene,
+
+      film.camera
+
+    );
+
+  }
+
+  /* ======================================
+     STUDIO VISIBLE?
+  ====================================== */
+
+  if (inStudio) {
+
+    animateStudio();
+
+  }
+
+}
+
+/* ==========================================
+   INITIALIZATION
+========================================== */
+
+async function init() {
+
+  startedAt = performance.now();
+
+  /* LOADING */
+
+  $('#loadBar').style.width = '40%';
+
+  /* OPTIONAL MODEL */
+
+  await tryLoadModel();
+
+  /* FINISH LOADING */
+
+  $('#loadBar').style.width = '100%';
+
+  $('#loadStatus').textContent =
+
+    glbAvailable
+
+      ? 'PREMIUM MODEL LOADED'
+
+      : 'DEMO MODEL READY — PLACE A GLB FOR PHOTOREALISM';
+
+  /* REDUCED MOTION */
+
+  if (reduced) {
+
+    ignition = true;
+
+    setHeadlightVisual(
+      demoCar,
+      true
+    );
+
+  }
+
+  /* START ANIMATION */
+
+  requestAnimationFrame(frame);
+
+  /* HIDE LOADING SCREEN */
+
+  setTimeout(
+
+    () => {
+
+      $('#loader').classList.add(
+        'hidden'
+      );
+
+    },
+
+    350
+
+  );
+
+}
+
+init();
 
 </script>
 
