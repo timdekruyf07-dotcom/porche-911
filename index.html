@@ -1,70 +1,21 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070a0e">
+<title>911 GT3 RS — WHITE / THE FILM</title>
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1"
->
-
-<meta
-  name="theme-color"
-  content="#080b0f"
->
-
-<meta
-  name="description"
-  content="Onofficiële Porsche 911 GT3 RS cinematic experience — een doorlopende 3D-camerafilm in een grafietgrijze LED-showroom."
->
-
-<title>
-  911 GT3 RS — WHITE / THE FILM
-</title>
-
-<link
-  rel="preconnect"
-  href="https://fonts.googleapis.com"
->
-
-<link
-  rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin
->
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
-  rel="stylesheet"
->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 
-/* ==========================================
-   GLOBAL VARIABLES
-========================================== */
-
 :root {
-
-  --dark: #080b0f;
-
-  --white: #f5f7fa;
-
-  --muted: #aab5bf;
-
-  --red: #eb463d;
-
-  --line: #ffffff29;
-
-  --ease: cubic-bezier(.22, 1, .36, 1);
-
+  --white: #f2f5f9;
+  --red: #ec463d;
+  --mono: 'DM Mono', monospace;
 }
-
-/* ==========================================
-   GLOBAL RESET
-========================================== */
 
 * {
   box-sizing: border-box;
@@ -75,66 +26,45 @@ html {
 }
 
 body {
-
   margin: 0;
-
-  overflow-x: hidden;
-
-  background: var(--dark);
-
+  background: #070a0e;
   color: var(--white);
-
   font-family: Manrope, Arial, sans-serif;
+  overflow-x: hidden;
+}
 
+button,
+a {
+  font: inherit;
 }
 
 a {
-
   color: inherit;
-
   text-decoration: none;
-
 }
 
 button {
-
-  font: inherit;
-
   cursor: pointer;
-
 }
 
 button:focus-visible,
 a:focus-visible {
-
-  outline: 2px solid white;
-
+  outline: 2px solid #fff;
   outline-offset: 4px;
-
 }
 
 /* ==========================================
-   SCROLL PROGRESS
+   PROGRESS BAR
 ========================================== */
 
 #progress {
-
-  position: fixed;
-
-  top: 0;
-
-  left: 0;
-
   height: 3px;
-
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 0;
-
-  z-index: 110;
-
   background: var(--red);
-
-  pointer-events: none;
-
+  z-index: 120;
 }
 
 /* ==========================================
@@ -142,502 +72,264 @@ a:focus-visible {
 ========================================== */
 
 header {
-
-  position: fixed;
-
-  top: 0;
-
-  left: 0;
-
-  right: 0;
-
-  z-index: 100;
-
   display: flex;
-
-  justify-content: space-between;
-
   align-items: center;
-
-  gap: 16px;
-
-  padding: 23px 5.5%;
-
-  transition:
-    background .3s,
-    padding .3s;
-
+  justify-content: space-between;
+  gap: 20px;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 6%;
+  transition: background .3s, padding .3s;
 }
 
 header.scrolled {
-
-  padding-block: 15px;
-
-  background: #080b0fec;
-
-  backdrop-filter: blur(16px);
-
-  border-bottom: 1px solid var(--line);
-
+  background: #080d14e8;
+  backdrop-filter: blur(15px);
+  padding-block: 16px;
+  border-bottom: 1px solid #ffffff24;
 }
 
-/* ==========================================
-   LOGO
-========================================== */
-
-.logo {
-
-  font-size: 30px;
-
+.brand {
+  font-size: 31px;
+  letter-spacing: -.1em;
   font-weight: 800;
-
-  letter-spacing: -.095em;
-
   line-height: 1;
-
 }
 
-.logo small {
-
+.brand small {
   display: block;
-
-  font: 9px 'DM Mono', monospace;
-
+  font: 9px var(--mono);
   letter-spacing: .13em;
-
-  margin-top: 6px;
-
-  color: #c2cdd5;
-
+  margin-top: 8px;
 }
 
-/* ==========================================
-   NAVIGATION
-========================================== */
-
-nav {
-
+.nav {
   display: flex;
-
   align-items: center;
-
-  gap: 28px;
-
-  font: 10px 'DM Mono', monospace;
-
-  letter-spacing: .11em;
-
+  gap: 27px;
+  font: 10px var(--mono);
+  letter-spacing: .13em;
 }
 
-nav a:hover {
-
-  color: white;
-
-  text-decoration: underline;
-
-  text-underline-offset: 6px;
-
-}
-
-.nav-button {
-
+.nav .border {
+  border: 1px solid #ffffff88;
   padding: 13px 17px;
-
-  border: 1px solid #ffffff80;
-
 }
 
-/* ==========================================
-   MOBILE MENU
-========================================== */
-
-.menu {
-
+#menu {
   display: none;
-
-  border: 1px solid #ffffff85;
-
-  color: white;
-
-  background: #111922;
-
-  width: 44px;
-
-  height: 44px;
-
+  background: #17212e;
+  color: #fff;
+  border: 1px solid #ffffff77;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 /* ==========================================
-   CONTINUOUS CINEMATIC INTRO
+   CINEMATIC FILM
 ========================================== */
 
 .film {
-
-  height: 780svh;
-
+  height: 730vh;
   position: relative;
-
-  background: #010205;
-
+  background: #010305;
 }
 
-.film-stick {
-
-  position: sticky;
-
-  top: 0;
-
+.sticky {
+  height: 100vh;
   height: 100svh;
-
-  overflow: hidden;
-
+  position: sticky;
+  top: 0;
   isolation: isolate;
-
+  overflow: hidden;
 }
 
-/* ==========================================
-   THREE.JS CANVAS
-========================================== */
+canvas {
+  display: block;
+}
 
 #filmCanvas {
-
   position: absolute;
-
   inset: 0;
-
   width: 100%;
-
   height: 100%;
-
-  display: block;
-
   z-index: 1;
-
   touch-action: pan-y;
-
 }
-
-/* ==========================================
-   CINEMATIC VIGNETTE
-========================================== */
 
 .vignette {
-
   position: absolute;
-
   inset: 0;
-
+  pointer-events: none;
   z-index: 2;
-
-  pointer-events: none;
-
   background:
-
     radial-gradient(
-
-      ellipse at center,
-
-      transparent 26%,
-
-      #02030684 100%
-
+      ellipse,
+      #0000 23%,
+      #01030580 100%
     ),
-
     linear-gradient(
-
       0deg,
-
-      #020408a8 0%,
-
-      transparent 34%
-
+      #020408a6,
+      transparent 38%
     );
-
 }
-
-/* ==========================================
-   FILM GRAIN
-========================================== */
-
-.film-grain {
-
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 3;
-
-  pointer-events: none;
-
-  opacity: .11;
-
-  background-image: url(
-
-    "data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.76' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.21'/%3E%3C/svg%3E"
-
-  );
-
-}
-
-/* ==========================================
-   LED FLICKER FLASH
-========================================== */
 
 #flash {
-
   position: absolute;
-
   inset: 0;
-
-  z-index: 4;
-
-  background: #e6f4ff;
-
+  pointer-events: none;
+  z-index: 3;
+  background: #d9edff;
   opacity: 0;
-
   mix-blend-mode: screen;
-
-  pointer-events: none;
-
-}
-
-/* ==========================================
-   SCENE CAPTION
-========================================== */
-
-.scene-caption {
-
-  position: absolute;
-
-  left: 6%;
-
-  bottom: 11%;
-
-  max-width: 74%;
-
-  z-index: 5;
-
-  pointer-events: none;
-
-  text-shadow: 0 10px 40px #000b;
-
-}
-
-/* ==========================================
-   SMALL TEXT
-========================================== */
-
-.eyebrow,
-.scene-count,
-.scene-note,
-.film-tag,
-.scroll-prompt {
-
-  font: 10px 'DM Mono', monospace;
-
-  letter-spacing: .23em;
-
-  color: #d5e0e8;
-
-}
-
-.scene-count::before,
-.eyebrow::before {
-
-  content: '';
-
-  display: inline-block;
-
-  width: 27px;
-
-  height: 1px;
-
-  margin-right: 12px;
-
-  background: var(--red);
-
-  vertical-align: middle;
-
-}
-
-/* ==========================================
-   CINEMATIC TITLES
-========================================== */
-
-.scene-caption h1 {
-
-  margin: 16px 0 13px;
-
-  font-size: clamp(54px, 9vw, 145px);
-
-  font-weight: 600;
-
-  line-height: .91;
-
-  letter-spacing: -.085em;
-
-}
-
-.scene-note {
-
-  letter-spacing: .1em;
-
-  line-height: 1.7;
-
 }
 
 .film-tag {
-
   position: absolute;
-
-  top: 17%;
-
-  right: 6%;
-
   z-index: 5;
-
+  right: 6%;
+  top: 19%;
+  font: 10px/1.8 var(--mono);
+  letter-spacing: .16em;
   text-align: right;
-
+  color: #d6e3ef;
 }
 
-.scroll-prompt {
-
+.caption {
   position: absolute;
-
-  right: 6%;
-
-  bottom: 6%;
-
   z-index: 5;
+  left: 6%;
+  bottom: 12%;
+  width: min(830px, 88%);
+  pointer-events: none;
+  text-shadow: 0 7px 36px #000a;
+}
 
+.micro,
+.caption p {
+  font: 10px/1.8 var(--mono);
+  letter-spacing: .18em;
+  color: #d1e0ec;
+}
+
+.micro:before {
+  content: '';
+  display: inline-block;
+  background: var(--red);
+  width: 26px;
+  height: 1px;
+  margin-right: 13px;
+  vertical-align: middle;
+}
+
+.caption h1 {
+  font-size: clamp(56px, 9vw, 135px);
+  font-weight: 600;
+  letter-spacing: -.09em;
+  line-height: .92;
+  margin: 18px 0;
+}
+
+.scroll-cue {
+  position: absolute;
+  z-index: 5;
+  right: 6%;
+  bottom: 6%;
+  font: 10px var(--mono);
+  letter-spacing: .16em;
 }
 
 /* ==========================================
-   THE STORY
+   STORY
 ========================================== */
 
-.story {
-
-  padding: 130px 6% 115px;
-
-  background: #0e1319;
-
-  border-top: 1px solid #ffffff26;
-
+.wrap {
+  max-width: 1390px;
+  margin: auto;
 }
 
-.wrap {
-
-  max-width: 1410px;
-
-  margin: auto;
-
+.story {
+  padding: 135px 6% 115px;
+  background: #0c1219;
 }
 
 .story-grid {
-
   display: grid;
-
   grid-template-columns: 1.2fr .8fr;
-
-  gap: 9%;
-
+  gap: 8%;
   align-items: end;
+}
 
+.eyebrow {
+  font: 10px var(--mono);
+  letter-spacing: .18em;
+  color: #adc2d4;
+}
+
+.eyebrow:before {
+  content: '';
+  display: inline-block;
+  width: 26px;
+  height: 1px;
+  background: var(--red);
+  vertical-align: middle;
+  margin-right: 13px;
 }
 
 .mega {
-
-  font-size: clamp(53px, 9vw, 137px);
-
+  font-size: clamp(55px, 9.3vw, 143px);
   font-weight: 600;
-
   letter-spacing: -.09em;
-
-  line-height: .93;
-
-  margin: 22px 0;
-
+  line-height: .91;
+  margin: 24px 0;
 }
 
-.mega em {
-
+.mega em,
+.final em {
   font-style: normal;
-
-  color: #8b98a4;
-
+  color: #8898a7;
 }
 
 .lead {
-
-  font-size: clamp(15px, 1.6vw, 20px);
-
+  font-size: clamp(16px, 1.6vw, 20px);
   line-height: 1.85;
-
-  color: #b9c4cf;
-
-  max-width: 500px;
-
+  color: #b9c7d4;
 }
 
-/* ==========================================
-   STATS
-========================================== */
-
 .stats {
-
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
-
-  border-top: 1px solid var(--line);
-
-  border-bottom: 1px solid var(--line);
-
-  margin-top: 95px;
-
+  border-block: 1px solid #ffffff30;
+  margin-top: 90px;
 }
 
 .stats > div {
-
+  border-right: 1px solid #ffffff30;
   padding: 30px;
-
-  border-right: 1px solid var(--line);
-
 }
 
 .stats > div:first-child {
-
   padding-left: 0;
-
 }
 
 .stats > div:last-child {
-
   border: 0;
-
 }
 
 .stats strong {
-
   display: block;
-
-  font-size: clamp(30px, 4vw, 57px);
-
-  font-weight: 600;
-
+  font-size: clamp(29px, 4vw, 57px);
   letter-spacing: -.075em;
-
 }
 
 .stats small {
-
-  font: 10px 'DM Mono', monospace;
-
-  color: #a9b6c3;
-
-  letter-spacing: .13em;
-
+  font: 10px var(--mono);
+  letter-spacing: .14em;
+  color: #9fabb7;
 }
 
 /* ==========================================
@@ -645,338 +337,175 @@ nav a:hover {
 ========================================== */
 
 .studio {
-
-  padding: 120px 6%;
-
-  background: #c7d0d8;
-
-  color: #121b24;
-
+  background: #c9d2da;
+  color: #111b26;
+  padding: 110px 6%;
 }
 
 .studio .eyebrow {
-
-  color: #34485a;
-
+  color: #31485a;
 }
 
 .studio-head {
-
   display: flex;
-
-  align-items: end;
-
   justify-content: space-between;
-
   gap: 35px;
-
-  margin-bottom: 45px;
-
+  align-items: end;
+  margin-bottom: 36px;
 }
 
 .studio-head h2 {
-
-  font-size: clamp(53px, 8vw, 113px);
-
+  font-size: clamp(55px, 8vw, 112px);
   font-weight: 600;
-
-  letter-spacing: -.09em;
-
-  line-height: .92;
-
-  margin: 22px 0 0;
-
+  letter-spacing: -.085em;
+  line-height: .95;
+  margin: 20px 0 0;
 }
 
 .studio-head p {
-
-  max-width: 390px;
-
-  color: #33485b;
-
-  line-height: 1.8;
-
+  max-width: 380px;
   font-size: 15px;
-
+  line-height: 1.8;
+  color: #344b5d;
 }
 
-/* ==========================================
-   STUDIO LAYOUT
-========================================== */
-
-.studio-layout {
-
+.studio-grid {
   display: grid;
-
   grid-template-columns:
     minmax(0, 1fr)
-    minmax(255px, 315px);
-
-  gap: 19px;
-
+    minmax(250px, 320px);
+  gap: 18px;
 }
-
-/* ==========================================
-   STUDIO 3D PREVIEW
-========================================== */
 
 .preview {
-
   position: relative;
-
-  min-height: 555px;
-
+  min-height: 540px;
+  background: #6f8292;
   overflow: hidden;
-
-  background: linear-gradient(
-
-    150deg,
-
-    #a2afb9,
-
-    #5c6975
-
-  );
-
-  border: 1px solid #506071;
-
-  box-shadow: 11px 11px 0 #93a1ad;
-
-}
-
-.preview.night {
-
-  background: linear-gradient(
-
-    160deg,
-
-    #283746,
-
-    #0b131d
-
-  );
-
+  border: 1px solid #53697a;
+  box-shadow: 10px 10px #9babb8;
 }
 
 #studioCanvas {
-
   position: absolute;
-
   inset: 0;
-
   width: 100%;
-
   height: 100%;
-
-  touch-action: pan-y;
-
-  display: block;
-
   cursor: grab;
-
+  touch-action: pan-y;
 }
 
 #studioCanvas:active {
-
   cursor: grabbing;
-
 }
 
-/* ==========================================
-   PREVIEW LABELS
-========================================== */
-
-.preview-note,
-.preview-help {
-
+.preview span {
   position: absolute;
-
+  left: 17px;
   pointer-events: none;
-
-  font: 10px 'DM Mono', monospace;
-
-  letter-spacing: .1em;
-
-  color: #fff;
-
-  background: #0a1420bc;
-
-  padding: 9px 12px;
-
+  background: #091423b5;
+  color: white;
+  padding: 9px 11px;
+  font: 10px var(--mono);
+  letter-spacing: .09em;
 }
 
-.preview-note {
-
+.preview .top {
   top: 17px;
-
-  left: 17px;
-
 }
 
-.preview-help {
-
-  bottom: 16px;
-
-  left: 17px;
-
+.preview .bottom {
+  bottom: 17px;
 }
 
 /* ==========================================
-   CONFIGURATOR CONTROLS
+   CONFIGURATOR
 ========================================== */
 
 .controls {
-
+  padding: 26px;
+  background: #edf2f5;
+  border: 1px solid #8597a5;
   display: flex;
-
   flex-direction: column;
-
-  gap: 24px;
-
-  padding: 27px 24px;
-
-  background: #eef2f5;
-
-  border: 1px solid #8393a0;
-
+  gap: 25px;
 }
 
 .controls h3 {
-
-  font-size: 28px;
-
-  letter-spacing: -.07em;
-
-  line-height: 1.06;
-
+  font-size: 29px;
+  line-height: 1.03;
+  letter-spacing: -.06em;
   margin: 0;
-
 }
 
-.control-label {
-
-  font: 10px 'DM Mono', monospace;
-
-  color: #415566;
-
+.label {
+  font: 10px var(--mono);
   letter-spacing: .15em;
-
+  color: #3a5061;
 }
-
-/* ==========================================
-   PAINT SWATCHES
-========================================== */
 
 .swatches {
-
   display: flex;
-
-  gap: 12px;
-
   flex-wrap: wrap;
-
-  margin: 16px 0;
-
+  gap: 14px;
+  margin: 17px 0;
 }
 
 .swatch {
-
   width: 40px;
-
   height: 40px;
-
-  border: 2px solid #172431;
-
   border-radius: 50%;
-
   background: var(--c);
-
+  border: 2px solid #1f3040;
 }
 
 .swatch.active {
-
-  outline: 2px solid #172431;
-
+  outline: 2px solid #1f3040;
   outline-offset: 4px;
-
 }
 
 .paint-name {
-
-  font: 12px 'DM Mono', monospace;
-
-  color: #1b2c3b;
-
+  font: 11px var(--mono);
 }
 
-/* ==========================================
-   TOGGLE BUTTONS
-========================================== */
-
-.row {
-
+.toggle {
   display: flex;
-
   gap: 8px;
-
   margin-top: 13px;
-
 }
 
-.row button {
-
+.toggle button {
   flex: 1;
-
-  min-height: 45px;
-
-  border: 1px solid #4a5d6c;
-
+  min-height: 44px;
   background: transparent;
-
-  color: #233b4e;
-
-  font: 11px 'DM Mono', monospace;
-
+  color: #253a4d;
+  border: 1px solid #496074;
+  font: 11px var(--mono);
 }
 
-.row button.active {
-
-  color: white;
-
-  background: #1d3446;
-
+.toggle button.active {
+  background: #20384b;
+  color: #fff;
 }
-
-/* ==========================================
-   RESET CAMERA BUTTON
-========================================== */
 
 .reset {
-
   margin-top: auto;
-
-  padding: 15px;
-
+  background: #20384b;
   border: 0;
-
-  background: #1e3548;
-
-  color: white;
-
-  font: 11px 'DM Mono', monospace;
-
-  letter-spacing: .08em;
-
+  color: #fff;
+  padding: 15px;
+  font: 11px var(--mono);
+  letter-spacing: .1em;
 }
 
-.hint {
+.credit {
+  font: 11px/1.85 var(--mono);
+  color: #40586c;
+  margin-top: 24px;
+}
 
-  font: 11px/1.7 'DM Mono', monospace;
-
-  color: #485e6e;
-
-  margin-top: 23px;
-
+.credit a {
+  text-decoration: underline;
 }
 
 /* ==========================================
@@ -984,93 +513,45 @@ nav a:hover {
 ========================================== */
 
 .final {
-
-  min-height: 600px;
-
+  min-height: 570px;
+  padding: 90px 6%;
   display: grid;
-
   place-items: center;
-
-  background: radial-gradient(
-
-    ellipse at center,
-
-    #242d36,
-
-    #080c11 70%
-
-  );
-
   text-align: center;
-
-  padding: 100px 6%;
-
+  background:
+    radial-gradient(
+      ellipse,
+      #26323d,
+      #080c12 67%
+    );
 }
 
 .final h2 {
-
-  font-size: clamp(66px, 11vw, 155px);
-
+  font-size: clamp(67px, 11vw, 160px);
   font-weight: 600;
-
   letter-spacing: -.09em;
-
   line-height: .92;
-
-  margin: 20px 0 35px;
-
+  margin: 22px 0 34px;
 }
 
-.final h2 em {
-
-  font-style: normal;
-
-  color: #8796a4;
-
-}
-
-.outline-link {
-
-  display: inline-flex;
-
-  gap: 35px;
-
+.final a {
+  display: inline-block;
+  border: 1px solid #fff;
   padding: 16px 23px;
-
-  border: 1px solid #e5edf6;
-
-  font: 11px 'DM Mono', monospace;
-
-  letter-spacing: .1em;
-
+  font: 11px var(--mono);
+  letter-spacing: .12em;
 }
-
-/* ==========================================
-   FOOTER
-========================================== */
 
 footer {
-
   display: flex;
-
   justify-content: space-between;
-
-  gap: 20px;
-
+  gap: 18px;
   flex-wrap: wrap;
-
-  padding: 30px 6%;
-
-  background: #080b0f;
-
-  border-top: 1px solid var(--line);
-
-  font: 10px/1.7 'DM Mono', monospace;
-
+  padding: 28px 6%;
+  border-top: 1px solid #ffffff25;
+  font: 10px/1.6 var(--mono);
   letter-spacing: .1em;
-
-  color: #b0becb;
-
+  color: #aab8c6;
 }
 
 /* ==========================================
@@ -1078,418 +559,232 @@ footer {
 ========================================== */
 
 .loader {
-
   position: fixed;
-
   inset: 0;
-
   z-index: 200;
-
+  background: #020305;
   display: grid;
-
   place-items: center;
-
-  background: #020306;
-
-  transition:
-    opacity .45s,
-    visibility .45s;
-
-}
-
-.loader.done {
-
-  opacity: 0;
-
-  visibility: hidden;
-
-  pointer-events: none;
-
-}
-
-.loading-text {
-
   text-align: center;
-
+  padding: 24px;
+  transition:
+    opacity .5s,
+    visibility .5s;
 }
 
-.loading-text b {
+.loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 
-  font-size: clamp(70px, 17vw, 210px);
-
+.loader h2 {
+  font-size: clamp(85px, 19vw, 190px);
   letter-spacing: -.12em;
-
+  margin: 0;
   line-height: 1;
-
 }
 
-.loading-text p {
-
-  font: 10px 'DM Mono', monospace;
-
-  letter-spacing: .2em;
-
-  color: #c0cbd5;
-
+.loader p {
+  font: 11px/1.8 var(--mono);
+  letter-spacing: .12em;
+  color: #bdcfde;
 }
 
-.loading-track {
-
+.bar {
+  width: 190px;
   height: 2px;
-
-  width: 200px;
-
-  margin: 25px auto;
-
-  background: #36414d;
-
+  background: #32404c;
+  margin: 22px auto;
 }
 
-.loading-track span {
-
+.bar i {
   display: block;
-
+  width: 0;
   height: 100%;
-
-  width: 10%;
-
-  background: #dceaff;
-
-  transition: width .3s;
-
+  background: white;
+  transition: width .25s;
 }
 
-.load-error {
-
-  max-width: 470px;
-
-  line-height: 1.7;
-
+.error {
+  max-width: 650px;
+  white-space: pre-wrap;
+  color: #ffd1cd !important;
   letter-spacing: 0 !important;
-
-  margin: 16px auto;
-
 }
-
-/* ==========================================
-   SCROLL REVEALS
-========================================== */
 
 .reveal {
-
   opacity: 0;
-
-  transform: translateY(30px);
-
+  transform: translateY(23px);
   transition:
-    opacity .9s var(--ease),
-    transform .9s var(--ease);
-
+    opacity .8s,
+    transform .8s;
 }
 
 .reveal.visible {
-
   opacity: 1;
-
   transform: none;
-
 }
 
 /* ==========================================
-   TABLET
+   RESPONSIVE
 ========================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 850px) {
 
-  .studio-layout {
-
+  .story-grid,
+  .studio-grid {
     grid-template-columns: 1fr;
-
-  }
-
-  .preview {
-
-    min-height: 480px;
-
-  }
-
-  .story-grid {
-
-    grid-template-columns: 1fr;
-
   }
 
   .studio-head {
-
     display: block;
-
   }
 
-  .studio-head p {
-
-    max-width: 600px;
-
+  .preview {
+    min-height: 460px;
   }
 
   .controls {
-
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
   }
 
   .controls h3 {
-
     grid-column: 1 / -1;
-
   }
 
 }
-
-/* ==========================================
-   MOBILE
-========================================== */
 
 @media (max-width: 630px) {
 
   header {
-
-    padding: 18px 6%;
-
+    padding: 17px 6%;
   }
 
-  .logo {
-
+  .brand {
     font-size: 25px;
-
   }
 
-  nav {
-
-    display: none;
-
-    position: absolute;
-
-    top: 71px;
-
-    right: 6%;
-
-    width: min(300px, 88vw);
-
-    padding: 10px;
-
-    flex-direction: column;
-
-    align-items: stretch;
-
-    background: #101a24;
-
-    border: 1px solid #ffffff3c;
-
-    gap: 0;
-
-  }
-
-  nav.open {
-
-    display: flex;
-
-  }
-
-  nav a {
-
-    padding: 14px;
-
-  }
-
-  .menu {
-
+  #menu {
     display: block;
+  }
 
+  .nav {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 6%;
+    background: #101923;
+    border: 1px solid #ffffff33;
+    padding: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 13px;
   }
 
   .film {
-
-    height: 650svh;
-
+    height: 620vh;
   }
 
-  .scene-caption {
-
-    bottom: 15%;
-
-    max-width: 88%;
-
+  .caption {
+    bottom: 17%;
   }
 
-  .scene-caption h1 {
-
-    font-size: clamp(48px, 12vw, 80px);
-
+  .caption h1 {
+    font-size: clamp(49px, 12vw, 78px);
   }
 
-  .scene-count,
-  .scene-note,
   .film-tag,
-  .scroll-prompt {
-
-    font-size: 8px;
-
-  }
-
-  .film-tag {
-
-    top: 16%;
-
-  }
-
-  .scroll-prompt {
-
-    bottom: 5%;
-
-    max-width: 40%;
-
-    text-align: right;
-
+  .micro,
+  .caption p,
+  .scroll-cue {
+    font-size: 9px;
   }
 
   .story {
-
     padding: 95px 6%;
-
   }
 
   .stats {
-
     grid-template-columns: 1fr;
-
-    margin-top: 52px;
-
+    margin-top: 55px;
   }
 
   .stats > div,
   .stats > div:first-child {
-
-    padding: 19px 0;
-
+    padding: 17px 0;
     border-right: 0;
-
-    border-bottom: 1px solid var(--line);
-
-  }
-
-  .stats > div:last-child {
-
-    border: 0;
-
+    border-bottom: 1px solid #ffffff30;
   }
 
   .studio {
-
-    padding: 85px 5%;
-
+    padding: 80px 5%;
   }
 
   .studio-head h2 {
-
     font-size: 12vw;
-
   }
 
   .preview {
-
-    min-height: 385px;
-
-    box-shadow: 5px 5px 0 #93a1ad;
-
+    min-height: 370px;
+    box-shadow: 5px 5px #9babb8;
   }
 
   .controls {
-
     display: flex;
-
   }
 
   .final {
-
-    min-height: 490px;
-
+    min-height: 440px;
   }
 
 }
 
-/* ==========================================
-   REDUCED MOTION
-========================================== */
-
 @media (prefers-reduced-motion: reduce) {
 
   html {
-
     scroll-behavior: auto;
-
   }
 
   .film {
-
-    height: 100svh;
-
+    height: 100vh;
   }
 
   .reveal {
-
     opacity: 1;
-
     transform: none;
-
-  }
-
-  .reveal,
-  .loader {
-
-    transition: none;
-
   }
 
 }
 
 </style>
 
-<!-- ==========================================
-     THREE.JS IMPORT MAP
-========================================== -->
-
 <script type="importmap">
-
 {
-
   "imports": {
-
-    "three":
-      "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
-
-    "three/addons/":
-      "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
-
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
   }
-
 }
-
 </script>
 
 </head>
 
 <body>
 
-<!-- ==========================================
-     PROGRESS BAR
-========================================== -->
-
 <div id="progress"></div>
 
 <!-- ==========================================
-     LOADING SCREEN
+     LOADER
 ========================================== -->
 
 <div
@@ -1498,25 +793,22 @@ footer {
   aria-live="polite"
 >
 
-  <div class="loading-text">
+  <div>
 
-    <b>911.</b>
+    <h2>911.</h2>
 
-    <p>
+    <p id="loadingStatus">
       LOADING THE REAL GT3 RS
     </p>
 
-    <div class="loading-track">
-
-      <span id="loadBar"></span>
-
+    <div class="bar">
+      <i id="loadBar"></i>
     </div>
 
-    <p id="loadMessage">
-
-      PREPARING THE SHOWROOM...
-
-    </p>
+    <p
+      class="error"
+      id="error"
+    ></p>
 
   </div>
 
@@ -1529,8 +821,8 @@ footer {
 <header id="header">
 
   <a
-    class="logo"
     href="#top"
+    class="brand"
   >
 
     911
@@ -1542,49 +834,38 @@ footer {
   </a>
 
   <nav
+    class="nav"
     id="nav"
-    aria-label="Navigatie"
   >
 
     <a href="#top">
-
       THE FILM
-
     </a>
 
     <a href="#story">
-
       THE LEGEND
-
     </a>
 
     <a href="#studio">
-
       DESIGN STUDIO
-
     </a>
 
     <a
-      class="nav-button"
+      class="border"
       href="#studio"
     >
-
       CONFIGURE ↗
-
     </a>
 
   </nav>
 
   <button
     id="menu"
-    class="menu"
     type="button"
-    aria-label="Menu openen"
     aria-expanded="false"
+    aria-label="Menu openen"
   >
-
     ☰
-
   </button>
 
 </header>
@@ -1592,25 +873,22 @@ footer {
 <main>
 
 <!-- ==========================================
-     CINEMATIC FILM
+     FILM
 ========================================== -->
 
 <section
-  id="top"
   class="film"
-  aria-label="Filmische 3D-showroom met de Porsche 911 GT3 RS"
+  id="top"
 >
 
-  <div class="film-stick">
+  <div class="sticky">
 
     <canvas
       id="filmCanvas"
-      aria-label="Porsche 911 GT3 RS in een grafietgrijze LED-showroom"
+      aria-label="Witte Porsche in 3D-showroom"
     ></canvas>
 
     <div class="vignette"></div>
-
-    <div class="film-grain"></div>
 
     <div id="flash"></div>
 
@@ -1625,31 +903,25 @@ footer {
     </div>
 
     <div
-      class="scene-caption"
+      class="caption"
       id="caption"
     >
 
       <span
-        class="scene-count"
+        class="micro"
         id="sceneCount"
       >
-
         00 / IGNITION
-
       </span>
 
       <h1 id="sceneTitle">
 
         BORN IN<br>
-
         THE DARK.
 
       </h1>
 
-      <p
-        id="sceneNote"
-        class="scene-note"
-      >
+      <p id="sceneNote">
 
         TWO HEADLIGHTS. ONE MOMENT.
 
@@ -1658,12 +930,10 @@ footer {
     </div>
 
     <div
-      class="scroll-prompt"
-      id="scrollPrompt"
+      class="scroll-cue"
+      id="scrollCue"
     >
-
       SCROLL TO REVEAL ↓
-
     </div>
 
   </div>
@@ -1671,7 +941,7 @@ footer {
 </section>
 
 <!-- ==========================================
-     THE STORY
+     STORY
 ========================================== -->
 
 <section
@@ -1686,17 +956,13 @@ footer {
       <div class="reveal">
 
         <span class="eyebrow">
-
           THE LEGEND / 911 GT3 RS
-
         </span>
 
         <h2 class="mega">
 
           NOT JUST<br>
-
           A CAR.<br>
-
           <em>AN ICON.</em>
 
         </h2>
@@ -1719,39 +985,26 @@ footer {
 
     </div>
 
-    <!-- ======================================
-         STATISTICS
-    ====================================== -->
-
     <div class="stats reveal">
 
       <div>
 
         <strong>911</strong>
-
-        <small>
-          THE ICON
-        </small>
+        <small>THE ICON</small>
 
       </div>
 
       <div>
 
         <strong>GT3 RS</strong>
-
-        <small>
-          THE TRACK-FOCUSED CHARACTER
-        </small>
+        <small>TRACK-FOCUSED CHARACTER</small>
 
       </div>
 
       <div>
 
         <strong>WHITE</strong>
-
-        <small>
-          THE ORIGINAL FINISH
-        </small>
+        <small>THE ORIGINAL FINISH</small>
 
       </div>
 
@@ -1766,8 +1019,8 @@ footer {
 ========================================== -->
 
 <section
-  id="studio"
   class="studio"
+  id="studio"
 >
 
   <div class="wrap">
@@ -1777,15 +1030,12 @@ footer {
       <div>
 
         <span class="eyebrow">
-
           THE DESIGN STUDIO
-
         </span>
 
         <h2>
 
           MAKE IT<br>
-
           YOUR 911.
 
         </h2>
@@ -1794,249 +1044,195 @@ footer {
 
       <p>
 
-        Bekijk jouw echte 3D-model in een
-        helderdere, grafietgrijze showroom.
+        Bekijk de echte 3D-Porsche in een
+        zachter verlichte, grafietgrijze showroom.
 
-        Draai de auto, kies een afwerking
-        en verander de verlichting.
+        Draai de auto en kies jouw afwerking.
 
       </p>
 
     </div>
 
-    <div class="studio-layout">
+    <div class="studio-grid">
 
-      <!-- ==================================
-           3D PREVIEW
-      ================================== -->
-
-      <div
-        id="preview"
-        class="preview"
-      >
+      <div class="preview">
 
         <canvas
           id="studioCanvas"
-          aria-label="Interactieve draaibare Porsche 911 GT3 RS"
+          aria-label="Draaibare Porsche"
         ></canvas>
 
-        <span class="preview-note">
-
+        <span class="top">
           911 GT3 RS / INTERACTIVE VIEW
-
         </span>
 
-        <span class="preview-help">
-
+        <span class="bottom">
           SLEEP OM TE DRAAIEN ↔
-
         </span>
 
       </div>
-
-      <!-- ==================================
-           CONFIGURATION CONTROLS
-      ================================== -->
 
       <aside class="controls">
 
         <h3>
 
           YOUR<br>
-
           CONFIGURATION.
 
         </h3>
 
-        <!-- EXTERIOR FINISH -->
+        <!-- PAINT -->
 
         <div>
 
-          <span class="control-label">
-
+          <span class="label">
             EXTERIOR FINISH
-
           </span>
 
           <div
             class="swatches"
             id="swatches"
-            role="group"
-            aria-label="Kies lakkleur"
           >
-
-            <!-- ORIGINAL WHITE -->
 
             <button
               class="swatch active"
-              type="button"
-              data-color="white"
-              style="--c:#e8e9e8"
+              data-paint="white"
+              style="--c:#e5e6e7"
               aria-label="Original White"
               aria-pressed="true"
             ></button>
 
-            <!-- GT SILVER -->
-
             <button
               class="swatch"
-              type="button"
-              data-color="silver"
-              style="--c:#a9b0b8"
+              data-paint="silver"
+              style="--c:#a7afb7"
               aria-label="GT Silver"
               aria-pressed="false"
             ></button>
 
-            <!-- JET BLACK -->
-
             <button
               class="swatch"
-              type="button"
-              data-color="black"
-              style="--c:#171a1e"
+              data-paint="black"
+              style="--c:#171a20"
               aria-label="Jet Black"
               aria-pressed="false"
             ></button>
 
-            <!-- GUARDS RED -->
-
             <button
               class="swatch"
-              type="button"
-              data-color="red"
-              style="--c:#bc2a2f"
+              data-paint="red"
+              style="--c:#be2b34"
               aria-label="Guards Red"
               aria-pressed="false"
             ></button>
 
-            <!-- CARBON CONCEPT -->
-
             <button
               class="swatch"
-              type="button"
-              data-color="carbon"
-              style="--c:#343b43"
+              data-paint="carbon"
+              style="--c:#333e49"
               aria-label="Carbon Concept"
               aria-pressed="false"
             ></button>
 
           </div>
 
-          <p
+          <div
             class="paint-name"
             id="paintName"
           >
-
             ORIGINAL WHITE
-
-          </p>
+          </div>
 
         </div>
 
-        <!-- ==================================
-             SHOWROOM LIGHTS
-        ================================== -->
+        <!-- LIGHT MODE -->
 
         <div>
 
-          <span class="control-label">
-
-            STUDIO LIGHTS
-
+          <span class="label">
+            SHOWROOM LIGHTS
           </span>
 
-          <div class="row">
+          <div class="toggle">
 
             <button
               class="active"
-              type="button"
               data-mode="day"
               aria-pressed="true"
             >
-
               DAYLIGHT
-
             </button>
 
             <button
-              type="button"
               data-mode="night"
               aria-pressed="false"
             >
-
               NIGHT
-
             </button>
 
           </div>
 
         </div>
 
-        <!-- ==================================
-             HEADLIGHTS
-        ================================== -->
+        <!-- HEADLIGHTS -->
 
         <div>
 
-          <span class="control-label">
-
+          <span class="label">
             HEADLIGHTS
-
           </span>
 
-          <div class="row">
+          <div class="toggle">
 
             <button
               class="active"
-              type="button"
-              data-headlights="on"
+              data-head="on"
               aria-pressed="true"
             >
-
               ON
-
             </button>
 
             <button
-              type="button"
-              data-headlights="off"
+              data-head="off"
               aria-pressed="false"
             >
-
               OFF
-
             </button>
 
           </div>
 
         </div>
 
-        <!-- RESET CAMERA -->
-
         <button
           class="reset"
-          id="resetView"
-          type="button"
+          id="reset"
         >
-
           ↺ RESET CAMERA
-
         </button>
 
       </aside>
 
     </div>
 
-    <p class="hint">
+    <p class="credit">
 
-      REAL MODEL / 2019 PORSCHE 911 GT3 RS (991.2).
+      3D-MODEL:
 
-      De witte afwerking blijft de originele basis.
+      <a
+        href="https://sketchfab.com/3d-models/2019-porsche-911-9912-gt3-rs-97ea84db846e4945961dffb8b2d7af18"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ddiaz Design / Sketchfab
+      </a>
 
-      De andere kleuren zijn conceptvarianten.
+      — CC BY-NC-SA 4.0.
 
-      Voor publicatie van het GLB-model moet je
-      de gebruikslicentie controleren.
+      Niet-commercieel concept;
+      niet verbonden aan Porsche AG.
+
+      Controleer vóór publicatie of je gebruik
+      aan de licentievoorwaarden voldoet.
 
     </p>
 
@@ -2053,23 +1249,17 @@ footer {
   <div class="reveal">
 
     <span class="eyebrow">
-
       THE ART OF MOTION
-
     </span>
 
     <h2>
 
       NEVER<br>
-
       <em>ORDINARY.</em>
 
     </h2>
 
-    <a
-      class="outline-link"
-      href="#top"
-    >
+    <a href="#top">
 
       EXPERIENCE IT AGAIN ↑
 
@@ -2081,34 +1271,24 @@ footer {
 
 </main>
 
-<!-- ==========================================
-     FOOTER
-========================================== -->
-
 <footer>
 
   <span>
-
     911 / INDEPENDENT DESIGN CONCEPT
-
   </span>
 
   <span>
-
     NOT AFFILIATED WITH PORSCHE AG
-
   </span>
 
   <a href="#top">
-
     BACK TO TOP ↑
-
   </a>
 
 </footer>
 
 <!-- ==========================================
-     MAIN THREE.JS CODE
+     JAVASCRIPT
 ========================================== -->
 
 <script type="module">
@@ -2116,216 +1296,592 @@ footer {
 import * as THREE from 'three';
 
 import {
-
   GLTFLoader
-
 } from 'three/addons/loaders/GLTFLoader.js';
-
-import {
-
-  Reflector
-
-} from 'three/addons/objects/Reflector.js';
 
 /* ==========================================
    HELPERS
 ========================================== */
 
-const $ = selector =>
-  document.querySelector(selector);
+const $ = s =>
+  document.querySelector(s);
 
-const $$ = selector =>
-  [...document.querySelectorAll(selector)];
+const $$ = s =>
+  [...document.querySelectorAll(s)];
 
 const clamp = (
-  value,
-  min = 0,
-  max = 1
-) => {
+  n,
+  a = 0,
+  b = 1
+) =>
+  Math.max(a, Math.min(b, n));
 
-  return Math.max(
+const smooth = t => {
 
-    min,
+  t = clamp(t);
 
-    Math.min(max, value)
-
-  );
-
-};
-
-const smooth = value => {
-
-  value = clamp(value);
-
-  return value * value * (3 - 2 * value);
+  return t * t * (3 - 2 * t);
 
 };
 
-const mix = (
-  start,
-  end,
-  amount
-) => {
-
-  return start + (end - start) * amount;
-
-};
-
-const v = (
+const V = (
   x,
   y,
   z
-) => {
+) =>
+  new THREE.Vector3(x, y, z);
 
-  return new THREE.Vector3(
-    x,
-    y,
-    z
-  );
-
-};
-
-/* ==========================================
-   DEVICE SETTINGS
-========================================== */
+const mobile = matchMedia(
+  '(max-width:700px)'
+).matches;
 
 const reduced = matchMedia(
-
-  '(prefers-reduced-motion: reduce)'
-
-).matches;
-
-const small = matchMedia(
-
-  '(max-width: 700px)'
-
+  '(prefers-reduced-motion:reduce)'
 ).matches;
 
 /* ==========================================
-   REAL MODEL PATH
+   MODEL FILE
+========================================== */
+
+const MODEL = './porsche-911-gt3-rs.glb';
+
+/* ==========================================
+   REPAIR GLB IN THE BROWSER
 ========================================== */
 
 /*
-  Dit is het echte Porsche-model.
+  Deze functie controleert en repareert
+  de uitlijning van de GLB-gegevens.
 
-  Zet dit bestand in dezelfde map
-  als index.html.
+  Je hoeft het originele model dus
+  niet opnieuw te uploaden.
 
-  Je moet dus twee bestanden hebben:
-
-  index.html
-  porsche-911-gt3-rs.glb
+  1. GLB-header controleren
+  2. JSON- en BIN-chunks lezen
+  3. BufferViews uitlijnen op 4 bytes
+  4. Nieuwe GLB in het geheugen maken
+  5. Doorsturen naar GLTFLoader
 */
 
-const MODELPATH =
+function repairGLB(input) {
 
-  './porsche-911-gt3-rs.glb';
+  const view = new DataView(input);
 
-/* ==========================================
-   MAIN STATE
-========================================== */
+  const bytes = new Uint8Array(input);
 
-let modelReady = false;
+  /* ======================================
+     CHECK FILE SIZE
+  ====================================== */
 
-let ignition = false;
+  if (input.byteLength < 20) {
 
-let ignitionStart = Infinity;
+    throw Error(
 
-let chapter = -1;
+      `Bestand is slechts ${input.byteLength} bytes, ` +
+      'geen geldig GLB. Controleer de GitHub-upload.'
 
-let filmModel;
+    );
 
-let studioModel;
+  }
 
-let studioAngle = .55;
+  /* ======================================
+     CHECK GLB MAGIC
+  ====================================== */
 
-let studioHeight = .21;
+  if (
+    view.getUint32(0, true) !== 0x46546c67
+  ) {
 
-let drag = null;
+    throw Error(
 
-let studioMode = 'day';
+      'GitHub levert geen GLB terug ' +
+      '(mogelijk HTML of een Git LFS-verwijzing).'
 
-let studioLightsOn = true;
+    );
 
-let studioVisible = false;
+  }
 
-/* ==========================================
-   SHOWROOM COLOURS
-========================================== */
+  /* ======================================
+     CHECK VERSION
+  ====================================== */
 
-const graphite = new THREE.Color(
-  '#303740'
-);
+  if (
+    view.getUint32(4, true) !== 2
+  ) {
 
-const greyFloor = new THREE.Color(
-  '#515b65'
-);
+    throw Error(
 
-/* ==========================================
-   LED MATERIALS
-========================================== */
+      'Alleen GLB-versie 2 wordt ondersteund.'
 
-const ledMat =
-  new THREE.MeshBasicMaterial({
+    );
 
-    color: '#dcefff',
+  }
 
-    toneMapped: false
+  /* ======================================
+     CHECK TOTAL LENGTH
+  ====================================== */
 
-  });
+  const declared =
+    view.getUint32(8, true);
 
-const offLedMat =
-  new THREE.MeshBasicMaterial({
+  if (declared > input.byteLength) {
 
-    color: '#161e26',
+    throw Error(
 
-    toneMapped: false
+      `Onvolledige download: verwacht ${declared} bytes, ` +
+      `ontvangen ${input.byteLength}.`
 
-  });
+    );
 
-const ledFixtureMaterials = [];
+  }
 
-const paintMeshes = [];
+  /* ======================================
+     FIND JSON AND BIN CHUNKS
+  ====================================== */
 
-/* ==========================================
-   MATERIAL HELPER
-========================================== */
+  let at = 12;
 
-function material(
+  let json = null;
 
-  color,
+  let bin = null;
 
-  roughness = .6,
+  while (at + 8 <= declared) {
 
-  metalness = .2
+    const len =
+      view.getUint32(at, true);
 
-) {
+    const type =
+      view.getUint32(at + 4, true);
 
-  return new THREE.MeshStandardMaterial({
+    at += 8;
 
-    color,
+    if (at + len > declared) {
 
-    roughness,
+      throw Error(
 
-    metalness
+        'GLB-chunk loopt voorbij het einde ' +
+        'van het bestand.'
 
-  });
+      );
+
+    }
+
+    /* JSON CHUNK */
+
+    if (type === 0x4e4f534a) {
+
+      json = JSON.parse(
+
+        new TextDecoder().decode(
+
+          bytes.subarray(
+            at,
+            at + len
+          )
+
+        )
+
+      );
+
+    }
+
+    /* BINARY CHUNK */
+
+    if (type === 0x004e4942) {
+
+      bin = bytes.subarray(
+
+        at,
+        at + len
+
+      );
+
+    }
+
+    at += len;
+
+  }
+
+  if (
+    !json ||
+    !bin ||
+    !json.bufferViews
+  ) {
+
+    throw Error(
+
+      'GLB bevat geen complete JSON- en BIN-data.'
+
+    );
+
+  }
+
+  /* ======================================
+     ALIGNMENT HELPER
+  ====================================== */
+
+  const align = n =>
+    (n + 3) & ~3;
+
+  let targetLength = 0;
+
+  const segments = [];
+
+  /* ======================================
+     ALIGN ALL BUFFER VIEWS
+  ====================================== */
+
+  for (
+    const bufferView of json.bufferViews
+  ) {
+
+    const start =
+      bufferView.byteOffset || 0;
+
+    const length =
+      bufferView.byteLength;
+
+    if (start + length > bin.length) {
+
+      throw Error(
+
+        'Een GLB-bufferView verwijst ' +
+        'buiten de binaire gegevens.'
+
+      );
+
+    }
+
+    targetLength = align(
+      targetLength
+    );
+
+    segments.push({
+
+      start,
+
+      length,
+
+      end: targetLength
+
+    });
+
+    bufferView.byteOffset =
+      targetLength;
+
+    targetLength += length;
+
+  }
+
+  /* ======================================
+     CREATE NEW BINARY BUFFER
+  ====================================== */
+
+  const newBin =
+    new Uint8Array(
+
+      align(targetLength)
+
+    );
+
+  for (const segment of segments) {
+
+    newBin.set(
+
+      bin.subarray(
+
+        segment.start,
+
+        segment.start +
+          segment.length
+
+      ),
+
+      segment.end
+
+    );
+
+  }
+
+  json.buffers[0].byteLength =
+    targetLength;
+
+  /* ======================================
+     ENCODE UPDATED JSON
+  ====================================== */
+
+  const jsonRaw =
+    new TextEncoder().encode(
+
+      JSON.stringify(json)
+
+    );
+
+  const jsonLength =
+    align(jsonRaw.length);
+
+  const binLength =
+    newBin.length;
+
+  const total =
+
+    12 +
+    8 +
+    jsonLength +
+    8 +
+    binLength;
+
+  /* ======================================
+     BUILD NEW GLB HEADER
+  ====================================== */
+
+  const out =
+    new ArrayBuffer(total);
+
+  const o =
+    new DataView(out);
+
+  const dest =
+    new Uint8Array(out);
+
+  o.setUint32(
+    0,
+    0x46546c67,
+    true
+  );
+
+  o.setUint32(
+    4,
+    2,
+    true
+  );
+
+  o.setUint32(
+    8,
+    total,
+    true
+  );
+
+  /* ======================================
+     WRITE JSON CHUNK
+  ====================================== */
+
+  o.setUint32(
+    12,
+    jsonLength,
+    true
+  );
+
+  o.setUint32(
+    16,
+    0x4e4f534a,
+    true
+  );
+
+  dest.fill(
+
+    32,
+
+    20,
+
+    20 + jsonLength
+
+  );
+
+  dest.set(
+
+    jsonRaw,
+
+    20
+
+  );
+
+  /* ======================================
+     WRITE BIN CHUNK
+  ====================================== */
+
+  const binStart =
+    20 + jsonLength;
+
+  o.setUint32(
+
+    binStart,
+
+    binLength,
+
+    true
+
+  );
+
+  o.setUint32(
+
+    binStart + 4,
+
+    0x004e4942,
+
+    true
+
+  );
+
+  dest.set(
+
+    newBin,
+
+    binStart + 8
+
+  );
+
+  /* ======================================
+     RETURN REPAIRED MODEL
+  ====================================== */
+
+  return out;
 
 }
+
+/* ==========================================
+   DOWNLOAD AND LOAD PORSCHE
+========================================== */
+
+async function getPorsche() {
+
+  $('#loadingStatus').textContent =
+    'DOWNLOADING THE PORSCHE';
+
+  $('#loadBar').style.width = '15%';
+
+  /* ======================================
+     DOWNLOAD FROM GITHUB
+  ====================================== */
+
+  const response = await fetch(
+
+    MODEL,
+
+    {
+      cache: 'no-store'
+    }
+
+  );
+
+  if (!response.ok) {
+
+    throw Error(
+
+      `GitHub geeft HTTP ${response.status}. ` +
+      `Zet ${MODEL.slice(2)} naast index.html.`
+
+    );
+
+  }
+
+  /* ======================================
+     READ MODEL BYTES
+  ====================================== */
+
+  const raw =
+    await response.arrayBuffer();
+
+  $('#loadingStatus').textContent =
+    'CHECKING MODEL DATA';
+
+  $('#loadBar').style.width = '48%';
+
+  /* ======================================
+     REPAIR MODEL
+  ====================================== */
+
+  const fixed =
+    repairGLB(raw);
+
+  $('#loadingStatus').textContent =
+    'BUILDING THE SHOWROOM';
+
+  $('#loadBar').style.width = '75%';
+
+  /* ======================================
+     PARSE IN MEMORY
+  ====================================== */
+
+  const loader =
+    new GLTFLoader();
+
+  return new Promise(
+
+    (resolve, reject) => {
+
+      loader.parse(
+
+        fixed,
+
+        location.href,
+
+        gltf => {
+
+          resolve(
+            gltf.scene
+          );
+
+        },
+
+        reject
+
+      );
+
+    }
+
+  );
+
+}
+
+/* ==========================================
+   SHOWROOM MATERIALS
+========================================== */
+
+const wallMat =
+  new THREE.MeshStandardMaterial({
+
+    color: '#303740',
+
+    roughness: .7,
+
+    metalness: .18
+
+  });
+
+const floorMat =
+  new THREE.MeshStandardMaterial({
+
+    color: '#515b65',
+
+    roughness: .31,
+
+    metalness: .2
+
+  });
+
+const ceilingMat =
+  new THREE.MeshStandardMaterial({
+
+    color: '#242a31',
+
+    roughness: .8
+
+  });
 
 /* ==========================================
    BOX HELPER
 ========================================== */
 
-function box(
+function addBox(
 
-  group,
+  parent,
 
-  width,
+  w,
 
-  height,
+  h,
 
-  depth,
+  d,
 
   x,
 
@@ -2333,184 +1889,46 @@ function box(
 
   z,
 
-  selectedMaterial
+  material
 
 ) {
 
-  const object = new THREE.Mesh(
+  const mesh = new THREE.Mesh(
 
     new THREE.BoxGeometry(
 
-      width,
+      w,
 
-      height,
+      h,
 
-      depth
+      d
 
     ),
 
-    selectedMaterial
+    material
 
   );
 
-  object.position.set(
+  mesh.position.set(
     x,
     y,
     z
   );
 
-  group.add(object);
+  parent.add(mesh);
 
-  return object;
-
-}
-
-/* ==========================================
-   3D LINE HELPER
-========================================== */
-
-function line(
-
-  group,
-
-  start,
-
-  end,
-
-  thickness,
-
-  selectedMaterial
-
-) {
-
-  const p = v(...start);
-
-  const q = v(...end);
-
-  const direction = q.clone().sub(p);
-
-  const object = new THREE.Mesh(
-
-    new THREE.CylinderGeometry(
-
-      thickness,
-
-      thickness,
-
-      direction.length(),
-
-      8
-
-    ),
-
-    selectedMaterial
-
-  );
-
-  object.position
-
-    .copy(p)
-
-    .add(q)
-
-    .multiplyScalar(.5);
-
-  object.quaternion.setFromUnitVectors(
-
-    v(0, 1, 0),
-
-    direction.normalize()
-
-  );
-
-  group.add(object);
-
-  return object;
+  return mesh;
 
 }
 
 /* ==========================================
-   HEXAGON LED PANEL
+   CREATE SHOWROOM
 ========================================== */
 
-function hexagon(
+function createRoom(canvasId) {
 
-  group,
-
-  centerX,
-
-  centerZ,
-
-  radius,
-
-  selectedMaterial
-
-) {
-
-  const points = [];
-
-  for (
-    let index = 0;
-    index <= 6;
-    index++
-  ) {
-
-    const angle =
-      Math.PI / 3 * index;
-
-    points.push([
-
-      centerX +
-        Math.cos(angle) * radius,
-
-      3.95,
-
-      centerZ +
-        Math.sin(angle) * radius
-
-    ]);
-
-  }
-
-  for (
-    let index = 0;
-    index < 6;
-    index++
-  ) {
-
-    line(
-
-      group,
-
-      points[index],
-
-      points[index + 1],
-
-      .025,
-
-      selectedMaterial
-
-    );
-
-  }
-
-}
-
-/* ==========================================
-   BUILD THREE.JS SCENE
-========================================== */
-
-function buildScene(
-
-  canvasId,
-
-  isStudio
-
-) {
-
-  const canvas = document.getElementById(
-    canvasId
-  );
+  const canvas =
+    document.getElementById(canvasId);
 
   /* ======================================
      RENDERER
@@ -2523,17 +1941,10 @@ function buildScene(
 
       antialias: true,
 
-      powerPreference: 'high-performance'
+      powerPreference:
+        'high-performance'
 
     });
-
-  renderer.outputColorSpace =
-    THREE.SRGBColorSpace;
-
-  renderer.toneMapping =
-    THREE.ACESFilmicToneMapping;
-
-  renderer.toneMappingExposure = .68;
 
   renderer.setPixelRatio(
 
@@ -2541,28 +1952,36 @@ function buildScene(
 
       devicePixelRatio,
 
-      small ? 1.35 : 1.8
+      mobile ? 1.25 : 1.7
 
     )
 
   );
 
+  renderer.outputColorSpace =
+    THREE.SRGBColorSpace;
+
+  renderer.toneMapping =
+    THREE.ACESFilmicToneMapping;
+
   /* ======================================
      SCENE
   ====================================== */
 
-  const scene = new THREE.Scene();
+  const scene =
+    new THREE.Scene();
 
   scene.background =
-    new THREE.Color('#030507');
+    new THREE.Color('#070a10');
 
-  scene.fog = new THREE.FogExp2(
+  scene.fog =
+    new THREE.FogExp2(
 
-    '#26313b',
+      '#26313b',
 
-    .012
+      .016
 
-  );
+    );
 
   /* ======================================
      CAMERA
@@ -2575,181 +1994,181 @@ function buildScene(
 
       1,
 
-      .045,
+      .05,
 
-      100
+      70
 
     );
 
   /* ======================================
-     SHOWROOM GROUP
+     ROOM
   ====================================== */
 
-  const room = new THREE.Group();
+  const room =
+    new THREE.Group();
 
   scene.add(room);
-
-  /* ======================================
-     MATERIALS
-  ====================================== */
-
-  const wallMaterial = material(
-
-    '#303740',
-
-    .72,
-
-    .18
-
-  );
-
-  const floorMaterial = material(
-
-    '#515b65',
-
-    .28,
-
-    .34
-
-  );
-
-  const ceilingMaterial = material(
-
-    '#242a31',
-
-    .82,
-
-    .18
-
-  );
 
   /* ======================================
      FLOOR
   ====================================== */
 
-  const floor = new THREE.Mesh(
-
-    new THREE.PlaneGeometry(
-
-      24,
-
-      28
-
-    ),
-
-    floorMaterial
-
-  );
-
-  floor.rotation.x = -Math.PI / 2;
-
-  floor.position.y = -.018;
-
-  room.add(floor);
-
-  /* ======================================
-     BACK WALL
-  ====================================== */
-
-  const back = new THREE.Mesh(
-
-    new THREE.PlaneGeometry(
-
-      24,
-
-      5.5
-
-    ),
-
-    wallMaterial
-
-  );
-
-  back.position.set(
-
-    0,
-
-    2.75,
-
-    -11
-
-  );
-
-  room.add(back);
-
-  /* ======================================
-     SIDE WALLS
-  ====================================== */
-
-  for (const side of [-1, 1]) {
-
-    const wall = new THREE.Mesh(
+  const ground =
+    new THREE.Mesh(
 
       new THREE.PlaneGeometry(
 
-        25,
+        22,
 
-        5.5
+        25
 
       ),
 
-      wallMaterial
+      floorMat
 
     );
 
-    wall.position.set(
+  ground.rotation.x =
+    -Math.PI / 2;
 
-      side * 9,
+  ground.position.y =
+    -.04;
 
-      2.75,
+  room.add(ground);
 
-      0
+  /* ======================================
+     WALLS
+  ====================================== */
 
-    );
+  addBox(
 
-    wall.rotation.y =
+    room,
 
-      side === -1
+    18, 5, .15,
 
-        ? Math.PI / 2
+    0, 2.5, -9,
 
-        : -Math.PI / 2;
+    wallMat
 
-    room.add(wall);
+  );
 
-  }
+  addBox(
+
+    room,
+
+    .15, 5, 22,
+
+    -8.7, 2.5, 0,
+
+    wallMat
+
+  );
+
+  addBox(
+
+    room,
+
+    .15, 5, 22,
+
+    8.7, 2.5, 0,
+
+    wallMat
+
+  );
 
   /* ======================================
      CEILING
   ====================================== */
 
-  const ceiling = new THREE.Mesh(
+  addBox(
 
-    new THREE.PlaneGeometry(
+    room,
 
-      22,
+    18, .14, 22,
 
-      26
+    0, 4.05, 0,
 
-    ),
-
-    ceilingMaterial
+    ceilingMat
 
   );
 
-  ceiling.position.y = 4.02;
-
-  ceiling.rotation.x = Math.PI / 2;
-
-  room.add(ceiling);
-
   /* ======================================
-     GEOMETRIC LED CEILING
+     LED GROUP
   ====================================== */
 
-  const leds = new THREE.Group();
+  const leds =
+    new THREE.Group();
 
   room.add(leds);
+
+  /* ======================================
+     LED LINE HELPER
+  ====================================== */
+
+  const makeLine = (
+
+    a,
+
+    b,
+
+    r = .025
+
+  ) => {
+
+    const direction =
+      b.clone().sub(a);
+
+    const material =
+      new THREE.MeshBasicMaterial({
+
+        color: '#e5f2ff',
+
+        toneMapped: false
+
+      });
+
+    const mesh =
+      new THREE.Mesh(
+
+        new THREE.CylinderGeometry(
+
+          r,
+
+          r,
+
+          direction.length(),
+
+          7
+
+        ),
+
+        material
+
+      );
+
+    mesh.position
+
+      .copy(a)
+
+      .add(b)
+
+      .multiplyScalar(.5);
+
+    mesh.quaternion.setFromUnitVectors(
+
+      V(0, 1, 0),
+
+      direction.normalize()
+
+    );
+
+    leds.add(mesh);
+
+  };
+
+  /* ======================================
+     HEXAGONAL CEILING LEDS
+  ====================================== */
 
   for (
     let row = 0;
@@ -2758,87 +2177,113 @@ function buildScene(
   ) {
 
     for (
-      let column = 0;
-      column < 6;
-      column++
+      let col = 0;
+      col < 6;
+      col++
     ) {
 
-      hexagon(
+      const x =
+        -3.35 + row * 3.35;
 
-        leds,
+      const z =
 
-        -3.6 + row * 3.6,
+        -6.5 +
 
-        -6.3 +
-          column * 2.45 +
-          (row % 2) * 1.24,
+        col * 2.4 +
 
-        1.4,
+        (row % 2) * 1.2;
 
-        ledMat
+      const r = 1.48;
 
-      );
+      for (
+        let side = 0;
+        side < 6;
+        side++
+      ) {
+
+        const p =
+          side * Math.PI / 3;
+
+        const q =
+          (side + 1) * Math.PI / 3;
+
+        makeLine(
+
+          V(
+
+            x + Math.cos(p) * r,
+
+            3.93,
+
+            z + Math.sin(p) * r
+
+          ),
+
+          V(
+
+            x + Math.cos(q) * r,
+
+            3.93,
+
+            z + Math.sin(q) * r
+
+          )
+
+        );
+
+      }
 
     }
 
   }
 
   /* ======================================
-     WALL LED STRIPS
+     VERTICAL WALL LEDS
   ====================================== */
 
   for (
-    const x of [-8.84, 8.84]
+
+    let z = -7.6;
+
+    z < 8.5;
+
+    z += 2.2
+
   ) {
 
     for (
-      let z = -8;
-      z <= 8;
-      z += 2.25
+      const x of [-8.55, 8.55]
     ) {
 
-      box(
+      addBox(
 
         leds,
 
-        .045,
+        .05,
 
-        3.1,
+        3,
 
-        .055,
+        .06,
 
         x,
 
-        2.1,
+        2.28,
 
         z,
 
-        ledMat
+        new THREE.MeshBasicMaterial({
+
+          color: '#e5f2ff',
+
+          toneMapped: false
+
+        })
 
       );
 
     }
 
   }
-
-  /* ======================================
-     CLONE LED MATERIALS
-  ====================================== */
-
-  leds.traverse(object => {
-
-    if (object.isMesh) {
-
-      object.material =
-        object.material.clone();
-
-      ledFixtureMaterials.push(
-        object.material
-      );
-
-    }
-
-  });
 
   /* ======================================
      AMBIENT LIGHT
@@ -2847,24 +2292,22 @@ function buildScene(
   const ambient =
     new THREE.HemisphereLight(
 
-      '#dcecff',
+      '#e2efff',
 
-      '#4f5962',
+      '#5c6470',
 
       0
 
     );
 
-  scene.add(ambient);
-
   /* ======================================
-     MAIN LIGHT
+     KEY LIGHT
   ====================================== */
 
   const key =
     new THREE.DirectionalLight(
 
-      '#f1f7ff',
+      '#fff6ef',
 
       0
 
@@ -2872,7 +2315,7 @@ function buildScene(
 
   key.position.set(
 
-    -3.8,
+    -3,
 
     8,
 
@@ -2880,61 +2323,65 @@ function buildScene(
 
   );
 
-  scene.add(key);
-
   /* ======================================
-     EDGE LIGHT
+     RIM LIGHT
   ====================================== */
 
-  const edge =
+  const rim =
     new THREE.DirectionalLight(
 
-      '#beddf4',
+      '#c7e6ff',
 
       0
 
     );
 
-  edge.position.set(
+  rim.position.set(
 
     4,
 
-    6,
+    7,
 
-    -5
+    -4
 
   );
 
-  scene.add(edge);
+  scene.add(
+    ambient,
+    key,
+    rim
+  );
 
   /* ======================================
-     FOUR CEILING LIGHTS
+     CEILING SPOTLIGHTS
   ====================================== */
 
-  const spots = [];
+  const points = [];
 
   const positions = [
 
-    [-3.4, 3],
+    [-3, 3],
 
-    [3.4, 3],
+    [3, 3],
 
-    [-3.4, -2],
+    [-3, -3],
 
-    [3.4, -2]
+    [3, -3]
 
   ];
 
-  for (const [x, z] of positions) {
+  for (
+    const [x, z] of positions
+  ) {
 
     const light =
       new THREE.PointLight(
 
-        '#e3f1ff',
+        '#e6f3ff',
 
         0,
 
-        13,
+        11,
 
         2
 
@@ -2944,7 +2391,7 @@ function buildScene(
 
       x,
 
-      3.6,
+      3.65,
 
       z
 
@@ -2952,412 +2399,136 @@ function buildScene(
 
     scene.add(light);
 
-    spots.push(light);
+    points.push(light);
 
   }
-
-  /* ======================================
-     REFLECTIVE FLOOR
-  ====================================== */
-
-  if (!small && !reduced) {
-
-    const mirror = new Reflector(
-
-      new THREE.PlaneGeometry(
-
-        20,
-
-        24
-
-      ),
-
-      {
-
-        textureWidth: 512,
-
-        textureHeight: 512,
-
-        clipBias: .005,
-
-        color: 0x252d33
-
-      }
-
-    );
-
-    mirror.rotation.x =
-      -Math.PI / 2;
-
-    mirror.position.y = -.011;
-
-    room.add(mirror);
-
-  }
-
-  /* ======================================
-     REAL HEADLIGHT SPOTLIGHTS
-  ====================================== */
-
-  const headlights = [];
-
-  for (const sign of [-1, 1]) {
-
-    const spotlight =
-      new THREE.SpotLight(
-
-        '#e1f3ff',
-
-        0,
-
-        15,
-
-        .34,
-
-        .6,
-
-        1.55
-
-      );
-
-    spotlight.position.set(
-
-      sign * .72,
-
-      .71,
-
-      2.03
-
-    );
-
-    spotlight.target.position.set(
-
-      sign * .72,
-
-      .53,
-
-      8.4
-
-    );
-
-    scene.add(
-
-      spotlight,
-
-      spotlight.target
-
-    );
-
-    headlights.push(
-      spotlight
-    );
-
-  }
-
-  return {
-
-    canvas,
-
-    renderer,
-
-    scene,
-
-    camera,
-
-    ambient,
-
-    key,
-
-    edge,
-
-    spots,
-
-    leds,
-
-    headlights,
-
-    isStudio
-
-  };
-
-}
-
-/* ==========================================
-   CREATE FILM SHOWROOM
-========================================== */
-
-const film = buildScene(
-
-  'filmCanvas',
-
-  false
-
-);
-
-/* ==========================================
-   CREATE DESIGN STUDIO SHOWROOM
-========================================== */
-
-const studio = buildScene(
-
-  'studioCanvas',
-
-  true
-
-);
-
-/* ==========================================
-   RESIZE HELPERS
-========================================== */
-
-function resizeScene(setup) {
-
-  const rect =
-    setup.canvas.getBoundingClientRect();
-
-  if (
-    !rect.width ||
-    !rect.height
-  ) {
-
-    return;
-
-  }
-
-  setup.renderer.setSize(
-
-    Math.max(
-
-      2,
-
-      Math.round(rect.width)
-
-    ),
-
-    Math.max(
-
-      2,
-
-      Math.round(rect.height)
-
-    ),
-
-    false
-
-  );
-
-  setup.camera.aspect =
-    rect.width / rect.height;
-
-  setup.camera.updateProjectionMatrix();
-
-}
-
-function resize() {
-
-  resizeScene(film);
-
-  resizeScene(studio);
-
-}
-
-window.addEventListener(
-
-  'resize',
-
-  resize
-
-);
-
-/* ==========================================
-   SHOWROOM LIGHTING
-========================================== */
-
-function setRoom(
-
-  setup,
-
-  level,
-
-  headOn
-
-) {
-
-  const power = clamp(level);
-
-  /* ======================================
-     AMBIENT LIGHT
-  ====================================== */
-
-  setup.ambient.intensity =
-
-    .005 +
-
-    power * 1.7 +
-
-    (headOn ? .13 : 0);
-
-  /* ======================================
-     MAIN LIGHT
-  ====================================== */
-
-  setup.key.intensity =
-
-    power * 3.15;
-
-  /* ======================================
-     EDGE LIGHT
-  ====================================== */
-
-  setup.edge.intensity =
-
-    power * 1.8;
-
-  /* ======================================
-     CEILING LIGHTS
-  ====================================== */
-
-  setup.spots.forEach(light => {
-
-    light.intensity =
-
-      power * 15;
-
-  });
-
-  /* ======================================
-     LED PANELS
-  ====================================== */
-
-  setup.leds.visible =
-
-    power > .018;
 
   /* ======================================
      HEADLIGHTS
   ====================================== */
 
-  setup.headlights.forEach(light => {
-
-    light.intensity =
-
-      headOn ? 16 : 0;
-
-  });
-
-  /* ======================================
-     CAMERA EXPOSURE
-  ====================================== */
-
-  setup.renderer.toneMappingExposure =
-
-    .7 + power * .54;
-
-}
-
-/* ==========================================
-   HEADLIGHT GLOW TEXTURE
-========================================== */
-
-/*
-  De twee koplampen krijgen een aparte
-  zachte gloed.
-
-  Beide worden exact op hetzelfde
-  moment zichtbaar.
-*/
-
-function attachGlow(scene) {
-
-  const glow = [];
+  const headLights = [];
 
   for (
     const sign of [-1, 1]
   ) {
 
-    /* ==================================
-       CREATE GRADIENT TEXTURE
-    ================================== */
+    const light =
+      new THREE.SpotLight(
 
-    const canvas =
-      document.createElement('canvas');
+        '#d5ebff',
 
-    canvas.width = 128;
+        0,
 
-    canvas.height = 128;
+        13,
 
-    const ctx =
-      canvas.getContext('2d');
+        .34,
 
-    const gradient =
-      ctx.createRadialGradient(
+        .65,
 
-        64,
-
-        64,
-
-        2,
-
-        64,
-
-        64,
-
-        64
+        1.5
 
       );
 
-    gradient.addColorStop(
+    light.position.set(
 
-      0,
+      sign * .7,
 
-      'rgba(255,255,255,1)'
+      .68,
 
-    );
-
-    gradient.addColorStop(
-
-      .11,
-
-      'rgba(206,235,255,.95)'
+      2.12
 
     );
 
-    gradient.addColorStop(
+    light.target.position.set(
 
-      .35,
+      sign * .7,
 
-      'rgba(146,207,255,.26)'
+      .45,
 
-    );
-
-    gradient.addColorStop(
-
-      1,
-
-      'rgba(100,180,255,0)'
+      8
 
     );
 
-    ctx.fillStyle = gradient;
+    scene.add(
 
-    ctx.fillRect(
+      light,
 
-      0,
-
-      0,
-
-      128,
-
-      128
+      light.target
 
     );
 
-    /* ==================================
-       CREATE SPRITE
-    ================================== */
+    headLights.push(light);
 
-    const texture =
-      new THREE.CanvasTexture(canvas);
+  }
+
+  /* ======================================
+     HEADLIGHT GLOW TEXTURE
+  ====================================== */
+
+  const glows = [];
+
+  const gc =
+    document.createElement('canvas');
+
+  gc.width = 128;
+
+  gc.height = 128;
+
+  const ctx =
+    gc.getContext('2d');
+
+  const gradient =
+    ctx.createRadialGradient(
+
+      64, 64, 1,
+
+      64, 64, 64
+
+    );
+
+  gradient.addColorStop(
+
+    0,
+
+    'rgba(255,255,255,1)'
+
+  );
+
+  gradient.addColorStop(
+
+    .18,
+
+    'rgba(211,237,255,.75)'
+
+  );
+
+  gradient.addColorStop(
+
+    1,
+
+    'rgba(145,203,255,0)'
+
+  );
+
+  ctx.fillStyle = gradient;
+
+  ctx.fillRect(
+
+    0, 0, 128, 128
+
+  );
+
+  const texture =
+    new THREE.CanvasTexture(gc);
+
+  /* ======================================
+     INSTALL TWO GLOW SPRITES
+  ====================================== */
+
+  for (
+    const sign of [-1, 1]
+  ) {
 
     const sprite =
       new THREE.Sprite(
@@ -3379,19 +2550,19 @@ function attachGlow(scene) {
 
     sprite.position.set(
 
-      sign * .72,
+      sign * .7,
 
-      .72,
+      .73,
 
-      2.18
+      2.25
 
     );
 
     sprite.scale.set(
 
-      1.05,
+      .8,
 
-      1.05,
+      .8,
 
       1
 
@@ -3399,104 +2570,352 @@ function attachGlow(scene) {
 
     scene.add(sprite);
 
-    glow.push(sprite);
+    glows.push(sprite);
 
   }
 
-  return glow;
+  /* ======================================
+     ROOM LIGHTING FUNCTION
+  ====================================== */
+
+  function lighting(
+
+    level,
+
+    headlights
+
+  ) {
+
+    const n =
+      clamp(level);
+
+    ambient.intensity =
+
+      n * 1.85 +
+
+      (headlights ? .085 : 0);
+
+    key.intensity =
+      n * 3.1;
+
+    rim.intensity =
+      n * 2.15;
+
+    points.forEach(point => {
+
+      point.intensity =
+        n * 12;
+
+    });
+
+    leds.visible =
+      n > .045;
+
+    headLights.forEach(light => {
+
+      light.intensity =
+
+        headlights ? 16 : 0;
+
+    });
+
+    glows.forEach(sprite => {
+
+      sprite.visible =
+        headlights;
+
+    });
+
+    renderer.toneMappingExposure =
+
+      .62 + n * .64;
+
+  }
+
+  /* ======================================
+     START DARK
+  ====================================== */
+
+  lighting(
+    0,
+    false
+  );
+
+  return {
+
+    canvas,
+
+    scene,
+
+    camera,
+
+    renderer,
+
+    lighting
+
+  };
 
 }
 
 /* ==========================================
-   INSTALL HEADLIGHT EFFECTS
+   CREATE BOTH SHOWROOMS
 ========================================== */
 
-film.glows = attachGlow(
+const film =
+  createRoom('filmCanvas');
 
-  film.scene
-
-);
-
-studio.glows = attachGlow(
-
-  studio.scene
-
-);
+const studio =
+  createRoom('studioCanvas');
 
 /* ==========================================
-   HEADLIGHT VISIBILITY
+   STATE
 ========================================== */
 
-function lightGlows(
+let ready = false;
 
-  setup,
+let lightsOn = false;
 
-  enabled
+let lightAt = Infinity;
 
-) {
+let studioInView = false;
 
-  setup.glows.forEach(glow => {
+let studioMode = 'day';
 
-    glow.visible = enabled;
+let studioHead = true;
 
-  });
+let studioAngle = .52;
+
+let studioPitch = .2;
+
+let drag = null;
+
+/* ==========================================
+   RESIZE
+========================================== */
+
+function resize(setup) {
+
+  const rect =
+    setup.canvas.getBoundingClientRect();
+
+  if (
+    !rect.width ||
+    !rect.height
+  ) {
+
+    return;
+
+  }
+
+  setup.renderer.setSize(
+
+    Math.round(rect.width),
+
+    Math.round(rect.height),
+
+    false
+
+  );
+
+  setup.camera.aspect =
+
+    rect.width / rect.height;
+
+  setup.camera.updateProjectionMatrix();
 
 }
 
-/* ==========================================
-   INITIAL LIGHT STATE
-========================================== */
+window.addEventListener(
 
-/*
-  Belangrijk:
+  'resize',
 
-  We starten volledig donker.
+  () => {
 
-  De koplampen gaan niet aan tijdens
-  het laden van het GLB-model.
-*/
+    resize(film);
 
-lightGlows(
+    resize(studio);
 
-  film,
-
-  false
+  }
 
 );
 
-lightGlows(
+resize(film);
 
-  studio,
-
-  true
-
-);
-
-setRoom(
-
-  film,
-
-  0,
-
-  false
-
-);
-
-setRoom(
-
-  studio,
-
-  1,
-
-  true
-
-);
+resize(studio);
 
 /* ==========================================
-   CINEMATIC CHAPTER TITLES
+   CINEMATIC CAMERA SHOTS
 ========================================== */
 
-const chapterTexts = [
+const shots = [
+
+  /* FRONT */
+
+  {
+
+    t: 0,
+
+    p: [0, 1.55, 8.4],
+
+    look: [0, .9, 0],
+
+    fov: 39,
+
+    ch: 0
+
+  },
+
+  /* HEADLIGHT REVEAL */
+
+  {
+
+    t: .15,
+
+    p: [0, 1.55, 7.9],
+
+    look: [0, .9, 0],
+
+    fov: 39,
+
+    ch: 0
+
+  },
+
+  /* ROOM REVEAL */
+
+  {
+
+    t: .29,
+
+    p: [.2, 1.72, 7.55],
+
+    look: [0, .92, 0],
+
+    fov: 38,
+
+    ch: 1
+
+  },
+
+  /* FRONT THREE-QUARTER */
+
+  {
+
+    t: .43,
+
+    p: [3.6, 1.9, 6.5],
+
+    look: [0, .9, 0],
+
+    fov: 39,
+
+    ch: 2
+
+  },
+
+  /* SIDE VIEW */
+
+  {
+
+    t: .55,
+
+    p: [6.25, 1.7, 1.7],
+
+    look: [0, .85, 0],
+
+    fov: 38,
+
+    ch: 2
+
+  },
+
+  /* WHEEL CLOSE-UP */
+
+  {
+
+    t: .63,
+
+    p: [2.8, .9, 2.8],
+
+    look: [1, .49, 1.4],
+
+    fov: 29,
+
+    ch: 3
+
+  },
+
+  /* FAST CAMERA MOVE */
+
+  {
+
+    t: .72,
+
+    p: [6.2, 1.65, -2],
+
+    look: [0, .9, -.4],
+
+    fov: 38,
+
+    ch: 4
+
+  },
+
+  /* REAR THREE-QUARTER */
+
+  {
+
+    t: .81,
+
+    p: [4, 1.7, -6.2],
+
+    look: [0, .9, -1],
+
+    fov: 39,
+
+    ch: 4
+
+  },
+
+  /* WING CLOSE-UP */
+
+  {
+
+    t: .89,
+
+    p: [1.75, 1.78, -4.1],
+
+    look: [0, 1.5, -2.1],
+
+    fov: 31,
+
+    ch: 5
+
+  },
+
+  /* FINAL SHOT */
+
+  {
+
+    t: 1,
+
+    p: [-3.8, 2.25, -6.5],
+
+    look: [0, .9, 0],
+
+    fov: 40,
+
+    ch: 6
+
+  }
+
+];
+
+/* ==========================================
+   FILM TEXT
+========================================== */
+
+const chapters = [
 
   [
 
@@ -3520,7 +2939,7 @@ const chapterTexts = [
 
   [
 
-    '02 / ORBIT',
+    '02 / THE ORBIT',
 
     'EVERY ANGLE.<br>ONE ICON.',
 
@@ -3530,11 +2949,11 @@ const chapterTexts = [
 
   [
 
-    '03 / THE DETAILS',
+    '03 / CLOSE-UP',
 
     'THE<br>WHEELS.',
 
-    'CLOSE ENOUGH TO SEE THE DETAIL.'
+    'SLOW DOWN. LOOK CLOSER.'
 
   ],
 
@@ -3550,11 +2969,11 @@ const chapterTexts = [
 
   [
 
-    '05 / REAR CLOSE-UP',
+    '05 / REAR DETAIL',
 
     'THE<br>WING.',
 
-    'DESIGNED TO BE SEEN.'
+    'BUILT TO BE SEEN.'
 
   ],
 
@@ -3571,265 +2990,57 @@ const chapterTexts = [
 ];
 
 /* ==========================================
-   CHANGE SCENE TITLE
+   UPDATE CHAPTER
 ========================================== */
 
-function chapterShow(index) {
+let lastChapter = -1;
 
-  if (index === chapter) {
+function setChapter(i) {
+
+  if (i === lastChapter) {
 
     return;
 
   }
 
-  chapter = index;
-
-  const [
-    number,
-    title,
-    description
-  ] = chapterTexts[index];
+  lastChapter = i;
 
   $('#sceneCount').textContent =
-    number;
+    chapters[i][0];
 
   $('#sceneTitle').innerHTML =
-    title;
+    chapters[i][1];
 
   $('#sceneNote').textContent =
-    description;
+    chapters[i][2];
 
 }
 
 /* ==========================================
-   CINEMATIC CAMERA PATH
+   CAMERA INTERPOLATION
 ========================================== */
 
-/*
-  De Porsche blijft stil staan.
+function pathAt(t) {
 
-  Alleen de camera beweegt.
-
-  t    = scrollprogress
-  p    = camerapositie
-  look = punt waar camera naar kijkt
-  fov  = camerazoom
-  ch   = teksthoofdstuk
-*/
-
-const shots = [
-
-  /* ======================================
-     SCENE 1 — FRONT / DARKNESS
-  ====================================== */
-
-  {
-
-    t: 0,
-
-    p: [0, 1.32, 8.2],
-
-    look: [0, .75, 0],
-
-    fov: 38,
-
-    ch: 0
-
-  },
-
-  /* ======================================
-     HEADLIGHTS ON
-  ====================================== */
-
-  {
-
-    t: .15,
-
-    p: [0, 1.35, 7.8],
-
-    look: [0, .76, 0],
-
-    fov: 38,
-
-    ch: 0
-
-  },
-
-  /* ======================================
-     SCENE 2 — FULL SHOWROOM
-  ====================================== */
-
-  {
-
-    t: .28,
-
-    p: [.3, 1.55, 7.35],
-
-    look: [0, .84, 0],
-
-    fov: 39,
-
-    ch: 1
-
-  },
-
-  /* ======================================
-     SCENE 3 — FRONT THREE QUARTER
-  ====================================== */
-
-  {
-
-    t: .43,
-
-    p: [3.3, 1.75, 6.55],
-
-    look: [0, .83, 0],
-
-    fov: 39,
-
-    ch: 2
-
-  },
-
-  /* ======================================
-     SIDE VIEW
-  ====================================== */
-
-  {
-
-    t: .53,
-
-    p: [5.85, 1.85, 1.65],
-
-    look: [0, .83, 0],
-
-    fov: 39,
-
-    ch: 2
-
-  },
-
-  /* ======================================
-     SLOW-MOTION WHEEL CLOSE-UP
-  ====================================== */
-
-  {
-
-    t: .62,
-
-    p: [2.55, .98, 2.8],
-
-    look: [.91, .48, 1.28],
-
-    fov: 29,
-
-    ch: 3
-
-  },
-
-  /* ======================================
-     FAST CAMERA MOVE
-  ====================================== */
-
-  {
-
-    t: .72,
-
-    p: [5.65, 1.6, -2.0],
-
-    look: [0, .86, -.2],
-
-    fov: 38,
-
-    ch: 4
-
-  },
-
-  /* ======================================
-     REAR THREE QUARTER
-  ====================================== */
-
-  {
-
-    t: .81,
-
-    p: [3.65, 1.6, -6],
-
-    look: [0, 1.02, -1.1],
-
-    fov: 40,
-
-    ch: 4
-
-  },
-
-  /* ======================================
-     REAR WING CLOSE-UP
-  ====================================== */
-
-  {
-
-    t: .89,
-
-    p: [1.55, 1.7, -3.8],
-
-    look: [0, 1.39, -2],
-
-    fov: 33,
-
-    ch: 5
-
-  },
-
-  /* ======================================
-     FINAL FRAME
-  ====================================== */
-
-  {
-
-    t: 1,
-
-    p: [-3.7, 2.2, -6.3],
-
-    look: [0, .9, 0],
-
-    fov: 41,
-
-    ch: 6
-
-  }
-
-];
-
-/* ==========================================
-   INTERPOLATE CAMERA POSITION
-========================================== */
-
-function cameraState(t) {
-
-  let index = 0;
+  let i = 0;
 
   while (
 
-    index < shots.length - 2 &&
+    i < shots.length - 2 &&
 
-    t > shots[index + 1].t
+    t > shots[i + 1].t
 
   ) {
 
-    index++;
+    i++;
 
   }
 
-  const a = shots[index];
+  const a = shots[i];
 
-  const b = shots[index + 1];
+  const b = shots[i + 1];
 
-  /* ======================================
-     SMOOTH CAMERA SPEED
-  ====================================== */
-
-  const progress = smooth(
+  const f = smooth(
 
     (t - a.t) /
 
@@ -3837,41 +3048,33 @@ function cameraState(t) {
 
   );
 
-  /* ======================================
-     RETURN CAMERA
-  ====================================== */
-
   return {
 
-    p: v(...a.p).lerp(
+    p: V(...a.p).lerp(
 
-      v(...b.p),
+      V(...b.p),
 
-      progress
-
-    ),
-
-    look: v(...a.look).lerp(
-
-      v(...b.look),
-
-      progress
+      f
 
     ),
 
-    fov: mix(
+    look: V(...a.look).lerp(
 
-      a.fov,
+      V(...b.look),
 
-      b.fov,
-
-      progress
+      f
 
     ),
 
-    chapter:
+    fov:
 
-      progress > .5
+      a.fov +
+
+      (b.fov - a.fov) * f,
+
+    ch:
+
+      f > .5
 
         ? b.ch
 
@@ -3882,108 +3085,92 @@ function cameraState(t) {
 }
 
 /* ==========================================
-   FILM SCROLL PROGRESS
-========================================== */
-
-function filmProgress() {
-
-  const element = $('#top');
-
-  const rect =
-    element.getBoundingClientRect();
-
-  return clamp(
-
-    -rect.top /
-
-    Math.max(
-
-      1,
-
-      element.offsetHeight - innerHeight
-
-    )
-
-  );
-
-}
-
-/* ==========================================
-   FILM ANIMATION
+   RENDER CINEMATIC FILM
 ========================================== */
 
 function renderFilm() {
 
-  /* ======================================
-     GET SCROLL POSITION
-  ====================================== */
+  const container = $('#top');
+
+  const rect =
+    container.getBoundingClientRect();
 
   const t = reduced
 
-    ? .31
+    ? .3
 
-    : filmProgress();
+    : clamp(
+
+        -rect.top /
+
+        Math.max(
+
+          1,
+
+          container.offsetHeight -
+            innerHeight
+
+        )
+
+      );
+
+  const shot =
+    pathAt(t);
 
   /* ======================================
-     ANIMATE CAMERA
+     CAMERA MOVEMENT
   ====================================== */
 
-  const camera = cameraState(t);
-
   film.camera.position.copy(
-
-    camera.p
-
+    shot.p
   );
 
   film.camera.lookAt(
-
-    camera.look
-
+    shot.look
   );
 
   film.camera.fov =
-    camera.fov;
+    shot.fov;
 
   film.camera.updateProjectionMatrix();
 
   /* ======================================
-     SCENE REVEAL
+     SHOWROOM REVEAL
   ====================================== */
 
-  const reveal = smooth(
+  let level = smooth(
 
-    (t - .07) / .17
+    (t - .085) / .18
 
   );
 
-  /* ======================================
-     FLICKERING LED PANELS
-  ====================================== */
-
   let flicker = 1;
+
+  /* ======================================
+     LED FLICKERING
+  ====================================== */
 
   if (
 
     !reduced &&
 
-    t > .075 &&
+    t > .11 &&
 
-    t < .165
+    t < .19
 
   ) {
 
     const phase =
 
-      (t - .075) / .09;
+      (t - .11) / .08;
 
     flicker =
 
-      Math.sin(phase * 91) > -.08
+      Math.sin(phase * 80) > .05
 
         ? 1
 
-        : .09;
+        : .07;
 
     $('#flash').style.opacity =
 
@@ -3993,9 +3180,9 @@ function renderFilm() {
 
           0,
 
-          Math.sin(phase * 91) - .88
+          Math.sin(phase * 80) - .8
 
-        ) * .12
+        ) * .18
 
       );
 
@@ -4006,64 +3193,52 @@ function renderFilm() {
   }
 
   /* ======================================
-     HEADLIGHT REVEAL
+     KEEP ROOM DARK BEFORE HEADLIGHTS
   ====================================== */
 
-  const immediate = ignition
+  level = lightsOn
 
-    ? .15
+    ? Math.max(
+
+        .045,
+
+        level * flicker
+
+      )
 
     : 0;
 
-  const room = Math.max(
+  film.lighting(
 
-    immediate,
+    level,
 
-    reveal * flicker
-
-  );
-
-  setRoom(
-
-    film,
-
-    room,
-
-    ignition
-
-  );
-
-  lightGlows(
-
-    film,
-
-    ignition
+    lightsOn
 
   );
 
   /* ======================================
-     UPDATE CHAPTER
+     CHAPTER TEXT
   ====================================== */
 
-  chapterShow(
+  setChapter(
 
     t < .15
 
       ? 0
 
-      : t < .30
+      : t < .3
 
         ? 1
 
-        : camera.chapter
+        : shot.ch
 
   );
 
   /* ======================================
-     HIDE SCROLL HINT
+     SCROLL HINT
   ====================================== */
 
-  $('#scrollPrompt').style.opacity =
+  $('#scrollCue').style.opacity =
 
     String(
 
@@ -4072,18 +3247,18 @@ function renderFilm() {
     );
 
   /* ======================================
-     FADE FINAL TITLE
+     FINAL TEXT
   ====================================== */
 
   $('#caption').style.opacity =
 
     String(
 
-      t > .975
+      t > .98
 
         ? clamp(
 
-            (1 - t) / .025
+            (1 - t) / .02
 
           )
 
@@ -4092,7 +3267,7 @@ function renderFilm() {
     );
 
   /* ======================================
-     RENDER SCENE
+     RENDER
   ====================================== */
 
   film.renderer.render(
@@ -4106,22 +3281,18 @@ function renderFilm() {
 }
 
 /* ==========================================
-   DESIGN STUDIO ANIMATION
+   DESIGN STUDIO RENDER
 ========================================== */
 
 function renderStudio() {
 
-  const radius = 6.35;
-
-  /* ======================================
-     ROTATING CAMERA
-  ====================================== */
+  const radius = 6.3;
 
   studio.camera.position.set(
 
     Math.sin(studioAngle) * radius,
 
-    1.75 + studioHeight * 2.5,
+    1.75 + studioPitch * 2.5,
 
     Math.cos(studioAngle) * radius
 
@@ -4131,7 +3302,7 @@ function renderStudio() {
 
     0,
 
-    .85,
+    .92,
 
     0
 
@@ -4141,282 +3312,23 @@ function renderStudio() {
 
   studio.camera.updateProjectionMatrix();
 
-  /* ======================================
-     BRIGHTER BY DEFAULT
-  ====================================== */
-
-  const brightness =
+  studio.lighting(
 
     studioMode === 'day'
 
       ? 1
 
-      : .4;
+      : .4,
 
-  setRoom(
-
-    studio,
-
-    brightness,
-
-    studioLightsOn
+    studioHead
 
   );
-
-  lightGlows(
-
-    studio,
-
-    studioLightsOn
-
-  );
-
-  /* ======================================
-     RENDER
-  ====================================== */
 
   studio.renderer.render(
 
     studio.scene,
 
     studio.camera
-
-  );
-
-}
-
-/* ==========================================
-   LOAD THE REAL 3D PORSCHE
-========================================== */
-
-/*
-  Hier wordt jouw GLB-bestand geladen.
-
-  Het oorspronkelijke model is ongeveer
-  0,045 eenheden lang.
-
-  Daarom passen we de schaal aan,
-  zodat de auto ongeveer 4,75
-  eenheden lang wordt.
-
-  De witte materialen en texturen
-  blijven behouden.
-*/
-
-function loadActualModel() {
-
-  return new Promise(
-
-    (resolve, reject) => {
-
-      const loader = new GLTFLoader();
-
-      loader.load(
-
-        MODELPATH,
-
-        gltf => {
-
-          try {
-
-            const root = gltf.scene;
-
-            /* ==================================
-               GET ORIGINAL DIMENSIONS
-            ================================== */
-
-            const bounds =
-              new THREE.Box3()
-                .setFromObject(root);
-
-            if (bounds.isEmpty()) {
-
-              throw Error(
-                'Leeg modelbestand'
-              );
-
-            }
-
-            const size = bounds.getSize(
-
-              v(0, 0, 0)
-
-            );
-
-            const center = bounds.getCenter(
-
-              v(0, 0, 0)
-
-            );
-
-            /* ==================================
-               SCALE TO REALISTIC DIMENSIONS
-            ================================== */
-
-            const scale =
-
-              4.75 / size.z;
-
-            root.scale.setScalar(scale);
-
-            /* ==================================
-               CENTER CAR
-            ================================== */
-
-            root.position.set(
-
-              -center.x * scale,
-
-              -bounds.min.y * scale,
-
-              -center.z * scale
-
-            );
-
-            root.updateMatrixWorld(true);
-
-            /* ==================================
-               KEEP ORIGINAL MATERIALS
-            ================================== */
-
-            root.traverse(object => {
-
-              if (!object.isMesh) {
-
-                return;
-
-              }
-
-              object.castShadow = false;
-
-              object.receiveShadow = true;
-
-              const selectedMaterial =
-                object.material;
-
-              if (
-                Array.isArray(selectedMaterial)
-              ) {
-
-                object.material =
-                  selectedMaterial.map(
-
-                    item => item.clone()
-
-                  );
-
-              } else if (selectedMaterial) {
-
-                object.material =
-                  selectedMaterial.clone();
-
-              }
-
-            });
-
-            /* ==================================
-               ADD CAR TO THE FILM
-            ================================== */
-
-            film.scene.add(root);
-
-            filmModel = root;
-
-            /* ==================================
-               COPY CAR TO DESIGN STUDIO
-            ================================== */
-
-            studioModel = root.clone(true);
-
-            studioModel.traverse(object => {
-
-              if (!object.isMesh) {
-
-                return;
-
-              }
-
-              if (
-                Array.isArray(object.material)
-              ) {
-
-                object.material =
-                  object.material.map(
-
-                    item => item.clone()
-
-                  );
-
-              } else if (object.material) {
-
-                object.material =
-                  object.material.clone();
-
-              }
-
-              /* ==================================
-                 FIND BODY PAINT MESHES
-              ================================== */
-
-              if (
-
-                /M_CarPaint/i.test(object.name)
-
-              ) {
-
-                paintMeshes.push(object);
-
-              }
-
-            });
-
-            studio.scene.add(
-              studioModel
-            );
-
-            resolve();
-
-          } catch (error) {
-
-            reject(error);
-
-          }
-
-        },
-
-        /* ==================================
-           LOADING PROGRESS
-        ================================== */
-
-        event => {
-
-          if (event.total) {
-
-            const progress =
-
-              10 +
-
-              85 *
-
-              event.loaded / event.total;
-
-            $('#loadBar').style.width =
-
-              Math.round(progress) + '%';
-
-          }
-
-        },
-
-        /* ==================================
-           LOADING ERROR
-        ================================== */
-
-        reject
-
-      );
-
-    }
 
   );
 
@@ -4440,7 +3352,7 @@ const paints = {
 
     'GT SILVER',
 
-    '#aab3bb'
+    '#a9b5bf'
 
   ],
 
@@ -4448,7 +3360,7 @@ const paints = {
 
     'JET BLACK',
 
-    '#10141a'
+    '#101318'
 
   ],
 
@@ -4456,7 +3368,7 @@ const paints = {
 
     'GUARDS RED',
 
-    '#bc2d31'
+    '#bc2931'
 
   ],
 
@@ -4464,110 +3376,66 @@ const paints = {
 
     'DARK CARBON CONCEPT',
 
-    '#313a42'
+    '#333d46'
 
   ]
 
 };
 
-/* ==========================================
-   ORIGINAL MATERIAL BACKUPS
-========================================== */
-
-let sourceMaterials = [];
-
-function setupPaint() {
-
-  sourceMaterials = paintMeshes.map(
-
-    object => ({
-
-      o: object,
-
-      source: object.material.clone()
-
-    })
-
-  );
-
-}
+let paintMaterials = [];
 
 /* ==========================================
-   CHANGE CAR COLOUR
+   APPLY PAINT
 ========================================== */
 
-function paint(id) {
+function applyPaint(id) {
 
-  const option = paints[id];
-
-  if (!option) {
-
-    return;
-
-  }
-
-  /* ======================================
-     UPDATE NAME
-  ====================================== */
+  const [
+    label,
+    color
+  ] = paints[id];
 
   $('#paintName').textContent =
+    label;
 
-    option[0];
+  for (
+    const {
+      material,
+      original
+    } of paintMaterials
+  ) {
 
-  /* ======================================
-     UPDATE MATERIALS
-  ====================================== */
+    material.copy(original);
 
-  sourceMaterials.forEach(
+    if (color) {
 
-    ({ o, source }) => {
+      material.color.set(
+        color
+      );
 
-      o.material.copy(source);
+      material.map = null;
 
-      if (option[1]) {
+      material.metalness = .35;
 
-        /* NEW COLOUR */
+      material.roughness =
 
-        o.material.color.set(
-          option[1]
-        );
+        id === 'carbon'
 
-        /* REMOVE WHITE TEXTURE
-           FROM CONCEPT COLOURS */
+          ? .27
 
-        if (o.material.map) {
-
-          o.material.map = null;
-
-        }
-
-        o.material.metalness = .5;
-
-        o.material.roughness =
-
-          id === 'carbon'
-
-            ? .23
-
-            : .27;
-
-      }
-
-      o.material.needsUpdate = true;
+          : .22;
 
     }
 
-  );
+    material.needsUpdate = true;
 
-  /* ======================================
-     ACTIVE COLOUR BUTTON
-  ====================================== */
+  }
 
-  $$('[data-color]').forEach(button => {
+  $$('[data-paint]').forEach(button => {
 
     const active =
 
-      button.dataset.color === id;
+      button.dataset.paint === id;
 
     button.classList.toggle(
 
@@ -4590,7 +3458,7 @@ function paint(id) {
 }
 
 /* ==========================================
-   COLOUR SELECTOR
+   PAINT SELECTOR
 ========================================== */
 
 $('#swatches').addEventListener(
@@ -4601,15 +3469,15 @@ $('#swatches').addEventListener(
 
     const button = event.target.closest(
 
-      '[data-color]'
+      '[data-paint]'
 
     );
 
     if (button) {
 
-      paint(
+      applyPaint(
 
-        button.dataset.color
+        button.dataset.paint
 
       );
 
@@ -4620,7 +3488,7 @@ $('#swatches').addEventListener(
 );
 
 /* ==========================================
-   DAY / NIGHT MODE
+   DAY / NIGHT BUTTONS
 ========================================== */
 
 $$('[data-mode]').forEach(button => {
@@ -4634,18 +3502,9 @@ $$('[data-mode]').forEach(button => {
       studioMode =
         button.dataset.mode;
 
-      $('#preview').classList.toggle(
-
-        'night',
-
-        studioMode === 'night'
-
-      );
-
       $$('[data-mode]').forEach(item => {
 
         const active =
-
           item === button;
 
         item.classList.toggle(
@@ -4673,10 +3532,10 @@ $$('[data-mode]').forEach(button => {
 });
 
 /* ==========================================
-   STUDIO HEADLIGHTS
+   HEADLIGHT BUTTONS
 ========================================== */
 
-$$('[data-headlights]').forEach(button => {
+$$('[data-head]').forEach(button => {
 
   button.addEventListener(
 
@@ -4684,14 +3543,13 @@ $$('[data-headlights]').forEach(button => {
 
     () => {
 
-      studioLightsOn =
+      studioHead =
 
-        button.dataset.headlights === 'on';
+        button.dataset.head === 'on';
 
-      $$('[data-headlights]').forEach(item => {
+      $$('[data-head]').forEach(item => {
 
         const active =
-
           item === button;
 
         item.classList.toggle(
@@ -4722,15 +3580,15 @@ $$('[data-headlights]').forEach(button => {
    RESET CAMERA
 ========================================== */
 
-$('#resetView').addEventListener(
+$('#reset').addEventListener(
 
   'click',
 
   () => {
 
-    studioAngle = .55;
+    studioAngle = .52;
 
-    studioHeight = .21;
+    studioPitch = .2;
 
   }
 
@@ -4740,9 +3598,10 @@ $('#resetView').addEventListener(
    DRAG TO ROTATE
 ========================================== */
 
-const studioCanvas = $('#studioCanvas');
+const sc =
+  $('#studioCanvas');
 
-studioCanvas.addEventListener(
+sc.addEventListener(
 
   'pointerdown',
 
@@ -4758,7 +3617,7 @@ studioCanvas.addEventListener(
 
     };
 
-    studioCanvas.setPointerCapture(
+    sc.setPointerCapture(
 
       event.pointerId
 
@@ -4769,10 +3628,10 @@ studioCanvas.addEventListener(
 );
 
 /* ==========================================
-   MOVE CAMERA
+   POINTER MOVEMENT
 ========================================== */
 
-studioCanvas.addEventListener(
+sc.addEventListener(
 
   'pointermove',
 
@@ -4792,13 +3651,17 @@ studioCanvas.addEventListener(
 
     studioAngle -=
 
-      (event.clientX - drag.x) * .009;
+      (
+        event.clientX - drag.x
+      ) * .009;
 
-    studioHeight = clamp(
+    studioPitch = clamp(
 
-      studioHeight +
+      studioPitch +
 
-      (event.clientY - drag.y) * .004,
+      (
+        event.clientY - drag.y
+      ) * .004,
 
       -.1,
 
@@ -4818,10 +3681,12 @@ studioCanvas.addEventListener(
    STOP DRAGGING
 ========================================== */
 
-function release(event) {
+function stopDrag(event) {
 
   if (
+
     drag?.id !== event.pointerId
+
   ) {
 
     return;
@@ -4832,37 +3697,33 @@ function release(event) {
 
   if (
 
-    studioCanvas.hasPointerCapture(
-
+    sc.hasPointerCapture(
       event.pointerId
-
     )
 
   ) {
 
-    studioCanvas.releasePointerCapture(
-
+    sc.releasePointerCapture(
       event.pointerId
-
     );
 
   }
 
 }
 
-studioCanvas.addEventListener(
+sc.addEventListener(
 
   'pointerup',
 
-  release
+  stopDrag
 
 );
 
-studioCanvas.addEventListener(
+sc.addEventListener(
 
   'pointercancel',
 
-  release
+  stopDrag
 
 );
 
@@ -4877,11 +3738,9 @@ $('#menu').addEventListener(
   () => {
 
     const open =
-
       $('#nav').classList.toggle('open');
 
     $('#menu').textContent =
-
       open ? '✕' : '☰';
 
     $('#menu').setAttribute(
@@ -4896,10 +3755,6 @@ $('#menu').addEventListener(
 
 );
 
-/* ==========================================
-   CLOSE MOBILE MENU
-========================================== */
-
 $$('#nav a').forEach(link => {
 
   link.addEventListener(
@@ -4909,9 +3764,7 @@ $$('#nav a').forEach(link => {
     () => {
 
       $('#nav').classList.remove(
-
         'open'
-
       );
 
       $('#menu').textContent = '☰';
@@ -4931,148 +3784,91 @@ $$('#nav a').forEach(link => {
 });
 
 /* ==========================================
-   SCROLL REVEAL OBSERVER
+   INTERSECTION OBSERVER
 ========================================== */
 
-const observed = new IntersectionObserver(
+const observer =
+  new IntersectionObserver(
 
-  entries => {
+    entries => {
 
-    entries.forEach(entry => {
+      entries.forEach(entry => {
 
-      if (
-        entry.target.id === 'studio'
-      ) {
+        if (
 
-        studioVisible =
-          entry.isIntersecting;
+          entry.target.id === 'studio'
 
-      } else if (entry.isIntersecting) {
+        ) {
 
-        entry.target.classList.add(
+          studioInView =
+            entry.isIntersecting;
 
-          'visible'
+        } else if (entry.isIntersecting) {
 
-        );
+          entry.target.classList.add(
 
-        observed.unobserve(
+            'visible'
 
-          entry.target
+          );
 
-        );
+          observer.unobserve(
 
-      }
+            entry.target
 
-    });
+          );
 
-  },
+        }
 
-  {
+      });
 
-    rootMargin: '180px'
+    },
 
-  }
+    {
 
-);
+      rootMargin: '140px'
 
-observed.observe(
+    }
 
+  );
+
+observer.observe(
   $('#studio')
-
 );
 
 $$('.reveal').forEach(element => {
 
-  observed.observe(element);
+  observer.observe(element);
 
 });
 
 /* ==========================================
-   MAIN ANIMATION LOOP
+   SCROLL PROGRESS
 ========================================== */
 
-let loopId = null;
-
-function frame(now) {
-
-  loopId = requestAnimationFrame(frame);
-
-  if (!modelReady) {
-
-    return;
-
-  }
-
-  /* ======================================
-     SWITCH BOTH HEADLIGHTS ON
-  ====================================== */
-
-  if (
-
-    !ignition &&
-
-    now >= ignitionStart
-
-  ) {
-
-    ignition = true;
-
-  }
-
-  /* ======================================
-     RENDER FILM WHEN VISIBLE
-  ====================================== */
-
-  const box = $('#top').getBoundingClientRect();
-
-  if (
-
-    box.bottom > 0 &&
-
-    box.top < innerHeight
-
-  ) {
-
-    renderFilm();
-
-  }
-
-  /* ======================================
-     RENDER DESIGN STUDIO
-  ====================================== */
-
-  if (studioVisible) {
-
-    renderStudio();
-
-  }
-
-}
-
-/* ==========================================
-   PAGE PROGRESS
-========================================== */
-
-function progressUI() {
-
-  const max = Math.max(
-
-    1,
-
-    document.documentElement.scrollHeight -
-    innerHeight
-
-  );
+function updateProgress() {
 
   $('#progress').style.width =
 
-    (scrollY / max * 100) + '%';
+    `${
+
+      scrollY /
+
+      Math.max(
+
+        1,
+
+        document.documentElement.scrollHeight -
+        innerHeight
+
+      ) * 100
+
+    }%`;
 
   $('#header').classList.toggle(
 
     'scrolled',
 
-    scrollY > 60
+    scrollY > 45
 
   );
 
@@ -5082,133 +3878,72 @@ window.addEventListener(
 
   'scroll',
 
-  progressUI,
+  updateProgress,
 
-  { passive: true }
+  {
+    passive: true
+  }
 
 );
 
-progressUI();
+updateProgress();
 
 /* ==========================================
-   INITIALIZATION
+   MAIN ANIMATION LOOP
 ========================================== */
 
-async function init() {
+function frame(time) {
 
-  resize();
+  requestAnimationFrame(frame);
 
-  try {
+  if (!ready) {
 
-    /* ======================================
-       STEP 1: LOAD THE REAL MODEL
-    ====================================== */
+    return;
 
-    await loadActualModel();
+  }
 
-    /* ======================================
-       STEP 2: SET UP MATERIALS
-    ====================================== */
+  /* ======================================
+     TURN BOTH HEADLIGHTS ON
+  ====================================== */
 
-    setupPaint();
+  if (
 
-    modelReady = true;
+    !lightsOn &&
 
-    $('#loadBar').style.width = '100%';
+    time >= lightAt
 
-    $('#loadMessage').textContent =
+  ) {
 
-      'REAL 911 GT3 RS READY';
+    lightsOn = true;
 
-    /* ======================================
-       STEP 3: FORCE DARK SHOWROOM
-    ====================================== */
+  }
 
-    setRoom(
+  /* ======================================
+     FILM VISIBILITY
+  ====================================== */
 
-      film,
+  const rect =
+    $('#top').getBoundingClientRect();
 
-      0,
+  if (
 
-      false
+    rect.bottom > 0 &&
 
-    );
+    rect.top < innerHeight
 
-    lightGlows(
-
-      film,
-
-      false
-
-    );
-
-    /* ======================================
-       STEP 4: RENDER FIRST FRAME
-    ====================================== */
+  ) {
 
     renderFilm();
 
-    /* ======================================
-       STEP 5: HIDE LOADER
-    ====================================== */
+  }
 
-    $('#loader').classList.add(
+  /* ======================================
+     STUDIO VISIBILITY
+  ====================================== */
 
-      'done'
+  if (studioInView) {
 
-    );
-
-    /* ======================================
-       STEP 6: START HEADLIGHT TIMER
-    ====================================== */
-
-    /*
-      Dit is de belangrijke correctie.
-
-      Eerst het model laden.
-
-      Daarna pas de koplampen aanzetten.
-
-      Beide lampen gaan tegelijkertijd aan.
-    */
-
-    ignitionStart =
-
-      performance.now() + 1500;
-
-    /* ======================================
-       STEP 7: START THE FILM
-    ====================================== */
-
-    requestAnimationFrame(frame);
-
-  } catch (error) {
-
-    console.error(error);
-
-    /* ======================================
-       MODEL LOADING FAILED
-    ====================================== */
-
-    $('#loadBar').style.width = '100%';
-
-    $('#loadMessage').classList.add(
-
-      'load-error'
-
-    );
-
-    $('#loadMessage').textContent =
-
-      'HET 3D-MODEL KON NIET WORDEN GELADEN. ' +
-
-      'Zet porsche-911-gt3-rs.glb naast ' +
-
-      'index.html in dezelfde GitHub-map. ' +
-
-      'Open de pagina via GitHub Pages, ' +
-
-      'niet als lokaal file://-bestand.';
+    renderStudio();
 
   }
 
@@ -5218,10 +3953,250 @@ async function init() {
    START WEBSITE
 ========================================== */
 
-init();
+async function start() {
+
+  try {
+
+    /* ======================================
+       STEP 1 — LOAD REPAIRED PORSCHE
+    ====================================== */
+
+    const root =
+      await getPorsche();
+
+    /* ======================================
+       STEP 2 — MEASURE MODEL
+    ====================================== */
+
+    const box =
+      new THREE.Box3().setFromObject(root);
+
+    const size =
+      box.getSize(
+
+        new THREE.Vector3()
+
+      );
+
+    const center =
+      box.getCenter(
+
+        new THREE.Vector3()
+
+      );
+
+    if (
+
+      box.isEmpty() ||
+
+      size.z < .0001
+
+    ) {
+
+      throw Error(
+
+        'GLB heeft geen herkenbare afmetingen.'
+
+      );
+
+    }
+
+    /* ======================================
+       STEP 3 — SCALE MODEL
+    ====================================== */
+
+    const scale =
+
+      4.75 / size.z;
+
+    root.scale.setScalar(
+      scale
+    );
+
+    /* ======================================
+       STEP 4 — CENTER MODEL
+    ====================================== */
+
+    root.position.set(
+
+      -center.x * scale,
+
+      -box.min.y * scale,
+
+      -center.z * scale
+
+    );
+
+    root.updateMatrixWorld(true);
+
+    /* ======================================
+       STEP 5 — ADD TO FILM
+    ====================================== */
+
+    film.scene.add(root);
+
+    /* ======================================
+       STEP 6 — CLONE FOR STUDIO
+    ====================================== */
+
+    const clone =
+      root.clone(true);
+
+    clone.traverse(object => {
+
+      if (!object.isMesh) {
+
+        return;
+
+      }
+
+      const mats =
+
+        Array.isArray(object.material)
+
+          ? object.material
+
+          : [object.material];
+
+      const copies =
+        mats.map(material =>
+
+          material?.clone()
+
+        );
+
+      object.material =
+
+        Array.isArray(object.material)
+
+          ? copies
+
+          : copies[0];
+
+      /* ==================================
+         FIND CAR PAINT MATERIALS
+      ================================== */
+
+      if (
+
+        /M_CarPaint/i.test(object.name)
+
+      ) {
+
+        for (
+          const material of copies
+        ) {
+
+          if (material) {
+
+            paintMaterials.push({
+
+              material,
+
+              original:
+                material.clone()
+
+            });
+
+          }
+
+        }
+
+      }
+
+    });
+
+    studio.scene.add(clone);
+
+    /* ======================================
+       STEP 7 — FINISH LOADING
+    ====================================== */
+
+    $('#loadBar').style.width =
+      '100%';
+
+    $('#loadingStatus').textContent =
+      'PORSCHE READY';
+
+    ready = true;
+
+    /* ======================================
+       STEP 8 — RENDER DARK FIRST FRAME
+    ====================================== */
+
+    renderFilm();
+
+    /* ======================================
+       STEP 9 — HIDE LOADER
+    ====================================== */
+
+    $('#loader').classList.add(
+      'hide'
+    );
+
+    /* ======================================
+       STEP 10 — HEADLIGHT TIMER
+    ====================================== */
+
+    /*
+      De timer begint pas nadat
+      het model klaar is.
+
+      Beide lampen krijgen dezelfde
+      inschakeltijd.
+    */
+
+    lightAt =
+
+      performance.now() + 1500;
+
+    /* ======================================
+       STEP 11 — START ANIMATION
+    ====================================== */
+
+    requestAnimationFrame(frame);
+
+  } catch (error) {
+
+    console.error(
+
+      'Porsche GLB error:',
+
+      error
+
+    );
+
+    /* ======================================
+       SHOW USEFUL ERROR MESSAGE
+    ====================================== */
+
+    $('#loadingStatus').textContent =
+      'MODEL KON NIET LADEN';
+
+    $('#error').textContent =
+
+      `${error.message}\n\n` +
+
+      'Stuur een screenshot van deze melding ' +
+
+      'als dit gebeurt. Je hoeft het model ' +
+
+      'niet opnieuw te uploaden.';
+
+    $('#loadBar').style.width =
+      '100%';
+
+  }
+
+}
+
+/* ==========================================
+   INITIALIZE
+========================================== */
+
+start();
 
 </script>
 
 </body>
-
 </html>
