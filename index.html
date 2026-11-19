@@ -1,0 +1,3179 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08090b">
+
+  <meta
+    name="description"
+    content="Een onofficieel, cinematografisch Porsche 911 websiteconcept."
+  >
+
+  <title>911 — The Art of Motion | Concept Experience</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* ==========================================
+       GLOBAL STYLES
+    ========================================== */
+
+    :root {
+      --bg: #08090b;
+      --paper: #eae9e5;
+      --muted: #97999e;
+      --stroke: #ffffff24;
+      --accent: #dc2c22;
+      --paint: #bbbdbd;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: #f7f7f5;
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid #e9e9e9;
+      outline-offset: 5px;
+    }
+
+    ::selection {
+      background: #e22c28;
+      color: white;
+    }
+
+    /* ==========================================
+       SCROLL PROGRESS
+    ========================================== */
+
+    .progress {
+      height: 2px;
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 200;
+      background: #ffffff0c;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--accent);
+      transition: width .08s linear;
+    }
+
+    /* ==========================================
+       HEADER
+    ========================================== */
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      padding: 27px clamp(22px, 5vw, 94px);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+
+      transition:
+        background .4s,
+        padding .4s;
+
+      border-bottom: 1px solid transparent;
+    }
+
+    .site-header.scrolled {
+      background: #090a0be8;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-color: var(--stroke);
+      padding-block: 18px;
+    }
+
+    .brand {
+      font-family: Manrope, sans-serif;
+      font-weight: 800;
+      letter-spacing: -.075em;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .brand small {
+      display: block;
+      letter-spacing: .22em;
+      font: 600 8px 'DM Sans', sans-serif;
+      margin-top: 7px;
+      color: #c4c4c4;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(15px, 2.3vw, 37px);
+
+      font: 600 10px Manrope, sans-serif;
+      letter-spacing: .17em;
+    }
+
+    .main-nav a {
+      opacity: .75;
+      transition: opacity .2s;
+    }
+
+    .main-nav a:hover {
+      opacity: 1;
+    }
+
+    .outline-button {
+      background: transparent;
+      border: 1px solid #ffffff80;
+      color: white;
+      padding: 14px 21px;
+
+      text-transform: uppercase;
+      font: 700 10px Manrope, sans-serif;
+      letter-spacing: .17em;
+
+      transition:
+        background .2s,
+        color .2s;
+    }
+
+    .outline-button:hover {
+      background: white;
+      color: #111;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      color: white;
+      border: 1px solid #ffffff70;
+      width: 44px;
+      height: 44px;
+      font-size: 22px;
+    }
+
+    /* ==========================================
+       TYPOGRAPHY
+    ========================================== */
+
+    .eyebrow {
+      text-transform: uppercase;
+      font: 700 10px Manrope, sans-serif;
+      letter-spacing: .34em;
+      color: #c3c4c6;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 23px;
+      height: 1px;
+      background: var(--accent);
+      vertical-align: middle;
+      margin-right: 11px;
+    }
+
+    .section-inner {
+      width: min(1400px, 88%);
+      margin: auto;
+    }
+
+    .section-title {
+      font: 600 clamp(45px, 7vw, 113px)/.97 Manrope, sans-serif;
+      letter-spacing: -.082em;
+      margin: 20px 0;
+    }
+
+    .section-title em {
+      font-style: normal;
+      color: #767a80;
+    }
+
+    .lead {
+      color: #c2c2c2;
+      font-size: clamp(15px, 1.35vw, 20px);
+      line-height: 1.8;
+      max-width: 540px;
+    }
+
+    /* ==========================================
+       HERO
+    ========================================== */
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      min-height: max(720px, 100svh);
+      overflow: hidden;
+      background: #111215;
+      isolation: isolate;
+    }
+
+    .hero-photo {
+      position: absolute;
+      inset: -4%;
+
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(2, 3, 5, .89) 0%,
+          rgba(4, 5, 7, .44) 43%,
+          rgba(3, 4, 7, .12) 73%
+        ),
+        linear-gradient(
+          0deg,
+          #08090b 0%,
+          transparent 36%,
+          #06070a55 100%
+        ),
+        url(
+          'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2400&q=90'
+        );
+
+      background-position:
+        center,
+        center,
+        center 56%;
+
+      background-size: cover;
+
+      filter:
+        saturate(.76)
+        contrast(1.14);
+
+      transform: scale(1.08);
+      will-change: transform;
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .21;
+
+      background-image: url(
+        "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath filter='url(%23n)' opacity='.2' d='M0 0h180v180H0z'/%3E%3C/svg%3E"
+      );
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+
+      width: min(1400px, 88%);
+      min-height: inherit;
+      margin: auto;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+      padding: 125px 0 110px;
+    }
+
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      color: #d6d6d6;
+
+      font: 700 11px Manrope, sans-serif;
+      letter-spacing: .26em;
+    }
+
+    .red-line {
+      width: 38px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      margin: 23px 0 0;
+
+      font: 500 clamp(106px, 19.5vw, 325px)/.79
+        Manrope, sans-serif;
+
+      letter-spacing: -.12em;
+      text-shadow: 0 20px 90px #0009;
+    }
+
+    .hero h1 span {
+      display: block;
+      font-weight: 800;
+      letter-spacing: -.115em;
+    }
+
+    .hero-description {
+      max-width: 385px;
+      margin: 34px 0 38px;
+
+      color: #e5e5e6;
+
+      font: 400 clamp(16px, 1.4vw, 21px)/1.7
+        'DM Sans', sans-serif;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+
+      min-height: 57px;
+      padding: 0 25px;
+
+      border: 1px solid #f1f1ef;
+      background: #f1f1ef;
+      color: #111;
+
+      font: 800 11px Manrope, sans-serif;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+
+      transition:
+        transform .3s var(--ease),
+        background .2s;
+    }
+
+    .cta:hover {
+      transform: translateY(-4px);
+      background: white;
+    }
+
+    .cta .arrow {
+      font-size: 22px;
+      font-weight: 400;
+    }
+
+    .hero-bottom {
+      position: absolute;
+      z-index: 3;
+
+      bottom: 35px;
+      left: 6%;
+      right: 6%;
+
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+    }
+
+    .hero-bottom span {
+      font: 600 10px Manrope, sans-serif;
+      letter-spacing: .2em;
+      color: #d9d9d9;
+    }
+
+    .scroll-icon {
+      display: inline-flex;
+      gap: 13px;
+      align-items: center;
+    }
+
+    .scroll-icon i {
+      height: 37px;
+      width: 1px;
+
+      background:
+        linear-gradient(white, transparent);
+
+      animation:
+        scrollPulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      50% {
+        transform: translateY(9px);
+        opacity: .3;
+      }
+    }
+
+    .hero-index {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-index b {
+      font-size: 19px;
+      letter-spacing: 0;
+    }
+
+    /* ==========================================
+       CHAPTER 01 — STORY
+    ========================================== */
+
+    .intro {
+      position: relative;
+      padding: 170px 0 150px;
+      background: var(--bg);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.5fr .75fr;
+      gap: 9vw;
+      align-items: end;
+    }
+
+    .chapter-count {
+      display: block;
+
+      font: 700 11px Manrope, sans-serif;
+      color: var(--accent);
+      letter-spacing: .24em;
+
+      margin-top: 30px;
+    }
+
+    .intro .lead {
+      margin-bottom: 5px;
+    }
+
+    .spec-band {
+      border-top: 1px solid var(--stroke);
+      border-bottom: 1px solid var(--stroke);
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      margin-top: 130px;
+    }
+
+    .spec {
+      padding: 30px 35px;
+      border-right: 1px solid var(--stroke);
+    }
+
+    .spec:first-child {
+      padding-left: 0;
+    }
+
+    .spec:last-child {
+      border-right: none;
+    }
+
+    .spec strong {
+      font: 500 clamp(30px, 4vw, 64px)
+        Manrope, sans-serif;
+
+      letter-spacing: -.07em;
+    }
+
+    .spec span {
+      display: block;
+
+      font: 700 10px Manrope, sans-serif;
+      letter-spacing: .16em;
+      color: var(--muted);
+
+      margin-top: 7px;
+    }
+
+    /* ==========================================
+       CHAPTER 02 — CINEMATIC PHOTO
+    ========================================== */
+
+    .editorial {
+      position: relative;
+      min-height: 790px;
+      height: 93svh;
+      overflow: hidden;
+      background: #151619;
+    }
+
+    .editorial-img {
+      position: absolute;
+      inset: -5%;
+
+      background-image:
+        linear-gradient(
+          90deg,
+          #050609dd 0%,
+          transparent 70%
+        ),
+        linear-gradient(
+          0deg,
+          #06060899,
+          transparent 55%
+        ),
+        url(
+          'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2200&q=90'
+        );
+
+      background-size: cover;
+
+      background-position:
+        center,
+        center,
+        center 54%;
+
+      filter:
+        brightness(.57)
+        contrast(1.15)
+        saturate(.75);
+
+      transform: scale(1.16);
+      will-change: transform;
+    }
+
+    .editorial-copy {
+      position: relative;
+      z-index: 1;
+
+      width: min(1400px, 88%);
+      height: 100%;
+      margin: auto;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+
+      padding-bottom: 11%;
+    }
+
+    .editorial-copy h2 {
+      font: 500 clamp(58px, 11vw, 170px)/.87
+        Manrope, sans-serif;
+
+      letter-spacing: -.095em;
+      max-width: 900px;
+      margin: 20px 0;
+    }
+
+    .editorial-copy p {
+      font-size: 17px;
+      line-height: 1.7;
+      max-width: 380px;
+      color: #d6d6d6;
+    }
+
+    /* ==========================================
+       CHAPTER 03 — DESIGN STUDIO
+    ========================================== */
+
+    .studio {
+      padding: 125px 0 115px;
+      background: #111214;
+    }
+
+    .studio-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 35px;
+      align-items: end;
+    }
+
+    .studio-heading p {
+      max-width: 370px;
+      color: #b8babd;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .configurator {
+      margin-top: 70px;
+
+      border: 1px solid #ffffff23;
+
+      background:
+        radial-gradient(
+          ellipse at 52% 52%,
+          #28292b,
+          #0e0f12 72%
+        );
+
+      position: relative;
+      overflow: hidden;
+      min-height: 620px;
+
+      transition: background .5s;
+    }
+
+    .configurator.day {
+      background:
+        radial-gradient(
+          ellipse at 52% 42%,
+          #989ba0,
+          #484b51 75%
+        );
+    }
+
+    .config-top {
+      position: absolute;
+      z-index: 4;
+
+      top: 28px;
+      left: 30px;
+      right: 30px;
+
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .config-top span {
+      font: 700 10px Manrope, sans-serif;
+      letter-spacing: .2em;
+      color: #ddd;
+    }
+
+    .scene-switch {
+      display: flex;
+      gap: 6px;
+    }
+
+    .scene-switch button {
+      border: 1px solid #ffffff50;
+      background: #14151899;
+      color: white;
+      padding: 10px 16px;
+
+      font: 700 10px Manrope, sans-serif;
+      letter-spacing: .13em;
+    }
+
+    .scene-switch button.active {
+      background: #f5f5f2;
+      color: #111;
+    }
+
+    /* ==========================================
+       INTERACTIVE CAR
+    ========================================== */
+
+    .car-wrap {
+      position: relative;
+      width: min(1050px, 98%);
+      margin: 75px auto 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      min-height: 415px;
+    }
+
+    .car-wrap::after {
+      content: '';
+      position: absolute;
+
+      left: 16%;
+      right: 16%;
+      bottom: 12%;
+
+      height: 26px;
+      border-radius: 50%;
+
+      background: #000b;
+      filter: blur(19px);
+      z-index: 0;
+    }
+
+    .car-art {
+      position: relative;
+      z-index: 1;
+
+      width: 100%;
+      height: auto;
+
+      filter:
+        drop-shadow(0 30px 37px #0009);
+
+      transition:
+        filter .5s,
+        transform .65s var(--ease);
+
+      transform: translateY(0);
+    }
+
+    .configurator.day .car-art {
+      filter:
+        drop-shadow(0 28px 26px #0006);
+    }
+
+    .car-wrap:hover .car-art {
+      transform: translateY(-5px);
+    }
+
+    .painted {
+      fill: var(--paint);
+      transition: fill .55s;
+    }
+
+    .painted-dark {
+      fill: color-mix(
+        in srgb,
+        var(--paint),
+        #000 42%
+      );
+
+      transition: fill .55s;
+    }
+
+    .headlight-glow {
+      opacity: .06;
+      transition: opacity .4s;
+    }
+
+    .configurator.lights-on .headlight-glow {
+      opacity: 1;
+    }
+
+    .headlight-core {
+      fill: #eff9ff;
+      opacity: .26;
+      transition: opacity .4s;
+    }
+
+    .configurator.lights-on .headlight-core {
+      opacity: 1;
+    }
+
+    .configurator.day .headlight-glow {
+      opacity: .12;
+    }
+
+    .configurator.day .headlight-core {
+      opacity: .42;
+    }
+
+    /* ==========================================
+       DESIGN STUDIO CONTROLS
+    ========================================== */
+
+    .config-footer {
+      padding: 20px 30px 26px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      flex-wrap: wrap;
+
+      border-top: 1px solid #ffffff17;
+    }
+
+    .config-label {
+      font: 700 10px Manrope, sans-serif;
+      letter-spacing: .18em;
+      color: #d2d2d2;
+    }
+
+    .swatches {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .swatch-btn {
+      height: 34px;
+      width: 34px;
+      border-radius: 50%;
+
+      background: var(--swatch);
+
+      border: 2px solid #ffffff66;
+      box-shadow: inset 0 0 0 2px #0005;
+
+      transition: transform .25s;
+    }
+
+    .swatch-btn.active {
+      outline: 2px solid white;
+      outline-offset: 4px;
+      transform: scale(1.07);
+    }
+
+    .paint-name {
+      min-width: 150px;
+      text-align: right;
+
+      font: 600 11px Manrope, sans-serif;
+      color: #eee;
+      letter-spacing: .12em;
+    }
+
+    .lights-btn {
+      border: 1px solid #ffffff80;
+      background: transparent;
+      color: white;
+
+      padding: 11px 17px;
+
+      font: 700 10px Manrope, sans-serif;
+      letter-spacing: .13em;
+    }
+
+    .lights-btn[aria-pressed=true] {
+      background: #f2f2ef;
+      color: #111;
+    }
+
+    .studio-note {
+      color: #8e9196;
+      font: 11px/1.6 Manrope, sans-serif;
+      letter-spacing: .03em;
+      margin-top: 20px;
+    }
+
+    /* ==========================================
+       CHAPTER 04 — DETAILS
+    ========================================== */
+
+    .detail {
+      background: var(--paper);
+      color: #161719;
+      padding: 150px 0;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 9%;
+    }
+
+    .detail .eyebrow {
+      color: #5d5e62;
+    }
+
+    .detail .section-title em {
+      color: #8c8d90;
+    }
+
+    .detail .lead {
+      color: #575b61;
+    }
+
+    .detail-art {
+      position: relative;
+      aspect-ratio: 1/1;
+
+      background:
+        radial-gradient(
+          circle at 50% 45%,
+          #61666f,
+          #171a1f 68%
+        );
+
+      overflow: hidden;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .light-object {
+      position: relative;
+
+      width: min(70%, 390px);
+      aspect-ratio: 1/1;
+
+      border-radius: 48% 50% 52% 46%;
+      transform: rotate(-17deg);
+
+      background:
+        radial-gradient(
+          ellipse at 38% 31%,
+          #f6fbff 0%,
+          #c3d4e3 8%,
+          #58758e 19%,
+          #0b1118 36%,
+          #080c12 54%,
+          #8595a0 65%,
+          #141c24 71%
+        );
+
+      box-shadow:
+        inset 0 0 0 9px #151d25,
+        inset 0 0 0 15px #98a4ae,
+        14px 30px 40px #0008,
+        0 0 85px #a4bbd55a;
+    }
+
+    .light-object::before {
+      content: '';
+      position: absolute;
+      inset: 21%;
+
+      border: 3px solid #b4d4ee;
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 21px #dbf2ff,
+        0 0 65px #b3dfff8c,
+        inset 0 0 37px #bcdfff99;
+    }
+
+    .light-object::after {
+      content: '';
+
+      position: absolute;
+      left: 38%;
+      top: 32%;
+
+      width: 29%;
+      height: 28%;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 35% 35%,
+          #fff,
+          #bfdcf2 15%,
+          #0a111a 35%,
+          #030607 65%
+        );
+
+      border: 4px solid #d7e4e9;
+    }
+
+    .detail-art .frame-label {
+      position: absolute;
+      bottom: 22px;
+      left: 25px;
+
+      color: #fff;
+
+      font: 700 10px Manrope, sans-serif;
+      letter-spacing: .18em;
+    }
+
+    .detail-meta {
+      display: flex;
+      gap: 40px;
+
+      margin-top: 45px;
+      padding-top: 23px;
+
+      border-top: 1px solid #999b9d;
+    }
+
+    .detail-meta span {
+      font: 700 10px Manrope, sans-serif;
+      letter-spacing: .17em;
+      color: #737579;
+    }
+
+    .detail-meta strong {
+      display: block;
+
+      font: 600 20px Manrope, sans-serif;
+      letter-spacing: -.03em;
+
+      color: #161719;
+      margin-top: 8px;
+    }
+
+    /* ==========================================
+       FINAL SECTION
+    ========================================== */
+
+    .final {
+      min-height: 730px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      position: relative;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          #232428 0%,
+          #090a0c 70%
+        );
+    }
+
+    .final::before {
+      content: '911';
+
+      position: absolute;
+
+      font: 800 clamp(250px, 43vw, 730px)/1
+        Manrope, sans-serif;
+
+      letter-spacing: -.13em;
+      color: #ffffff05;
+
+      transform: translateX(-4%);
+      pointer-events: none;
+    }
+
+    .final-inner {
+      position: relative;
+      z-index: 1;
+      padding: 100px 18px;
+    }
+
+    .final h2 {
+      margin: 18px 0 32px;
+
+      font: 600 clamp(57px, 9vw, 135px)/.92
+        Manrope, sans-serif;
+
+      letter-spacing: -.09em;
+    }
+
+    .final h2 em {
+      font-style: normal;
+      color: #999ba1;
+    }
+
+    /* ==========================================
+       FOOTER
+    ========================================== */
+
+    .footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+
+      padding: 32px 6%;
+      border-top: 1px solid var(--stroke);
+
+      font: 600 10px/1.6 Manrope, sans-serif;
+      letter-spacing: .13em;
+      color: #97999e;
+    }
+
+    .footer a {
+      color: white;
+    }
+
+    /* ==========================================
+       SCROLL REVEALS
+    ========================================== */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(38px);
+
+      transition:
+        opacity 1s var(--ease),
+        transform 1s var(--ease);
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================
+       HERO INTRO ANIMATION
+    ========================================== */
+
+    .hero .hero-kicker,
+    .hero h1,
+    .hero-description,
+    .hero .cta {
+      animation:
+        heroEnter 1.25s var(--ease) both;
+    }
+
+    .hero h1 {
+      animation-delay: .14s;
+    }
+
+    .hero-description {
+      animation-delay: .3s;
+    }
+
+    .hero .cta {
+      animation-delay: .46s;
+    }
+
+    @keyframes heroEnter {
+      from {
+        opacity: 0;
+        transform: translateY(32px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ==========================================
+       TABLET
+    ========================================== */
+
+    @media (max-width: 950px) {
+
+      .main-nav {
+        gap: 17px;
+      }
+
+      .main-nav > a:not(.outline-button) {
+        display: none;
+      }
+
+      .intro-grid,
+      .detail-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .intro {
+        padding: 110px 0;
+      }
+
+      .spec-band {
+        margin-top: 75px;
+      }
+
+      .editorial {
+        min-height: 650px;
+      }
+
+      .configurator {
+        min-height: unset;
+      }
+
+      .car-wrap {
+        min-height: 330px;
+      }
+
+      .studio-heading {
+        display: block;
+      }
+
+      .paint-name {
+        text-align: left;
+      }
+
+      .detail {
+        padding: 100px 0;
+      }
+
+      .detail-art {
+        max-width: 650px;
+        width: 100%;
+      }
+    }
+
+    /* ==========================================
+       MOBILE
+    ========================================== */
+
+    @media (max-width: 620px) {
+
+      .site-header {
+        padding: 20px 6%;
+      }
+
+      .site-header.scrolled {
+        padding-block: 14px;
+      }
+
+      .brand {
+        font-size: 25px;
+      }
+
+      .brand small {
+        font-size: 7px;
+      }
+
+      .main-nav .outline-button {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .main-nav.open {
+        position: absolute;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+
+        right: 5%;
+        top: 77px;
+
+        width: min(300px, 90vw);
+
+        background: #151619;
+        border: 1px solid #ffffff30;
+
+        padding: 10px;
+      }
+
+      .main-nav.open > a:not(.outline-button) {
+        display: block;
+        padding: 15px;
+        border-bottom: 1px solid #ffffff16;
+      }
+
+      .hero {
+        min-height: 750px;
+      }
+
+      .hero-photo {
+        background-position:
+          center,
+          center,
+          60% center;
+      }
+
+      .hero-inner {
+        width: 88%;
+        padding: 110px 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(120px, 33vw, 200px);
+      }
+
+      .hero-description {
+        margin-top: 26px;
+        max-width: 295px;
+      }
+
+      .hero-bottom {
+        bottom: 24px;
+      }
+
+      .hero-index {
+        display: none;
+      }
+
+      .section-title {
+        font-size: clamp(45px, 12vw, 72px);
+      }
+
+      .spec-band {
+        grid-template-columns: 1fr;
+      }
+
+      .spec,
+      .spec:first-child {
+        padding: 21px 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--stroke);
+      }
+
+      .spec:last-child {
+        border-bottom: 0;
+      }
+
+      .spec strong {
+        font-size: 44px;
+      }
+
+      .editorial {
+        height: 690px;
+        min-height: 0;
+      }
+
+      .editorial-img {
+        background-position:
+          center,
+          center,
+          64% center;
+      }
+
+      .editorial-copy {
+        padding-bottom: 65px;
+      }
+
+      .editorial-copy h2 {
+        font-size: clamp(58px, 16vw, 100px);
+      }
+
+      .studio {
+        padding: 85px 0;
+      }
+
+      .configurator {
+        margin-top: 40px;
+      }
+
+      .config-top {
+        left: 16px;
+        right: 16px;
+        top: 15px;
+      }
+
+      .config-top > span {
+        font-size: 8px;
+      }
+
+      .scene-switch button {
+        padding: 9px;
+        font-size: 9px;
+      }
+
+      .car-wrap {
+        min-height: 260px;
+        margin-top: 60px;
+      }
+
+      .car-art {
+        width: 115%;
+        max-width: none;
+      }
+
+      .config-footer {
+        padding: 20px 15px;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+
+      .config-label {
+        width: 100%;
+      }
+
+      .paint-name {
+        min-width: 100px;
+      }
+
+      .swatches {
+        gap: 9px;
+      }
+
+      .swatch-btn {
+        width: 30px;
+        height: 30px;
+      }
+
+      .detail-meta {
+        gap: 22px;
+      }
+
+      .detail-meta strong {
+        font-size: 15px;
+      }
+
+      .final {
+        min-height: 620px;
+      }
+
+      .final h2 {
+        font-size: clamp(54px, 13vw, 85px);
+      }
+
+      .footer {
+        padding: 25px 6%;
+      }
+    }
+
+    /* ==========================================
+       ACCESSIBILITY
+    ========================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .hero .hero-kicker,
+      .hero h1,
+      .hero-description,
+      .hero .cta {
+        animation: none;
+      }
+
+      .scroll-icon i {
+        animation: none;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================================
+       SCROLL PROGRESS
+  ======================================== -->
+
+  <div class="progress" aria-hidden="true">
+    <span id="progressFill"></span>
+  </div>
+
+  <!-- ========================================
+       HEADER
+  ======================================== -->
+
+  <header class="site-header" id="header">
+
+    <a
+      class="brand"
+      href="#top"
+      aria-label="911 concept, terug naar boven"
+    >
+      911
+      <small>THE ART OF MOTION</small>
+    </a>
+
+    <nav
+      class="main-nav"
+      id="nav"
+      aria-label="Hoofdnavigatie"
+    >
+
+      <a href="#story">
+        THE STORY
+      </a>
+
+      <a href="#design">
+        DESIGN STUDIO
+      </a>
+
+      <a href="#details">
+        DETAILS
+      </a>
+
+      <a
+        href="#design"
+        class="outline-button"
+      >
+        EXPLORE THE 911 ↗
+      </a>
+
+    </nav>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-expanded="false"
+      aria-controls="nav"
+      aria-label="Open menu"
+    >
+      ☰
+    </button>
+
+  </header>
+
+  <main>
+
+    <!-- ======================================
+         HERO
+    ====================================== -->
+
+    <section
+      class="hero"
+      id="top"
+      aria-label="Porsche 911 introductie"
+    >
+
+      <div
+        class="hero-photo"
+        id="heroPhoto"
+        role="img"
+        aria-label="Fotografische opname van een Porsche 911 in een buitenomgeving"
+      ></div>
+
+      <div class="hero-grain"></div>
+
+      <div class="hero-inner">
+
+        <div class="hero-kicker">
+
+          <span class="red-line"></span>
+
+          AN ICON. REIMAGINED.
+
+        </div>
+
+        <h1>
+          THE<br>
+          <span>911.</span>
+        </h1>
+
+        <p class="hero-description">
+
+          Sommige auto's zijn gemaakt om je van A
+          naar B te brengen.
+
+          Andere laten je de rit nooit vergeten.
+
+        </p>
+
+        <a
+          href="#story"
+          class="cta"
+        >
+
+          DISCOVER THE EXPERIENCE
+
+          <span class="arrow">↗</span>
+
+        </a>
+
+      </div>
+
+      <div class="hero-bottom">
+
+        <span class="scroll-icon">
+
+          <i></i>
+
+          SCROLL TO EXPLORE
+
+        </span>
+
+        <span class="hero-index">
+
+          PORSCHE 911
+
+          <b>—</b>
+
+          CONCEPT 01/04
+
+        </span>
+
+      </div>
+
+    </section>
+
+    <!-- ======================================
+         CHAPTER 01 — THE STORY
+    ====================================== -->
+
+    <section class="intro" id="story">
+
+      <div class="section-inner">
+
+        <div class="intro-grid">
+
+          <div class="reveal">
+
+            <span class="eyebrow">
+
+              CHAPTER 01 / THE LEGEND
+
+            </span>
+
+            <h2 class="section-title">
+
+              NOT JUST<br>
+
+              A CAR.<br>
+
+              <em>AN ICON.</em>
+
+            </h2>
+
+          </div>
+
+          <div class="reveal">
+
+            <p class="lead">
+
+              Een tijdloos silhouet.
+
+              Een karakter dat je meteen herkent.
+
+              De Porsche 911 is al generaties lang
+              een symbool van passie voor autorijden.
+
+            </p>
+
+            <span class="chapter-count">
+
+              01 / 04 — UNMISTAKABLE
+
+            </span>
+
+          </div>
+
+        </div>
+
+        <div
+          class="spec-band reveal"
+          aria-label="Kenmerken van het 911-concept"
+        >
+
+          <div class="spec">
+
+            <strong>911</strong>
+
+            <span>THE ICONIC NAME</span>
+
+          </div>
+
+          <div class="spec">
+
+            <strong>1963</strong>
+
+            <span>THE STORY BEGAN</span>
+
+          </div>
+
+          <div class="spec">
+
+            <strong>∞</strong>
+
+            <span>TIMELESS DESIGN</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ======================================
+         CHAPTER 02 — CINEMATIC
+    ====================================== -->
+
+    <section
+      class="editorial"
+      aria-label="Fotografisch hoofdstuk"
+    >
+
+      <div
+        class="editorial-img"
+        id="editorialPhoto"
+      ></div>
+
+      <div class="editorial-copy">
+
+        <span class="eyebrow reveal">
+
+          CHAPTER 02 / PURE EMOTION
+
+        </span>
+
+        <h2 class="reveal">
+
+          BUILT TO<br>
+
+          <strong>BE FELT.</strong>
+
+        </h2>
+
+        <p class="reveal">
+
+          De kracht van een ontwerp zit niet alleen
+          in wat je ziet.
+
+          Maar vooral in wat het bij je oproept.
+
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- ======================================
+         CHAPTER 03 — DESIGN STUDIO
+    ====================================== -->
+
+    <section class="studio" id="design">
+
+      <div class="section-inner">
+
+        <div class="studio-heading">
+
+          <div class="reveal">
+
+            <span class="eyebrow">
+
+              CHAPTER 03 / MAKE IT YOURS
+
+            </span>
+
+            <h2 class="section-title">
+
+              YOUR 911.<br>
+
+              <em>YOUR RULES.</em>
+
+            </h2>
+
+          </div>
+
+          <p class="reveal">
+
+            Experimenteer met de kleur,
+            verander de omgeving en zet de
+            iconische koplampen aan.
+
+            Dit is jouw digitale designstudio.
+
+          </p>
+
+        </div>
+
+        <!-- ==================================
+             CONFIGURATOR
+        ================================== -->
+
+        <div
+          class="configurator reveal"
+          id="configurator"
+        >
+
+          <div class="config-top">
+
+            <span>
+
+              911 / DESIGN STUDY
+
+            </span>
+
+            <div
+              class="scene-switch"
+              role="group"
+              aria-label="Kies de scène"
+            >
+
+              <button
+                type="button"
+                data-scene="night"
+                class="active"
+                aria-pressed="true"
+              >
+
+                NIGHT
+
+              </button>
+
+              <button
+                type="button"
+                data-scene="day"
+                aria-pressed="false"
+              >
+
+                DAYLIGHT
+
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- ==================================
+               INTERACTIVE CAR ILLUSTRATION
+          ================================== -->
+
+          <div class="car-wrap">
+
+            <svg
+              class="car-art"
+              viewBox="0 0 1200 650"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Gedetailleerde conceptillustratie van de voorkant van een Porsche 911, met instelbare lakkleur en koplampen"
+            >
+
+              <!-- GRADIENTS -->
+
+              <defs>
+
+                <linearGradient
+                  id="bodyShade"
+                  x1="0"
+                  y1="0"
+                  x2="1"
+                  y2="1"
+                >
+
+                  <stop
+                    stop-color="#fff"
+                    stop-opacity=".45"
+                  />
+
+                  <stop
+                    offset=".28"
+                    stop-color="#fff"
+                    stop-opacity=".02"
+                  />
+
+                  <stop
+                    offset=".66"
+                    stop-color="#000"
+                    stop-opacity=".32"
+                  />
+
+                  <stop
+                    offset="1"
+                    stop-color="#000"
+                    stop-opacity=".75"
+                  />
+
+                </linearGradient>
+
+                <linearGradient
+                  id="glass"
+                  x1="0"
+                  y1="0"
+                  x2=".5"
+                  y2="1"
+                >
+
+                  <stop stop-color="#49545d"/>
+
+                  <stop
+                    offset=".28"
+                    stop-color="#1d252e"
+                  />
+
+                  <stop
+                    offset=".7"
+                    stop-color="#06090f"
+                  />
+
+                  <stop
+                    offset="1"
+                    stop-color="#191e23"
+                  />
+
+                </linearGradient>
+
+                <linearGradient
+                  id="hoodGlow"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+
+                  <stop
+                    stop-color="#fff"
+                    stop-opacity=".3"
+                  />
+
+                  <stop
+                    offset=".28"
+                    stop-color="#fff"
+                    stop-opacity=".02"
+                  />
+
+                  <stop
+                    offset=".8"
+                    stop-color="#000"
+                    stop-opacity=".16"
+                  />
+
+                  <stop
+                    offset="1"
+                    stop-color="#000"
+                    stop-opacity=".42"
+                  />
+
+                </linearGradient>
+
+                <linearGradient
+                  id="headGlass"
+                  x1="0"
+                  y1="0"
+                  x2="1"
+                  y2="1"
+                >
+
+                  <stop stop-color="#b6c8d4"/>
+
+                  <stop
+                    offset=".25"
+                    stop-color="#111923"
+                  />
+
+                  <stop
+                    offset=".65"
+                    stop-color="#020508"
+                  />
+
+                  <stop
+                    offset="1"
+                    stop-color="#93a2ac"
+                  />
+
+                </linearGradient>
+
+                <radialGradient
+                  id="lamp"
+                  cx="50%"
+                  cy="50%"
+                  r="50%"
+                >
+
+                  <stop stop-color="#fff"/>
+
+                  <stop
+                    offset=".18"
+                    stop-color="#f8ffff"
+                  />
+
+                  <stop
+                    offset=".4"
+                    stop-color="#c5e9ff"
+                  />
+
+                  <stop
+                    offset=".8"
+                    stop-color="#a0d6ff"
+                    stop-opacity=".35"
+                  />
+
+                  <stop
+                    offset="1"
+                    stop-color="#b0e9ff"
+                    stop-opacity="0"
+                  />
+
+                </radialGradient>
+
+                <radialGradient id="flare">
+
+                  <stop
+                    stop-color="#dff4ff"
+                    stop-opacity=".84"
+                  />
+
+                  <stop
+                    offset="1"
+                    stop-color="#dff4ff"
+                    stop-opacity="0"
+                  />
+
+                </radialGradient>
+
+                <linearGradient
+                  id="intake"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+
+                  <stop stop-color="#010204"/>
+
+                  <stop
+                    offset=".55"
+                    stop-color="#12171c"
+                  />
+
+                  <stop
+                    offset="1"
+                    stop-color="#020203"
+                  />
+
+                </linearGradient>
+
+                <filter id="blur">
+
+                  <feGaussianBlur stdDeviation="24"/>
+
+                </filter>
+
+              </defs>
+
+              <!-- SHADOW -->
+
+              <ellipse
+                cx="600"
+                cy="568"
+                rx="420"
+                ry="45"
+                fill="#000"
+                opacity=".43"
+                filter="url(#blur)"
+              />
+
+              <!-- WHEELS -->
+
+              <path
+                d="
+                  M127 460
+                  Q105 493 112 558
+                  Q130 581 177 573
+                  L225 489Z
+
+                  M1073 460
+                  Q1095 493 1088 558
+                  Q1070 581 1023 573
+                  L975 489Z
+                "
+                fill="#0a0b0e"
+                stroke="#222831"
+                stroke-width="9"
+              />
+
+              <path
+                d="
+                  M150 497
+                  L174 497
+                  L175 563
+                  L150 560Z
+
+                  M1026 497
+                  L1050 497
+                  L1050 560
+                  L1026 563Z
+                "
+                fill="#24292d"
+              />
+
+              <!-- UNDERBODY -->
+
+              <path
+                d="
+                  M325 440
+                  L875 440
+                  L904 566
+                  Q600 596 296 566Z
+                "
+                fill="#101116"
+              />
+
+              <!-- ROOF -->
+
+              <path
+                class="painted-dark"
+                d="
+                  M336 326
+                  Q368 174 445 144
+                  Q600 109 755 144
+                  Q832 174 864 326
+                  L811 368
+                  L387 368Z
+                "
+              />
+
+              <!-- WINDSHIELD -->
+
+              <path
+                d="
+                  M380 314
+                  Q399 199 461 173
+                  Q600 147 739 173
+                  Q801 199 820 314
+                  L784 337
+                  L416 337Z
+                "
+                fill="url(#glass)"
+                stroke="#747e87"
+                stroke-width="6"
+              />
+
+              <!-- GLASS REFLECTIONS -->
+
+              <path
+                d="
+                  M414 302
+                  Q449 209 489 182
+                  L510 181
+                  Q467 225 444 312Z
+                "
+                fill="#d9e5ed"
+                opacity=".16"
+              />
+
+              <path
+                d="
+                  M717 183
+                  L736 188
+                  Q777 216 798 301
+                  L770 308
+                  Q750 221 717 183Z
+                "
+                fill="#f3f7fc"
+                opacity=".08"
+              />
+
+              <path
+                d="M398 317Q600 336 802 317"
+                fill="none"
+                stroke="#000"
+                stroke-width="11"
+                opacity=".7"
+              />
+
+              <!-- MAIN BODY -->
+
+              <path
+                class="painted"
+                d="
+                  M199 348
+                  Q213 287 281 258
+                  Q331 239 381 292
+                  Q449 319 600 315
+                  Q751 319 819 292
+                  Q869 239 919 258
+                  Q987 287 1001 348
+                  L1082 435
+                  Q1093 496 1041 551
+                  Q867 585 600 583
+                  Q333 585 159 551
+                  Q107 496 118 435Z
+                "
+                stroke="#ffffff45"
+                stroke-width="3"
+              />
+
+              <path
+                d="
+                  M199 348
+                  Q213 287 281 258
+                  Q331 239 381 292
+                  Q449 319 600 315
+                  Q751 319 819 292
+                  Q869 239 919 258
+                  Q987 287 1001 348
+                  L1082 435
+                  Q1093 496 1041 551
+                  Q867 585 600 583
+                  Q333 585 159 551
+                  Q107 496 118 435Z
+                "
+                fill="url(#bodyShade)"
+              />
+
+              <!-- HOOD -->
+
+              <path
+                class="painted"
+                d="
+                  M381 319
+                  Q600 346 819 319
+                  L917 458
+                  Q600 485 283 458Z
+                "
+                opacity=".95"
+              />
+
+              <path
+                d="
+                  M381 319
+                  Q600 346 819 319
+                  L917 458
+                  Q600 485 283 458Z
+                "
+                fill="url(#hoodGlow)"
+              />
+
+              <path
+                d="
+                  M381 319L283 458
+                  M819 319L917 458
+                "
+                fill="none"
+                stroke="#000"
+                stroke-width="4"
+                opacity=".38"
+              />
+
+              <path
+                d="M404 337Q600 358 796 337"
+                fill="none"
+                stroke="#fff"
+                opacity=".19"
+                stroke-width="3"
+              />
+
+              <path
+                d="M286 451Q600 478 914 451"
+                fill="none"
+                stroke="#050607"
+                opacity=".3"
+                stroke-width="3"
+              />
+
+              <!-- LEFT HEADLIGHT -->
+
+              <g transform="translate(281 375) rotate(-13)">
+
+                <ellipse
+                  rx="112"
+                  ry="96"
+                  fill="#10151a"
+                  stroke="#555c64"
+                  stroke-width="10"
+                />
+
+                <ellipse
+                  rx="103"
+                  ry="87"
+                  fill="url(#headGlass)"
+                  stroke="#d1d4d5"
+                  stroke-width="3"
+                />
+
+                <ellipse
+                  rx="71"
+                  ry="64"
+                  fill="#050a10"
+                  stroke="#60717e"
+                  stroke-width="7"
+                />
+
+                <circle
+                  r="51"
+                  fill="#0e1a24"
+                  stroke="#c8d9e5"
+                  stroke-width="5"
+                />
+
+                <circle
+                  r="31"
+                  class="headlight-core"
+                />
+
+                <circle
+                  r="20"
+                  fill="#111a20"
+                />
+
+                <circle
+                  r="10"
+                  fill="#dceefb"
+                  opacity=".55"
+                />
+
+                <ellipse
+                  cx="-31"
+                  cy="-42"
+                  rx="44"
+                  ry="15"
+                  fill="#fff"
+                  opacity=".24"
+                  transform="rotate(-29 -31 -42)"
+                />
+
+                <circle
+                  r="135"
+                  fill="url(#lamp)"
+                  class="headlight-glow"
+                />
+
+              </g>
+
+              <!-- RIGHT HEADLIGHT -->
+
+              <g transform="translate(919 375) rotate(13)">
+
+                <ellipse
+                  rx="112"
+                  ry="96"
+                  fill="#10151a"
+                  stroke="#555c64"
+                  stroke-width="10"
+                />
+
+                <ellipse
+                  rx="103"
+                  ry="87"
+                  fill="url(#headGlass)"
+                  stroke="#d1d4d5"
+                  stroke-width="3"
+                />
+
+                <ellipse
+                  rx="71"
+                  ry="64"
+                  fill="#050a10"
+                  stroke="#60717e"
+                  stroke-width="7"
+                />
+
+                <circle
+                  r="51"
+                  fill="#0e1a24"
+                  stroke="#c8d9e5"
+                  stroke-width="5"
+                />
+
+                <circle
+                  r="31"
+                  class="headlight-core"
+                />
+
+                <circle
+                  r="20"
+                  fill="#111a20"
+                />
+
+                <circle
+                  r="10"
+                  fill="#dceefb"
+                  opacity=".55"
+                />
+
+                <ellipse
+                  cx="-31"
+                  cy="-42"
+                  rx="44"
+                  ry="15"
+                  fill="#fff"
+                  opacity=".24"
+                  transform="rotate(-29 -31 -42)"
+                />
+
+                <circle
+                  r="135"
+                  fill="url(#lamp)"
+                  class="headlight-glow"
+                />
+
+              </g>
+
+              <!-- FRONT BUMPER -->
+
+              <path
+                d="
+                  M164 468
+                  Q223 484 282 488
+                  Q600 529 918 488
+                  Q977 484 1036 468
+                  L1049 524
+                  Q991 572 600 574
+                  Q209 572 151 524Z
+                "
+                fill="#0e1012"
+                opacity=".79"
+              />
+
+              <path
+                class="painted-dark"
+                d="
+                  M161 472
+                  Q211 494 276 492
+                  L339 521
+                  Q600 553 861 521
+                  L924 492
+                  Q989 494 1039 472
+                  L1046 512
+                  Q1004 549 600 550
+                  Q196 549 154 512Z
+                "
+              />
+
+              <!-- AIR INTAKE -->
+
+              <path
+                d="
+                  M375 514
+                  Q600 535 825 514
+                  L792 558
+                  Q600 578 408 558Z
+                "
+                fill="url(#intake)"
+                stroke="#525b62"
+                stroke-width="4"
+              />
+
+              <path
+                d="M422 540Q600 555 778 540"
+                stroke="#8b969e"
+                opacity=".22"
+                stroke-width="2"
+              />
+
+              <!-- LEFT INTAKE -->
+
+              <path
+                d="
+                  M188 486
+                  L294 503
+                  L310 541
+                  L177 525Z
+                "
+                fill="url(#intake)"
+              />
+
+              <!-- RIGHT INTAKE -->
+
+              <path
+                d="
+                  M1012 486
+                  L906 503
+                  L890 541
+                  L1023 525Z
+                "
+                fill="url(#intake)"
+              />
+
+              <!-- DAYTIME LIGHTS -->
+
+              <path
+                d="
+                  M208 491L277 501
+                  M992 491L923 501
+                "
+                stroke="#f8fcff"
+                opacity=".8"
+                stroke-width="7"
+                stroke-linecap="round"
+              />
+
+              <!-- HOOD BADGE STUDY -->
+
+              <path
+                d="
+                  M587 422
+                  L613 422
+                  L609 450
+                  L600 458
+                  L591 450Z
+                "
+                fill="#b7a26d"
+                stroke="#473514"
+                stroke-width="2"
+              />
+
+              <path
+                d="
+                  M591 430L609 430
+                  M594 437L606 437
+                  M595 445L605 445
+                "
+                stroke="#422c16"
+                stroke-width="3"
+              />
+
+              <!-- LOWER BODY REFLECTION -->
+
+              <path
+                d="M151 541Q600 590 1049 541"
+                fill="none"
+                stroke="#fff"
+                stroke-opacity=".15"
+                stroke-width="5"
+              />
+
+              <!-- LEFT FENDER REFLECTION -->
+
+              <path
+                d="M222 290Q278 249 323 278"
+                fill="none"
+                stroke="#fff"
+                stroke-opacity=".26"
+                stroke-width="8"
+                stroke-linecap="round"
+              />
+
+              <!-- RIGHT FENDER REFLECTION -->
+
+              <path
+                d="M977 290Q921 249 876 278"
+                fill="none"
+                stroke="#fff"
+                stroke-opacity=".26"
+                stroke-width="8"
+                stroke-linecap="round"
+              />
+
+              <!-- FLOOR LIGHT -->
+
+              <ellipse
+                cx="600"
+                cy="610"
+                rx="350"
+                ry="9"
+                fill="#fff"
+                opacity=".08"
+                filter="url(#blur)"
+              />
+
+            </svg>
+
+          </div>
+
+          <!-- ==================================
+               CONFIGURATION CONTROLS
+          ================================== -->
+
+          <div class="config-footer">
+
+            <span class="config-label">
+              EXTERIOR COLOUR
+            </span>
+
+            <div
+              class="swatches"
+              id="swatches"
+              role="group"
+              aria-label="Kies een lakkleur"
+            >
+
+              <button
+                type="button"
+                class="swatch-btn active"
+                style="--swatch:#bbbdbd"
+                data-color="#bbbdbd"
+                data-name="GT SILVER"
+                aria-label="GT Silver"
+                aria-pressed="true"
+              ></button>
+
+              <button
+                type="button"
+                class="swatch-btn"
+                style="--swatch:#151719"
+                data-color="#151719"
+                data-name="JET BLACK"
+                aria-label="Jet Black"
+                aria-pressed="false"
+              ></button>
+
+              <button
+                type="button"
+                class="swatch-btn"
+                style="--swatch:#b71e21"
+                data-color="#b71e21"
+                data-name="CARMINE RED"
+                aria-label="Carmine Red"
+                aria-pressed="false"
+              ></button>
+
+              <button
+                type="button"
+                class="swatch-btn"
+                style="--swatch:#244258"
+                data-color="#244258"
+                data-name="NIGHT BLUE"
+                aria-label="Night Blue"
+                aria-pressed="false"
+              ></button>
+
+              <button
+                type="button"
+                class="swatch-btn"
+                style="--swatch:#eee6d4"
+                data-color="#eee6d4"
+                data-name="CHALK"
+                aria-label="Chalk"
+                aria-pressed="false"
+              ></button>
+
+            </div>
+
+            <span
+              class="paint-name"
+              id="paintName"
+              aria-live="polite"
+            >
+              GT SILVER
+            </span>
+
+            <button
+              type="button"
+              class="lights-btn"
+              id="lightsBtn"
+              aria-pressed="false"
+            >
+              ✳ LIGHTS OFF
+            </button>
+
+          </div>
+
+        </div>
+
+        <p class="studio-note">
+
+          DESIGN STUDY / INTERACTIEVE SVG-ILLUSTRATIE —
+          GEEN OFFICIËLE PORSCHE-CONFIGURATOR OF 3D-MODEL.
+
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- ======================================
+         CHAPTER 04 — DETAILS
+    ====================================== -->
+
+    <section class="detail" id="details">
+
+      <div class="section-inner detail-grid">
+
+        <div
+          class="detail-art reveal"
+          aria-label="Artistieke close-up van een ronde sportautokoplamp"
+        >
+
+          <div
+            class="light-object"
+            aria-hidden="true"
+          ></div>
+
+          <span class="frame-label">
+
+            DETAIL STUDY / LIGHT DESIGN
+
+          </span>
+
+        </div>
+
+        <div class="reveal">
+
+          <span class="eyebrow">
+
+            CHAPTER 04 / EVERY DETAIL MATTERS
+
+          </span>
+
+          <h2 class="section-title">
+
+            DESIGNED<br>
+
+            TO BE<br>
+
+            <em>REMEMBERED.</em>
+
+          </h2>
+
+          <p class="lead">
+
+            Eén blik op de ronde koplampen is genoeg.
+
+            De kracht van een icoon?
+
+            Herkenbaarheid, zelfs wanneer je de naam
+            niet ziet.
+
+          </p>
+
+          <div class="detail-meta">
+
+            <div>
+
+              <span>THE SIGNATURE</span>
+
+              <strong>ROUND HEADLIGHTS</strong>
+
+            </div>
+
+            <div>
+
+              <span>THE FEELING</span>
+
+              <strong>PURE EMOTION</strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ======================================
+         FINAL
+    ====================================== -->
+
+    <section class="final" id="final">
+
+      <div class="final-inner reveal">
+
+        <span class="eyebrow">
+
+          THE ART OF MOTION
+
+        </span>
+
+        <h2>
+
+          NEVER<br>
+
+          <em>ORDINARY.</em>
+
+        </h2>
+
+        <a
+          class="cta"
+          href="#top"
+        >
+
+          EXPERIENCE IT AGAIN
+
+          <span class="arrow">↑</span>
+
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================================
+       FOOTER
+  ======================================== -->
+
+  <footer class="footer">
+
+    <span>
+
+      911 / THE ART OF MOTION — DESIGN CONCEPT
+
+    </span>
+
+    <span>
+
+      ONOFFICIEEL FANCONCEPT.
+      NIET VERBONDEN AAN PORSCHE AG.
+
+    </span>
+
+    <a href="#top">
+
+      BACK TO TOP ↑
+
+    </a>
+
+  </footer>
+
+  <!-- ========================================
+       JAVASCRIPT
+  ======================================== -->
+
+  <script>
+
+    'use strict';
+
+    /* ======================================
+       ELEMENTS
+    ====================================== */
+
+    const header =
+      document.getElementById('header');
+
+    const progress =
+      document.getElementById('progressFill');
+
+    const heroPhoto =
+      document.getElementById('heroPhoto');
+
+    const editorialPhoto =
+      document.getElementById('editorialPhoto');
+
+    const reduceMotion =
+      window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+
+    let scheduled = false;
+
+    /* ======================================
+       SCROLL ANIMATION
+    ====================================== */
+
+    function onScroll() {
+
+      if (scheduled) {
+        return;
+      }
+
+      scheduled = true;
+
+      requestAnimationFrame(() => {
+
+        const y = window.scrollY || 0;
+
+        const max = Math.max(
+          1,
+          document.documentElement.scrollHeight -
+          window.innerHeight
+        );
+
+        /* PROGRESS BAR */
+
+        progress.style.width =
+          `${Math.min(100, y / max * 100)}%`;
+
+        /* HEADER */
+
+        header.classList.toggle(
+          'scrolled',
+          y > 50
+        );
+
+        if (!reduceMotion) {
+
+          const h = window.innerHeight;
+
+          /* HERO CAMERA ZOOM */
+
+          heroPhoto.style.transform =
+
+            `scale(${
+              1.08 +
+              Math.min(y / h, 1.3) * .075
+            }) translateY(${
+              Math.min(y * .12, 130)
+            }px)`;
+
+          /* EDITORIAL CAMERA MOVEMENT */
+
+          const el =
+            editorialPhoto.parentElement;
+
+          const rect =
+            el.getBoundingClientRect();
+
+          if (
+            rect.top < h &&
+            rect.bottom > 0
+          ) {
+
+            const relative =
+
+              (h - rect.top) /
+              (h + rect.height);
+
+            editorialPhoto.style.transform =
+
+              `scale(1.16) translateY(${
+                (relative - .5) * 65
+              }px)`;
+
+          }
+
+        }
+
+        scheduled = false;
+
+      });
+
+    }
+
+    window.addEventListener(
+      'scroll',
+      onScroll,
+      { passive: true }
+    );
+
+    window.addEventListener(
+      'resize',
+      onScroll
+    );
+
+    onScroll();
+
+    /* ======================================
+       SCROLL REVEAL
+    ====================================== */
+
+    const revealItems =
+      document.querySelectorAll('.reveal');
+
+    if (
+      'IntersectionObserver' in window &&
+      !reduceMotion
+    ) {
+
+      const observer =
+        new IntersectionObserver(
+
+          entries => {
+
+            for (const entry of entries) {
+
+              if (entry.isIntersecting) {
+
+                entry.target.classList.add(
+                  'in-view'
+                );
+
+                observer.unobserve(
+                  entry.target
+                );
+
+              }
+
+            }
+
+          },
+
+          {
+            threshold: .12,
+            rootMargin: '0px 0px -25px 0px'
+          }
+
+        );
+
+      revealItems.forEach(el => {
+        observer.observe(el);
+      });
+
+    } else {
+
+      revealItems.forEach(el => {
+        el.classList.add('in-view');
+      });
+
+    }
+
+    /* ======================================
+       MOBILE MENU
+    ====================================== */
+
+    const menuToggle =
+      document.getElementById('menuToggle');
+
+    const nav =
+      document.getElementById('nav');
+
+    menuToggle.addEventListener(
+      'click',
+      () => {
+
+        const isOpen =
+          nav.classList.toggle('open');
+
+        menuToggle.setAttribute(
+          'aria-expanded',
+          String(isOpen)
+        );
+
+        menuToggle.setAttribute(
+          'aria-label',
+          isOpen
+            ? 'Sluit menu'
+            : 'Open menu'
+        );
+
+        menuToggle.textContent =
+          isOpen ? '✕' : '☰';
+
+      }
+    );
+
+    nav.querySelectorAll('a').forEach(link => {
+
+      link.addEventListener(
+        'click',
+        () => {
+
+          nav.classList.remove('open');
+
+          menuToggle.setAttribute(
+            'aria-expanded',
+            'false'
+          );
+
+          menuToggle.setAttribute(
+            'aria-label',
+            'Open menu'
+          );
+
+          menuToggle.textContent = '☰';
+
+        }
+      );
+
+    });
+
+    /* ======================================
+       CAR DESIGN STUDIO
+    ====================================== */
+
+    const studio =
+      document.getElementById('configurator');
+
+    const swatches =
+      document.getElementById('swatches');
+
+    const paintName =
+      document.getElementById('paintName');
+
+    /* ======================================
+       CHANGE PAINT COLOUR
+    ====================================== */
+
+    swatches.addEventListener(
+      'click',
+      event => {
+
+        const selected =
+          event.target.closest(
+            'button[data-color]'
+          );
+
+        if (!selected) {
+          return;
+        }
+
+        /* UPDATE CAR */
+
+        studio.style.setProperty(
+          '--paint',
+          selected.dataset.color
+        );
+
+        /* UPDATE NAME */
+
+        paintName.textContent =
+          selected.dataset.name;
+
+        /* UPDATE BUTTONS */
+
+        swatches
+          .querySelectorAll('button')
+          .forEach(button => {
+
+            const active =
+              button === selected;
+
+            button.classList.toggle(
+              'active',
+              active
+            );
+
+            button.setAttribute(
+              'aria-pressed',
+              String(active)
+            );
+
+          });
+
+      }
+    );
+
+    /* ======================================
+       DAY / NIGHT SELECTOR
+    ====================================== */
+
+    document
+      .querySelectorAll('[data-scene]')
+      .forEach(button => {
+
+        button.addEventListener(
+          'click',
+          () => {
+
+            const day =
+              button.dataset.scene === 'day';
+
+            studio.classList.toggle(
+              'day',
+              day
+            );
+
+            document
+              .querySelectorAll('[data-scene]')
+              .forEach(other => {
+
+                const active =
+                  other === button;
+
+                other.classList.toggle(
+                  'active',
+                  active
+                );
+
+                other.setAttribute(
+                  'aria-pressed',
+                  String(active)
+                );
+
+              });
+
+          }
+        );
+
+      });
+
+    /* ======================================
+       HEADLIGHTS ON / OFF
+    ====================================== */
+
+    const lightsBtn =
+      document.getElementById('lightsBtn');
+
+    lightsBtn.addEventListener(
+      'click',
+      () => {
+
+        const on =
+          studio.classList.toggle(
+            'lights-on'
+          );
+
+        lightsBtn.setAttribute(
+          'aria-pressed',
+          String(on)
+        );
+
+        lightsBtn.textContent =
+
+          on
+            ? '✳ LIGHTS ON'
+            : '✳ LIGHTS OFF';
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
