@@ -1,16 +1,44 @@
 <!doctype html>
 <html lang="nl">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080b10">
-<meta name="description" content="Onofficiële Porsche 911 GT3 RS cinematic experience. Een scrollgestuurde autoreclame met een interactieve filmstudio.">
-<title>911 GT3 RS — THE CINEMATIC EXPERIENCE</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta
+  name="theme-color"
+  content="#080b10"
+>
+
+<meta
+  name="description"
+  content="Porsche 911 GT3 RS cinematic experience."
+>
+
+<title>
+  911 GT3 RS — THE CINEMATIC EXPERIENCE
+</title>
+
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+>
+
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
 
 <style>
 
@@ -170,9 +198,6 @@ nav a:hover {
 
 /* ==========================================
    CINEMATIC FILM
-
-   ONE FILM.
-   NO 3D RENDERER.
 ========================================== */
 
 .film {
@@ -184,23 +209,18 @@ nav a:hover {
 .film-pin {
   position: sticky;
   top: 0;
+
   height: 100vh;
   height: 100svh;
+
   overflow: hidden;
   isolation: isolate;
 }
 
-canvas {
-  display: block;
-}
-
-/* ==========================================
-   FULLSCREEN VIDEO
-========================================== */
-
 .film-video {
   position: absolute;
   inset: 0;
+
   width: 100%;
   height: 100%;
 
@@ -209,7 +229,6 @@ canvas {
 
   display: block;
   z-index: 1;
-  will-change: auto;
 }
 
 /* ==========================================
@@ -238,7 +257,7 @@ canvas {
 }
 
 /* ==========================================
-   DARKNESS / HEADLIGHT REVEAL
+   DARK INTRO
 ========================================== */
 
 #darkness {
@@ -253,7 +272,7 @@ canvas {
 }
 
 /* ==========================================
-   LIGHT FLASH
+   LED FLASH
 ========================================== */
 
 #lightPulse {
@@ -261,9 +280,10 @@ canvas {
   inset: 0;
 
   background: #d6e6f7;
-  mix-blend-mode: screen;
 
+  mix-blend-mode: screen;
   opacity: 0;
+
   pointer-events: none;
   z-index: 4;
 }
@@ -301,19 +321,22 @@ canvas {
 }
 
 /* ==========================================
-   BOTTOM FILM COPY
+   FILM CAPTIONS
 ========================================== */
 
 .film-bottom {
   position: absolute;
+
   bottom: 6%;
   left: 5%;
   right: 5%;
+
   z-index: 6;
 
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
   gap: 24px;
 
   pointer-events: none;
@@ -356,7 +379,7 @@ canvas {
 }
 
 /* ==========================================
-   FINAL TITLE OVER FILM
+   FINAL FILM TITLE
 ========================================== */
 
 #endTitle {
@@ -371,9 +394,7 @@ canvas {
   pointer-events: none;
 
   opacity: 0;
-
   background: #070b12b5;
-  backdrop-filter: blur(0px);
 }
 
 #endTitle h2 {
@@ -394,17 +415,13 @@ canvas {
 }
 
 /* ==========================================
-   WRAPPER
+   STORY
 ========================================== */
 
 .wrap {
   max-width: 1400px;
   margin: auto;
 }
-
-/* ==========================================
-   STORY
-========================================== */
 
 .story {
   padding: 135px 6%;
@@ -427,6 +444,7 @@ canvas {
 .story-grid {
   display: grid;
   grid-template-columns: 1.15fr .85fr;
+
   gap: 10%;
   align-items: end;
 }
@@ -434,6 +452,7 @@ canvas {
 .story h2 {
   font-size: clamp(65px, 9vw, 138px);
   font-weight: 600;
+
   letter-spacing: -.105em;
   line-height: .88;
 
@@ -484,6 +503,7 @@ canvas {
   font-size: clamp(30px, 4vw, 58px);
   letter-spacing: -.075em;
   font-weight: 600;
+
   display: block;
 }
 
@@ -495,9 +515,6 @@ canvas {
 
 /* ==========================================
    DESIGN STUDIO
-
-   REAL FILM FRAMES
-   NOT FAKE 3D
 ========================================== */
 
 .studio {
@@ -523,6 +540,7 @@ canvas {
 .studio h2 {
   font-weight: 600;
   letter-spacing: -.085em;
+
   font-size: clamp(55px, 7.4vw, 115px);
   line-height: .93;
 
@@ -538,7 +556,7 @@ canvas {
 }
 
 /* ==========================================
-   STUDIO GRID
+   DESIGN STUDIO GRID
 ========================================== */
 
 .studio-grid {
@@ -551,12 +569,9 @@ canvas {
   gap: 17px;
 }
 
-/* ==========================================
-   STUDIO PREVIEW
-========================================== */
-
 .preview {
   position: relative;
+
   min-height: 550px;
 
   background: #303c47;
@@ -576,9 +591,7 @@ canvas {
   object-fit: contain;
   background: #141b23;
 
-  transition:
-    filter .35s,
-    transform .5s;
+  transition: filter .35s;
 
   pointer-events: none;
 }
@@ -599,14 +612,15 @@ canvas {
 
 .preview-footer {
   position: absolute;
+
   bottom: 17px;
   left: 17px;
   right: 17px;
 
   display: flex;
   justify-content: space-between;
-  gap: 15px;
 
+  gap: 15px;
   color: #f3f6f8;
 
   font: 10px 'DM Mono', monospace;
@@ -622,16 +636,19 @@ canvas {
 .controls {
   background: #e8edf0;
   border: 1px solid #92a0aa;
+
   padding: 26px;
 
   display: flex;
   flex-direction: column;
+
   gap: 24px;
 }
 
 .controls h3 {
   font-weight: 700;
   font-size: 29px;
+
   line-height: 1.08;
   letter-spacing: -.07em;
 
@@ -641,18 +658,15 @@ canvas {
 .control-label {
   font: 10px 'DM Mono', monospace;
   letter-spacing: .14em;
+
   color: #42596c;
 }
-
-/* ==========================================
-   CAMERA BUTTONS
-========================================== */
 
 .button-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 7px;
 
+  gap: 7px;
   margin-top: 12px;
 }
 
@@ -662,28 +676,25 @@ canvas {
 
   background: transparent;
   border: 1px solid #8396a5;
+
   color: #233749;
 
   font: 10px 'DM Mono', monospace;
-  letter-spacing: .03em;
 }
 
 .button-grid button.active,
 .looks button.active {
   background: #1c3346;
   color: #fff;
+
   border-color: #1c3346;
 }
-
-/* ==========================================
-   LIGHTING CONTROLS
-========================================== */
 
 .looks {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
 
+  gap: 8px;
   margin-top: 12px;
 }
 
@@ -694,6 +705,7 @@ canvas {
 .range {
   width: 100%;
   margin-top: 16px;
+
   accent-color: #183448;
 }
 
@@ -708,17 +720,14 @@ canvas {
 .control-note {
   font-size: 12px;
   line-height: 1.65;
-  color: #526778;
 
+  color: #526778;
   margin: 12px 0 0;
 }
 
-/* ==========================================
-   RESET BUTTON
-========================================== */
-
 .reset {
   border: 0;
+
   background: #1c3346;
   color: white;
 
@@ -730,14 +739,9 @@ canvas {
   margin-top: auto;
 }
 
-/* ==========================================
-   FOOTNOTE
-========================================== */
-
 .legal {
   font: 10px/1.9 'DM Mono', monospace;
   color: #435769;
-
   margin-top: 25px;
 }
 
@@ -764,6 +768,7 @@ canvas {
 .final h2 {
   font-size: clamp(65px, 11vw, 175px);
   font-weight: 600;
+
   letter-spacing: -.095em;
   line-height: .95;
 
@@ -792,11 +797,11 @@ canvas {
 footer {
   display: flex;
   justify-content: space-between;
+
   gap: 20px;
   flex-wrap: wrap;
 
   padding: 27px 6%;
-
   border-top: 1px solid #ffffff2c;
 
   font: 10px/1.7 'DM Mono', monospace;
@@ -845,10 +850,6 @@ footer {
   color: #bac5ce;
 }
 
-/* ==========================================
-   LOADING PROGRESS
-========================================== */
-
 .loading-line {
   height: 2px;
   width: min(210px, 60vw);
@@ -871,25 +872,24 @@ footer {
 #loadError {
   color: #ffc3bd !important;
   max-width: 530px;
-
-  letter-spacing: 0 !important;
 }
 
 #retry {
   display: none;
+
   margin: 20px auto 0;
 
   background: #e8edf0;
   border: 0;
-  color: #111b26;
 
+  color: #111b26;
   padding: 13px 19px;
 
   font: 11px 'DM Mono', monospace;
 }
 
 /* ==========================================
-   SCROLL REVEALS
+   SCROLL REVEAL
 ========================================== */
 
 .reveal {
@@ -907,12 +907,13 @@ footer {
 }
 
 /* ==========================================
-   TABLET
+   RESPONSIVE
 ========================================== */
 
 @media (max-width: 900px) {
 
-  .studio-grid {
+  .studio-grid,
+  .story-grid {
     grid-template-columns: 1fr;
   }
 
@@ -940,10 +941,6 @@ footer {
 
 }
 
-/* ==========================================
-   MOBILE
-========================================== */
-
 @media (max-width: 630px) {
 
   header {
@@ -960,6 +957,7 @@ footer {
 
   nav {
     display: none;
+
     position: absolute;
     top: 71px;
     right: 6%;
@@ -1013,11 +1011,6 @@ footer {
     padding: 95px 6%;
   }
 
-  .story-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-
   .story h2 {
     font-size: clamp(55px, 13vw, 85px);
   }
@@ -1062,10 +1055,6 @@ footer {
 
 }
 
-/* ==========================================
-   ACCESSIBILITY
-========================================== */
-
 @media (prefers-reduced-motion: reduce) {
 
   html {
@@ -1090,7 +1079,7 @@ footer {
 <body>
 
 <!-- ==========================================
-     SCROLL PROGRESS
+     PROGRESS
 ========================================== -->
 
 <div id="progress"></div>
@@ -1188,7 +1177,7 @@ footer {
 <main>
 
 <!-- ==========================================
-     SCROLL-DRIVEN FILM
+     CINEMATIC FILM
 ========================================== -->
 
 <section
@@ -1199,9 +1188,7 @@ footer {
 
   <div class="film-pin">
 
-    <!-- ==================================
-         YOUR REAL HAILUO VIDEO
-    ================================== -->
+    <!-- THE REAL VIDEO -->
 
     <video
       id="filmVideo"
@@ -1220,35 +1207,19 @@ footer {
 
     </video>
 
-    <!-- ==================================
-         CINEMATIC EFFECTS
-    ================================== -->
-
     <div class="film-shade"></div>
 
     <div id="darkness"></div>
 
     <div id="lightPulse"></div>
 
-    <!-- ==================================
-         TOP TEXT
-    ================================== -->
-
     <div class="film-topline">
-
       911 GT3 RS / WHITE EDITION
-
     </div>
 
     <div class="film-side">
-
       ONE CAMERA. ONE LEGEND.
-
     </div>
-
-    <!-- ==================================
-         FILM CAPTIONS
-    ================================== -->
 
     <div class="film-bottom">
 
@@ -1262,15 +1233,11 @@ footer {
         </span>
 
         <h1 id="sceneTitle">
-
           BORN IN THE DARK.
-
         </h1>
 
         <p id="sceneDesc">
-
           THE MOMENT BEFORE THE REVEAL
-
         </p>
 
       </div>
@@ -1279,16 +1246,10 @@ footer {
         class="film-cue"
         id="scrollCue"
       >
-
         SCROLL TO ORBIT ↓
-
       </div>
 
     </div>
-
-    <!-- ==================================
-         FINAL FILM TITLE
-    ================================== -->
 
     <div id="endTitle">
 
@@ -1315,7 +1276,7 @@ footer {
 </section>
 
 <!-- ==========================================
-     STORY
+     THE STORY
 ========================================== -->
 
 <section
@@ -1330,9 +1291,7 @@ footer {
       <div class="reveal">
 
         <span class="eyebrow">
-
           PORSCHE / 911 GT3 RS
-
         </span>
 
         <h2>
@@ -1401,7 +1360,7 @@ footer {
 </section>
 
 <!-- ==========================================
-     INTERACTIVE DESIGN STUDIO
+     DESIGN STUDIO
 ========================================== -->
 
 <section
@@ -1416,9 +1375,7 @@ footer {
       <div>
 
         <span class="eyebrow">
-
           THE DESIGN STUDIO
-
         </span>
 
         <h2>
@@ -1432,10 +1389,11 @@ footer {
 
       <p>
 
-        Dezelfde Porsche, maar nu kun je zelf
-        door de camerabeelden bewegen,
-        een standpunt kiezen en de lichtsfeer
-        aanpassen.
+        Bekijk de Porsche vanuit verschillende
+        camerahoeken.
+
+        Beweeg door de film, kies een standpunt
+        en verander de lichtsfeer.
 
         Zonder zwaar 3D-model.
 
@@ -1445,9 +1403,7 @@ footer {
 
     <div class="studio-grid">
 
-      <!-- ==================================
-           VIDEO PREVIEW
-      ================================== -->
+      <!-- VIDEO PREVIEW -->
 
       <div class="preview">
 
@@ -1457,36 +1413,28 @@ footer {
           playsinline
           preload="none"
           disablepictureinpicture
-          aria-label="Interactieve Porsche-video met verstelbare camerahoek"
+          aria-label="Interactieve Porsche-video"
         ></video>
 
         <span class="preview-badge">
-
           911 / INTERACTIVE FILM STUDIO
-
         </span>
 
         <div class="preview-footer">
 
           <span id="angleLabel">
-
             FRONT THREE-QUARTER
-
           </span>
 
           <span id="timeLabel">
-
             03.8 S
-
           </span>
 
         </div>
 
       </div>
 
-      <!-- ==================================
-           STUDIO CONTROLS
-      ================================== -->
+      <!-- CONFIGURATION CONTROLS -->
 
       <aside class="controls">
 
@@ -1497,16 +1445,12 @@ footer {
 
         </h3>
 
-        <!-- ==============================
-             CAMERA PRESETS
-        ============================== -->
+        <!-- CAMERA PRESETS -->
 
         <div>
 
           <div class="control-label">
-
             CAMERA POSITION
-
           </div>
 
           <div
@@ -1543,9 +1487,7 @@ footer {
 
         </div>
 
-        <!-- ==============================
-             FILM SCRUB SLIDER
-        ============================== -->
+        <!-- CAMERA SLIDER -->
 
         <div>
 
@@ -1553,9 +1495,7 @@ footer {
             class="control-label"
             for="angleRange"
           >
-
             MOVE THROUGH THE FILM
-
           </label>
 
           <input
@@ -1570,17 +1510,11 @@ footer {
 
           <div class="range-labels">
 
-            <span>
-              FRONT
-            </span>
+            <span>FRONT</span>
 
-            <span>
-              SIDE
-            </span>
+            <span>SIDE</span>
 
-            <span>
-              REAR
-            </span>
+            <span>REAR</span>
 
           </div>
 
@@ -1589,23 +1523,19 @@ footer {
             Sleep de schuif om de Porsche
             vanuit andere hoeken te bekijken.
 
-            Dit zijn echte frames uit
-            jouw video.
+            Dit zijn echte beelden
+            uit jouw video.
 
           </p>
 
         </div>
 
-        <!-- ==============================
-             LIGHTING PRESETS
-        ============================== -->
+        <!-- LIGHTING -->
 
         <div>
 
           <div class="control-label">
-
             STUDIO LIGHTING LOOK
-
           </div>
 
           <div
@@ -1650,37 +1580,26 @@ footer {
 
           <p class="control-note">
 
-            De lichtstanden zijn beeldfilters,
-            geen aanpassingen aan een 3D-model.
+            Deze standen veranderen de
+            kleurcorrectie van de video.
 
-            De Porsche blijft in zijn
-            oorspronkelijke witte lak.
+            De Porsche blijft wit.
 
           </p>
 
         </div>
-
-        <!-- ==============================
-             RESET
-        ============================== -->
 
         <button
           type="button"
           class="reset"
           id="resetStudio"
         >
-
           ↺ RESET VIEW
-
         </button>
 
       </aside>
 
     </div>
-
-    <!-- ==================================
-         LEGAL NOTE
-    ================================== -->
 
     <p class="legal">
 
@@ -1693,8 +1612,7 @@ footer {
       GEEN REALTIME 3D-MODEL.
 
       VOOR PUBLICATIE GELDEN DE
-      GEBRUIKSVOORWAARDEN VAN DE
-      VIDEOGENERATOR.
+      GEBRUIKSVOORWAARDEN VAN DE VIDEOGENERATOR.
 
     </p>
 
@@ -1711,9 +1629,7 @@ footer {
   <div class="reveal">
 
     <span class="eyebrow">
-
       THE CINEMATIC EXPERIENCE
-
     </span>
 
     <h2>
@@ -1724,9 +1640,7 @@ footer {
     </h2>
 
     <a href="#top">
-
       EXPERIENCE IT AGAIN ↑
-
     </a>
 
   </div>
@@ -1742,27 +1656,21 @@ footer {
 <footer>
 
   <span>
-
     911 / INDEPENDENT CINEMATIC CONCEPT
-
   </span>
 
   <span>
-
-    VIDEO-DRIVEN · LIGHTWEIGHT EXPERIENCE
-
+    VIDEO-DRIVEN · PERFORMANCE V4
   </span>
 
   <a href="#top">
-
     BACK TO TOP ↑
-
   </a>
 
 </footer>
 
 <!-- ==========================================
-     FULL JAVASCRIPT
+     OPTIMIZED JAVASCRIPT
 ========================================== -->
 
 <script>
@@ -1770,284 +1678,385 @@ footer {
 'use strict';
 
 /* ==========================================
-   DOM HELPERS
+   HELPERS
 ========================================== */
 
-const $ = s =>
-  document.querySelector(s);
+const $ = selector =>
+  document.querySelector(selector);
 
-const $$ = s =>
-  [...document.querySelectorAll(s)];
-
-/* ==========================================
-   MATH HELPERS
-========================================== */
+const $$ = selector =>
+  [...document.querySelectorAll(selector)];
 
 const clamp = (
   n,
-  a = 0,
-  b = 1
+  min = 0,
+  max = 1
 ) =>
-
   Math.max(
-
-    a,
-
-    Math.min(b, n)
-
+    min,
+    Math.min(max, n)
   );
 
-const lerp = (
+const mix = (
   a,
   b,
   t
 ) =>
-
   a + (b - a) * t;
 
+const ease = t => {
+
+  t = clamp(t);
+
+  return t * t * (3 - 2 * t);
+
+};
+
 /* ==========================================
-   ACCESSIBILITY
+   DEVICE SETTINGS
 ========================================== */
 
-const reduced = window.matchMedia(
+const reducedMotion = matchMedia(
 
-  '(prefers-reduced-motion:reduce)'
+  '(prefers-reduced-motion: reduce)'
 
 ).matches;
 
 /* ==========================================
-   ELEMENTS
+   DOM ELEMENTS
 ========================================== */
 
-const film =
-  $('#filmVideo');
+const film = $('#filmVideo');
 
-const studio =
-  $('#studioVideo');
+const studio = $('#studioVideo');
 
-const loader =
-  $('#loader');
+const filmSection = $('#top');
 
-const dark =
-  $('#darkness');
+const darkness = $('#darkness');
 
-const pulse =
-  $('#lightPulse');
+const pulse = $('#lightPulse');
+
+const loader = $('#loader');
 
 /* ==========================================
-   ANIMATION STATE
+   STATE
 ========================================== */
 
-let loaded = false;
+let ready = false;
 
-let started = 0;
+let introStart = 0;
 
-let duration = 12.25;
+let introFinished = false;
 
-let filmTarget = 0;
+let introFrame = 0;
 
-let filmWanted = 0;
-
-let studioWanted = 3.8;
-
-let studioReady = false;
+let filmVisible = true;
 
 let studioVisible = false;
 
-let lastScene = '';
+let studioReady = false;
+
+let studioWanted = 3.8;
+
+let studioLoaded = false;
+
+let lastChapter = '';
+
+let fullDuration = 12.25;
+
+let scrollRaf = 0;
 
 /* ==========================================
-   INTRO TIMING
+   PERFORMANCE SETTINGS
 ========================================== */
 
 /*
-  The source video already contains
-  illuminated headlights.
+  BELANGRIJK!
 
-  The website initially covers the film
-  with darkness.
+  In de vorige versie werd voortdurend
+  geprobeerd de film te verplaatsen.
 
-  After 1500ms, it reveals the first
-  frames with the headlights.
+  Nu beperken we het aantal zoekacties.
 
-  This is a visual reveal, not separate
-  3D headlight animation.
+  Een nieuwe zoekactie begint alleen
+  als de vorige klaar is.
+
+  Snelle scrollbewegingen worden
+  samengevoegd.
+
+  De laatst gevraagde videopositie
+  heeft altijd voorrang.
 */
 
-const INTRO_TOTAL = 3850;
+/* Minimaal 125 milliseconden tussen seeks */
 
-const INTRO_HOLD = 1500;
+const SEEK_GAP_MS = 125;
 
-const INTRO_VIDEO_END = 2.8;
+/* Negeer veranderingen kleiner dan 0.14 sec */
+
+const SEEK_THRESHOLD_SECONDS = .14;
 
 /* ==========================================
-   INTRO ANIMATION STATE
+   OPTIMIZED VIDEO SEEK QUEUE
 ========================================== */
 
-function introState(elapsed) {
+function createSeekQueue(
 
-  const e = clamp(
+  video,
 
-    elapsed,
+  gap = SEEK_GAP_MS
 
-    0,
+) {
 
-    INTRO_TOTAL
+  let wanted = 0;
 
-  );
+  let active = false;
+
+  let timeout = null;
+
+  let lastSeek = -Infinity;
 
   /* ======================================
-     FIRST 1.5 SECONDS: DARKNESS
+     CLEAR TIMER
   ====================================== */
 
-  if (e < INTRO_HOLD) {
+  function clearTimer() {
 
-    return {
+    if (timeout !== null) {
 
-      time: 0,
+      clearTimeout(timeout);
 
-      dark: .985,
+      timeout = null;
 
-      flash: 0
-
-    };
+    }
 
   }
 
   /* ======================================
-     HEADLIGHT REVEAL
+     PROCESS SEEK REQUEST
   ====================================== */
 
-  const k = clamp(
+  function pump() {
 
-    (e - INTRO_HOLD) / 350
+    clearTimer();
+
+    /* ==================================
+       DO NOTHING IF VIDEO IS HIDDEN
+    ================================== */
+
+    if (
+
+      !active ||
+
+      video.seeking ||
+
+      video.readyState < 1
+
+    ) {
+
+      return;
+
+    }
+
+    /* ==================================
+       CHECK VIDEO DURATION
+    ================================== */
+
+    if (
+
+      !Number.isFinite(video.duration) ||
+
+      video.duration <= 0
+
+    ) {
+
+      return;
+
+    }
+
+    /* ==================================
+       SAFE VIDEO POSITION
+    ================================== */
+
+    const target = clamp(
+
+      wanted,
+
+      0,
+
+      Math.max(
+
+        0,
+
+        video.duration - .04
+
+      )
+
+    );
+
+    /* ==================================
+       IGNORE VERY SMALL CHANGES
+    ================================== */
+
+    if (
+
+      Math.abs(
+
+        video.currentTime - target
+
+      ) < SEEK_THRESHOLD_SECONDS
+
+    ) {
+
+      return;
+
+    }
+
+    /* ==================================
+       LIMIT THE SEEK RATE
+    ================================== */
+
+    const remaining =
+
+      gap -
+
+      (
+        performance.now() -
+        lastSeek
+      );
+
+    if (remaining > 0) {
+
+      timeout = setTimeout(
+
+        pump,
+
+        remaining
+
+      );
+
+      return;
+
+    }
+
+    /* ==================================
+       UPDATE LAST SEEK TIME
+    ================================== */
+
+    lastSeek =
+      performance.now();
+
+    /* ==================================
+       SEEK TO THE NEWEST TARGET
+    ================================== */
+
+    try {
+
+      video.pause();
+
+      video.currentTime = target;
+
+    } catch (error) {
+
+      console.warn(
+
+        'Videozoekactie niet gelukt:',
+
+        error
+
+      );
+
+    }
+
+  }
+
+  /* ======================================
+     WAIT FOR PREVIOUS SEEK TO FINISH
+  ====================================== */
+
+  video.addEventListener(
+
+    'seeked',
+
+    pump
 
   );
 
   /* ======================================
-     SHOWROOM REVEAL
+     HANDLE VIDEO METADATA
   ====================================== */
 
-  const show = clamp(
+  video.addEventListener(
 
-    (e - INTRO_HOLD - 350) /
+    'loadedmetadata',
 
-    (
-      INTRO_TOTAL -
-      INTRO_HOLD -
-      350
-    )
+    pump
 
   );
 
   /* ======================================
-     VIDEO POSITION
+     PUBLIC CONTROLS
   ====================================== */
-
-  const videoTime =
-
-    INTRO_VIDEO_END * show;
-
-  /* ======================================
-     DARK OVERLAY
-  ====================================== */
-
-  const cover =
-
-    show < .18
-
-      ? lerp(
-
-          .83,
-
-          .22,
-
-          k
-
-        )
-
-      : lerp(
-
-          .22,
-
-          0,
-
-          clamp(
-
-            (show - .18) / .33
-
-          )
-
-        );
-
-  /* ======================================
-     SUBTLE LED FLICKER
-  ====================================== */
-
-  const flash =
-
-    show > .18 && show < .55
-
-      ? Math.max(
-
-          0,
-
-          Math.sin(show * 68) - .84
-
-        ) * .17
-
-      : 0;
 
   return {
 
-    time: videoTime,
+    set(time) {
 
-    dark: cover,
+      if (Number.isFinite(time)) {
 
-    flash
+        wanted = time;
+
+      }
+
+      pump();
+
+    },
+
+    setActive(value) {
+
+      active = Boolean(value);
+
+      if (!active) {
+
+        clearTimer();
+
+      } else {
+
+        pump();
+
+      }
+
+    }
 
   };
 
 }
 
 /* ==========================================
-   SCROLL PROGRESS
+   CREATE VIDEO CONTROLLERS
 ========================================== */
 
-function filmProgress() {
+const filmQueue =
+  createSeekQueue(film);
 
-  const root =
-    $('#top');
+const studioQueue =
+  createSeekQueue(
 
-  const rect =
-    root.getBoundingClientRect();
+    studio,
 
-  return clamp(
-
-    -rect.top /
-
-    Math.max(
-
-      1,
-
-      root.offsetHeight -
-      innerHeight
-
-    )
+    140
 
   );
-
-}
 
 /* ==========================================
    FILM CHAPTERS
 ========================================== */
 
-const labels = [
+const chapters = [
 
   {
 
-    until: .12,
+    to: .12,
 
     key: '00 / IGNITION',
 
@@ -2059,7 +2068,7 @@ const labels = [
 
   {
 
-    until: .34,
+    to: .34,
 
     key: '01 / THE REVEAL',
 
@@ -2071,7 +2080,7 @@ const labels = [
 
   {
 
-    until: .69,
+    to: .69,
 
     key: '02 / THE ORBIT',
 
@@ -2083,7 +2092,7 @@ const labels = [
 
   {
 
-    until: .91,
+    to: .91,
 
     key: '03 / THE DETAILS',
 
@@ -2095,7 +2104,7 @@ const labels = [
 
   {
 
-    until: 1.01,
+    to: 1.01,
 
     key: '04 / THE FINAL',
 
@@ -2108,35 +2117,34 @@ const labels = [
 ];
 
 /* ==========================================
-   SET FILM CHAPTER
+   CHANGE FILM CHAPTER
 ========================================== */
 
-function setChapter(p) {
+function setChapter(progress) {
 
-  const index =
-    labels.findIndex(
+  const scene =
 
-      scene => p < scene.until
+    chapters.find(
 
-    );
+      item =>
+        progress < item.to
 
-  const scene = labels[
+    ) ||
 
-    index < 0
+    chapters[
+      chapters.length - 1
+    ];
 
-      ? labels.length - 1
-
-      : index
-
-  ];
-
-  if (lastScene === scene.key) {
+  if (
+    scene.key === lastChapter
+  ) {
 
     return;
 
   }
 
-  lastScene = scene.key;
+  lastChapter =
+    scene.key;
 
   $('#sceneLabel').textContent =
     scene.key;
@@ -2150,185 +2158,412 @@ function setChapter(p) {
 }
 
 /* ==========================================
-   CHROMEBOOK-FRIENDLY VIDEO SEEKING
+   FILM SCROLL PROGRESS
 ========================================== */
 
-/*
-  Avoid requesting a new seek while
-  the video is already seeking.
+function filmProgress() {
 
-  This reduces excessive decode work
-  on slower devices.
-*/
+  const rect =
 
-function seekWhenReady(
-  video,
-  target
-) {
+    filmSection.getBoundingClientRect();
 
-  if (
+  return clamp(
 
-    !Number.isFinite(video.duration) ||
-
-    video.seeking ||
-
-    video.readyState < 1
-
-  ) {
-
-    return;
-
-  }
-
-  /* ======================================
-     KEEP TIME INSIDE VIDEO
-  ====================================== */
-
-  const safe = clamp(
-
-    target,
-
-    0,
+    -rect.top /
 
     Math.max(
 
-      0,
+      1,
 
-      video.duration - .045
+      filmSection.offsetHeight -
+      innerHeight
 
     )
 
   );
 
-  /* ======================================
-     IGNORE TINY CHANGES
-  ====================================== */
-
-  if (
-
-    Math.abs(
-
-      video.currentTime - safe
-
-    ) > .045
-
-  ) {
-
-    try {
-
-      video.currentTime = safe;
-
-    } catch (error) {
-
-      console.warn(
-
-        'Video seek:',
-
-        error
-
-      );
-
-    }
-
-  }
-
 }
 
 /* ==========================================
-   UPDATE CINEMATIC FILM
+   INTRO TIMING
 ========================================== */
 
-function updateFilm(now) {
+/*
+  De Porsche staat in de video
+  al met zijn koplampen aan.
 
-  if (!loaded) {
+  Daarom begint de website donker.
+
+  Na 1500ms onthullen we de eerste
+  beelden van de Porsche.
+
+  Daarna lichten de showroom en
+  LED-panelen geleidelijk op.
+*/
+
+const INTRO_HOLD_MS = 1500;
+
+const INTRO_END_MS = 3500;
+
+const INTRO_VIDEO_END = 2.8;
+
+/* ==========================================
+   AUTOMATIC INTRO
+========================================== */
+
+function paintIntro(now) {
+
+  if (
+
+    introFinished ||
+
+    !ready
+
+  ) {
 
     return;
 
   }
 
+  const elapsed =
+
+    now - introStart;
+
   const progress =
     filmProgress();
 
-  const elapsed =
-    now - started;
-
-  let target;
-
   /* ======================================
-     AUTOMATIC LIGHT INTRO
+     IF USER SCROLLS, END INTRO
   ====================================== */
 
   if (
 
-    !reduced &&
+    !filmVisible ||
 
-    elapsed < INTRO_TOTAL &&
-
-    progress < .006
+    progress > .008
 
   ) {
 
-    const intro =
-      introState(elapsed);
+    introFinished = true;
 
-    target =
-      intro.time;
-
-    dark.style.opacity =
-      String(intro.dark);
-
-    pulse.style.opacity =
-      String(intro.flash);
-
-    setChapter(0);
-
-  } else {
-
-    /* ==================================
-       VIDEO CONTROLLED BY SCROLL
-    ================================== */
-
-    target = lerp(
-
-      INTRO_VIDEO_END,
-
-      Math.max(
-
-        INTRO_VIDEO_END,
-
-        duration - .06
-
-      ),
-
-      progress
-
-    );
-
-    dark.style.opacity = '0';
+    darkness.style.opacity = '0';
 
     pulse.style.opacity = '0';
 
-    setChapter(progress);
+    updateFromScroll();
+
+    return;
 
   }
 
   /* ======================================
-     SCRUB VIDEO
+     REDUCED MOTION
   ====================================== */
 
-  filmWanted =
-    target;
+  if (reducedMotion) {
 
-  seekWhenReady(
+    introFinished = true;
 
-    film,
+    darkness.style.opacity = '0';
 
-    filmWanted
+    filmQueue.set(
+      INTRO_VIDEO_END
+    );
+
+    return;
+
+  }
+
+  /* ======================================
+     FIRST 1.5 SECONDS: DARKNESS
+  ====================================== */
+
+  if (
+
+    elapsed < INTRO_HOLD_MS
+
+  ) {
+
+    darkness.style.opacity = '.99';
+
+  } else {
+
+    /* ==================================
+       REVEAL PROGRESS
+    ================================== */
+
+    const reveal = ease(
+
+      (
+        elapsed -
+        INTRO_HOLD_MS
+      ) / 420
+
+    );
+
+    /* ==================================
+       SHOWROOM REVEAL PROGRESS
+    ================================== */
+
+    const room = ease(
+
+      (
+        elapsed -
+        INTRO_HOLD_MS -
+        400
+      ) / 1400
+
+    );
+
+    /* ==================================
+       DARKNESS OVERLAY
+    ================================== */
+
+    darkness.style.opacity =
+
+      String(
+
+        mix(
+
+          .84,
+
+          0,
+
+          room * .75 +
+
+          reveal * .25
+
+        )
+
+      );
+
+    /* ==================================
+       SUBTLE LIGHT FLICKER
+    ================================== */
+
+    const flickerPhase =
+
+      (
+        elapsed -
+        INTRO_HOLD_MS -
+        380
+      ) / 1000;
+
+    pulse.style.opacity =
+
+      String(
+
+        flickerPhase > 0 &&
+
+        flickerPhase < 1
+
+          ? Math.max(
+
+              0,
+
+              Math.sin(
+
+                flickerPhase * 28
+
+              ) - .85
+
+            ) * .14
+
+          : 0
+
+      );
+
+    /* ==================================
+       REQUEST VIDEO FRAME
+    ================================== */
+
+    filmQueue.set(
+
+      INTRO_VIDEO_END * room
+
+    );
+
+  }
+
+  /* ======================================
+     END AUTOMATIC INTRO
+  ====================================== */
+
+  if (
+
+    elapsed >= INTRO_END_MS
+
+  ) {
+
+    introFinished = true;
+
+    darkness.style.opacity = '0';
+
+    pulse.style.opacity = '0';
+
+    filmQueue.set(
+      INTRO_VIDEO_END
+    );
+
+    updateFromScroll();
+
+    return;
+
+  }
+
+  /* ======================================
+     RAF ONLY DURING THE SHORT INTRO
+  ====================================== */
+
+  introFrame =
+
+    requestAnimationFrame(
+
+      paintIntro
+
+    );
+
+}
+
+/* ==========================================
+   OPTIMIZED SCROLL HANDLING
+========================================== */
+
+/*
+  Eén scroll-event betekent niet meteen
+  één nieuwe videozoekactie.
+
+  De browser verzamelt scrollupdates.
+
+  Daarna verwerken we alleen de
+  meest recente positie.
+*/
+
+function updateFromScroll() {
+
+  scrollRaf = 0;
+
+  /* ======================================
+     PAGE PROGRESS
+  ====================================== */
+
+  const maxScroll =
+
+    Math.max(
+
+      1,
+
+      document.documentElement.scrollHeight -
+
+      innerHeight
+
+    );
+
+  $('#progress').style.width =
+
+    `${
+      scrollY / maxScroll * 100
+    }%`;
+
+  /* ======================================
+     HEADER
+  ====================================== */
+
+  $('#header').classList.toggle(
+
+    'scrolled',
+
+    scrollY > 55
 
   );
 
   /* ======================================
-     SCROLL INDICATOR
+     SKIP HIDDEN VIDEO
+  ====================================== */
+
+  if (
+
+    !ready ||
+
+    !filmVisible
+
+  ) {
+
+    return;
+
+  }
+
+  const p =
+    filmProgress();
+
+  /* ======================================
+     INTERRUPT INTRO ON USER SCROLL
+  ====================================== */
+
+  if (
+
+    p > .008 &&
+
+    !introFinished
+
+  ) {
+
+    introFinished = true;
+
+    cancelAnimationFrame(
+      introFrame
+    );
+
+  }
+
+  if (!introFinished) {
+
+    return;
+
+  }
+
+  /* ======================================
+     REMOVE DARK OVERLAY
+  ====================================== */
+
+  darkness.style.opacity = '0';
+
+  pulse.style.opacity = '0';
+
+  /* ======================================
+     MAP SCROLL TO VIDEO TIME
+  ====================================== */
+
+  const target = mix(
+
+    INTRO_VIDEO_END,
+
+    Math.max(
+
+      INTRO_VIDEO_END,
+
+      fullDuration - .05
+
+    ),
+
+    p
+
+  );
+
+  /* ======================================
+     REQUEST ONLY NEEDED FRAME
+  ====================================== */
+
+  filmQueue.set(target);
+
+  /* ======================================
+     UPDATE TEXT
+  ====================================== */
+
+  setChapter(p);
+
+  /* ======================================
+     SCROLL CUE
   ====================================== */
 
   $('#scrollCue').style.opacity =
@@ -2337,61 +2572,99 @@ function updateFilm(now) {
 
       clamp(
 
-        1 - progress * 8
+        1 - p * 8
 
       )
 
     );
 
   /* ======================================
-     FINAL TITLE REVEAL
+     FINAL TITLE
   ====================================== */
-
-  const last = clamp(
-
-    (progress - .91) / .09
-
-  );
 
   $('#endTitle').style.opacity =
 
     String(
 
-      last * last * (3 - 2 * last)
+      ease(
+
+        (p - .91) / .09
+
+      )
 
     );
-
-  /* ======================================
-     INTRO EXPOSURE
-  ====================================== */
-
-  $('#filmVideo').style.filter =
-
-    elapsed < INTRO_TOTAL &&
-
-    progress < .006
-
-      ? 'brightness(.90)'
-
-      : 'brightness(1)';
 
 }
 
 /* ==========================================
-   VIDEO READY
+   SCHEDULE SCROLL UPDATE
 ========================================== */
 
-function loadReady() {
+function scheduleScroll() {
 
-  if (loaded) {
+  if (scrollRaf) {
 
     return;
 
   }
 
-  loaded = true;
+  scrollRaf =
 
-  duration =
+    requestAnimationFrame(
+
+      updateFromScroll
+
+    );
+
+}
+
+/* ==========================================
+   EVENT LISTENERS
+========================================== */
+
+addEventListener(
+
+  'scroll',
+
+  scheduleScroll,
+
+  {
+    passive: true
+  }
+
+);
+
+addEventListener(
+
+  'resize',
+
+  scheduleScroll,
+
+  {
+    passive: true
+  }
+
+);
+
+/* ==========================================
+   VIDEO LOADING
+========================================== */
+
+function onFilmReady() {
+
+  if (ready) {
+
+    return;
+
+  }
+
+  ready = true;
+
+  /* ======================================
+     READ ACTUAL VIDEO LENGTH
+  ====================================== */
+
+  fullDuration =
 
     Number.isFinite(film.duration)
 
@@ -2400,7 +2673,7 @@ function loadReady() {
       : 12.25;
 
   /* ======================================
-     COMPLETE LOADING BAR
+     FINISH LOADER
   ====================================== */
 
   $('#loadFill').style.width =
@@ -2408,6 +2681,24 @@ function loadReady() {
 
   $('#loadStatus').textContent =
     'THE 911 IS READY';
+
+  /* ======================================
+     PAUSE VIDEO
+  ====================================== */
+
+  film.pause();
+
+  /* ======================================
+     ENABLE FRAME REQUESTS
+  ====================================== */
+
+  filmQueue.setActive(
+
+    filmVisible &&
+
+    !document.hidden
+
+  );
 
   /* ======================================
      HIDE LOADER
@@ -2418,50 +2709,26 @@ function loadReady() {
   );
 
   /* ======================================
-     START INTRO TIMER ONLY NOW
+     START INTRO TIMER
   ====================================== */
 
-  started =
+  introStart =
+
     performance.now();
 
-  /* ======================================
-     PAUSE VIDEO FOR SCROLL CONTROL
-  ====================================== */
-
-  film.pause();
-
-  film.currentTime = .001;
+  scheduleScroll();
 
   /* ======================================
-     START RENDER LOOP
+     START INTRO ANIMATION
   ====================================== */
 
-  requestAnimationFrame(loop);
+  introFrame =
 
-}
+    requestAnimationFrame(
 
-/* ==========================================
-   VIDEO ERROR
-========================================== */
+      paintIntro
 
-function loadProblem(message) {
-
-  $('#loadStatus').textContent =
-    'VIDEO KAN NIET LADEN';
-
-  $('#loadError').textContent =
-
-    message +
-
-    '\nControleer of porsche-cinematic.mp4 ' +
-
-    'naast index.html staat.';
-
-  $('#retry').style.display =
-    'block';
-
-  $('#loadFill').style.width =
-    '100%';
+    );
 
 }
 
@@ -2475,15 +2742,19 @@ film.addEventListener(
 
   () => {
 
-    duration =
+    $('#loadFill').style.width =
+      '80%';
+
+    fullDuration =
       film.duration;
 
-    $('#loadFill').style.width =
-      '75%';
+    if (
 
-    if (film.readyState >= 2) {
+      film.readyState >= 2
 
-      loadReady();
+    ) {
+
+      onFilmReady();
 
     }
 
@@ -2492,14 +2763,14 @@ film.addEventListener(
 );
 
 /* ==========================================
-   FIRST FRAME LOADED
+   FIRST VIDEO FRAME
 ========================================== */
 
 film.addEventListener(
 
   'loadeddata',
 
-  loadReady,
+  onFilmReady,
 
   {
     once: true
@@ -2508,7 +2779,7 @@ film.addEventListener(
 );
 
 /* ==========================================
-   VIDEO LOADING ERROR
+   ERROR HANDLING
 ========================================== */
 
 film.addEventListener(
@@ -2517,27 +2788,24 @@ film.addEventListener(
 
   () => {
 
-    const code =
-      film.error?.code;
+    $('#loadStatus').textContent =
+      'VIDEO KON NIET LADEN';
 
-    loadProblem(
+    $('#loadError').textContent =
 
-      'De browser kon de film niet afspelen ' +
+      'Controleer of porsche-cinematic.mp4 ' +
 
-      '(fout ' +
+      'naast index.html staat.';
 
-      (code ?? '?') +
-
-      ').'
-
-    );
+    $('#retry').style.display =
+      'block';
 
   }
 
 );
 
 /* ==========================================
-   RETRY BUTTON
+   RETRY
 ========================================== */
 
 $('#retry').addEventListener(
@@ -2546,21 +2814,22 @@ $('#retry').addEventListener(
 
   () => {
 
-    if (film.readyState >= 1) {
+    if (
 
-      loadReady();
+      film.readyState >= 1
 
-      return;
+    ) {
+
+      onFilmReady();
+
+    } else {
+
+      $('#loadError').textContent =
+        '';
+
+      film.load();
 
     }
-
-    $('#retry').style.display =
-      'none';
-
-    $('#loadError').textContent =
-      '';
-
-    film.load();
 
   }
 
@@ -2576,13 +2845,13 @@ setTimeout(
 
     if (
 
-      !loaded &&
+      !ready &&
 
       film.readyState >= 1
 
     ) {
 
-      loadReady();
+      onFilmReady();
 
     }
 
@@ -2593,59 +2862,128 @@ setTimeout(
 );
 
 /* ==========================================
-   MAIN ANIMATION LOOP
-========================================== */
-
-function loop(now) {
-
-  updateFilm(now);
-
-  /* ======================================
-     STUDIO VIDEO
-  ====================================== */
-
-  if (
-
-    studioVisible &&
-
-    studioReady
-
-  ) {
-
-    seekWhenReady(
-
-      studio,
-
-      studioWanted
-
-    );
-
-  }
-
-  requestAnimationFrame(loop);
-
-}
-
-/* ==========================================
-   START LOADING THE FILM
+   LOAD FILM
 ========================================== */
 
 film.load();
 
 /* ==========================================
-   DESIGN STUDIO CAMERA CONTROL
+   OBSERVE FILM VISIBILITY
 ========================================== */
 
-/*
-  The studio uses the same film file.
+const filmObserver =
 
-  Selecting a camera position seeks
-  to a real frame from the film.
+  new IntersectionObserver(
 
-  No fake car model is generated.
-*/
+    entries => {
+
+      filmVisible =
+
+        entries[0]?.isIntersecting ??
+
+        false;
+
+      /* ==================================
+         DISABLE SEEKING OFFSCREEN
+      ================================== */
+
+      filmQueue.setActive(
+
+        filmVisible &&
+
+        !document.hidden
+
+      );
+
+      if (filmVisible) {
+
+        scheduleScroll();
+
+      }
+
+    },
+
+    {
+      rootMargin: '40px'
+    }
+
+  );
+
+filmObserver.observe(
+
+  filmSection
+
+);
+
+/* ==========================================
+   PAUSE WORK IN BACKGROUND TABS
+========================================== */
+
+document.addEventListener(
+
+  'visibilitychange',
+
+  () => {
+
+    filmQueue.setActive(
+
+      filmVisible &&
+
+      !document.hidden
+
+    );
+
+    studioQueue.setActive(
+
+      studioVisible &&
+
+      studioReady &&
+
+      !document.hidden
+
+    );
+
+    if (
+
+      !document.hidden &&
+
+      filmVisible
+
+    ) {
+
+      scheduleScroll();
+
+    }
+
+  }
+
+);
+
+/* ==========================================
+   DESIGN STUDIO FRAME CONTROLLER
+========================================== */
 
 function studioFrame(time) {
+
+  /* ======================================
+     VIDEO BOUNDS
+  ====================================== */
+
+  const maxTime =
+
+    Number.isFinite(studio.duration) &&
+
+    studio.duration > 0
+
+      ? Math.min(
+
+          12,
+
+          studio.duration - .05
+
+        )
+
+      : 12;
 
   studioWanted = clamp(
 
@@ -2653,15 +2991,11 @@ function studioFrame(time) {
 
     2.8,
 
-    Math.min(
+    Math.max(
 
-      12,
+      2.8,
 
-      Number.isFinite(studio.duration)
-
-        ? studio.duration - .05
-
-        : 12
+      maxTime
 
     )
 
@@ -2672,20 +3006,21 @@ function studioFrame(time) {
   ====================================== */
 
   $('#angleRange').value =
+
     String(studioWanted);
 
   /* ======================================
-     SHOW CURRENT TIME
+     CURRENT TIME
   ====================================== */
 
   $('#timeLabel').textContent =
 
-    studioWanted.toFixed(1) +
-
-    ' S';
+    `${
+      studioWanted.toFixed(1)
+    } S`;
 
   /* ======================================
-     CAMERA ANGLE NAME
+     CAMERA LABEL
   ====================================== */
 
   $('#angleLabel').textContent =
@@ -2701,18 +3036,22 @@ function studioFrame(time) {
         : 'REAR THREE-QUARTER';
 
   /* ======================================
-     ACTIVE CAMERA BUTTON
+     UPDATE CAMERA BUTTONS
   ====================================== */
 
   $$('[data-time]').forEach(
 
     button => {
 
-      const active =
+      const selected =
 
         Math.abs(
 
-          Number(button.dataset.time) -
+          Number(
+
+            button.dataset.time
+
+          ) -
 
           studioWanted
 
@@ -2722,7 +3061,7 @@ function studioFrame(time) {
 
         'active',
 
-        active
+        selected
 
       );
 
@@ -2730,7 +3069,7 @@ function studioFrame(time) {
 
         'aria-pressed',
 
-        String(active)
+        String(selected)
 
       );
 
@@ -2739,14 +3078,18 @@ function studioFrame(time) {
   );
 
   /* ======================================
-     SHOW SELECTED VIDEO FRAME
+     REQUEST FRAME
   ====================================== */
 
-  if (studioReady) {
+  if (
 
-    seekWhenReady(
+    studioReady &&
 
-      studio,
+    studioVisible
+
+  ) {
+
+    studioQueue.set(
 
       studioWanted
 
@@ -2770,8 +3113,18 @@ studio.addEventListener(
 
     studio.pause();
 
+    studioQueue.setActive(
+
+      studioVisible &&
+
+      !document.hidden
+
+    );
+
     studioFrame(
+
       studioWanted
+
     );
 
   }
@@ -2779,7 +3132,7 @@ studio.addEventListener(
 );
 
 /* ==========================================
-   STUDIO VIDEO ERROR
+   STUDIO ERROR
 ========================================== */
 
 studio.addEventListener(
@@ -2789,14 +3142,14 @@ studio.addEventListener(
   () => {
 
     $('#angleLabel').textContent =
-      'VIDEO UNAVAILABLE';
+      'VIDEO NIET BESCHIKBAAR';
 
   }
 
 );
 
 /* ==========================================
-   CAMERA PRESET BUTTONS
+   CAMERA PRESETS
 ========================================== */
 
 $$('[data-time]').forEach(
@@ -2852,49 +3205,49 @@ $('#angleRange').addEventListener(
 );
 
 /* ==========================================
-   LIGHTING FILTERS
+   STUDIO LOOKS
 ========================================== */
-
-/*
-  These are cinematic color grades.
-
-  The Porsche remains white.
-
-  We do not pretend to change the
-  car's actual 3D paint material.
-*/
 
 const looks = {
 
   day:
 
     'brightness(1.12) ' +
+
     'contrast(1.05) ' +
+
     'saturate(.96)',
 
   night:
 
     'brightness(.53) ' +
+
     'contrast(1.12) ' +
+
     'saturate(.88)',
 
   cool:
 
     'brightness(1.05) ' +
+
     'contrast(1.09) ' +
+
     'saturate(.8) ' +
+
     'hue-rotate(5deg)',
 
   contrast:
 
     'brightness(.92) ' +
+
     'contrast(1.28) ' +
+
     'saturate(1.02)'
 
 };
 
 /* ==========================================
-   CHANGE STUDIO LIGHT LOOK
+   CHANGE STUDIO LOOK
 ========================================== */
 
 function setLook(name) {
@@ -2908,15 +3261,11 @@ function setLook(name) {
   studio.style.filter =
     looks[name];
 
-  /* ======================================
-     UPDATE ACTIVE BUTTON
-  ====================================== */
-
   $$('[data-look]').forEach(
 
     button => {
 
-      const active =
+      const selected =
 
         button.dataset.look === name;
 
@@ -2924,7 +3273,7 @@ function setLook(name) {
 
         'active',
 
-        active
+        selected
 
       );
 
@@ -2932,7 +3281,7 @@ function setLook(name) {
 
         'aria-pressed',
 
-        String(active)
+        String(selected)
 
       );
 
@@ -2943,7 +3292,7 @@ function setLook(name) {
 }
 
 /* ==========================================
-   LIGHTING BUTTONS
+   LOOK BUTTONS
 ========================================== */
 
 $$('[data-look]').forEach(
@@ -2971,7 +3320,7 @@ $$('[data-look]').forEach(
 );
 
 /* ==========================================
-   RESET DESIGN STUDIO
+   RESET STUDIO
 ========================================== */
 
 $('#resetStudio').addEventListener(
@@ -2989,128 +3338,164 @@ $('#resetStudio').addEventListener(
 );
 
 /* ==========================================
-   INTERSECTION OBSERVER
+   LAZY LOAD THE STUDIO VIDEO
 ========================================== */
 
 /*
-  Only load the studio's second video
-  player when the studio is nearby.
+  BELANGRIJK:
 
-  This reduces unnecessary work
-  while watching the introduction.
+  De tweede videospeler wordt pas
+  geladen wanneer de gebruiker
+  bij de designstudio aankomt.
+
+  We vragen ook niet voortdurend
+  nieuwe frames op als de studio
+  buiten beeld staat.
 */
 
-const sectionObserver =
+const studioObserver =
 
   new IntersectionObserver(
 
     entries => {
 
-      entries.forEach(
+      studioVisible =
 
-        entry => {
+        entries[0]?.isIntersecting ??
 
-          /* ==============================
-             STUDIO VISIBILITY
-          ============================== */
+        false;
 
-          if (
+      /* ==================================
+         LOAD VIDEO ONLY WHEN NEEDED
+      ================================== */
 
-            entry.target.id === 'studio'
+      if (
 
-          ) {
+        studioVisible &&
 
-            studioVisible =
-              entry.isIntersecting;
+        !studioLoaded
 
-            /* ==========================
-               LAZY LOAD STUDIO VIDEO
-            ========================== */
+      ) {
 
-            if (
+        studioLoaded = true;
 
-              studioVisible &&
+        studio.src =
 
-              studio.preload === 'none'
+          './porsche-cinematic.mp4';
 
-            ) {
+        studio.preload =
+          'metadata';
 
-              studio.preload =
-                'auto';
+        studio.load();
 
-              studio.src =
-                './porsche-cinematic.mp4';
+      }
 
-              studio.load();
+      /* ==================================
+         ENABLE OR DISABLE SEEKING
+      ================================== */
 
-            }
+      studioQueue.setActive(
 
-          } else if (
+        studioVisible &&
 
-            entry.isIntersecting
+        studioReady &&
 
-          ) {
-
-            /* ==========================
-               CONTENT REVEAL
-            ========================== */
-
-            entry.target.classList.add(
-
-              'visible'
-
-            );
-
-            sectionObserver.unobserve(
-
-              entry.target
-
-            );
-
-          }
-
-        }
+        !document.hidden
 
       );
+
+      if (
+
+        studioVisible &&
+
+        studioReady
+
+      ) {
+
+        studioFrame(
+
+          studioWanted
+
+        );
+
+      }
 
     },
 
     {
-
-      rootMargin: '170px'
-
+      rootMargin: '80px'
     }
 
   );
 
-/* ==========================================
-   OBSERVE STUDIO
-========================================== */
-
-sectionObserver.observe(
+studioObserver.observe(
 
   $('#studio')
 
 );
 
 /* ==========================================
-   OBSERVE REVEAL ELEMENTS
+   CONTENT REVEALS
 ========================================== */
+
+const revealObserver =
+
+  new IntersectionObserver(
+
+    entries => {
+
+      for (const entry of entries) {
+
+        if (
+
+          !entry.isIntersecting
+
+        ) {
+
+          continue;
+
+        }
+
+        entry.target.classList.add(
+
+          'visible'
+
+        );
+
+        revealObserver.unobserve(
+
+          entry.target
+
+        );
+
+      }
+
+    },
+
+    {
+      threshold: .1
+    }
+
+  );
 
 $$('.reveal').forEach(
 
   element => {
 
-    if (reduced) {
+    if (reducedMotion) {
 
       element.classList.add(
+
         'visible'
+
       );
 
     } else {
 
-      sectionObserver.observe(
+      revealObserver.observe(
+
         element
+
       );
 
     }
@@ -3118,60 +3503,6 @@ $$('.reveal').forEach(
   }
 
 );
-
-/* ==========================================
-   PAGE SCROLL BAR
-========================================== */
-
-function scrollState() {
-
-  const max = Math.max(
-
-    1,
-
-    document.documentElement.scrollHeight -
-
-    innerHeight
-
-  );
-
-  $('#progress').style.width =
-
-    (
-      scrollY / max * 100
-    ) + '%';
-
-  /* ======================================
-     HEADER BACKGROUND
-  ====================================== */
-
-  $('#header').classList.toggle(
-
-    'scrolled',
-
-    scrollY > 55
-
-  );
-
-}
-
-/* ==========================================
-   PAGE SCROLL LISTENER
-========================================== */
-
-addEventListener(
-
-  'scroll',
-
-  scrollState,
-
-  {
-    passive: true
-  }
-
-);
-
-scrollState();
 
 /* ==========================================
    MOBILE MENU
@@ -3183,7 +3514,7 @@ $('#menu').addEventListener(
 
   () => {
 
-    const opened =
+    const open =
 
       $('#nav').classList.toggle(
 
@@ -3193,17 +3524,13 @@ $('#menu').addEventListener(
 
     $('#menu').textContent =
 
-      opened
-
-        ? '✕'
-
-        : '☰';
+      open ? '✕' : '☰';
 
     $('#menu').setAttribute(
 
       'aria-expanded',
 
-      String(opened)
+      String(open)
 
     );
 
@@ -3249,6 +3576,12 @@ $$('#nav a').forEach(
   }
 
 );
+
+/* ==========================================
+   INITIAL PAGE STATE
+========================================== */
+
+scheduleScroll();
 
 </script>
 
