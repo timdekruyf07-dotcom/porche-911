@@ -1,44 +1,15 @@
 <!doctype html>
 <html lang="nl">
-
 <head>
-
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070a0e">
+<meta name="description" content="911 GT3 RS — cinematic showroom experience.">
+<title>THE 911. — CINEMATIC EXPERIENCE</title>
 
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1"
->
-
-<meta
-  name="theme-color"
-  content="#080b10"
->
-
-<meta
-  name="description"
-  content="Porsche 911 GT3 RS cinematic experience."
->
-
-<title>
-  911 GT3 RS — THE CINEMATIC EXPERIENCE
-</title>
-
-<link
-  rel="preconnect"
-  href="https://fonts.googleapis.com"
->
-
-<link
-  rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin
->
-
-<link
-  href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
-  rel="stylesheet"
->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -47,11 +18,11 @@
 ========================================== */
 
 :root {
-  --black: #080b10;
-  --paper: #f1f2f2;
-  --muted: #a7b1ba;
-  --stroke: #ffffff33;
-  --red: #d94b42;
+  --ink: #070a0e;
+  --paper: #f3f5f7;
+  --silver: #b8c4cf;
+  --red: #e34e44;
+  --mono: 'DM Mono', monospace;
 }
 
 * {
@@ -64,10 +35,14 @@ html {
 
 body {
   margin: 0;
-  background: var(--black);
+  background: var(--ink);
   color: var(--paper);
   font-family: Manrope, Arial, sans-serif;
   overflow-x: hidden;
+}
+
+body.locked {
+  overflow: hidden;
 }
 
 a {
@@ -84,37 +59,25 @@ button {
   cursor: pointer;
 }
 
-button:focus-visible,
 a:focus-visible,
+button:focus-visible,
 input:focus-visible {
-  outline: 2px solid #f4f8fc;
+  outline: 2px solid white;
   outline-offset: 4px;
 }
 
-::selection {
-  background: #edf0f4;
-  color: #0a0e13;
-}
-
-.mono,
-.eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: .14em;
-}
-
 /* ==========================================
-   PROGRESS BAR
+   PAGE PROGRESS
 ========================================== */
 
-#progress {
-  height: 2px;
-  background: #fff;
+#pageProgress {
   position: fixed;
   top: 0;
   left: 0;
+  height: 2px;
   width: 0;
-  z-index: 110;
+  background: var(--red);
+  z-index: 120;
   pointer-events: none;
 }
 
@@ -124,43 +87,42 @@ input:focus-visible {
 
 header {
   position: fixed;
-  z-index: 100;
+  top: 0;
   left: 0;
   right: 0;
-  top: 0;
+  z-index: 50;
 
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 20px;
 
-  padding: 23px max(5vw, 20px);
+  padding: 22px 5%;
 
   transition:
-    background .35s,
-    padding .35s;
+    background .25s,
+    padding .25s;
 }
 
 header.scrolled {
-  background: #080b10e8;
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid #ffffff23;
-  padding-block: 15px;
+  padding-block: 14px;
+  background: #070a0eea;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #ffffff22;
 }
 
 .brand {
   font-weight: 800;
   font-size: 32px;
-  letter-spacing: -.1em;
+  letter-spacing: -.11em;
   line-height: 1;
 }
 
 .brand small {
   display: block;
-  font: 8px 'DM Mono', monospace;
-  letter-spacing: .21em;
+  font: 8px var(--mono);
+  letter-spacing: .19em;
   margin-top: 8px;
-  color: #c6cdd4;
 }
 
 /* ==========================================
@@ -170,54 +132,56 @@ header.scrolled {
 nav {
   display: flex;
   align-items: center;
-  gap: 31px;
+  gap: 28px;
 
-  font: 10px 'DM Mono', monospace;
+  font: 10px var(--mono);
   letter-spacing: .13em;
 }
 
 nav a:hover {
   text-decoration: underline;
-  text-underline-offset: 7px;
+  text-underline-offset: 6px;
 }
 
 .nav-cta {
-  border: 1px solid #ffffff8a;
-  padding: 13px 16px;
+  border: 1px solid #ffffff80;
+  padding: 13px 18px;
 }
 
 #menu {
   display: none;
-  min-width: 43px;
-  min-height: 43px;
-
-  background: #101820;
-  border: 1px solid #ffffff7c;
-  color: #fff;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid #ffffff77;
+  background: #111a25;
+  color: white;
 }
 
 /* ==========================================
-   CINEMATIC FILM
+   CINEMATIC HERO
+
+   IMPORTANT:
+   NORMAL VIDEO PLAYBACK.
+
+   NO CONTINUOUS VIDEO SEEKING.
 ========================================== */
 
-.film {
-  height: 650vh;
-  position: relative;
-  background: #010203;
-}
-
-.film-pin {
-  position: sticky;
-  top: 0;
-
+.hero {
   height: 100vh;
   height: 100svh;
 
-  overflow: hidden;
+  position: relative;
   isolation: isolate;
+
+  background: #010203;
+  overflow: hidden;
 }
 
-.film-video {
+/* ==========================================
+   FULLSCREEN PORSCHE VIDEO
+========================================== */
+
+#heroVideo {
   position: absolute;
   inset: 0;
 
@@ -225,9 +189,8 @@ nav a:hover {
   height: 100%;
 
   object-fit: cover;
-  background: #020305;
+  background: #010203;
 
-  display: block;
   z-index: 1;
 }
 
@@ -235,25 +198,24 @@ nav a:hover {
    CINEMATIC SHADING
 ========================================== */
 
-.film-shade {
+.hero-shade {
   position: absolute;
   inset: 0;
   z-index: 2;
 
+  pointer-events: none;
+
   background:
     linear-gradient(
-      90deg,
-      #030508a8 0%,
-      #03050836 37%,
-      transparent 73%
+      0deg,
+      #010306b5,
+      transparent 38%
     ),
     linear-gradient(
-      0deg,
-      #0305088a,
-      transparent 38%
+      90deg,
+      #01030680,
+      transparent 55%
     );
-
-  pointer-events: none;
 }
 
 /* ==========================================
@@ -263,213 +225,364 @@ nav a:hover {
 #darkness {
   position: absolute;
   inset: 0;
+  z-index: 3;
+
+  pointer-events: none;
 
   background: #010203;
   opacity: 1;
 
-  pointer-events: none;
-  z-index: 3;
+  transition: opacity .8s ease;
+}
+
+#darkness.revealed {
+  opacity: .12;
+}
+
+#darkness.cleared {
+  opacity: 0;
 }
 
 /* ==========================================
    LED FLASH
 ========================================== */
 
-#lightPulse {
+#lightFlash {
   position: absolute;
   inset: 0;
-
-  background: #d6e6f7;
-
-  mix-blend-mode: screen;
-  opacity: 0;
+  z-index: 4;
 
   pointer-events: none;
-  z-index: 4;
+
+  background: #e1f1ff;
+  mix-blend-mode: screen;
+
+  opacity: 0;
+}
+
+#lightFlash.flicker {
+  animation: flicker 1.35s ease-out forwards;
+}
+
+@keyframes flicker {
+  0%,
+  17%,
+  36%,
+  60%,
+  100% {
+    opacity: 0;
+  }
+
+  12%,
+  31% {
+    opacity: .19;
+  }
+
+  49% {
+    opacity: .07;
+  }
 }
 
 /* ==========================================
-   FILM LABELS
+   HERO TOP LABELS
 ========================================== */
 
-.film-topline {
+.hero-tag {
   position: absolute;
-  top: 19%;
+
+  top: 18%;
   left: 5%;
+
   z-index: 5;
 
-  font: 10px 'DM Mono', monospace;
+  font: 10px var(--mono);
   letter-spacing: .2em;
 
-  color: #d4dbe2;
-  text-shadow: 0 2px 8px #000;
+  color: #dce7f0;
+  text-shadow: 0 2px 12px #000;
 }
 
-.film-side {
+.hero-side {
   position: absolute;
-  right: 5%;
+
   top: 19%;
-  z-index: 5;
+  right: 5%;
 
   writing-mode: vertical-rl;
 
-  font: 10px 'DM Mono', monospace;
-  letter-spacing: .19em;
+  z-index: 5;
 
-  color: #dbe3ec;
-  text-shadow: 0 2px 8px #000;
+  font: 10px var(--mono);
+  letter-spacing: .18em;
+
+  color: #dce7f0;
 }
 
 /* ==========================================
-   FILM CAPTIONS
+   HERO BOTTOM
 ========================================== */
 
-.film-bottom {
+.hero-bottom {
   position: absolute;
 
-  bottom: 6%;
   left: 5%;
   right: 5%;
+  bottom: 7%;
 
   z-index: 6;
 
   display: flex;
+  align-items: end;
   justify-content: space-between;
-  align-items: flex-end;
 
-  gap: 24px;
+  gap: 25px;
+}
+
+/* ==========================================
+   EYEBROW
+========================================== */
+
+.eyebrow {
+  font: 10px var(--mono);
+  letter-spacing: .2em;
+}
+
+.eyebrow:before {
+  content: "";
+
+  display: inline-block;
+  width: 26px;
+  height: 1px;
+
+  margin-right: 12px;
+  vertical-align: middle;
+
+  background: var(--red);
+}
+
+/* ==========================================
+   HERO TYPOGRAPHY
+========================================== */
+
+.hero-bottom h1 {
+  font-size: clamp(39px, 6vw, 92px);
+  line-height: .95;
+  letter-spacing: -.09em;
+
+  margin: 16px 0 8px;
+  font-weight: 600;
+
+  text-shadow: 0 7px 40px #000c;
+}
+
+.hero-bottom p {
+  font: 10px/1.7 var(--mono);
+  letter-spacing: .12em;
+
+  color: #dce6f0;
+  margin: 0;
+}
+
+/* ==========================================
+   INTRO BUTTONS
+========================================== */
+
+.action-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.cta {
+  border: 1px solid #ffffffc0;
+  background: #101a27b8;
+  color: #fff;
+
+  padding: 15px 19px;
+  min-height: 47px;
+
+  font: 10px var(--mono);
+  letter-spacing: .1em;
+  white-space: nowrap;
+}
+
+.cta.primary {
+  background: #f3f6f9;
+  color: #101822;
+  border-color: #f3f6f9;
+}
+
+.cta:hover {
+  filter: brightness(1.12);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================
+   VIDEO PLAY INDICATOR
+========================================== */
+
+#playIndicator {
+  position: absolute;
+  z-index: 6;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  font: 11px var(--mono);
+  letter-spacing: .18em;
+
+  color: white;
+  opacity: 0;
+
+  pointer-events: none;
+  text-shadow: 0 2px 12px #000;
+}
+
+#playIndicator.visible {
+  opacity: 1;
+}
+
+/* ==========================================
+   FILM PROGRESS LINE
+========================================== */
+
+#filmBar {
+  position: absolute;
+
+  z-index: 8;
+  bottom: 0;
+  left: 0;
+
+  height: 3px;
+  width: 0;
+
+  background: var(--red);
 
   pointer-events: none;
 }
 
-.film-copy {
-  max-width: 580px;
-}
-
-.film-copy .eyebrow {
-  color: #c7d4e0;
-}
-
-.film-copy h1 {
-  margin: 14px 0 6px;
-
-  font-weight: 600;
-  font-size: clamp(30px, 4.8vw, 72px);
-
-  letter-spacing: -.08em;
-  line-height: .97;
-
-  text-shadow: 0 4px 30px #000a;
-}
-
-.film-copy p {
-  margin: 0;
-
-  font: 10px/1.6 'DM Mono', monospace;
-  letter-spacing: .12em;
-
-  color: #e6ebef;
-  text-shadow: 0 3px 9px #000;
-}
-
-.film-cue {
-  font: 10px/1.8 'DM Mono', monospace;
-  letter-spacing: .13em;
-  white-space: nowrap;
-}
-
 /* ==========================================
-   FINAL FILM TITLE
+   FINAL TITLE
 ========================================== */
 
 #endTitle {
   position: absolute;
   inset: 0;
-  z-index: 7;
+
+  z-index: 5;
+
+  pointer-events: none;
 
   display: grid;
   place-items: center;
 
-  text-align: center;
-  pointer-events: none;
+  background: #070b1290;
 
   opacity: 0;
-  background: #070b12b5;
+
+  transition: opacity .9s;
+}
+
+#endTitle.visible {
+  opacity: 1;
 }
 
 #endTitle h2 {
-  font-size: clamp(84px, 17vw, 280px);
+  font-size: clamp(85px, 16vw, 240px);
+
   font-weight: 600;
-  line-height: 1;
-  letter-spacing: -.11em;
+  letter-spacing: -.12em;
+  line-height: .88;
 
   margin: 0;
 
-  text-shadow: 0 10px 65px #000b;
+  text-shadow: 0 8px 55px #000;
 }
 
-#endTitle small {
-  font: 11px 'DM Mono', monospace;
-  letter-spacing: .32em;
-  color: #d7e0e9;
+#endTitle p {
+  text-align: center;
+
+  font: 11px var(--mono);
+  letter-spacing: .3em;
+
+  margin-top: 22px;
+}
+
+/* ==========================================
+   ERROR MESSAGE
+========================================== */
+
+#heroMessage {
+  position: absolute;
+
+  top: 28%;
+  left: 5%;
+  right: 5%;
+
+  z-index: 7;
+
+  font: 12px/1.7 var(--mono);
+  letter-spacing: .07em;
+
+  color: #ffd3ca;
+  max-width: 620px;
+}
+
+/* ==========================================
+   CONTENT WRAPPER
+========================================== */
+
+.wrap {
+  max-width: 1390px;
+  margin: auto;
 }
 
 /* ==========================================
    STORY
 ========================================== */
 
-.wrap {
-  max-width: 1400px;
-  margin: auto;
-}
-
 .story {
-  padding: 135px 6%;
   background: #0b1017;
-}
-
-.eyebrow::before {
-  content: "";
-
-  display: inline-block;
-  vertical-align: middle;
-
-  width: 28px;
-  height: 1px;
-
-  background: var(--red);
-  margin-right: 12px;
+  padding: 125px 6% 115px;
 }
 
 .story-grid {
   display: grid;
-  grid-template-columns: 1.15fr .85fr;
+  grid-template-columns: 1.2fr .8fr;
 
-  gap: 10%;
   align-items: end;
+  gap: 9%;
 }
 
 .story h2 {
-  font-size: clamp(65px, 9vw, 138px);
+  font-size: clamp(58px, 9vw, 137px);
+  line-height: .92;
+  letter-spacing: -.095em;
+
   font-weight: 600;
-
-  letter-spacing: -.105em;
-  line-height: .88;
-
-  margin: 22px 0 0;
+  margin: 24px 0 0;
 }
 
-.story h2 em {
+.story h2 em,
+.final em {
   font-style: normal;
-  color: #7e8996;
+  color: #82919f;
 }
 
 .story p {
-  line-height: 1.85;
-  color: #b4c0cb;
+  font-size: clamp(15px, 1.5vw, 20px);
+  line-height: 1.9;
 
-  font-size: clamp(16px, 1.55vw, 20px);
-  max-width: 490px;
+  color: #bdc8d2;
+  max-width: 500px;
 }
 
 /* ==========================================
@@ -477,18 +590,17 @@ nav a:hover {
 ========================================== */
 
 .stats {
-  margin-top: 90px;
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
-  border-top: 1px solid var(--stroke);
-  border-bottom: 1px solid var(--stroke);
+  margin-top: 85px;
+
+  border-block: 1px solid #ffffff2b;
 }
 
 .stat {
-  padding: 26px 30px;
-  border-right: 1px solid var(--stroke);
+  padding: 28px;
+  border-right: 1px solid #ffffff2b;
 }
 
 .stat:first-child {
@@ -496,21 +608,21 @@ nav a:hover {
 }
 
 .stat:last-child {
-  border: 0;
+  border-right: 0;
 }
 
 .stat strong {
-  font-size: clamp(30px, 4vw, 58px);
-  letter-spacing: -.075em;
-  font-weight: 600;
-
   display: block;
+
+  font-size: clamp(28px, 4vw, 55px);
+  letter-spacing: -.08em;
 }
 
 .stat span {
-  font: 10px 'DM Mono', monospace;
+  font: 10px var(--mono);
   letter-spacing: .12em;
-  color: #a8b2bc;
+
+  color: #afbdc9;
 }
 
 /* ==========================================
@@ -518,14 +630,14 @@ nav a:hover {
 ========================================== */
 
 .studio {
-  background: #cfd5d9;
-  color: #101821;
+  background: #ccd4dc;
+  color: #131e29;
 
-  padding: 110px 6% 115px;
+  padding: 105px 6% 110px;
 }
 
 .studio .eyebrow {
-  color: #40515e;
+  color: #40586a;
 }
 
 .studio-head {
@@ -533,30 +645,30 @@ nav a:hover {
   align-items: end;
   justify-content: space-between;
 
-  gap: 45px;
-  margin-bottom: 35px;
+  gap: 30px;
+  margin-bottom: 36px;
 }
 
-.studio h2 {
+.studio-head h2 {
+  font-size: clamp(55px, 7.6vw, 108px);
+
   font-weight: 600;
   letter-spacing: -.085em;
-
-  font-size: clamp(55px, 7.4vw, 115px);
   line-height: .93;
 
-  margin: 19px 0 0;
+  margin: 20px 0 0;
 }
 
 .studio-head p {
-  font-size: 14px;
-  line-height: 1.8;
+  max-width: 375px;
 
-  max-width: 365px;
-  color: #455664;
+  line-height: 1.8;
+  color: #44586a;
+  font-size: 14px;
 }
 
 /* ==========================================
-   DESIGN STUDIO GRID
+   STUDIO GRID
 ========================================== */
 
 .studio-grid {
@@ -564,69 +676,71 @@ nav a:hover {
 
   grid-template-columns:
     minmax(0, 1fr)
-    minmax(265px, 335px);
+    minmax(255px, 325px);
 
-  gap: 17px;
+  gap: 18px;
 }
+
+/* ==========================================
+   STUDIO PREVIEW
+========================================== */
 
 .preview {
   position: relative;
+  min-height: 520px;
 
-  min-height: 550px;
-
-  background: #303c47;
+  background: #253340;
   overflow: hidden;
 
-  border: 1px solid #647682;
-  box-shadow: 10px 10px #9baab5;
+  border: 1px solid #627688;
+  box-shadow: 9px 9px #9aacbb;
 }
 
 .preview video {
-  position: absolute;
-  inset: 0;
+  display: block;
 
   width: 100%;
   height: 100%;
 
+  position: absolute;
+  inset: 0;
+
   object-fit: contain;
-  background: #141b23;
+  background: #15202c;
 
-  transition: filter .35s;
-
-  pointer-events: none;
+  filter: brightness(1.1) contrast(1.06);
 }
 
-.preview-badge {
+/* ==========================================
+   STUDIO BADGES
+========================================== */
+
+.badge,
+.preview-foot {
   position: absolute;
-  top: 17px;
-  left: 17px;
 
-  background: #0b111bbd;
-  color: #fff;
+  color: white;
+  font: 10px var(--mono);
+  letter-spacing: .13em;
 
-  padding: 10px 12px;
-
-  font: 10px 'DM Mono', monospace;
-  letter-spacing: .14em;
+  background: #07121caa;
+  padding: 9px 12px;
 }
 
-.preview-footer {
-  position: absolute;
+.badge {
+  top: 16px;
+  left: 16px;
+}
 
-  bottom: 17px;
-  left: 17px;
-  right: 17px;
+.preview-foot {
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
 
   display: flex;
   justify-content: space-between;
 
-  gap: 15px;
-  color: #f3f6f8;
-
-  font: 10px 'DM Mono', monospace;
-  letter-spacing: .12em;
-
-  text-shadow: 0 1px 5px #000;
+  gap: 14px;
 }
 
 /* ==========================================
@@ -634,115 +748,102 @@ nav a:hover {
 ========================================== */
 
 .controls {
-  background: #e8edf0;
-  border: 1px solid #92a0aa;
-
-  padding: 26px;
-
   display: flex;
   flex-direction: column;
+  gap: 26px;
 
-  gap: 24px;
+  background: #eaf0f4;
+
+  padding: 25px;
+  border: 1px solid #8799a7;
 }
 
 .controls h3 {
-  font-weight: 700;
   font-size: 29px;
-
-  line-height: 1.08;
+  line-height: 1.06;
   letter-spacing: -.07em;
 
   margin: 0;
 }
 
-.control-label {
-  font: 10px 'DM Mono', monospace;
-  letter-spacing: .14em;
+.label {
+  display: block;
 
-  color: #42596c;
-}
+  font: 10px var(--mono);
+  letter-spacing: .15em;
 
-.button-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 7px;
-  margin-top: 12px;
-}
-
-.button-grid button,
-.looks button {
-  min-height: 45px;
-
-  background: transparent;
-  border: 1px solid #8396a5;
-
-  color: #233749;
-
-  font: 10px 'DM Mono', monospace;
-}
-
-.button-grid button.active,
-.looks button.active {
-  background: #1c3346;
-  color: #fff;
-
-  border-color: #1c3346;
-}
-
-.looks {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 8px;
-  margin-top: 12px;
+  color: #40566a;
+  margin-bottom: 13px;
 }
 
 /* ==========================================
-   CAMERA SLIDER
+   PRESETS
 ========================================== */
 
-.range {
-  width: 100%;
-  margin-top: 16px;
-
-  accent-color: #183448;
+.preset-row,
+.light-row {
+  display: grid;
+  gap: 8px;
 }
 
-.range-labels {
-  display: flex;
-  justify-content: space-between;
-
-  font: 9px 'DM Mono', monospace;
-  color: #617482;
+.preset-row {
+  grid-template-columns: repeat(3, 1fr);
 }
 
-.control-note {
-  font-size: 12px;
-  line-height: 1.65;
-
-  color: #526778;
-  margin: 12px 0 0;
+.light-row {
+  grid-template-columns: repeat(2, 1fr);
 }
 
-.reset {
+.preset-row button,
+.light-row button {
+  border: 1px solid #8da0ae;
+
+  min-height: 44px;
+
+  background: transparent;
+
+  font: 10px var(--mono);
+  color: #183045;
+}
+
+.preset-row button.active,
+.light-row button.active {
+  background: #1b3448;
+  color: #fff;
+
+  border-color: #1b3448;
+}
+
+/* ==========================================
+   STUDIO ACTION BUTTONS
+========================================== */
+
+.studio-action {
+  padding: 15px 18px;
+
+  background: #1b3448;
+  color: #fff;
+
   border: 0;
 
-  background: #1c3346;
-  color: white;
+  font: 11px var(--mono);
+  letter-spacing: .1em;
 
-  padding: 15px;
+  min-height: 47px;
+}
 
-  font: 11px 'DM Mono', monospace;
-  letter-spacing: .08em;
+.controls-note {
+  font: 11px/1.7 var(--mono);
+  color: #4b6172;
 
-  margin-top: auto;
+  margin: 0;
 }
 
 .legal {
-  font: 10px/1.9 'DM Mono', monospace;
-  color: #435769;
-  margin-top: 25px;
+  font: 10px/1.8 var(--mono);
+  color: #455b6b;
+
+  margin-top: 23px;
 }
 
 /* ==========================================
@@ -750,43 +851,39 @@ nav a:hover {
 ========================================== */
 
 .final {
-  background:
-    radial-gradient(
-      ellipse at center,
-      #26333f,
-      #070b10 73%
-    );
-
-  padding: 115px 5%;
-  text-align: center;
   min-height: 530px;
 
   display: grid;
   place-items: center;
+
+  background:
+    radial-gradient(
+      ellipse,
+      #283440,
+      #080c12 72%
+    );
+
+  text-align: center;
+  padding: 85px 5%;
 }
 
 .final h2 {
-  font-size: clamp(65px, 11vw, 175px);
+  font-size: clamp(65px, 11vw, 170px);
+
   font-weight: 600;
-
   letter-spacing: -.095em;
-  line-height: .95;
+  line-height: .93;
 
-  margin: 25px 0 40px;
-}
-
-.final h2 em {
-  font-style: normal;
-  color: #8696a3;
+  margin: 25px 0 36px;
 }
 
 .final a {
-  border: 1px solid #fff;
-  padding: 17px 24px;
-
   display: inline-block;
 
-  font: 11px 'DM Mono', monospace;
+  padding: 16px 23px;
+  border: 1px solid #fff;
+
+  font: 11px var(--mono);
   letter-spacing: .12em;
 }
 
@@ -798,107 +895,73 @@ footer {
   display: flex;
   justify-content: space-between;
 
-  gap: 20px;
+  gap: 15px;
   flex-wrap: wrap;
 
-  padding: 27px 6%;
-  border-top: 1px solid #ffffff2c;
+  background: #070a0e;
 
-  font: 10px/1.7 'DM Mono', monospace;
-  letter-spacing: .1em;
+  border-top: 1px solid #ffffff22;
+  padding: 28px 6%;
 
-  color: #adb8c3;
+  font: 10px/1.7 var(--mono);
+  letter-spacing: .09em;
+
+  color: #b4bfca;
 }
 
 /* ==========================================
-   LOADER
+   LOADING SCREEN
 ========================================== */
 
 #loader {
   position: fixed;
   inset: 0;
+
   z-index: 200;
+
+  background: #020305;
 
   display: grid;
   place-items: center;
 
-  background: #020305;
+  text-align: center;
   padding: 25px;
 
-  text-align: center;
-
   transition:
-    opacity .5s,
-    visibility .5s;
+    opacity .4s,
+    visibility .4s;
 }
 
-#loader.hidden {
+#loader.done {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
 #loader strong {
-  font-size: clamp(90px, 16vw, 200px);
-  font-weight: 700;
-  letter-spacing: -.12em;
+  font-size: clamp(90px, 18vw, 200px);
+  letter-spacing: -.13em;
 }
 
 #loader p {
-  font: 10px/1.8 'DM Mono', monospace;
-  letter-spacing: .18em;
-  color: #bac5ce;
-}
+  font: 11px/1.8 var(--mono);
+  letter-spacing: .16em;
 
-.loading-line {
-  height: 2px;
-  width: min(210px, 60vw);
-  margin: 24px auto;
-
-  background: #3d4952;
-  overflow: hidden;
-}
-
-.loading-line span {
-  display: block;
-
-  background: #fff;
-  height: 100%;
-  width: 0;
-
-  transition: width .3s;
-}
-
-#loadError {
-  color: #ffc3bd !important;
-  max-width: 530px;
-}
-
-#retry {
-  display: none;
-
-  margin: 20px auto 0;
-
-  background: #e8edf0;
-  border: 0;
-
-  color: #111b26;
-  padding: 13px 19px;
-
-  font: 11px 'DM Mono', monospace;
+  color: #c0cbd6;
 }
 
 /* ==========================================
-   SCROLL REVEAL
+   REVEAL ANIMATIONS
 ========================================== */
 
 .reveal {
   opacity: 0;
+
   transform: translateY(20px);
 
   transition:
-    opacity .85s,
-    transform .85s;
+    opacity .8s,
+    transform .8s;
 }
 
 .reveal.visible {
@@ -907,7 +970,7 @@ footer {
 }
 
 /* ==========================================
-   RESPONSIVE
+   TABLET
 ========================================== */
 
 @media (max-width: 900px) {
@@ -917,34 +980,28 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .preview {
-    min-height: 480px;
-  }
-
-  .controls {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .controls h3 {
-    grid-column: 1 / -1;
-  }
-
   .studio-head {
     display: block;
   }
 
   .studio-head p {
-    max-width: 620px;
-    margin-top: 25px;
+    max-width: 650px;
+  }
+
+  .preview {
+    min-height: 480px;
   }
 
 }
 
-@media (max-width: 630px) {
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 620px) {
 
   header {
-    padding: 17px 6%;
+    padding: 16px 6%;
   }
 
   .brand {
@@ -959,16 +1016,17 @@ footer {
     display: none;
 
     position: absolute;
-    top: 71px;
+    top: 69px;
     right: 6%;
 
-    background: #101923;
-    border: 1px solid #ffffff45;
+    padding: 12px;
 
-    padding: 10px;
+    background: #101922;
+    border: 1px solid #ffffff3a;
 
     flex-direction: column;
     align-items: stretch;
+
     gap: 0;
   }
 
@@ -977,33 +1035,34 @@ footer {
   }
 
   nav a {
-    padding: 14px;
+    padding: 13px;
   }
 
-  .film {
-    height: 540vh;
-  }
-
-  .film-topline {
-    top: 16%;
+  .hero-tag {
+    top: 17%;
     font-size: 9px;
   }
 
-  .film-side {
+  .hero-side {
     font-size: 8px;
   }
 
-  .film-bottom {
-    bottom: 9%;
-    align-items: start;
-    flex-direction: column;
+  .hero-bottom {
+    bottom: 8%;
+    display: block;
   }
 
-  .film-copy h1 {
-    font-size: clamp(36px, 9vw, 56px);
+  .hero-bottom h1 {
+    font-size: clamp(46px, 11vw, 72px);
   }
 
-  .film-cue {
+  .action-group {
+    margin-top: 21px;
+    justify-content: flex-start;
+  }
+
+  .cta {
+    padding: 13px;
     font-size: 9px;
   }
 
@@ -1012,7 +1071,7 @@ footer {
   }
 
   .story h2 {
-    font-size: clamp(55px, 13vw, 85px);
+    font-size: 13vw;
   }
 
   .stats {
@@ -1022,38 +1081,39 @@ footer {
 
   .stat,
   .stat:first-child {
-    padding: 20px 0;
+    padding: 18px 0;
+
     border-right: 0;
-    border-bottom: 1px solid var(--stroke);
+    border-bottom: 1px solid #ffffff27;
   }
 
   .studio {
     padding: 85px 5%;
   }
 
-  .studio h2 {
+  .studio-head h2 {
     font-size: 12vw;
   }
 
   .preview {
-    min-height: 340px;
-    box-shadow: 5px 5px #9baab5;
+    min-height: 350px;
+    box-shadow: 5px 5px #9aacbb;
   }
 
-  .preview-badge,
-  .preview-footer {
+  .badge,
+  .preview-foot {
     font-size: 8px;
   }
 
-  .controls {
-    display: flex;
-  }
-
   .final {
-    min-height: 450px;
+    min-height: 440px;
   }
 
 }
+
+/* ==========================================
+   REDUCED MOTION
+========================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -1061,13 +1121,14 @@ footer {
     scroll-behavior: auto;
   }
 
-  .film {
-    height: 100vh;
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 
-  .reveal {
-    transform: none;
-    opacity: 1;
+  #darkness,
+  #endTitle {
+    transition: none;
   }
 
 }
@@ -1076,16 +1137,16 @@ footer {
 
 </head>
 
-<body>
+<body class="locked">
 
 <!-- ==========================================
-     PROGRESS
+     PAGE PROGRESS
 ========================================== -->
 
-<div id="progress"></div>
+<div id="pageProgress"></div>
 
 <!-- ==========================================
-     LOADING SCREEN
+     LOADER
 ========================================== -->
 
 <div
@@ -1097,22 +1158,11 @@ footer {
 
     <strong>911.</strong>
 
-    <p id="loadStatus">
-      PREPARING THE FILM
+    <p id="loadText">
+
+      PREPARING THE CINEMATIC EXPERIENCE
+
     </p>
-
-    <div class="loading-line">
-      <span id="loadFill"></span>
-    </div>
-
-    <p id="loadError"></p>
-
-    <button
-      id="retry"
-      type="button"
-    >
-      START DE FILM ↗
-    </button>
 
   </div>
 
@@ -1125,14 +1175,16 @@ footer {
 <header id="header">
 
   <a
-    href="#top"
     class="brand"
+    href="#top"
   >
 
     911
 
     <small>
+
       THE CINEMATIC EXPERIENCE
+
     </small>
 
   </a>
@@ -1169,7 +1221,9 @@ footer {
     aria-label="Menu openen"
     aria-expanded="false"
   >
+
     ☰
+
   </button>
 
 </header>
@@ -1177,101 +1231,199 @@ footer {
 <main>
 
 <!-- ==========================================
-     CINEMATIC FILM
+     CINEMATIC HERO
 ========================================== -->
 
 <section
+  class="hero"
   id="top"
-  class="film"
-  aria-label="Scrollgestuurde Porsche-film"
+  aria-label="Porsche-film"
 >
 
-  <div class="film-pin">
+  <!-- ======================================
+       PORSCHE VIDEO
 
-    <!-- THE REAL VIDEO -->
+       NORMAL PLAYBACK
 
-    <video
-      id="filmVideo"
-      class="film-video"
-      muted
-      playsinline
-      preload="auto"
-      disablepictureinpicture
-      aria-label="Porsche 911 GT3 RS in een grafietgrijze LED-showroom"
+       NOT SCROLL-SCRUBBED
+  ====================================== -->
+
+  <video
+    id="heroVideo"
+    muted
+    playsinline
+    preload="auto"
+    disablepictureinpicture
+    aria-label="Witte 911 GT3 RS in een LED-showroom"
+  >
+
+    <source
+      src="./porsche-cinematic.mp4"
+      type="video/mp4"
     >
 
-      <source
-        src="./porsche-cinematic.mp4"
-        type="video/mp4"
-      >
+  </video>
 
-    </video>
+  <!-- ======================================
+       CINEMATIC EFFECTS
+  ====================================== -->
 
-    <div class="film-shade"></div>
+  <div class="hero-shade"></div>
 
-    <div id="darkness"></div>
+  <div id="darkness"></div>
 
-    <div id="lightPulse"></div>
+  <div id="lightFlash"></div>
 
-    <div class="film-topline">
-      911 GT3 RS / WHITE EDITION
-    </div>
+  <!-- ======================================
+       LABELS
+  ====================================== -->
 
-    <div class="film-side">
-      ONE CAMERA. ONE LEGEND.
-    </div>
+  <div class="hero-tag">
 
-    <div class="film-bottom">
+    911 GT3 RS / WHITE EDITION
 
-      <div class="film-copy">
+  </div>
 
-        <span
-          class="eyebrow"
-          id="sceneLabel"
-        >
-          00 / IGNITION
-        </span>
+  <div class="hero-side">
 
-        <h1 id="sceneTitle">
-          BORN IN THE DARK.
-        </h1>
+    ONE CAR. ONE CONTINUOUS FILM.
 
-        <p id="sceneDesc">
-          THE MOMENT BEFORE THE REVEAL
-        </p>
+  </div>
 
-      </div>
+  <!-- ======================================
+       FINAL TITLE
+  ====================================== -->
 
-      <div
-        class="film-cue"
-        id="scrollCue"
-      >
-        SCROLL TO ORBIT ↓
-      </div>
+  <div id="endTitle">
 
-    </div>
+    <div>
 
-    <div id="endTitle">
+      <h2>
 
-      <div>
+        THE 911.
 
-        <small>
-          THE ART OF MOTION
-        </small>
+      </h2>
 
-        <h2>
-          THE 911.
-        </h2>
+      <p>
 
-        <small>
-          GT3 RS / 991.2
-        </small>
+        PORSCHE 911 GT3 RS
 
-      </div>
+      </p>
 
     </div>
 
   </div>
+
+  <!-- ======================================
+       ERROR MESSAGE
+  ====================================== -->
+
+  <p
+    id="heroMessage"
+    role="status"
+  ></p>
+
+  <!-- ======================================
+       VIDEO START INDICATOR
+  ====================================== -->
+
+  <div id="playIndicator">
+
+    THE FILM IS PLAYING
+
+  </div>
+
+  <!-- ======================================
+       HERO CONTROLS
+  ====================================== -->
+
+  <div class="hero-bottom">
+
+    <div>
+
+      <span
+        class="eyebrow"
+        id="phaseLabel"
+      >
+
+        00 / DARKNESS
+
+      </span>
+
+      <h1 id="heroTitle">
+
+        BORN IN<br>
+        THE DARK.
+
+      </h1>
+
+      <p id="heroSubtitle">
+
+        HEADLIGHTS IN 1.5 SECONDS
+
+      </p>
+
+    </div>
+
+    <div class="action-group">
+
+      <!-- START -->
+
+      <button
+        type="button"
+        class="cta primary"
+        id="startButton"
+      >
+
+        SCROLL OF START FILM ▶
+
+      </button>
+
+      <!-- SKIP -->
+
+      <button
+        type="button"
+        class="cta"
+        id="skipButton"
+      >
+
+        SKIP INTRO ↗
+
+      </button>
+
+      <!-- CONTINUE -->
+
+      <button
+        type="button"
+        class="cta hidden"
+        id="continueButton"
+      >
+
+        EXPLORE THE 911 ↓
+
+      </button>
+
+      <!-- REPLAY -->
+
+      <button
+        type="button"
+        class="cta hidden"
+        id="replayButton"
+      >
+
+        REPLAY ↺
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- ======================================
+       VIDEO PROGRESS
+  ====================================== -->
+
+  <div id="filmBar"></div>
 
 </section>
 
@@ -1280,8 +1432,8 @@ footer {
 ========================================== -->
 
 <section
-  id="story"
   class="story"
+  id="story"
 >
 
   <div class="wrap">
@@ -1291,35 +1443,41 @@ footer {
       <div class="reveal">
 
         <span class="eyebrow">
-          PORSCHE / 911 GT3 RS
+
+          THE LEGEND / GT3 RS
+
         </span>
 
         <h2>
 
-          THE<br>
-          DRIVE<br>
-          <em>WITHIN.</em>
+          NOT JUST<br>
+          A CAR.<br>
+          <em>AN ICON.</em>
 
         </h2>
 
       </div>
 
-      <p class="lead reveal">
+      <p class="reveal">
 
-        Een laag silhouet.
+        De iconische koplampen.
 
-        De iconische ronde koplampen.
+        Het lage silhouet.
 
-        Een achtervleugel die geen twijfel
-        laat bestaan.
+        De enorme achtervleugel.
 
-        Geen speelgoedachtige 3D-render,
-        maar jouw filmbeelden — gepresenteerd
-        als één cinematografische ervaring.
+        Een Porsche die in deze film
+        centraal staat — zonder zware
+        realtime 3D-showroom op jouw
+        Chromebook.
 
       </p>
 
     </div>
+
+    <!-- ======================================
+         STATISTICS
+    ====================================== -->
 
     <div class="stats reveal">
 
@@ -1328,7 +1486,9 @@ footer {
         <strong>911</strong>
 
         <span>
+
           THE ICON
+
         </span>
 
       </div>
@@ -1338,7 +1498,9 @@ footer {
         <strong>GT3 RS</strong>
 
         <span>
-          RACING DNA
+
+          THE CHARACTER
+
         </span>
 
       </div>
@@ -1348,7 +1510,9 @@ footer {
         <strong>991.2</strong>
 
         <span>
+
           THE GENERATION
+
         </span>
 
       </div>
@@ -1364,8 +1528,8 @@ footer {
 ========================================== -->
 
 <section
-  id="studio"
   class="studio"
+  id="studio"
 >
 
   <div class="wrap">
@@ -1375,7 +1539,9 @@ footer {
       <div>
 
         <span class="eyebrow">
+
           THE DESIGN STUDIO
+
         </span>
 
         <h2>
@@ -1389,13 +1555,13 @@ footer {
 
       <p>
 
-        Bekijk de Porsche vanuit verschillende
-        camerahoeken.
+        Een lichtere studio met echte beelden
+        uit jouw Porsche-film.
 
-        Beweeg door de film, kies een standpunt
-        en verander de lichtsfeer.
+        Kies een camerahoek, speel de video
+        af en verander de lichtsfeer.
 
-        Zonder zwaar 3D-model.
+        Geen zwaar 3D-model.
 
       </p>
 
@@ -1403,7 +1569,9 @@ footer {
 
     <div class="studio-grid">
 
-      <!-- VIDEO PREVIEW -->
+      <!-- ==================================
+           VIDEO PREVIEW
+      ================================== -->
 
       <div class="preview">
 
@@ -1413,28 +1581,36 @@ footer {
           playsinline
           preload="none"
           disablepictureinpicture
-          aria-label="Interactieve Porsche-video"
+          aria-label="Porsche videostudio"
         ></video>
 
-        <span class="preview-badge">
-          911 / INTERACTIVE FILM STUDIO
-        </span>
+        <div class="badge">
 
-        <div class="preview-footer">
+          911 / CINEMATIC VIEWER
 
-          <span id="angleLabel">
+        </div>
+
+        <div class="preview-foot">
+
+          <span id="viewLabel">
+
             FRONT THREE-QUARTER
+
           </span>
 
-          <span id="timeLabel">
-            03.8 S
+          <span id="videoTime">
+
+            00:04
+
           </span>
 
         </div>
 
       </div>
 
-      <!-- CONFIGURATION CONTROLS -->
+      <!-- ==================================
+           CONTROLS
+      ================================== -->
 
       <aside class="controls">
 
@@ -1445,17 +1621,21 @@ footer {
 
         </h3>
 
-        <!-- CAMERA PRESETS -->
+        <!-- ==================================
+             CAMERA ANGLES
+        ================================== -->
 
         <div>
 
-          <div class="control-label">
+          <span class="label">
+
             CAMERA POSITION
-          </div>
+
+          </span>
 
           <div
-            class="button-grid"
-            id="angles"
+            class="preset-row"
+            id="angleButtons"
           >
 
             <button
@@ -1464,7 +1644,9 @@ footer {
               class="active"
               aria-pressed="true"
             >
+
               FRONT
+
             </button>
 
             <button
@@ -1472,84 +1654,51 @@ footer {
               data-time="7.2"
               aria-pressed="false"
             >
+
               SIDE
+
             </button>
 
             <button
               type="button"
-              data-time="11.2"
+              data-time="11.0"
               aria-pressed="false"
             >
+
               REAR
+
             </button>
 
           </div>
 
         </div>
 
-        <!-- CAMERA SLIDER -->
+        <!-- ==================================
+             LIGHTING
+        ================================== -->
 
         <div>
 
-          <label
-            class="control-label"
-            for="angleRange"
-          >
-            MOVE THROUGH THE FILM
-          </label>
+          <span class="label">
 
-          <input
-            class="range"
-            id="angleRange"
-            type="range"
-            min="2.8"
-            max="12"
-            step="0.05"
-            value="3.8"
-          >
+            SHOWROOM LOOK
 
-          <div class="range-labels">
-
-            <span>FRONT</span>
-
-            <span>SIDE</span>
-
-            <span>REAR</span>
-
-          </div>
-
-          <p class="control-note">
-
-            Sleep de schuif om de Porsche
-            vanuit andere hoeken te bekijken.
-
-            Dit zijn echte beelden
-            uit jouw video.
-
-          </p>
-
-        </div>
-
-        <!-- LIGHTING -->
-
-        <div>
-
-          <div class="control-label">
-            STUDIO LIGHTING LOOK
-          </div>
+          </span>
 
           <div
-            class="looks"
-            id="looks"
+            class="light-row"
+            id="lookButtons"
           >
 
             <button
               type="button"
-              class="active"
               data-look="day"
+              class="active"
               aria-pressed="true"
             >
+
               DAYLIGHT
+
             </button>
 
             <button
@@ -1557,7 +1706,9 @@ footer {
               data-look="night"
               aria-pressed="false"
             >
+
               NIGHT
+
             </button>
 
             <button
@@ -1565,7 +1716,9 @@ footer {
               data-look="cool"
               aria-pressed="false"
             >
+
               COOL WHITE
+
             </button>
 
             <button
@@ -1573,29 +1726,55 @@ footer {
               data-look="contrast"
               aria-pressed="false"
             >
+
               CONTRAST
+
             </button>
 
           </div>
 
-          <p class="control-note">
-
-            Deze standen veranderen de
-            kleurcorrectie van de video.
-
-            De Porsche blijft wit.
-
-          </p>
-
         </div>
+
+        <!-- ==================================
+             PLAY / PAUSE
+        ================================== -->
 
         <button
           type="button"
-          class="reset"
-          id="resetStudio"
+          id="studioPlay"
+          class="studio-action"
         >
-          ↺ RESET VIEW
+
+          ▶ PLAY CAMERA FILM
+
         </button>
+
+        <!-- ==================================
+             RESET
+        ================================== -->
+
+        <button
+          type="button"
+          id="studioReset"
+          class="studio-action"
+        >
+
+          ↺ RESET VIEW
+
+        </button>
+
+        <p class="controls-note">
+
+          De cameraknoppen springen één keer
+          naar een filmmoment.
+
+          Tijdens het afspelen loopt de video
+          normaal door.
+
+          Lichtstanden zijn beeldfilters;
+          de Porsche zelf blijft wit.
+
+        </p>
 
       </aside>
 
@@ -1603,16 +1782,14 @@ footer {
 
     <p class="legal">
 
-      ONOFFICIEEL CONCEPT —
+      ONOFFICIEEL ONTWERPCONCEPT —
       NIET VERBONDEN AAN PORSCHE AG.
 
-      VIDEO: JOUW HAILUO AI-OPNAME,
-      MET OORSPRONKELIJK WATERMERK.
+      HAILUO AI-VIDEO MET OORSPRONKELIJK
+      WATERMERK.
 
-      GEEN REALTIME 3D-MODEL.
-
-      VOOR PUBLICATIE GELDEN DE
-      GEBRUIKSVOORWAARDEN VAN DE VIDEOGENERATOR.
+      CONTROLEER DE GEBRUIKSVOORWAARDEN
+      VOOR PUBLICATIE.
 
     </p>
 
@@ -1621,7 +1798,7 @@ footer {
 </section>
 
 <!-- ==========================================
-     FINAL
+     FINAL SECTION
 ========================================== -->
 
 <section class="final">
@@ -1629,7 +1806,9 @@ footer {
   <div class="reveal">
 
     <span class="eyebrow">
+
       THE CINEMATIC EXPERIENCE
+
     </span>
 
     <h2>
@@ -1639,8 +1818,13 @@ footer {
 
     </h2>
 
-    <a href="#top">
+    <a
+      href="#top"
+      id="againLink"
+    >
+
       EXPERIENCE IT AGAIN ↑
+
     </a>
 
   </div>
@@ -1656,21 +1840,27 @@ footer {
 <footer>
 
   <span>
-    911 / INDEPENDENT CINEMATIC CONCEPT
+
+    911 / INDEPENDENT DESIGN CONCEPT
+
   </span>
 
   <span>
-    VIDEO-DRIVEN · PERFORMANCE V4
+
+    NORMAL VIDEO PLAYBACK · PERFORMANCE V5
+
   </span>
 
   <a href="#top">
+
     BACK TO TOP ↑
+
   </a>
 
 </footer>
 
 <!-- ==========================================
-     OPTIMIZED JAVASCRIPT
+     JAVASCRIPT — PERFORMANCE V5
 ========================================== -->
 
 <script>
@@ -1678,546 +1868,317 @@ footer {
 'use strict';
 
 /* ==========================================
-   HELPERS
+   DOM HELPERS
 ========================================== */
 
-const $ = selector =>
-  document.querySelector(selector);
+const $ = s =>
+  document.querySelector(s);
 
-const $$ = selector =>
-  [...document.querySelectorAll(selector)];
-
-const clamp = (
-  n,
-  min = 0,
-  max = 1
-) =>
-  Math.max(
-    min,
-    Math.min(max, n)
-  );
-
-const mix = (
-  a,
-  b,
-  t
-) =>
-  a + (b - a) * t;
-
-const ease = t => {
-
-  t = clamp(t);
-
-  return t * t * (3 - 2 * t);
-
-};
+const $$ = s =>
+  [...document.querySelectorAll(s)];
 
 /* ==========================================
-   DEVICE SETTINGS
+   VIDEO ELEMENTS
 ========================================== */
 
-const reducedMotion = matchMedia(
+const video =
+  $('#heroVideo');
 
-  '(prefers-reduced-motion: reduce)'
-
-).matches;
+const studioVideo =
+  $('#studioVideo');
 
 /* ==========================================
-   DOM ELEMENTS
+   REDUCED MOTION
 ========================================== */
 
-const film = $('#filmVideo');
+const reduceMotion =
+  window.matchMedia(
 
-const studio = $('#studioVideo');
+    '(prefers-reduced-motion:reduce)'
 
-const filmSection = $('#top');
-
-const darkness = $('#darkness');
-
-const pulse = $('#lightPulse');
-
-const loader = $('#loader');
+  ).matches;
 
 /* ==========================================
-   STATE
+   MAIN STATES
 ========================================== */
 
-let ready = false;
+/*
+  loading = video is loading
 
-let introStart = 0;
+  opening = dark intro
 
-let introFinished = false;
+  ready = headlights are revealed
 
-let introFrame = 0;
+  playing = cinematic video playing normally
 
-let filmVisible = true;
+  ended = film finished; scrolling unlocked
+*/
+
+let state = 'loading';
+
+/* ==========================================
+   INTRO STATE
+========================================== */
+
+let lightsTimer = null;
+
+let queuedStart = false;
+
+const OPENING_MS = 1500;
+
+/* ==========================================
+   STUDIO STATE
+========================================== */
+
+let studioLoaded = false;
 
 let studioVisible = false;
 
 let studioReady = false;
 
-let studioWanted = 3.8;
-
-let studioLoaded = false;
-
-let lastChapter = '';
-
-let fullDuration = 12.25;
-
-let scrollRaf = 0;
-
 /* ==========================================
-   PERFORMANCE SETTINGS
+   UPDATE INTRO TEXT
 ========================================== */
 
-/*
-  BELANGRIJK!
+function setPhase(
 
-  In de vorige versie werd voortdurend
-  geprobeerd de film te verplaatsen.
+  label,
 
-  Nu beperken we het aantal zoekacties.
+  title,
 
-  Een nieuwe zoekactie begint alleen
-  als de vorige klaar is.
-
-  Snelle scrollbewegingen worden
-  samengevoegd.
-
-  De laatst gevraagde videopositie
-  heeft altijd voorrang.
-*/
-
-/* Minimaal 125 milliseconden tussen seeks */
-
-const SEEK_GAP_MS = 125;
-
-/* Negeer veranderingen kleiner dan 0.14 sec */
-
-const SEEK_THRESHOLD_SECONDS = .14;
-
-/* ==========================================
-   OPTIMIZED VIDEO SEEK QUEUE
-========================================== */
-
-function createSeekQueue(
-
-  video,
-
-  gap = SEEK_GAP_MS
+  subtitle
 
 ) {
 
-  let wanted = 0;
+  $('#phaseLabel').textContent =
+    label;
 
-  let active = false;
+  $('#heroTitle').innerHTML =
+    title;
 
-  let timeout = null;
-
-  let lastSeek = -Infinity;
-
-  /* ======================================
-     CLEAR TIMER
-  ====================================== */
-
-  function clearTimer() {
-
-    if (timeout !== null) {
-
-      clearTimeout(timeout);
-
-      timeout = null;
-
-    }
-
-  }
-
-  /* ======================================
-     PROCESS SEEK REQUEST
-  ====================================== */
-
-  function pump() {
-
-    clearTimer();
-
-    /* ==================================
-       DO NOTHING IF VIDEO IS HIDDEN
-    ================================== */
-
-    if (
-
-      !active ||
-
-      video.seeking ||
-
-      video.readyState < 1
-
-    ) {
-
-      return;
-
-    }
-
-    /* ==================================
-       CHECK VIDEO DURATION
-    ================================== */
-
-    if (
-
-      !Number.isFinite(video.duration) ||
-
-      video.duration <= 0
-
-    ) {
-
-      return;
-
-    }
-
-    /* ==================================
-       SAFE VIDEO POSITION
-    ================================== */
-
-    const target = clamp(
-
-      wanted,
-
-      0,
-
-      Math.max(
-
-        0,
-
-        video.duration - .04
-
-      )
-
-    );
-
-    /* ==================================
-       IGNORE VERY SMALL CHANGES
-    ================================== */
-
-    if (
-
-      Math.abs(
-
-        video.currentTime - target
-
-      ) < SEEK_THRESHOLD_SECONDS
-
-    ) {
-
-      return;
-
-    }
-
-    /* ==================================
-       LIMIT THE SEEK RATE
-    ================================== */
-
-    const remaining =
-
-      gap -
-
-      (
-        performance.now() -
-        lastSeek
-      );
-
-    if (remaining > 0) {
-
-      timeout = setTimeout(
-
-        pump,
-
-        remaining
-
-      );
-
-      return;
-
-    }
-
-    /* ==================================
-       UPDATE LAST SEEK TIME
-    ================================== */
-
-    lastSeek =
-      performance.now();
-
-    /* ==================================
-       SEEK TO THE NEWEST TARGET
-    ================================== */
-
-    try {
-
-      video.pause();
-
-      video.currentTime = target;
-
-    } catch (error) {
-
-      console.warn(
-
-        'Videozoekactie niet gelukt:',
-
-        error
-
-      );
-
-    }
-
-  }
-
-  /* ======================================
-     WAIT FOR PREVIOUS SEEK TO FINISH
-  ====================================== */
-
-  video.addEventListener(
-
-    'seeked',
-
-    pump
-
-  );
-
-  /* ======================================
-     HANDLE VIDEO METADATA
-  ====================================== */
-
-  video.addEventListener(
-
-    'loadedmetadata',
-
-    pump
-
-  );
-
-  /* ======================================
-     PUBLIC CONTROLS
-  ====================================== */
-
-  return {
-
-    set(time) {
-
-      if (Number.isFinite(time)) {
-
-        wanted = time;
-
-      }
-
-      pump();
-
-    },
-
-    setActive(value) {
-
-      active = Boolean(value);
-
-      if (!active) {
-
-        clearTimer();
-
-      } else {
-
-        pump();
-
-      }
-
-    }
-
-  };
+  $('#heroSubtitle').textContent =
+    subtitle;
 
 }
 
 /* ==========================================
-   CREATE VIDEO CONTROLLERS
+   CLEAR INTRO TIMER
 ========================================== */
 
-const filmQueue =
-  createSeekQueue(film);
+function clearOpening() {
 
-const studioQueue =
-  createSeekQueue(
+  if (lightsTimer !== null) {
 
-    studio,
+    clearTimeout(lightsTimer);
 
-    140
-
-  );
-
-/* ==========================================
-   FILM CHAPTERS
-========================================== */
-
-const chapters = [
-
-  {
-
-    to: .12,
-
-    key: '00 / IGNITION',
-
-    title: 'BORN IN THE DARK.',
-
-    sub: 'BOTH HEADLIGHTS. ONE MOMENT.'
-
-  },
-
-  {
-
-    to: .34,
-
-    key: '01 / THE REVEAL',
-
-    title: 'LIGHT REVEALS FORM.',
-
-    sub: 'HEXAGON LED SHOWROOM'
-
-  },
-
-  {
-
-    to: .69,
-
-    key: '02 / THE ORBIT',
-
-    title: 'EVERY ANGLE.',
-
-    sub: 'A CONTINUOUS CAMERA MOVEMENT'
-
-  },
-
-  {
-
-    to: .91,
-
-    key: '03 / THE DETAILS',
-
-    title: 'DESIGNED TO MOVE.',
-
-    sub: 'WHEELS · BODY · AERODYNAMICS'
-
-  },
-
-  {
-
-    to: 1.01,
-
-    key: '04 / THE FINAL',
-
-    title: 'THE 911.',
-
-    sub: 'A CINEMATIC ICON'
+    lightsTimer = null;
 
   }
 
-];
+}
 
 /* ==========================================
-   CHANGE FILM CHAPTER
+   REVEAL HEADLIGHTS
 ========================================== */
 
-function setChapter(progress) {
+function revealLights() {
 
-  const scene =
-
-    chapters.find(
-
-      item =>
-        progress < item.to
-
-    ) ||
-
-    chapters[
-      chapters.length - 1
-    ];
-
-  if (
-    scene.key === lastChapter
-  ) {
+  if (state !== 'opening') {
 
     return;
 
   }
 
-  lastChapter =
-    scene.key;
+  /* ======================================
+     REVEAL VIDEO FRAME
+  ====================================== */
 
-  $('#sceneLabel').textContent =
-    scene.key;
+  $('#darkness').classList.add(
 
-  $('#sceneTitle').textContent =
-    scene.title;
+    'revealed'
 
-  $('#sceneDesc').textContent =
-    scene.sub;
+  );
+
+  /* ======================================
+     LED FLICKERING
+  ====================================== */
+
+  $('#lightFlash').classList.add(
+
+    'flicker'
+
+  );
+
+  /* ======================================
+     UPDATE SCENE LABEL
+  ====================================== */
+
+  setPhase(
+
+    '01 / HEADLIGHTS',
+
+    'LIGHT REVEALS<br>THE 911.',
+
+    'SCROLL TO START THE CAMERA'
+
+  );
+
+  /* ======================================
+     MARK AS READY
+  ====================================== */
+
+  state = 'ready';
+
+  /* ======================================
+     START IF USER ALREADY SCROLLED
+  ====================================== */
+
+  if (queuedStart) {
+
+    startFilm();
+
+  }
 
 }
 
 /* ==========================================
-   FILM SCROLL PROGRESS
+   BEGIN DARK INTRO
 ========================================== */
 
-function filmProgress() {
+function beginOpening() {
 
-  const rect =
+  if (state !== 'loading') {
 
-    filmSection.getBoundingClientRect();
+    return;
 
-  return clamp(
+  }
 
-    -rect.top /
+  state = 'opening';
 
-    Math.max(
+  /* ======================================
+     PAUSE THE VIDEO
+  ====================================== */
 
-      1,
+  video.pause();
 
-      filmSection.offsetHeight -
-      innerHeight
+  /* ======================================
+     HIDE LOADING SCREEN
+  ====================================== */
 
-    )
+  $('#loader').classList.add(
+
+    'done'
+
+  );
+
+  /* ======================================
+     INITIAL TEXT
+  ====================================== */
+
+  setPhase(
+
+    '00 / DARKNESS',
+
+    'BORN IN<br>THE DARK.',
+
+    'BOTH HEADLIGHTS IN 1.5 SECONDS'
+
+  );
+
+  /* ======================================
+     SCHEDULE LIGHT REVEAL
+  ====================================== */
+
+  lightsTimer = setTimeout(
+
+    revealLights,
+
+    reduceMotion ? 0 : OPENING_MS
 
   );
 
 }
 
 /* ==========================================
-   INTRO TIMING
+   PLAYBACK BUTTON STATES
+========================================== */
+
+function showPlaybackControls() {
+
+  $('#startButton').classList.add(
+
+    'hidden'
+
+  );
+
+  $('#replayButton').classList.add(
+
+    'hidden'
+
+  );
+
+  $('#continueButton').classList.add(
+
+    'hidden'
+
+  );
+
+  $('#skipButton').classList.remove(
+
+    'hidden'
+
+  );
+
+}
+
+/* ==========================================
+   START CINEMATIC FILM
 ========================================== */
 
 /*
-  De Porsche staat in de video
-  al met zijn koplampen aan.
+  THIS IS THE MAIN PERFORMANCE FIX.
 
-  Daarom begint de website donker.
+  The video plays normally.
 
-  Na 1500ms onthullen we de eerste
-  beelden van de Porsche.
+  We do not calculate a video frame
+  for every scroll position.
 
-  Daarna lichten de showroom en
-  LED-panelen geleidelijk op.
+  We never continuously modify
+  video.currentTime.
+
+  This should require significantly less
+  video decoding work on a Chromebook.
 */
 
-const INTRO_HOLD_MS = 1500;
+async function startFilm() {
 
-const INTRO_END_MS = 3500;
-
-const INTRO_VIDEO_END = 2.8;
-
-/* ==========================================
-   AUTOMATIC INTRO
-========================================== */
-
-function paintIntro(now) {
+  /* ======================================
+     WAIT FOR OPENING
+  ====================================== */
 
   if (
 
-    introFinished ||
+    state === 'loading' ||
 
-    !ready
+    state === 'opening'
+
+  ) {
+
+    queuedStart = true;
+
+    return;
+
+  }
+
+  /* ======================================
+     PREVENT DUPLICATE PLAYBACK
+  ====================================== */
+
+  if (
+
+    state === 'playing' ||
+
+    state === 'ended'
 
   ) {
 
@@ -2225,552 +2186,262 @@ function paintIntro(now) {
 
   }
 
-  const elapsed =
+  clearOpening();
 
-    now - introStart;
-
-  const progress =
-    filmProgress();
+  state = 'playing';
 
   /* ======================================
-     IF USER SCROLLS, END INTRO
+     REMOVE DARKNESS
   ====================================== */
 
-  if (
+  $('#darkness').classList.add(
 
-    !filmVisible ||
-
-    progress > .008
-
-  ) {
-
-    introFinished = true;
-
-    darkness.style.opacity = '0';
-
-    pulse.style.opacity = '0';
-
-    updateFromScroll();
-
-    return;
-
-  }
-
-  /* ======================================
-     REDUCED MOTION
-  ====================================== */
-
-  if (reducedMotion) {
-
-    introFinished = true;
-
-    darkness.style.opacity = '0';
-
-    filmQueue.set(
-      INTRO_VIDEO_END
-    );
-
-    return;
-
-  }
-
-  /* ======================================
-     FIRST 1.5 SECONDS: DARKNESS
-  ====================================== */
-
-  if (
-
-    elapsed < INTRO_HOLD_MS
-
-  ) {
-
-    darkness.style.opacity = '.99';
-
-  } else {
-
-    /* ==================================
-       REVEAL PROGRESS
-    ================================== */
-
-    const reveal = ease(
-
-      (
-        elapsed -
-        INTRO_HOLD_MS
-      ) / 420
-
-    );
-
-    /* ==================================
-       SHOWROOM REVEAL PROGRESS
-    ================================== */
-
-    const room = ease(
-
-      (
-        elapsed -
-        INTRO_HOLD_MS -
-        400
-      ) / 1400
-
-    );
-
-    /* ==================================
-       DARKNESS OVERLAY
-    ================================== */
-
-    darkness.style.opacity =
-
-      String(
-
-        mix(
-
-          .84,
-
-          0,
-
-          room * .75 +
-
-          reveal * .25
-
-        )
-
-      );
-
-    /* ==================================
-       SUBTLE LIGHT FLICKER
-    ================================== */
-
-    const flickerPhase =
-
-      (
-        elapsed -
-        INTRO_HOLD_MS -
-        380
-      ) / 1000;
-
-    pulse.style.opacity =
-
-      String(
-
-        flickerPhase > 0 &&
-
-        flickerPhase < 1
-
-          ? Math.max(
-
-              0,
-
-              Math.sin(
-
-                flickerPhase * 28
-
-              ) - .85
-
-            ) * .14
-
-          : 0
-
-      );
-
-    /* ==================================
-       REQUEST VIDEO FRAME
-    ================================== */
-
-    filmQueue.set(
-
-      INTRO_VIDEO_END * room
-
-    );
-
-  }
-
-  /* ======================================
-     END AUTOMATIC INTRO
-  ====================================== */
-
-  if (
-
-    elapsed >= INTRO_END_MS
-
-  ) {
-
-    introFinished = true;
-
-    darkness.style.opacity = '0';
-
-    pulse.style.opacity = '0';
-
-    filmQueue.set(
-      INTRO_VIDEO_END
-    );
-
-    updateFromScroll();
-
-    return;
-
-  }
-
-  /* ======================================
-     RAF ONLY DURING THE SHORT INTRO
-  ====================================== */
-
-  introFrame =
-
-    requestAnimationFrame(
-
-      paintIntro
-
-    );
-
-}
-
-/* ==========================================
-   OPTIMIZED SCROLL HANDLING
-========================================== */
-
-/*
-  Eén scroll-event betekent niet meteen
-  één nieuwe videozoekactie.
-
-  De browser verzamelt scrollupdates.
-
-  Daarna verwerken we alleen de
-  meest recente positie.
-*/
-
-function updateFromScroll() {
-
-  scrollRaf = 0;
-
-  /* ======================================
-     PAGE PROGRESS
-  ====================================== */
-
-  const maxScroll =
-
-    Math.max(
-
-      1,
-
-      document.documentElement.scrollHeight -
-
-      innerHeight
-
-    );
-
-  $('#progress').style.width =
-
-    `${
-      scrollY / maxScroll * 100
-    }%`;
-
-  /* ======================================
-     HEADER
-  ====================================== */
-
-  $('#header').classList.toggle(
-
-    'scrolled',
-
-    scrollY > 55
+    'cleared'
 
   );
 
   /* ======================================
-     SKIP HIDDEN VIDEO
+     STOP FLICKERING
   ====================================== */
 
-  if (
+  $('#lightFlash').classList.remove(
 
-    !ready ||
-
-    !filmVisible
-
-  ) {
-
-    return;
-
-  }
-
-  const p =
-    filmProgress();
-
-  /* ======================================
-     INTERRUPT INTRO ON USER SCROLL
-  ====================================== */
-
-  if (
-
-    p > .008 &&
-
-    !introFinished
-
-  ) {
-
-    introFinished = true;
-
-    cancelAnimationFrame(
-      introFrame
-    );
-
-  }
-
-  if (!introFinished) {
-
-    return;
-
-  }
-
-  /* ======================================
-     REMOVE DARK OVERLAY
-  ====================================== */
-
-  darkness.style.opacity = '0';
-
-  pulse.style.opacity = '0';
-
-  /* ======================================
-     MAP SCROLL TO VIDEO TIME
-  ====================================== */
-
-  const target = mix(
-
-    INTRO_VIDEO_END,
-
-    Math.max(
-
-      INTRO_VIDEO_END,
-
-      fullDuration - .05
-
-    ),
-
-    p
+    'flicker'
 
   );
-
-  /* ======================================
-     REQUEST ONLY NEEDED FRAME
-  ====================================== */
-
-  filmQueue.set(target);
 
   /* ======================================
      UPDATE TEXT
   ====================================== */
 
-  setChapter(p);
+  setPhase(
+
+    '02 / CAMERA ORBIT',
+
+    'EVERY ANGLE.<br>ONE ICON.',
+
+    'THE CAMERA MOVES. THE CAR STAYS STILL.'
+
+  );
 
   /* ======================================
-     SCROLL CUE
+     UPDATE BUTTONS
   ====================================== */
 
-  $('#scrollCue').style.opacity =
+  showPlaybackControls();
 
-    String(
+  /* ======================================
+     PLAY INDICATOR
+  ====================================== */
 
-      clamp(
+  $('#playIndicator').classList.add(
 
-        1 - p * 8
+    'visible'
 
-      )
+  );
+
+  setTimeout(
+
+    () => {
+
+      $('#playIndicator').classList.remove(
+
+        'visible'
+
+      );
+
+    },
+
+    1100
+
+  );
+
+  /* ======================================
+     NORMAL VIDEO PLAYBACK
+  ====================================== */
+
+  try {
+
+    await video.play();
+
+  } catch (error) {
+
+    /* ==================================
+       AUTOPLAY BLOCKED
+    ================================== */
+
+    state = 'ready';
+
+    $('#startButton').classList.remove(
+
+      'hidden'
 
     );
 
-  /* ======================================
-     FINAL TITLE
-  ====================================== */
+    $('#heroMessage').textContent =
 
-  $('#endTitle').style.opacity =
+      'Automatisch afspelen is geblokkeerd. ' +
 
-    String(
+      'Klik op START FILM om verder te gaan.';
 
-      ease(
-
-        (p - .91) / .09
-
-      )
-
-    );
+  }
 
 }
 
 /* ==========================================
-   SCHEDULE SCROLL UPDATE
+   FINISH FILM
 ========================================== */
 
-function scheduleScroll() {
+function finishFilm(
 
-  if (scrollRaf) {
+  skipped = false
+
+) {
+
+  if (state === 'ended') {
 
     return;
 
   }
 
-  scrollRaf =
+  clearOpening();
 
-    requestAnimationFrame(
-
-      updateFromScroll
-
-    );
-
-}
-
-/* ==========================================
-   EVENT LISTENERS
-========================================== */
-
-addEventListener(
-
-  'scroll',
-
-  scheduleScroll,
-
-  {
-    passive: true
-  }
-
-);
-
-addEventListener(
-
-  'resize',
-
-  scheduleScroll,
-
-  {
-    passive: true
-  }
-
-);
-
-/* ==========================================
-   VIDEO LOADING
-========================================== */
-
-function onFilmReady() {
-
-  if (ready) {
-
-    return;
-
-  }
-
-  ready = true;
-
-  /* ======================================
-     READ ACTUAL VIDEO LENGTH
-  ====================================== */
-
-  fullDuration =
-
-    Number.isFinite(film.duration)
-
-      ? film.duration
-
-      : 12.25;
-
-  /* ======================================
-     FINISH LOADER
-  ====================================== */
-
-  $('#loadFill').style.width =
-    '100%';
-
-  $('#loadStatus').textContent =
-    'THE 911 IS READY';
+  state = 'ended';
 
   /* ======================================
      PAUSE VIDEO
   ====================================== */
 
-  film.pause();
+  video.pause();
 
   /* ======================================
-     ENABLE FRAME REQUESTS
+     REMOVE INTRO EFFECTS
   ====================================== */
 
-  filmQueue.setActive(
+  $('#darkness').classList.add(
 
-    filmVisible &&
+    'cleared'
 
-    !document.hidden
+  );
+
+  $('#lightFlash').classList.remove(
+
+    'flicker'
 
   );
 
   /* ======================================
-     HIDE LOADER
+     SHOW FINAL TITLE
   ====================================== */
 
-  loader.classList.add(
+  $('#endTitle').classList.add(
+
+    'visible'
+
+  );
+
+  $('#heroMessage').textContent = '';
+
+  setPhase(
+
+    '03 / THE FINAL',
+
+    'THE 911.',
+
+    'PORSCHE 911 GT3 RS'
+
+  );
+
+  /* ======================================
+     UPDATE BUTTONS
+  ====================================== */
+
+  $('#skipButton').classList.add(
+
     'hidden'
+
+  );
+
+  $('#startButton').classList.add(
+
+    'hidden'
+
+  );
+
+  $('#continueButton').classList.remove(
+
+    'hidden'
+
+  );
+
+  $('#replayButton').classList.remove(
+
+    'hidden'
+
   );
 
   /* ======================================
-     START INTRO TIMER
+     COMPLETE FILM PROGRESS
   ====================================== */
 
-  introStart =
-
-    performance.now();
-
-  scheduleScroll();
+  $('#filmBar').style.width =
+    '100%';
 
   /* ======================================
-     START INTRO ANIMATION
+     UNLOCK PAGE SCROLL
   ====================================== */
 
-  introFrame =
+  document.body.classList.remove(
 
-    requestAnimationFrame(
+    'locked'
 
-      paintIntro
+  );
 
-    );
+  /* ======================================
+     ONE-TIME SEEK WHEN SKIPPING
+  ====================================== */
 
-}
-
-/* ==========================================
-   VIDEO METADATA
-========================================== */
-
-film.addEventListener(
-
-  'loadedmetadata',
-
-  () => {
-
-    $('#loadFill').style.width =
-      '80%';
-
-    fullDuration =
-      film.duration;
+  if (skipped) {
 
     if (
 
-      film.readyState >= 2
+      Number.isFinite(video.duration) &&
+
+      video.duration > 0
 
     ) {
 
-      onFilmReady();
+      try {
+
+        video.currentTime = Math.max(
+
+          0,
+
+          video.duration - .08
+
+        );
+
+      } catch (error) {
+
+        console.warn(error);
+
+      }
 
     }
 
   }
 
-);
+}
 
 /* ==========================================
-   FIRST VIDEO FRAME
+   VIDEO READY EVENTS
 ========================================== */
 
-film.addEventListener(
+video.addEventListener(
 
   'loadeddata',
 
-  onFilmReady,
+  beginOpening,
 
   {
     once: true
@@ -2778,332 +2449,748 @@ film.addEventListener(
 
 );
 
+video.addEventListener(
+
+  'loadedmetadata',
+
+  () => {
+
+    if (video.readyState >= 2) {
+
+      beginOpening();
+
+    }
+
+  }
+
+);
+
 /* ==========================================
-   ERROR HANDLING
+   VIDEO ENDED
 ========================================== */
 
-film.addEventListener(
+video.addEventListener(
+
+  'ended',
+
+  () => {
+
+    finishFilm();
+
+  }
+
+);
+
+/* ==========================================
+   VIDEO PROGRESS
+========================================== */
+
+/*
+  timeupdate is fired by the browser.
+
+  We only update a small progress line.
+
+  This does not change the video position.
+*/
+
+video.addEventListener(
+
+  'timeupdate',
+
+  () => {
+
+    if (
+
+      state !== 'playing' ||
+
+      !Number.isFinite(video.duration) ||
+
+      !video.duration
+
+    ) {
+
+      return;
+
+    }
+
+    $('#filmBar').style.width =
+
+      (
+
+        video.currentTime /
+
+        video.duration *
+
+        100
+
+      ).toFixed(1) + '%';
+
+  }
+
+);
+
+/* ==========================================
+   VIDEO ERROR
+========================================== */
+
+video.addEventListener(
 
   'error',
 
   () => {
 
-    $('#loadStatus').textContent =
-      'VIDEO KON NIET LADEN';
+    $('#loadText').textContent =
 
-    $('#loadError').textContent =
+      'VIDEO KAN NIET LADEN — ' +
 
-      'Controleer of porsche-cinematic.mp4 ' +
+      'CONTROLEER OF porsche-cinematic.mp4 ' +
 
-      'naast index.html staat.';
+      'NAAST index.html STAAT.';
 
-    $('#retry').style.display =
-      'block';
+    $('#loader').classList.remove(
+
+      'done'
+
+    );
+
+    $('#heroMessage').textContent =
+
+      'De video kan niet worden geladen.';
 
   }
 
 );
 
 /* ==========================================
-   RETRY
+   LOAD VIDEO
 ========================================== */
 
-$('#retry').addEventListener(
+video.load();
 
-  'click',
+/* ==========================================
+   FIRST SCROLL STARTS FILM
+========================================== */
 
-  () => {
+function triggerScrollStart() {
 
-    if (
+  if (state === 'loading') {
 
-      film.readyState >= 1
-
-    ) {
-
-      onFilmReady();
-
-    } else {
-
-      $('#loadError').textContent =
-        '';
-
-      film.load();
-
-    }
+    return;
 
   }
 
-);
+  /* ======================================
+     USER SCROLLED BEFORE 1.5 SECONDS
+  ====================================== */
 
-/* ==========================================
-   SLOW CONNECTION FALLBACK
-========================================== */
+  if (state === 'opening') {
 
-setTimeout(
+    queuedStart = true;
 
-  () => {
-
-    if (
-
-      !ready &&
-
-      film.readyState >= 1
-
-    ) {
-
-      onFilmReady();
-
-    }
-
-  },
-
-  6500
-
-);
-
-/* ==========================================
-   LOAD FILM
-========================================== */
-
-film.load();
-
-/* ==========================================
-   OBSERVE FILM VISIBILITY
-========================================== */
-
-const filmObserver =
-
-  new IntersectionObserver(
-
-    entries => {
-
-      filmVisible =
-
-        entries[0]?.isIntersecting ??
-
-        false;
-
-      /* ==================================
-         DISABLE SEEKING OFFSCREEN
-      ================================== */
-
-      filmQueue.setActive(
-
-        filmVisible &&
-
-        !document.hidden
-
-      );
-
-      if (filmVisible) {
-
-        scheduleScroll();
-
-      }
-
-    },
-
-    {
-      rootMargin: '40px'
-    }
-
-  );
-
-filmObserver.observe(
-
-  filmSection
-
-);
-
-/* ==========================================
-   PAUSE WORK IN BACKGROUND TABS
-========================================== */
-
-document.addEventListener(
-
-  'visibilitychange',
-
-  () => {
-
-    filmQueue.setActive(
-
-      filmVisible &&
-
-      !document.hidden
-
-    );
-
-    studioQueue.setActive(
-
-      studioVisible &&
-
-      studioReady &&
-
-      !document.hidden
-
-    );
-
-    if (
-
-      !document.hidden &&
-
-      filmVisible
-
-    ) {
-
-      scheduleScroll();
-
-    }
+    return;
 
   }
 
-);
-
-/* ==========================================
-   DESIGN STUDIO FRAME CONTROLLER
-========================================== */
-
-function studioFrame(time) {
-
   /* ======================================
-     VIDEO BOUNDS
+     START THE FILM
   ====================================== */
 
-  const maxTime =
+  if (state === 'ready') {
 
-    Number.isFinite(studio.duration) &&
-
-    studio.duration > 0
-
-      ? Math.min(
-
-          12,
-
-          studio.duration - .05
-
-        )
-
-      : 12;
-
-  studioWanted = clamp(
-
-    time,
-
-    2.8,
-
-    Math.max(
-
-      2.8,
-
-      maxTime
-
-    )
-
-  );
-
-  /* ======================================
-     UPDATE SLIDER
-  ====================================== */
-
-  $('#angleRange').value =
-
-    String(studioWanted);
-
-  /* ======================================
-     CURRENT TIME
-  ====================================== */
-
-  $('#timeLabel').textContent =
-
-    `${
-      studioWanted.toFixed(1)
-    } S`;
-
-  /* ======================================
-     CAMERA LABEL
-  ====================================== */
-
-  $('#angleLabel').textContent =
-
-    studioWanted < 5
-
-      ? 'FRONT THREE-QUARTER'
-
-      : studioWanted < 9
-
-        ? 'SIDE PROFILE'
-
-        : 'REAR THREE-QUARTER';
-
-  /* ======================================
-     UPDATE CAMERA BUTTONS
-  ====================================== */
-
-  $$('[data-time]').forEach(
-
-    button => {
-
-      const selected =
-
-        Math.abs(
-
-          Number(
-
-            button.dataset.time
-
-          ) -
-
-          studioWanted
-
-        ) < .15;
-
-      button.classList.toggle(
-
-        'active',
-
-        selected
-
-      );
-
-      button.setAttribute(
-
-        'aria-pressed',
-
-        String(selected)
-
-      );
-
-    }
-
-  );
-
-  /* ======================================
-     REQUEST FRAME
-  ====================================== */
-
-  if (
-
-    studioReady &&
-
-    studioVisible
-
-  ) {
-
-    studioQueue.set(
-
-      studioWanted
-
-    );
+    startFilm();
 
   }
 
 }
 
 /* ==========================================
+   MOUSE WHEEL
+========================================== */
+
+/*
+  Before the film ends, the page is locked.
+
+  A downward scroll starts the film.
+
+  Further scrolling does not scrub
+  through the frames.
+
+  After the film ends, normal page
+  scrolling is enabled.
+*/
+
+window.addEventListener(
+
+  'wheel',
+
+  event => {
+
+    if (state === 'ended') {
+
+      return;
+
+    }
+
+    if (event.deltaY > 3) {
+
+      event.preventDefault();
+
+      triggerScrollStart();
+
+    }
+
+  },
+
+  {
+    passive: false
+  }
+
+);
+
+/* ==========================================
+   TOUCHSCREEN SUPPORT
+========================================== */
+
+let touchY = null;
+
+window.addEventListener(
+
+  'touchstart',
+
+  event => {
+
+    touchY =
+
+      event.touches[0]?.clientY ??
+
+      null;
+
+  },
+
+  {
+    passive: true
+  }
+
+);
+
+/* ==========================================
+   TOUCH MOVE
+========================================== */
+
+window.addEventListener(
+
+  'touchmove',
+
+  event => {
+
+    if (
+
+      state === 'ended' ||
+
+      touchY === null
+
+    ) {
+
+      return;
+
+    }
+
+    const next =
+
+      event.touches[0]?.clientY;
+
+    if (next === undefined) {
+
+      return;
+
+    }
+
+    /* ==================================
+       SWIPE UP = SCROLL DOWN
+    ================================== */
+
+    if (touchY - next > 15) {
+
+      event.preventDefault();
+
+      triggerScrollStart();
+
+    }
+
+  },
+
+  {
+    passive: false
+  }
+
+);
+
+/* ==========================================
+   KEYBOARD SUPPORT
+========================================== */
+
+window.addEventListener(
+
+  'keydown',
+
+  event => {
+
+    if (
+
+      state === 'ended' ||
+
+      event.target.closest(
+
+        'button,a,input,select,textarea'
+
+      )
+
+    ) {
+
+      return;
+
+    }
+
+    const keys = [
+
+      'ArrowDown',
+
+      'PageDown',
+
+      ' ',
+
+      'End'
+
+    ];
+
+    if (keys.includes(event.key)) {
+
+      event.preventDefault();
+
+      triggerScrollStart();
+
+    }
+
+  }
+
+);
+
+/* ==========================================
+   START BUTTON
+========================================== */
+
+$('#startButton').addEventListener(
+
+  'click',
+
+  () => {
+
+    queuedStart = true;
+
+    triggerScrollStart();
+
+  }
+
+);
+
+/* ==========================================
+   SKIP INTRO
+========================================== */
+
+$('#skipButton').addEventListener(
+
+  'click',
+
+  () => {
+
+    finishFilm(true);
+
+  }
+
+);
+
+/* ==========================================
+   CONTINUE TO STORY
+========================================== */
+
+$('#continueButton').addEventListener(
+
+  'click',
+
+  () => {
+
+    $('#story').scrollIntoView({
+
+      behavior:
+
+        reduceMotion
+
+          ? 'auto'
+
+          : 'smooth'
+
+    });
+
+  }
+
+);
+
+/* ==========================================
+   REPLAY INTRO
+========================================== */
+
+$('#replayButton').addEventListener(
+
+  'click',
+
+  () => {
+
+    /* ==================================
+       LOCK PAGE AGAIN
+    ================================== */
+
+    document.body.classList.add(
+
+      'locked'
+
+    );
+
+    window.scrollTo({
+
+      top: 0,
+
+      behavior: 'instant'
+
+    });
+
+    /* ==================================
+       HIDE FINAL TITLE
+    ================================== */
+
+    $('#endTitle').classList.remove(
+
+      'visible'
+
+    );
+
+    /* ==================================
+       RESET BUTTONS
+    ================================== */
+
+    $('#continueButton').classList.add(
+
+      'hidden'
+
+    );
+
+    $('#replayButton').classList.add(
+
+      'hidden'
+
+    );
+
+    $('#skipButton').classList.remove(
+
+      'hidden'
+
+    );
+
+    $('#startButton').classList.remove(
+
+      'hidden'
+
+    );
+
+    /* ==================================
+       RESET PROGRESS
+    ================================== */
+
+    $('#filmBar').style.width =
+      '0';
+
+    /* ==================================
+       RESET LIGHTS
+    ================================== */
+
+    $('#darkness').classList.remove(
+
+      'cleared',
+
+      'revealed'
+
+    );
+
+    $('#lightFlash').classList.remove(
+
+      'flicker'
+
+    );
+
+    queuedStart = false;
+
+    /* ==================================
+       RESET VIDEO ONCE
+    ================================== */
+
+    video.pause();
+
+    video.currentTime = 0;
+
+    /* ==================================
+       START DARK INTRO AGAIN
+    ================================== */
+
+    state = 'opening';
+
+    setPhase(
+
+      '00 / DARKNESS',
+
+      'BORN IN<br>THE DARK.',
+
+      'BOTH HEADLIGHTS IN 1.5 SECONDS'
+
+    );
+
+    lightsTimer = setTimeout(
+
+      revealLights,
+
+      reduceMotion ? 0 : OPENING_MS
+
+    );
+
+  }
+
+);
+
+/* ==========================================
+   HEADER NAVIGATION
+========================================== */
+
+/*
+  Navigating to another section counts
+  as intentionally skipping the film.
+*/
+
+$$('header nav a, #againLink').forEach(
+
+  link => {
+
+    link.addEventListener(
+
+      'click',
+
+      () => {
+
+        const target =
+
+          link.getAttribute('href');
+
+        if (target === '#top') {
+
+          return;
+
+        }
+
+        if (state !== 'ended') {
+
+          finishFilm(true);
+
+        }
+
+        $('#nav').classList.remove(
+
+          'open'
+
+        );
+
+        $('#menu').setAttribute(
+
+          'aria-expanded',
+
+          'false'
+
+        );
+
+        $('#menu').textContent =
+          '☰';
+
+      }
+
+    );
+
+  }
+
+);
+
+/* ==========================================
+   MOBILE MENU
+========================================== */
+
+$('#menu').addEventListener(
+
+  'click',
+
+  () => {
+
+    const open =
+
+      $('#nav').classList.toggle(
+
+        'open'
+
+      );
+
+    $('#menu').setAttribute(
+
+      'aria-expanded',
+
+      String(open)
+
+    );
+
+    $('#menu').textContent =
+
+      open ? '✕' : '☰';
+
+  }
+
+);
+
+/* ==========================================
+   DESIGN STUDIO LAZY LOADING
+========================================== */
+
+/*
+  The studio video only loads when
+  the user reaches the studio section.
+
+  It does not play simultaneously
+  with the main cinematic intro.
+*/
+
+const io = new IntersectionObserver(
+
+  entries => {
+
+    for (const entry of entries) {
+
+      if (
+
+        entry.target.id === 'studio'
+
+      ) {
+
+        studioVisible =
+
+          entry.isIntersecting;
+
+        /* ==================================
+           LOAD VIDEO
+        ================================== */
+
+        if (
+
+          studioVisible &&
+
+          !studioLoaded
+
+        ) {
+
+          studioLoaded = true;
+
+          studioVideo.src =
+
+            './porsche-cinematic.mp4';
+
+          studioVideo.load();
+
+        }
+
+        /* ==================================
+           PAUSE WHEN OFFSCREEN
+        ================================== */
+
+        if (!studioVisible) {
+
+          studioVideo.pause();
+
+        }
+
+      } else if (
+
+        entry.isIntersecting
+
+      ) {
+
+        entry.target.classList.add(
+
+          'visible'
+
+        );
+
+        io.unobserve(
+
+          entry.target
+
+        );
+
+      }
+
+    }
+
+  },
+
+  {
+
+    rootMargin: '100px'
+
+  }
+
+);
+
+/* ==========================================
+   OBSERVE STUDIO
+========================================== */
+
+io.observe(
+
+  $('#studio')
+
+);
+
+/* ==========================================
+   OBSERVE CONTENT REVEALS
+========================================== */
+
+$$('.reveal').forEach(
+
+  element => {
+
+    if (reduceMotion) {
+
+      element.classList.add(
+
+        'visible'
+
+      );
+
+    } else {
+
+      io.observe(element);
+
+    }
+
+  }
+
+);
+
+/* ==========================================
    STUDIO VIDEO READY
 ========================================== */
 
-studio.addEventListener(
+studioVideo.addEventListener(
 
   'loadedmetadata',
 
@@ -3111,45 +3198,184 @@ studio.addEventListener(
 
     studioReady = true;
 
-    studio.pause();
+    studioVideo.pause();
 
-    studioQueue.setActive(
+    /* ==================================
+       DEFAULT CAMERA VIEW
+    ================================== */
 
-      studioVisible &&
+    studioVideo.currentTime =
 
-      !document.hidden
+      Math.min(
 
-    );
+        3.8,
 
-    studioFrame(
+        Math.max(
 
-      studioWanted
+          0,
 
-    );
+          studioVideo.duration - .1
+
+        )
+
+      );
 
   }
 
 );
 
 /* ==========================================
-   STUDIO ERROR
+   STUDIO VIDEO TIME
 ========================================== */
 
-studio.addEventListener(
+studioVideo.addEventListener(
 
-  'error',
+  'timeupdate',
 
   () => {
 
-    $('#angleLabel').textContent =
-      'VIDEO NIET BESCHIKBAAR';
+    $('#videoTime').textContent =
+
+      '00:' +
+
+      String(
+
+        Math.floor(
+
+          studioVideo.currentTime
+
+        )
+
+      ).padStart(2, '0');
 
   }
 
 );
 
 /* ==========================================
-   CAMERA PRESETS
+   STUDIO VIDEO ENDED
+========================================== */
+
+studioVideo.addEventListener(
+
+  'ended',
+
+  () => {
+
+    $('#studioPlay').textContent =
+
+      '▶ REPLAY CAMERA FILM';
+
+  }
+
+);
+
+/* ==========================================
+   CHANGE STUDIO CAMERA VIEW
+========================================== */
+
+/*
+  Unlike the old website, this happens
+  only when the user clicks a button.
+
+  No continuous seeking while scrolling.
+*/
+
+function studioFrame(
+
+  time,
+
+  label
+
+) {
+
+  if (!studioReady) {
+
+    return;
+
+  }
+
+  /* ======================================
+     PAUSE STUDIO VIDEO
+  ====================================== */
+
+  studioVideo.pause();
+
+  /* ======================================
+     ONE-TIME VIDEO SEEK
+  ====================================== */
+
+  studioVideo.currentTime =
+
+    Math.max(
+
+      0,
+
+      Math.min(
+
+        time,
+
+        studioVideo.duration - .1
+
+      )
+
+    );
+
+  /* ======================================
+     UPDATE LABEL
+  ====================================== */
+
+  $('#viewLabel').textContent =
+    label;
+
+  $('#studioPlay').textContent =
+
+    '▶ PLAY CAMERA FILM';
+
+  /* ======================================
+     ACTIVE BUTTON
+  ====================================== */
+
+  $$('[data-time]').forEach(
+
+    button => {
+
+      const on =
+
+        Math.abs(
+
+          Number(
+
+            button.dataset.time
+
+          ) - time
+
+        ) < .1;
+
+      button.classList.toggle(
+
+        'active',
+
+        on
+
+      );
+
+      button.setAttribute(
+
+        'aria-pressed',
+
+        String(on)
+
+      );
+
+    }
+
+  );
+
+}
+
+/* ==========================================
+   CAMERA BUTTONS
 ========================================== */
 
 $$('[data-time]').forEach(
@@ -3162,13 +3388,31 @@ $$('[data-time]').forEach(
 
       () => {
 
-        studioFrame(
+        const t =
 
           Number(
 
             button.dataset.time
 
-          )
+          );
+
+        const label =
+
+          t < 5
+
+            ? 'FRONT THREE-QUARTER'
+
+            : t < 9
+
+              ? 'SIDE PROFILE'
+
+              : 'REAR THREE-QUARTER';
+
+        studioFrame(
+
+          t,
+
+          label
 
         );
 
@@ -3181,73 +3425,38 @@ $$('[data-time]').forEach(
 );
 
 /* ==========================================
-   CAMERA SLIDER
+   LIGHTING PRESETS
 ========================================== */
 
-$('#angleRange').addEventListener(
+/*
+  These are CSS color adjustments.
 
-  'input',
-
-  event => {
-
-    studioFrame(
-
-      Number(
-
-        event.target.value
-
-      )
-
-    );
-
-  }
-
-);
-
-/* ==========================================
-   STUDIO LOOKS
-========================================== */
+  The actual Porsche color
+  remains white.
+*/
 
 const looks = {
 
   day:
 
-    'brightness(1.12) ' +
-
-    'contrast(1.05) ' +
-
-    'saturate(.96)',
+    'brightness(1.10) contrast(1.05)',
 
   night:
 
-    'brightness(.53) ' +
-
-    'contrast(1.12) ' +
-
-    'saturate(.88)',
+    'brightness(.55) contrast(1.12)',
 
   cool:
 
-    'brightness(1.05) ' +
-
-    'contrast(1.09) ' +
-
-    'saturate(.8) ' +
-
-    'hue-rotate(5deg)',
+    'brightness(1.07) contrast(1.05) saturate(.85)',
 
   contrast:
 
-    'brightness(.92) ' +
-
-    'contrast(1.28) ' +
-
-    'saturate(1.02)'
+    'brightness(.94) contrast(1.27)'
 
 };
 
 /* ==========================================
-   CHANGE STUDIO LOOK
+   APPLY LIGHTING LOOK
 ========================================== */
 
 function setLook(name) {
@@ -3258,14 +3467,15 @@ function setLook(name) {
 
   }
 
-  studio.style.filter =
+  studioVideo.style.filter =
+
     looks[name];
 
   $$('[data-look]').forEach(
 
     button => {
 
-      const selected =
+      const on =
 
         button.dataset.look === name;
 
@@ -3273,7 +3483,7 @@ function setLook(name) {
 
         'active',
 
-        selected
+        on
 
       );
 
@@ -3281,7 +3491,7 @@ function setLook(name) {
 
         'aria-pressed',
 
-        String(selected)
+        String(on)
 
       );
 
@@ -3292,7 +3502,7 @@ function setLook(name) {
 }
 
 /* ==========================================
-   LOOK BUTTONS
+   LIGHTING BUTTONS
 ========================================== */
 
 $$('[data-look]').forEach(
@@ -3320,16 +3530,88 @@ $$('[data-look]').forEach(
 );
 
 /* ==========================================
+   STUDIO PLAY / PAUSE
+========================================== */
+
+$('#studioPlay').addEventListener(
+
+  'click',
+
+  async () => {
+
+    if (!studioReady) {
+
+      return;
+
+    }
+
+    /* ==================================
+       PAUSE IF PLAYING
+    ================================== */
+
+    if (!studioVideo.paused) {
+
+      studioVideo.pause();
+
+      $('#studioPlay').textContent =
+
+        '▶ PLAY CAMERA FILM';
+
+      return;
+
+    }
+
+    /* ==================================
+       REPLAY IF FINISHED
+    ================================== */
+
+    if (studioVideo.ended) {
+
+      studioVideo.currentTime = 0;
+
+    }
+
+    /* ==================================
+       NORMAL PLAYBACK
+    ================================== */
+
+    try {
+
+      await studioVideo.play();
+
+      $('#studioPlay').textContent =
+
+        'Ⅱ PAUSE FILM';
+
+    } catch (error) {
+
+      $('#studioPlay').textContent =
+
+        'STARTEN MISLUKT — PROBEER OPNIEUW';
+
+    }
+
+  }
+
+);
+
+/* ==========================================
    RESET STUDIO
 ========================================== */
 
-$('#resetStudio').addEventListener(
+$('#studioReset').addEventListener(
 
   'click',
 
   () => {
 
-    studioFrame(3.8);
+    studioFrame(
+
+      3.8,
+
+      'FRONT THREE-QUARTER'
+
+    );
 
     setLook('day');
 
@@ -3338,250 +3620,58 @@ $('#resetStudio').addEventListener(
 );
 
 /* ==========================================
-   LAZY LOAD THE STUDIO VIDEO
+   PAGE SCROLL PROGRESS
 ========================================== */
 
-/*
-  BELANGRIJK:
+function updateScrollUI() {
 
-  De tweede videospeler wordt pas
-  geladen wanneer de gebruiker
-  bij de designstudio aankomt.
+  const max =
 
-  We vragen ook niet voortdurend
-  nieuwe frames op als de studio
-  buiten beeld staat.
-*/
+    Math.max(
 
-const studioObserver =
+      1,
 
-  new IntersectionObserver(
+      document.documentElement.scrollHeight -
 
-    entries => {
-
-      studioVisible =
-
-        entries[0]?.isIntersecting ??
-
-        false;
-
-      /* ==================================
-         LOAD VIDEO ONLY WHEN NEEDED
-      ================================== */
-
-      if (
-
-        studioVisible &&
-
-        !studioLoaded
-
-      ) {
-
-        studioLoaded = true;
-
-        studio.src =
-
-          './porsche-cinematic.mp4';
-
-        studio.preload =
-          'metadata';
-
-        studio.load();
-
-      }
-
-      /* ==================================
-         ENABLE OR DISABLE SEEKING
-      ================================== */
-
-      studioQueue.setActive(
-
-        studioVisible &&
-
-        studioReady &&
-
-        !document.hidden
-
-      );
-
-      if (
-
-        studioVisible &&
-
-        studioReady
-
-      ) {
-
-        studioFrame(
-
-          studioWanted
-
-        );
-
-      }
-
-    },
-
-    {
-      rootMargin: '80px'
-    }
-
-  );
-
-studioObserver.observe(
-
-  $('#studio')
-
-);
-
-/* ==========================================
-   CONTENT REVEALS
-========================================== */
-
-const revealObserver =
-
-  new IntersectionObserver(
-
-    entries => {
-
-      for (const entry of entries) {
-
-        if (
-
-          !entry.isIntersecting
-
-        ) {
-
-          continue;
-
-        }
-
-        entry.target.classList.add(
-
-          'visible'
-
-        );
-
-        revealObserver.unobserve(
-
-          entry.target
-
-        );
-
-      }
-
-    },
-
-    {
-      threshold: .1
-    }
-
-  );
-
-$$('.reveal').forEach(
-
-  element => {
-
-    if (reducedMotion) {
-
-      element.classList.add(
-
-        'visible'
-
-      );
-
-    } else {
-
-      revealObserver.observe(
-
-        element
-
-      );
-
-    }
-
-  }
-
-);
-
-/* ==========================================
-   MOBILE MENU
-========================================== */
-
-$('#menu').addEventListener(
-
-  'click',
-
-  () => {
-
-    const open =
-
-      $('#nav').classList.toggle(
-
-        'open'
-
-      );
-
-    $('#menu').textContent =
-
-      open ? '✕' : '☰';
-
-    $('#menu').setAttribute(
-
-      'aria-expanded',
-
-      String(open)
+      innerHeight
 
     );
 
+  $('#pageProgress').style.width =
+
+    (
+
+      scrollY / max * 100
+
+    ) + '%';
+
+  $('#header').classList.toggle(
+
+    'scrolled',
+
+    scrollY > 45
+
+  );
+
+}
+
+/* ==========================================
+   SCROLL LISTENER
+========================================== */
+
+window.addEventListener(
+
+  'scroll',
+
+  updateScrollUI,
+
+  {
+    passive: true
   }
 
 );
 
-/* ==========================================
-   CLOSE MOBILE MENU
-========================================== */
-
-$$('#nav a').forEach(
-
-  link => {
-
-    link.addEventListener(
-
-      'click',
-
-      () => {
-
-        $('#nav').classList.remove(
-
-          'open'
-
-        );
-
-        $('#menu').textContent =
-          '☰';
-
-        $('#menu').setAttribute(
-
-          'aria-expanded',
-
-          'false'
-
-        );
-
-      }
-
-    );
-
-  }
-
-);
-
-/* ==========================================
-   INITIAL PAGE STATE
-========================================== */
-
-scheduleScroll();
+updateScrollUI();
 
 </script>
 
