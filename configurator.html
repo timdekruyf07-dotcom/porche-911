@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#090d13"
+>
+
+<meta
+  name="description"
+  content="Build Your 911 — Porsche GT3 RS Configurator"
+>
+
+<title>BUILD YOUR 911 — DESIGN STUDIO</title>
+
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+>
+
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+
+/* ==========================================
+   GLOBAL
+========================================== */
+
+:root {
+
+  --black: #090d13;
+  --panel: #131b25;
+  --panel-light: #1c2632;
+
+  --white: #f3f5f7;
+  --grey: #a5b2bf;
+
+  --border: #ffffff25;
+  --red: #d84943;
+
+  --mono: "DM Mono", monospace;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+
+  margin: 0;
+
+  background: var(--black);
+  color: var(--white);
+
+  font-family: Manrope, Arial, sans-serif;
+
+  overflow-x: hidden;
+
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible {
+
+  outline: 2px solid white;
+  outline-offset: 4px;
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+header {
+
+  position: relative;
+  z-index: 20;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 25px 5%;
+
+  border-bottom: 1px solid var(--border);
+
+  background: #0b1017;
+
+}
+
+.logo {
+
+  font-size: 34px;
+  font-weight: 800;
+
+  letter-spacing: -.11em;
+  line-height: 1;
+
+}
+
+.logo small {
+
+  display: block;
+
+  margin-top: 8px;
+
+  font: 9px var(--mono);
+  letter-spacing: .19em;
+
+  color: var(--grey);
+
+}
+
+.back {
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+
+  padding: 12px 17px;
+
+  border: 1px solid #ffffff65;
+
+  font: 10px var(--mono);
+  letter-spacing: .11em;
+
+  transition: background .2s;
+
+}
+
+.back:hover {
+  background: #ffffff16;
+}
+
+/* ==========================================
+   INTRO
+========================================== */
+
+.intro {
+
+  padding: 65px 5% 35px;
+
+  max-width: 1600px;
+  margin: auto;
+
+}
+
+.eyebrow {
+
+  font: 11px var(--mono);
+  letter-spacing: .18em;
+
+  color: #c6d1db;
+
+}
+
+.eyebrow::before {
+
+  content: "";
+
+  display: inline-block;
+
+  width: 26px;
+  height: 1px;
+
+  margin-right: 12px;
+
+  background: var(--red);
+  vertical-align: middle;
+
+}
+
+.intro h1 {
+
+  margin: 20px 0 15px;
+
+  font-size: clamp(54px, 8vw, 125px);
+
+  font-weight: 600;
+  letter-spacing: -.095em;
+  line-height: .93;
+
+}
+
+.intro h1 span {
+
+  color: #82909e;
+
+}
+
+.intro p {
+
+  max-width: 600px;
+
+  font-size: 15px;
+  line-height: 1.8;
+
+  color: #acbac8;
+
+}
+
+/* ==========================================
+   CONFIGURATOR LAYOUT
+========================================== */
+
+.configurator {
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(280px, 350px);
+
+  gap: 20px;
+
+  max-width: 1600px;
+  margin: 0 auto;
+
+  padding: 20px 5% 100px;
+
+}
+
+/* ==========================================
+   IMAGE VIEWER
+========================================== */
+
+.viewer {
+
+  position: relative;
+
+  min-width: 0;
+
+  background: #111922;
+
+  border: 1px solid var(--border);
+
+  overflow: hidden;
+
+}
+
+/* ==========================================
+   PHOTO STAGE
+========================================== */
+
+.photo-stage {
+
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 3 / 2;
+
+  background: #111922;
+
+  overflow: hidden;
+
+}
+
+/* ==========================================
+   ORIGINAL PORSCHE IMAGE
+========================================== */
+
+#baseImage {
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  position: absolute;
+  inset: 0;
+
+}
+
+/* ==========================================
+   COLORED HOOD OVERLAY
+========================================== */
+
+#hoodOverlay {
+
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  transition: opacity .25s ease;
+
+}
+
+#hoodOverlay.visible {
+
+  opacity: 1;
+
+}
+
+/* ==========================================
+   VIEWER BADGE
+========================================== */
+
+.viewer-badge {
+
+  position: absolute;
+
+  top: 17px;
+  left: 17px;
+
+  z-index: 5;
+
+  padding: 11px 13px;
+
+  background: #050a11c7;
+  border: 1px solid #ffffff35;
+
+  font: 10px var(--mono);
+  letter-spacing: .13em;
+
+}
+
+/* ==========================================
+   IMAGE STATUS
+========================================== */
+
+#imageStatus {
+
+  position: absolute;
+
+  left: 15px;
+  right: 15px;
+  bottom: 18px;
+
+  z-index: 7;
+
+  display: none;
+
+  padding: 12px;
+
+  background: #090d13df;
+  border: 1px solid #ffffff44;
+
+  font: 11px/1.7 var(--mono);
+
+  color: #ffcdc7;
+
+}
+
+#imageStatus.visible {
+  display: block;
+}
+
+/* ==========================================
+   PHOTO FOOTER
+========================================== */
+
+.viewer-footer {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 20px 22px;
+
+  border-top: 1px solid var(--border);
+
+  background: #111a24;
+
+}
+
+.viewer-footer strong {
+
+  display: block;
+
+  font-size: 15px;
+  letter-spacing: -.02em;
+
+}
+
+.viewer-footer small {
+
+  display: block;
+
+  margin-top: 5px;
+
+  color: #aab9c6;
+
+  font: 10px var(--mono);
+
+}
+
+.view-tag {
+
+  font: 10px var(--mono);
+  letter-spacing: .12em;
+
+  color: #d2dbe3;
+
+}
+
+/* ==========================================
+   CONTROL PANEL
+========================================== */
+
+.panel {
+
+  background: var(--panel);
+
+  border: 1px solid var(--border);
+
+  padding: 29px;
+
+  min-width: 0;
+
+}
+
+.panel-heading {
+
+  padding-bottom: 25px;
+
+  border-bottom: 1px solid var(--border);
+
+}
+
+.panel-heading small {
+
+  font: 10px var(--mono);
+  letter-spacing: .15em;
+
+  color: #9daab8;
+
+}
+
+.panel-heading h2 {
+
+  margin: 13px 0 0;
+
+  font-size: 31px;
+  line-height: 1.1;
+
+  letter-spacing: -.07em;
+
+}
+
+/* ==========================================
+   CONTROL GROUPS
+========================================== */
+
+.group {
+
+  padding: 26px 0;
+
+  border-bottom: 1px solid var(--border);
+
+}
+
+.group-label {
+
+  display: block;
+
+  margin-bottom: 16px;
+
+  color: #c3d0dc;
+
+  font: 10px var(--mono);
+  letter-spacing: .14em;
+
+}
+
+/* ==========================================
+   COMPONENT SELECTION
+========================================== */
+
+.component {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px;
+
+  background: #26323f;
+
+  border: 1px solid #9fb0be;
+
+  font-size: 13px;
+  font-weight: 700;
+
+}
+
+.component span {
+
+  font: 10px var(--mono);
+  color: #d6e0e9;
+
+}
+
+/* ==========================================
+   COLOR OPTIONS
+========================================== */
+
+.colors {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 10px;
+
+}
+
+/* ==========================================
+   COLOR BUTTON
+========================================== */
+
+.color {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  gap: 10px;
+
+  min-height: 103px;
+
+  padding: 13px 6px;
+
+  background: #18232e;
+
+  border: 1px solid #ffffff30;
+
+  color: #dbe4ed;
+
+  transition:
+    background .2s,
+    border-color .2s;
+
+}
+
+.color:hover {
+
+  background: #273542;
+
+}
+
+.color.active {
+
+  background: #273542;
+
+  border-color: white;
+
+}
+
+.color.active .swatch {
+
+  outline: 2px solid white;
+  outline-offset: 4px;
+
+}
+
+/* ==========================================
+   COLOR SWATCHES
+========================================== */
+
+.swatch {
+
+  display: block;
+
+  width: 33px;
+  height: 33px;
+
+  border-radius: 50%;
+
+  border: 1px solid #ffffff7e;
+
+}
+
+.swatch.white {
+  background: #f3f5f7;
+}
+
+.swatch.red {
+  background: #c51d26;
+}
+
+.swatch.bordeaux {
+  background: #650e25;
+}
+
+.swatch.darkgrey {
+  background: #333b43;
+}
+
+.swatch.matzwart {
+  background: #111214;
+}
+
+.swatch.carbon {
+
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #111 0px,
+      #111 3px,
+      #444 3px,
+      #444 6px
+    );
+
+}
+
+/* ==========================================
+   COLOR NAMES
+========================================== */
+
+.color-name {
+
+  font: 10px/1.4 var(--mono);
+
+  text-align: center;
+
+}
+
+/* ==========================================
+   CURRENT SELECTION
+========================================== */
+
+.current {
+
+  display: flex;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: 20px;
+
+  font: 11px var(--mono);
+
+}
+
+.current span {
+
+  color: #9cabb9;
+
+}
+
+.current strong {
+
+  text-align: right;
+
+}
+
+/* ==========================================
+   RESET BUTTON
+========================================== */
+
+.reset {
+
+  width: 100%;
+
+  margin-top: 26px;
+  padding: 17px;
+
+  min-height: 50px;
+
+  background: #e8edf2;
+
+  border: 0;
+
+  color: #0c1722;
+
+  font: 11px var(--mono);
+  letter-spacing: .09em;
+
+}
+
+.reset:hover {
+  background: white;
+}
+
+/* ==========================================
+   COMING SOON
+========================================== */
+
+.future {
+
+  max-width: 1600px;
+
+  margin: 0 auto;
+  padding: 15px 5% 100px;
+
+}
+
+.future-heading {
+
+  margin-bottom: 28px;
+
+}
+
+.future h2 {
+
+  margin: 14px 0;
+
+  font-size: clamp(35px, 5vw, 66px);
+
+  letter-spacing: -.07em;
+  font-weight: 600;
+
+}
+
+.future p {
+
+  max-width: 700px;
+  line-height: 1.8;
+
+  color: #aab8c5;
+
+}
+
+/* ==========================================
+   FUTURE COMPONENT GRID
+========================================== */
+
+.future-grid {
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 12px;
+
+}
+
+.future-card {
+
+  min-height: 135px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 23px;
+
+  background: #131b25;
+
+  border: 1px solid #ffffff25;
+
+}
+
+.future-card strong {
+
+  font-size: 17px;
+  letter-spacing: -.03em;
+
+}
+
+.future-card span {
+
+  font: 10px var(--mono);
+  letter-spacing: .13em;
+
+  color: #95a4b2;
+
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer {
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  gap: 20px;
+
+  padding: 28px 5%;
+
+  border-top: 1px solid #ffffff29;
+
+  font: 10px/1.8 var(--mono);
+  letter-spacing: .1em;
+
+  color: #b0bdc9;
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 980px) {
+
+  .configurator {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .panel {
+
+    padding: 25px;
+
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  header {
+
+    padding: 20px 5%;
+
+  }
+
+  .logo {
+
+    font-size: 27px;
+
+  }
+
+  .back {
+
+    font-size: 9px;
+
+  }
+
+  .intro {
+
+    padding-top: 55px;
+
+  }
+
+  .intro h1 {
+
+    font-size: 12vw;
+
+  }
+
+  .photo-stage {
+
+    aspect-ratio: 3 / 2;
+
+  }
+
+  .viewer-badge {
+
+    font-size: 8px;
+
+  }
+
+  .viewer-footer {
+
+    padding: 17px;
+
+  }
+
+  .colors {
+
+    grid-template-columns: repeat(3, 1fr);
+
+  }
+
+  .future-grid {
+
+    grid-template-columns: 1fr 1fr;
+
+  }
+
+  .future-card {
+
+    padding: 18px;
+    min-height: 120px;
+
+  }
+
+  .future-card strong {
+
+    font-size: 14px;
+
+  }
+
+}
+
+@media (max-width: 400px) {
+
+  .future-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  #hoodOverlay,
+  .color {
+
+    transition: none;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ==========================================
+     HEADER
+========================================== -->
+
+<header>
+
+  <a
+    href="./index.html"
+    class="logo"
+  >
+
+    911
+
+    <small>
+      THE DESIGN STUDIO
+    </small>
+
+  </a>
+
+  <a
+    href="./index.html"
+    class="back"
+  >
+
+    ← BACK TO EXPERIENCE
+
+  </a>
+
+</header>
+
+<main>
+
+<!-- ==========================================
+     PAGE INTRO
+========================================== -->
+
+<section class="intro">
+
+  <span class="eyebrow">
+
+    PORSCHE 911 GT3 RS / DESIGN STUDIO
+
+  </span>
+
+  <h1>
+
+    BUILD<br>
+    <span>YOUR 911.</span>
+
+  </h1>
+
+  <p>
+
+    Your vision. Your Porsche.
+
+    Begin met de motorkap en ontdek
+    hoe één detail het karakter
+    van de 911 GT3 RS kan veranderen.
+
+  </p>
+
+</section>
+
+<!-- ==========================================
+     CONFIGURATOR
+========================================== -->
+
+<section class="configurator">
+
+  <!-- ======================================
+       PHOTO VIEWER
+  ====================================== -->
+
+  <div class="viewer">
+
+    <div class="photo-stage">
+
+      <!-- ORIGINAL PORSCHE -->
+
+      <img
+        id="baseImage"
+        src="./images/front.png"
+        alt="Witte Porsche 911 GT3 RS in de LED-showroom"
+      >
+
+      <!-- CHANGEABLE HOOD -->
+
+      <img
+        id="hoodOverlay"
+        alt=""
+        aria-hidden="true"
+      >
+
+      <!-- IMAGE LABEL -->
+
+      <div class="viewer-badge">
+
+        911 GT3 RS / FRONT VIEW
+
+      </div>
+
+      <!-- ERROR STATUS -->
+
+      <div
+        id="imageStatus"
+        role="status"
+      ></div>
+
+    </div>
+
+    <!-- ==================================
+         VIEWER FOOTER
+    ================================== -->
+
+    <div class="viewer-footer">
+
+      <div>
+
+        <strong>
+
+          PORSCHE 911 GT3 RS
+
+        </strong>
+
+        <small>
+
+          PERSONAL DESIGN / 991.2
+
+        </small>
+
+      </div>
+
+      <span class="view-tag">
+
+        01 / FRONT
+
+      </span>
+
+    </div>
+
+  </div>
+
+  <!-- ======================================
+       CONFIGURATOR CONTROLS
+  ====================================== -->
+
+  <aside class="panel">
+
+    <div class="panel-heading">
+
+      <small>
+
+        CONFIGURATION / 01
+
+      </small>
+
+      <h2>
+
+        MAKE IT<br>
+        YOURS.
+
+      </h2>
+
+    </div>
+
+    <!-- ==================================
+         COMPONENT
+    ================================== -->
+
+    <div class="group">
+
+      <span class="group-label">
+
+        SELECT COMPONENT
+
+      </span>
+
+      <div class="component">
+
+        HOOD / MOTORKAP
+
+        <span>
+
+          ACTIVE ✓
+
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- ==================================
+         COLORS
+    ================================== -->
+
+    <div class="group">
+
+      <span class="group-label">
+
+        SELECT FINISH
+
+      </span>
+
+      <div
+        class="colors"
+        id="colors"
+      >
+
+        <!-- ORIGINAL WHITE -->
+
+        <button
+          class="color active"
+          type="button"
+          data-finish="white"
+          aria-pressed="true"
+        >
+
+          <span class="swatch white"></span>
+
+          <span class="color-name">
+
+            ORIGINAL<br>
+            WHITE
+
+          </span>
+
+        </button>
+
+        <!-- RED -->
+
+        <button
+          class="color"
+          type="button"
+          data-finish="red"
+          aria-pressed="false"
+        >
+
+          <span class="swatch red"></span>
+
+          <span class="color-name">
+
+            GUARDS<br>
+            RED
+
+          </span>
+
+        </button>
+
+        <!-- BORDEAUX -->
+
+        <button
+          class="color"
+          type="button"
+          data-finish="bordeaux"
+          aria-pressed="false"
+        >
+
+          <span class="swatch bordeaux"></span>
+
+          <span class="color-name">
+
+            BORDEAUX<br>
+            RED
+
+          </span>
+
+        </button>
+
+        <!-- DARK GREY -->
+
+        <button
+          class="color"
+          type="button"
+          data-finish="darkgrey"
+          aria-pressed="false"
+        >
+
+          <span class="swatch darkgrey"></span>
+
+          <span class="color-name">
+
+            GRAPHITE<br>
+            GREY
+
+          </span>
+
+        </button>
+
+        <!-- MATZWART -->
+
+        <button
+          class="color"
+          type="button"
+          data-finish="matzwart"
+          aria-pressed="false"
+        >
+
+          <span class="swatch matzwart"></span>
+
+          <span class="color-name">
+
+            MATTE<br>
+            BLACK
+
+          </span>
+
+        </button>
+
+        <!-- CARBON -->
+
+        <button
+          class="color"
+          type="button"
+          data-finish="carbon"
+          aria-pressed="false"
+        >
+
+          <span class="swatch carbon"></span>
+
+          <span class="color-name">
+
+            CARBON<br>
+            FIBER
+
+          </span>
+
+        </button>
+
+      </div>
+
+      <!-- CURRENT FINISH -->
+
+      <div class="current">
+
+        <span>
+
+          CURRENT FINISH
+
+        </span>
+
+        <strong id="currentFinish">
+
+          ORIGINAL WHITE
+
+        </strong>
+
+      </div>
+
+    </div>
+
+    <!-- ==================================
+         RESET
+    ================================== -->
+
+    <button
+      type="button"
+      class="reset"
+      id="resetButton"
+    >
+
+      ↺ RESET HOOD
+
+    </button>
+
+  </aside>
+
+</section>
+
+<!-- ==========================================
+     FUTURE COMPONENTS
+========================================== -->
+
+<section class="future">
+
+  <div class="future-heading">
+
+    <span class="eyebrow">
+
+      THE NEXT CHAPTER
+
+    </span>
+
+    <h2>
+
+      EVERY DETAIL.<br>
+      YOUR DECISION.
+
+    </h2>
+
+    <p>
+
+      We bouwen deze configurator stap voor
+      stap verder uit.
+
+      Binnenkort kun je ook de carrosserie,
+      het dak, de achterklep, de achterbumper
+      en de remklauwen aanpassen.
+
+    </p>
+
+  </div>
+
+  <div class="future-grid">
+
+    <div class="future-card">
+
+      <strong>
+
+        BODY / CARROSSERIE
+
+      </strong>
+
+      <span>
+
+        COMING NEXT
+
+      </span>
+
+    </div>
+
+    <div class="future-card">
+
+      <strong>
+
+        ROOF / DAK
+
+      </strong>
+
+      <span>
+
+        COMING NEXT
+
+      </span>
+
+    </div>
+
+    <div class="future-card">
+
+      <strong>
+
+        REAR DECK / ACHTERKLEP
+
+      </strong>
+
+      <span>
+
+        COMING NEXT
+
+      </span>
+
+    </div>
+
+    <div class="future-card">
+
+      <strong>
+
+        REAR BUMPER
+
+      </strong>
+
+      <span>
+
+        COMING NEXT
+
+      </span>
+
+    </div>
+
+    <div class="future-card">
+
+      <strong>
+
+        BRAKE CALIPERS
+
+      </strong>
+
+      <span>
+
+        COMING NEXT
+
+      </span>
+
+    </div>
+
+    <div class="future-card">
+
+      <strong>
+
+        RACING DECALS
+
+      </strong>
+
+      <span>
+
+        ON / OFF — COMING NEXT
+
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer>
+
+  <span>
+
+    911 / PERSONAL DESIGN STUDIO
+
+  </span>
+
+  <span>
+
+    INDEPENDENT CONCEPT · NOT AFFILIATED
+    WITH PORSCHE AG
+
+  </span>
+
+  <a href="./index.html">
+
+    BACK TO EXPERIENCE ↑
+
+  </a>
+
+</footer>
+
+<!-- ==========================================
+     JAVASCRIPT
+========================================== -->
+
+<script>
+
+"use strict";
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const overlay = document.getElementById(
+  "hoodOverlay"
+);
+
+const base = document.getElementById(
+  "baseImage"
+);
+
+const currentFinish = document.getElementById(
+  "currentFinish"
+);
+
+const status = document.getElementById(
+  "imageStatus"
+);
+
+/* ==========================================
+   IMAGE FILES
+
+   IMPORTANT:
+   THESE MATCH YOUR ACTUAL FILENAMES.
+========================================== */
+
+const finishes = {
+
+  white: {
+
+    name: "ORIGINAL WHITE",
+
+    file: null
+
+  },
+
+  red: {
+
+    name: "GUARDS RED",
+
+    file: "./images/front-hood-red.png"
+
+  },
+
+  bordeaux: {
+
+    name: "BORDEAUX RED",
+
+    file: "./images/front-hood-bordeaux.png"
+
+  },
+
+  darkgrey: {
+
+    name: "GRAPHITE GREY",
+
+    file: "./images/front-hood-darkgrey.png"
+
+  },
+
+  matzwart: {
+
+    name: "MATTE BLACK",
+
+    file: "./images/front-hood-matzwart.png"
+
+  },
+
+  carbon: {
+
+    name: "CARBON FIBER",
+
+    file: "./images/front-hood-carbon.png"
+
+  }
+
+};
+
+/* ==========================================
+   STATE
+========================================== */
+
+let selectedFinish = "white";
+
+/*
+  Keeps old image loads from replacing
+  a more recently selected finish.
+*/
+
+let requestNumber = 0;
+
+/* ==========================================
+   SHOW STATUS
+========================================== */
+
+function showStatus(message) {
+
+  status.textContent = message;
+
+  status.classList.add(
+    "visible"
+  );
+
+}
+
+/* ==========================================
+   HIDE STATUS
+========================================== */
+
+function hideStatus() {
+
+  status.textContent = "";
+
+  status.classList.remove(
+    "visible"
+  );
+
+}
+
+/* ==========================================
+   UPDATE ACTIVE COLOR BUTTONS
+========================================== */
+
+function updateButtons(name) {
+
+  document.querySelectorAll(
+    "[data-finish]"
+  ).forEach(button => {
+
+    const active =
+
+      button.dataset.finish === name;
+
+    button.classList.toggle(
+      "active",
+      active
+    );
+
+    button.setAttribute(
+      "aria-pressed",
+      String(active)
+    );
+
+  });
+
+}
+
+/* ==========================================
+   CHANGE HOOD FINISH
+========================================== */
+
+function changeFinish(name) {
+
+  const finish = finishes[name];
+
+  if (!finish) {
+    return;
+  }
+
+  selectedFinish = name;
+
+  const request = ++requestNumber;
+
+  hideStatus();
+
+  /* ======================================
+     UPDATE BUTTONS
+  ====================================== */
+
+  updateButtons(name);
+
+  /* ======================================
+     UPDATE LABEL
+  ====================================== */
+
+  currentFinish.textContent =
+
+    finish.name;
+
+  /* ======================================
+     ORIGINAL WHITE
+
+     No overlay required.
+  ====================================== */
+
+  if (!finish.file) {
+
+    overlay.classList.remove(
+      "visible"
+    );
+
+    overlay.removeAttribute(
+      "src"
+    );
+
+    return;
+
+  }
+
+  /* ======================================
+     PRELOAD SELECTED IMAGE
+  ====================================== */
+
+  const image = new Image();
+
+  image.onload = () => {
+
+    /*
+      Ignore images that finish loading
+      after a newer selection.
+    */
+
+    if (request !== requestNumber) {
+      return;
+    }
+
+    /* ==================================
+       SWAP OVERLAY
+    ================================== */
+
+    overlay.src = finish.file;
+
+    overlay.classList.add(
+      "visible"
+    );
+
+  };
+
+  /* ======================================
+     IMAGE ERROR
+  ====================================== */
+
+  image.onerror = () => {
+
+    if (request !== requestNumber) {
+      return;
+    }
+
+    showStatus(
+
+      "De afbeelding kon niet laden: " +
+      finish.file +
+      ". Controleer de bestandsnaam " +
+      "en de map images op GitHub."
+
+    );
+
+  };
+
+  /* ======================================
+     START IMAGE LOAD
+  ====================================== */
+
+  image.src = finish.file;
+
+}
+
+/* ==========================================
+   COLOR BUTTON EVENTS
+========================================== */
+
+document.querySelectorAll(
+  "[data-finish]"
+).forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      changeFinish(
+        button.dataset.finish
+      );
+
+    }
+  );
+
+});
+
+/* ==========================================
+   RESET BUTTON
+========================================== */
+
+document.getElementById(
+  "resetButton"
+).addEventListener(
+  "click",
+  () => {
+
+    changeFinish("white");
+
+  }
+);
+
+/* ==========================================
+   BASE IMAGE LOAD ERROR
+========================================== */
+
+base.addEventListener(
+  "error",
+  () => {
+
+    showStatus(
+
+      "De originele Porsche-foto kan niet " +
+      "laden. Controleer of " +
+      "images/front.png bestaat."
+
+    );
+
+  }
+);
+
+/* ==========================================
+   START
+========================================== */
+
+changeFinish("white");
+
+</script>
+
+</body>
+</html>
